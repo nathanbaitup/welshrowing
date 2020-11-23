@@ -1,11 +1,13 @@
 package nsa.group7.welshrowing.web;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class AthleteEntryForm {
     /**
@@ -24,6 +26,10 @@ public class AthleteEntryForm {
      * The athlete's personal email address.
      */
     private String email;
+    /**
+     * The athlete's password to log into the system.
+     */
+    private String password;
     /**
      * The athlete's mobile number.
      */

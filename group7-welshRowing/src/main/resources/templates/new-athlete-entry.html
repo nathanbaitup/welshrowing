@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Athlete Data entry</title>
+</head>
+<header>
+    <h1 id="pageTitle">New Athlete </h1>
+</header>
+<body>
+
+<div>
+    <p>Please enter your information to create an account.</p>
+</div>
+
+<div>
+    <form action="#" method="post" th:action="@{/add-athlete}" th:object="${athlete}">
+        <div>
+            <label th:for="name">Please enter your Name:</label>
+            <input th:field="*{name}" type="text" placeholder="Your Name" required/>
+            <br>
+        </div>
+
+        <div>
+            <br>
+            <label>Please select your Gender:</label>
+            <br>
+            <input th:field="*{gender}" th:value="male" type="radio">
+            <label th:for="${#ids.prev('gender')}">Male</label>
+            <br>
+            <input th:field="*{gender}" th:value="female" type="radio"/>
+            <label th:for="${#ids.prev('gender')}">Female</label>
+            <br>
+            <input th:field="*{gender}" th:value="other" type="radio"/>
+            <label th:for="${#ids.prev('gender')}">Other</label>
+            <br>
+        </div>
+        <div>
+            <br>
+            <label th:for="dob">Date Of Birth: </label>
+            <input th:field="*{dob}" type="date" required/>
+            <br>
+        </div>
+        <div>
+            <br>
+            <label th:for="email">Email Address: </label>
+            <input th:field="*{email}" type="email" placeholder="Email Address" required/>
+            <br>
+        </div>
+        <div>
+            <br>
+            <label for="password">Please enter a new Password: </label>
+            <input id="password" type="password" placeholder="Password" required/>
+            <br>
+        </div>
+        <div>
+            <br>
+            <label th:for="password">Confirm Password: </label>
+            <input th:field="*{password}" type="password" placeholder="Confirm Password" required/>
+            <br>
+            <br>
+        </div>
+
+
+        <button>Create Your Account</button>
+
+    </form>
+</div>
+
+</body>
+</html>
