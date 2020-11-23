@@ -1,0 +1,21 @@
+h1 {
+    padding-top: 3%;
+    text-align: center;
+}
+
+a {
+    width: 100%;
+}
+
+img {
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 4%;
+    padding-right: 4%;
+    width:100%;
+}
+
+.col-spacer {
+    width:4%;
+}
+
