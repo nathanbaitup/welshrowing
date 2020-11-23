@@ -2,7 +2,12 @@ package nsa.group7.welshrowing.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class AthleteController {
@@ -17,6 +22,12 @@ public class AthleteController {
     public String serveAthleteEntryForm(Model model) {
         AthleteEntryForm athleteEntryForm = new AthleteEntryForm();
         model.addAttribute("athlete", athleteEntryForm);
-        return "athlete-entry-form";
+        return "new-athlete-entry";
+    }
+
+    @PostMapping("add-athlete")
+    public String handleAthleteEntry(@Valid @ModelAttribute("athlete") AthleteEntryForm aForm, BindingResult bindings, Model model){
+        System.out.println("New Athlete: " + aForm);
+        return "new-athlete-entry";
     }
 }
