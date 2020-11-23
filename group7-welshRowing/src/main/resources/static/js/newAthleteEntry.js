@@ -11,20 +11,21 @@ function checkPasswordsMatch(input) {
 }
 //END REFERENCE
 
-function showHiddenParentFields(){
-    var parentNeeded = document.getElementById("parentNeeded");
+    function checkDOB(){
+        // REFERENCE accessed 23/11/2020
+        //https://developer.tizen.org/community/code-snippet/web-code-snippet/how-get-daymonthyear-input-date-type
+        //used to retrieve date from user input
+        var input = document.getElementById("dob").value;
+        var dob = new Date(input);
+        var yearDob = dob.getFullYear();
+        var currentDate = new Date();
+        var currentYear = currentDate.getFullYear();
+        //END REFERENCE
 
-    if (parentNeeded.checked == true) {
-        document.getElementById("parentName").style.display = "block";
-        document.getElementById("parentEmail").style.display = "block";
-        document.getElementById("relationshipToAthlete").style.display = "block";
-        document.getElementById("parentNumber").style.display = "block";
-    } else {
-        document.getElementById("parentName").style.display = "none";
-        document.getElementById("parentEmail").style.display = "none";
-        document.getElementById("relationshipToAthlete").style.display = "none";
-        document.getElementById("parentNumber").style.display = "none";
-    }
-
+        if (currentYear-yearDob<18){
+            document.getElementById("parentGuardianEntry").style.display = "block";
+        } else {
+            document.getElementById("parentGuardianEntry").style.display = "none";
+        }
 
 }
