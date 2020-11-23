@@ -10,3 +10,21 @@ function checkPasswordsMatch(input) {
     }
 }
 //END REFERENCE
+
+function showHiddenParentFields(){
+    var parentNeeded = document.getElementById("parentNeeded");
+
+    if (parentNeeded.checked == true) {
+        document.getElementById("parentName").style.display = "block";
+        document.getElementById("parentEmail").style.display = "block";
+        document.getElementById("relationshipToAthlete").style.display = "block";
+        document.getElementById("parentNumber").style.display = "block";
+    } else {
+        document.getElementById("parentName").style.display = "none";
+        document.getElementById("parentEmail").style.display = "none";
+        document.getElementById("relationshipToAthlete").style.display = "none";
+        document.getElementById("parentNumber").style.display = "none";
+    }
+
+
+}

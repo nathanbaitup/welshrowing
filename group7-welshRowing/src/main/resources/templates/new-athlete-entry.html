@@ -41,8 +41,41 @@
             <br>
             <label th:for="dob">Date Of Birth: </label>
             <input th:field="*{dob}" type="date" required/>
+        </div>
+        <div>
+            <label for="parentNeeded">Check this box if you are under the age of 18: </label>
+            <input id="parentNeeded" type="checkbox" onclick="showHiddenParentFields()"/>
             <br>
         </div>
+
+        <div id="parentName" hidden>
+            <br>
+            <label th:for="guardianName" >Please enter your Parent/Guardian's name: </label>
+            <input th:field="*{guardianName}" type="text" placeholder="Name"/>
+            <br>
+        </div>
+
+        <div id="relationshipToAthlete" hidden>
+            <br>
+            <label th:for="relationshipToAthlete" >Please enter your Parent/Guardian's relationship to you: </label>
+            <input th:field="*{relationshipToAthlete}" type="text" placeholder="eg. Mother, Father"/>
+            <br>
+        </div>
+
+        <div id="parentEmail" hidden>
+            <br>
+            <label th:for="guardianEmail" >Please enter your Parent/Guardian's email address: </label>
+            <input th:field="*{guardianEmail}" type="email" placeholder="Email Address"/>
+            <br>
+        </div>
+
+        <div id="parentNumber" hidden>
+            <br>
+            <label th:for="guardianContactNumber" >Please enter your Parent/Guardian's contact number: </label>
+            <input th:field="*{guardianContactNumber}" type="text" placeholder="Phone Number"/>
+            <br>
+        </div>
+
         <div>
             <br>
             <label th:for="email">Email Address: </label>
@@ -84,7 +117,7 @@
             <input th:field="*{heardFrom}" th:value="other" type="radio"/>
             <label th:for="${#ids.prev('heardFrom')}">Other: Please Fill Below</label>
             <br>
-            <input th:field="*{heardFrom}" th:value="other" type="text"/>
+<!--            <input th:field="*{heardFrom}" th:value="other" type="text"/>-->
             <br>
             <br>
         </div>
