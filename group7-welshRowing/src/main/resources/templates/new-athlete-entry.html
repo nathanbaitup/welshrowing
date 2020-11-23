@@ -2,7 +2,9 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <script src="/js/newAthleteEntry.js"></script>
     <title>Athlete Data entry</title>
+
 </head>
 <header>
     <h1 id="pageTitle">New Athlete </h1>
@@ -56,7 +58,33 @@
         <div>
             <br>
             <label th:for="password">Confirm Password: </label>
-            <input th:field="*{password}" type="password" placeholder="Confirm Password" required/>
+            <input th:field="*{password}" type="password" id="confirmPassword" placeholder="Confirm Password" required oninput="checkPasswordsMatch(this)"/>
+            <br>
+            <br>
+        </div>
+        <div>
+            <br>
+            <label>Where did you hear about us?</label>
+            <br>
+            <input th:field="*{heardFrom}" th:value="facebook" type="radio">
+            <label th:for="${#ids.prev('heardFrom')}">Facebook</label>
+            <br>
+            <input th:field="*{heardFrom}" th:value="socialMedia" type="radio"/>
+            <label th:for="${#ids.prev('heardFrom')}">Social Media</label>
+            <br>
+            <input th:field="*{heardFrom}" th:value="email" type="radio"/>
+            <label th:for="${#ids.prev('heardFrom')}">University Email</label>
+            <br>
+            <input th:field="*{heardFrom}" th:value="friends" type="radio"/>
+            <label th:for="${#ids.prev('heardFrom')}">Friends</label>
+            <br>
+            <input th:field="*{heardFrom}" th:value="family" type="radio"/>
+            <label th:for="${#ids.prev('heardFrom')}">Family members</label>
+            <br>
+            <input th:field="*{heardFrom}" th:value="other" type="radio"/>
+            <label th:for="${#ids.prev('heardFrom')}">Other: Please Fill Below</label>
+            <br>
+            <input th:field="*{heardFrom}" th:value="other" type="text"/>
             <br>
             <br>
         </div>
