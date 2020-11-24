@@ -9,8 +9,11 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AthleteEntryForm {
-    private Long id;
+public class AthleteForm {
+    /**
+     * The athleteID from the database.
+     */
+    private Long athleteID;
     /**
      * The name of the athlete.
      */
