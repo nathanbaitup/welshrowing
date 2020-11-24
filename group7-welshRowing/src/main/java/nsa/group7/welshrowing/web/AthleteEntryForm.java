@@ -10,6 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AthleteEntryForm {
+    private Long id;
     /**
      * The name of the athlete.
      */
@@ -21,7 +22,7 @@ public class AthleteEntryForm {
     /**
      * The date of birth of the athlete.
      */
-    private Date dob;
+    private String dob;
     /**
      * The athlete's personal email address.
      */
