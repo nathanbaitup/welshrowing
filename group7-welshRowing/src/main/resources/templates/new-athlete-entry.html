@@ -2,8 +2,13 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/athleteEntryForm.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="/js/newAthleteEntry.js"></script>
     <title>Athlete Data entry</title>
+
 
 </head>
 <header>
@@ -15,101 +20,100 @@
     <p>Please enter your information to create an account.</p>
 </div>
 
-<div>
+<div class="entry-form">
     <form action="#" method="post" th:action="@{/add-athlete}" th:object="${athlete}">
-        <div>
+        <div class="form-group">
             <label th:for="name">Please enter your Name:</label>
-            <input th:field="*{name}" type="text" placeholder="Your Name" required/>
+            <input class="form-control" th:field="*{name}" type="text" placeholder="Your Name" required/>
             <br>
         </div>
 
-        <div>
+        <div class="form-check">
             <br>
             <label>Please select your Gender:</label>
             <br>
-            <input th:field="*{gender}" th:value="male" type="radio">
-            <label th:for="${#ids.prev('gender')}">Male</label>
+            <input class="form-check-input" th:field="*{gender}" th:value="male" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('gender')}">Male</label>
             <br>
-            <input th:field="*{gender}" th:value="female" type="radio"/>
-            <label th:for="${#ids.prev('gender')}">Female</label>
+            <input class="form-check-input" th:field="*{gender}" th:value="female" type="radio"/>
+            <label class="form-check-label" th:for="${#ids.prev('gender')}">Female</label>
             <br>
-            <input th:field="*{gender}" th:value="other" type="radio"/>
-            <label th:for="${#ids.prev('gender')}">Other</label>
+            <input class="form-check-input" th:field="*{gender}" th:value="other" type="radio"/>
+            <label class="form-check-label" th:for="${#ids.prev('gender')}">Other</label>
             <br>
         </div>
-        <div>
+        <div class="form-group">
             <br>
             <label th:for="dob">Date Of Birth: </label>
-            <input th:field="*{dob}" id="dob" type="date" onchange="checkDOB()" required/>
+            <input class="form-control" th:field="*{dob}" id="dob" type="date" onchange="checkDOB()" required/>
         </div>
 
-        <div id="parentGuardianEntry" hidden>
+        <div class="parent-data" id="parentGuardianEntry" hidden>
             <br>
-            <label>As you are under the age of 18, please tell us contact information about your parent or
+            <label class="parent-warning">As you are under the age of 18, please tell us contact information about your parent or
                 guardian.</label>
             <br>
             <br>
             <label th:for="guardianName">Please enter your Parent/Guardian's name: </label>
-            <input th:field="*{guardianName}" type="text" placeholder="Name"/>
+            <input class="form-control" th:field="*{guardianName}" type="text" placeholder="Name"/>
             <br>
 
             <br>
             <label th:for="relationshipToAthlete">Please enter your Parent/Guardian's relationship to you: </label>
-            <input th:field="*{relationshipToAthlete}" type="text" placeholder="eg. Mother, Father"/>
+            <input class="form-control" th:field="*{relationshipToAthlete}" type="text" placeholder="eg. Mother, Father"/>
             <br>
 
             <br>
             <label th:for="guardianEmail">Please enter your Parent/Guardian's email address: </label>
-            <input th:field="*{guardianEmail}" type="email" placeholder="Email Address"/>
+            <input class="form-control" th:field="*{guardianEmail}" type="email" placeholder="Email Address"/>
             <br>
 
             <br>
             <label th:for="guardianContactNumber">Please enter your Parent/Guardian's contact number: </label>
-            <input th:field="*{guardianContactNumber}" type="text" placeholder="Phone Number"/>
+            <input class="form-control" th:field="*{guardianContactNumber}" type="text" placeholder="Phone Number"/>
             <br>
         </div>
 
-        <div>
+        <div class="form-group">
             <br>
             <label th:for="email">Please enter your email Address: </label>
-            <input th:field="*{email}" type="email" placeholder="Email Address" required/>
+            <input class="form-control" th:field="*{email}" type="email" placeholder="Email Address" required/>
             <br>
         </div>
-        <div>
+        <div class="form-group">
             <br>
             <label for="password">Please enter a new Password: </label>
-            <input id="password" type="password" placeholder="Password" required/>
+            <input class="form-control" id="password" type="password" placeholder="Password" required/>
             <br>
         </div>
-        <div>
+        <div class="form-group">
             <br>
             <label th:for="password">Confirm Password: </label>
-            <input th:field="*{password}" type="password" id="confirmPassword" placeholder="Confirm Password" required
+            <input class="form-control" th:field="*{password}" type="password" id="confirmPassword" placeholder="Confirm Password" required
                    oninput="checkPasswordsMatch(this)"/>
             <br>
-            <br>
         </div>
-        <div>
+        <div class="form-check">
             <br>
             <label>Where did you hear about us?</label>
             <br>
-            <input th:field="*{heardFrom}" th:value="facebook" type="radio">
-            <label th:for="${#ids.prev('heardFrom')}">Facebook</label>
+            <input class="form-check-input" th:field="*{heardFrom}" th:value="facebook" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('heardFrom')}">Facebook</label>
             <br>
-            <input th:field="*{heardFrom}" th:value="socialMedia" type="radio"/>
-            <label th:for="${#ids.prev('heardFrom')}">Social Media</label>
+            <input class="form-check-input" th:field="*{heardFrom}" th:value="socialMedia" type="radio"/>
+            <label class="form-check-label" th:for="${#ids.prev('heardFrom')}">Social Media</label>
             <br>
-            <input th:field="*{heardFrom}" th:value="email" type="radio"/>
-            <label th:for="${#ids.prev('heardFrom')}">University Email</label>
+            <input class="form-check-input" th:field="*{heardFrom}" th:value="email" type="radio"/>
+            <label class="form-check-label" th:for="${#ids.prev('heardFrom')}">University Email</label>
             <br>
-            <input th:field="*{heardFrom}" th:value="friends" type="radio"/>
-            <label th:for="${#ids.prev('heardFrom')}">Friends</label>
+            <input class="form-check-input" th:field="*{heardFrom}" th:value="friends" type="radio"/>
+            <label class="form-check-label" th:for="${#ids.prev('heardFrom')}">Friends</label>
             <br>
-            <input th:field="*{heardFrom}" th:value="family" type="radio"/>
-            <label th:for="${#ids.prev('heardFrom')}">Family members</label>
+            <input class="form-check-input" th:field="*{heardFrom}" th:value="family" type="radio"/>
+            <label class="form-check-label" th:for="${#ids.prev('heardFrom')}">Family members</label>
             <br>
-            <input th:field="*{heardFrom}" th:value="other" type="radio"/>
-            <label th:for="${#ids.prev('heardFrom')}">Other: Please Fill Below</label>
+            <input class="form-check-input" th:field="*{heardFrom}" th:value="other" type="radio"/>
+            <label class="form-check-label" th:for="${#ids.prev('heardFrom')}">Other</label>
             <br>
             <!--            <input th:field="*{heardFrom}" th:value="other" type="text"/>-->
             <br>
@@ -117,7 +121,7 @@
         </div>
 
 
-        <button>Create Your Account</button>
+        <button class="btn btn-primary">Create Your Account</button>
 
     </form>
 </div>
