@@ -22,8 +22,8 @@ CREATE TABLE `Athlete` (
     HeardFrom VARCHAR(40),
     InterestLetter BOOLEAN,
     PostTestResult VARCHAR(30),
-    PRIMARY KEY Athlete(AthleteID),
-    FOREIGN KEY Athlete(`CoachID`) REFERENCES Athlete(`AthleteID`)
+    PRIMARY KEY PKAthlete(AthleteID),
+    FOREIGN KEY FKAthlete(`CoachID`) REFERENCES Athlete(`AthleteID`)
 );
 
 CREATE TABLE `MedicalData` (
@@ -37,8 +37,8 @@ CREATE TABLE `MedicalData` (
     BCNotes VARCHAR(50),
     Flexibility VARCHAR(50),
     FNotes VARCHAR(50),
-    PRIMARY KEY MedicalData(MedicalDataID),
-    FOREIGN KEY MedicalData(AthleteID) REFERENCES Athlete(AthleteID)
+    PRIMARY KEY PKMedicalData(MedicalDataID),
+    FOREIGN KEY FKMedicalData(AthleteID) REFERENCES Athlete(AthleteID)
 );
 
 CREATE TABLE `AthletePreviousSports` (
@@ -50,8 +50,8 @@ CREATE TABLE `AthletePreviousSports` (
     EndurancePerWeek VARCHAR(50),
     StrengthPerWeek VARCHAR(50),
     YearsAtLevel VARCHAR(50),
-    PRIMARY KEY AthletePreviousSports(ApsID),
-    FOREIGN KEY AthletePreviousSports(AthleteID) REFERENCES Athlete(AthleteID) # double check with team
+    PRIMARY KEY PKAthletePreviousSports(ApsID),
+    FOREIGN KEY FKAthletePreviousSports(AthleteID) REFERENCES Athlete(AthleteID) # double check with team
 
 );
 
@@ -59,56 +59,68 @@ CREATE TABLE `Interview` (
     InterviewID INTEGER AUTO_INCREMENT NOT NULL,
     AthleteID INTEGER NOT NULL,
     Questions VARCHAR(100),
-    PRIMARY KEY Interview(InterviewID),
-    FOREIGN KEY Interview(AthleteID) REFERENCES Athlete(AthleteID)
-);
-
-CREATE TABLE `AthleteTest` (
-    AthleteTestID INTEGER AUTO_INCREMENT NOT NULL,
-    AthleteID INTEGER NOT NULL,
-    CoachID INTEGER NOT NULL,
-    DateOfTest DATE,
-    AthleteComments VARCHAR(100),
-    LegPress3Reps INTEGER NOT NULL,
-    ArmPress3Reps INTEGER NOT NULL,
-    ArmPull3Reps INTEGER NOT NULL,
-    ArmPull15Reps INTEGER NOT NULL,
-    Score INTEGER NOT NULL,
-    Observations VARCHAR(150),
-    PRIMARY KEY AthleteTest(AthleteTestID),
-    FOREIGN KEY AthleteTest(AthleteID) REFERENCES Athlete(AthleteID)
-    ## Coach ID line does not work
-
+    PRIMARY KEY PKInterview(InterviewID),
+    FOREIGN KEY FKInterview(AthleteID) REFERENCES Athlete(AthleteID)
 );
 
 CREATE TABLE `Coach` (
     CoachID INTEGER AUTO_INCREMENT NOT NULL,
-    Name VARCHAR(16), ## First and Last
+    Name VARCHAR(20),
     Username VARCHAR(20),
     Password VARCHAR(20),
-    PRIMARY KEY Coach(CoachID)
+    PRIMARY KEY PKCoach(CoachID)
 );
+
+CREATE TABLE `AthleteTest` (
+   AthleteTestID INTEGER AUTO_INCREMENT NOT NULL,
+   AthleteID INTEGER NOT NULL,
+   CoachID INTEGER NOT NULL,
+   DateOfTest DATE,
+   AthleteComments VARCHAR(100),
+   LegPress3Reps INTEGER NOT NULL,
+   ArmPress3Reps INTEGER NOT NULL,
+   ArmPull3Reps INTEGER NOT NULL,
+   ArmPull15Reps INTEGER NOT NULL,
+   Score INTEGER NOT NULL,
+   Observations VARCHAR(150),
+   PRIMARY KEY PKAthleteTest (AthleteTestID),
+   FOREIGN KEY FKAthleteTest(AthleteID) REFERENCES Athlete(AthleteID),
+   FOREIGN KEY FKCoachAthleteTest (CoachID) REFERENCES Coach(CoachID)
+);
+
 
 CREATE TABLE `MorningMonitoring` (
     MonitoringID INTEGER NOT NULL AUTO_INCREMENT,
     AthleteID INTEGER NOT NULL,
     Date DATE,
-    PRIMARY KEY MorningMonitoring(MonitoringID),
-    FOREIGN KEY MorningMonitoring(AthleteID) REFERENCES Athlete(AthleteID)
+    WalkingHeartRate INTEGER NOT NULL,
+    StandingHeartRate INTEGER NOT NULL,
+    PerceivedShape INTEGER NOT NULL,
+    PerceivedMentalState INTEGER NOT NULL,
+    SleepQuantityHours INTEGER NOT NULL,
+    sleepQuality INTEGER,
+    PRIMARY KEY PKMorningMonitoring(MonitoringID),
+    FOREIGN KEY FKMorningMonitoring(AthleteID) REFERENCES Athlete(AthleteID)
 );
 
 CREATE TABLE `SessionRPE` (
     SessionRPEID INTEGER NOT NULL AUTO_INCREMENT,
     AthleteID INTEGER NOT NULL,
     Date DATE,
-    PRIMARY KEY SessionRPE(SessionRPEID),
-    FOREIGN KEY SessionRPE(AthleteID) REFERENCES Athlete(AthleteID)
+    typeOfSession VARCHAR(50),
+    RPE INTEGER,
+    sessionDurationMinutes INTEGER,
+    PRIMARY KEY PKSessionRPE(SessionRPEID),
+    FOREIGN KEY FKSessionRPE(AthleteID) REFERENCES Athlete(AthleteID)
 );
 
 CREATE TABLE `CrossTraining` (
     CrossTrainingID INTEGER NOT NULL AUTO_INCREMENT,
     AthleteID INTEGER NOT NULL,
     Date DATE,
-    PRIMARY KEY CrossTraining(CrossTrainingID),
-    FOREIGN KEY CrossTraining(AthleteID) REFERENCES Athlete(AthleteID)
+    typeOfCrossTraining VARCHAR(50),
+    totalTimeMinutes INTEGER,
+    totalDistance VARCHAR(20),
+    PRIMARY KEY PKCrossTraining(CrossTrainingID),
+    FOREIGN KEY FKCrossTraining(AthleteID) REFERENCES Athlete(AthleteID)
 );
