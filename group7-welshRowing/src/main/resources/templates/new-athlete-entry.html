@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="/js/newAthleteEntry.js"></script>
-    <title>Athlete Data entry</title>
+    <title>New Athlete</title>
 
 
 </head>
@@ -23,12 +23,11 @@
 <div class="entry-form">
     <form action="#" method="post" th:action="@{/add-athlete}" th:object="${athlete}">
 
-        <input th:field="*{athleteID}" type="hidden"/>
-
         <div class="form-group">
-            <label th:for="name">Please enter your Name:</label>
-            <input class="form-control" th:field="*{name}" type="text" placeholder="Your Name" required/>
+            <label th:for="name">Please enter your Full Name:</label>
+            <input class="form-control" th:field="*{name}" type="text" placeholder="Full Name" required/>
             <br>
+            <span th:errors="*{name}" th:if="${#fields.hasErrors('name')}">Please enter your name.</span>
         </div>
 
         <div class="form-check">
@@ -44,11 +43,13 @@
             <input class="form-check-input" th:field="*{gender}" th:value="other" type="radio"/>
             <label class="form-check-label" th:for="${#ids.prev('gender')}">Other</label>
             <br>
+            <span th:errors="*{gender}" th:if="${#fields.hasErrors('gender')}">Please select your Gender.</span>
         </div>
         <div class="form-group">
             <br>
             <label th:for="dob">Date Of Birth: </label>
             <input class="form-control" th:field="*{dob}" id="dob" type="date" onchange="checkDOB()" required/>
+            <span th:errors="*{dob}" th:if="${#fields.hasErrors('dob')}">Please enter your date of birth</span>
         </div>
 
         <div class="parent-data" id="parentGuardianEntry" hidden>
@@ -81,18 +82,19 @@
             <br>
             <label th:for="email">Please enter your email Address: </label>
             <input class="form-control" th:field="*{email}" type="email" placeholder="Email Address" required/>
+            <span th:errors="*{email}" th:if="${#fields.hasErrors('email')}">Please enter your email address</span>
             <br>
         </div>
         <div class="form-group">
             <br>
             <label for="password">Please enter a new Password: </label>
-            <input class="form-control" id="password" type="password" placeholder="Password"/>
+            <input class="form-control" id="password" type="password" placeholder="Password" required/>
             <br>
         </div>
         <div class="form-group">
             <br>
             <label th:for="password">Confirm Password: </label>
-            <input class="form-control" th:field="*{password}" type="password" id="confirmPassword" placeholder="Confirm Password" oninput="checkPasswordsMatch(this)"/>
+            <input class="form-control" th:field="*{password}" type="password" id="confirmPassword" placeholder="Confirm Password" required oninput="checkPasswordsMatch(this)"/>
             <br>
         </div>
         <div class="form-check">
@@ -117,13 +119,12 @@
             <input class="form-check-input" th:field="*{heardFrom}" th:value="other" type="radio"/>
             <label class="form-check-label" th:for="${#ids.prev('heardFrom')}">Other</label>
             <br>
-            <!--            <input th:field="*{heardFrom}" th:value="other" type="text"/>-->
             <br>
             <br>
         </div>
 
 
-        <button class="btn btn-primary">Create Your Account</button>
+        <button class="btn btn-primary" type="submit">Create Your Account</button>
 
     </form>
 </div>

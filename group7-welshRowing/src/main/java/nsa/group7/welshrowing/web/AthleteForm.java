@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Data
@@ -17,18 +18,22 @@ public class AthleteForm {
     /**
      * The name of the athlete.
      */
+    @NotBlank
     private String name;
     /**
      * The gender of the athlete. Will be radio button options on form.
      */
+    @NotBlank
     private String gender;
     /**
      * The date of birth of the athlete.
      */
+    @NotBlank
     private String dob;
     /**
      * The athlete's personal email address.
      */
+    @NotBlank
     private String email;
     /**
      * The athlete's password to log into the system.
@@ -50,6 +55,10 @@ public class AthleteForm {
      * The athlete's university address if applicable.
      */
     private String uniAddress;
+    /**
+     * The postcode where the athlete is living.
+     */
+    private String postcode;
     /**
      * The name of the school or university the athlete is currently in.
      */

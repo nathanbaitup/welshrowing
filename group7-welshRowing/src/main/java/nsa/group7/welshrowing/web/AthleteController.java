@@ -54,7 +54,7 @@ public class AthleteController {
             return "new-athlete-entry";
         } else {
             athleteAuditor.saveAthlete(athleteEntry);
-            return "redirect:welcome";
+            return "new-athlete-entry";
         }
     }
 }

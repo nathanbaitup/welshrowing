@@ -27,7 +27,7 @@ public class AthleteJPAAdaptor implements AthleteAuditor {
     }
 
     /**
-     * Uses the athlete auditor interface to access the JPA repository and automatically updates the athlete object within the database if the data already exists..
+     * Uses the athlete auditor interface to access the JPA repository and automatically updates the athlete object within the database if the data already exists.
      *
      * @param anAthlete - the athlete object to be updated
      */

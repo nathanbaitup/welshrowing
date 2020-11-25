@@ -54,6 +54,10 @@ public class Athlete {
      */
     private String uniAddress;
     /**
+     * The postcode where the athlete is living.
+     */
+    private String postcode;
+    /**
      * The name of the school or university the athlete is currently in.
      */
     private String placeOfEducation;
