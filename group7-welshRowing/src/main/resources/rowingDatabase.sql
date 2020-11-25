@@ -128,3 +128,9 @@ CREATE TABLE `CrossTraining` (
     PRIMARY KEY PKCrossTraining(crossTrainingID),
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
+
+INSERT INTO Athlete (name, gender, email)
+VALUES('Hamid', 'Male', 'hamidfun@gmail.com') , ('Oliver', 'Male', 'oliverlunch@hotmail.com') , ('Nathan' , 'Male', 'nathantechtips@aol.com');
+SELECT * FROM Athlete;
+UPDATE Athlete SET name = 'Dan' WHERE athleteID = 1;
+SELECT * FROM Athlete;
