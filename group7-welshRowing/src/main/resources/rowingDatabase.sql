@@ -7,8 +7,8 @@ USE welshRowing;
 CREATE TABLE `Athlete` (
     athleteID INTEGER NOT NULL AUTO_INCREMENT NOT NULL,
     coachID INTEGER NOT NULL,
-    firstName VARCHAR(8),
-    lastName VARCHAR(8),
+    name VARCHAR(30),
+    gender VARCHAR(10),
     DOB DATE,
     applicationStatus BOOLEAN,
     email VARCHAR(20),
