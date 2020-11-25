@@ -11,13 +11,17 @@ CREATE TABLE `Athlete` (
     gender VARCHAR(10),
     DOB DATE,
     applicationStatus BOOLEAN,
-    email VARCHAR(20),
+    email VARCHAR(30),
     password VARCHAR(20),
     mobileNumber VARCHAR(50), # allows country code and spaces and to ensure digits only
     telephoneNumber VARCHAR(50),
+    homeAddress VARCHAR(50),
+    uniAddress VARCHAR(50),
+    postcode VARCHAR(8),
     placeOfEducation VARCHAR(50),
     guardianName VARCHAR(50),
     relationshipToAthlete VARCHAR(20),
+    guardianEmail VARCHAR(30),
     guardianContactNumber VARCHAR(50),
     heardFrom VARCHAR(40),
     interestLetter BOOLEAN,
@@ -64,7 +68,7 @@ CREATE TABLE `Interview` (
 );
 
 CREATE TABLE `Coach` (
-    coachID INTEGER AUTO_INCREMENT NOT NULL,
+    coachID INTEGER AUTO_INCREMENT,
     name VARCHAR(20),
     username VARCHAR(20),
     password VARCHAR(20),
