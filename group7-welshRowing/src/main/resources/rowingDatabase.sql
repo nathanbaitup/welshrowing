@@ -5,122 +5,122 @@ CREATE DATABASE IF NOT EXISTS welshRowing;
 USE welshRowing;
 
 CREATE TABLE `Athlete` (
-    AthleteID INTEGER NOT NULL AUTO_INCREMENT NOT NULL,
-    CoachID INTEGER NOT NULL,
-    FirstName VARCHAR(8),
-    LastName VARCHAR(8),
+    athleteID INTEGER NOT NULL AUTO_INCREMENT NOT NULL,
+    coachID INTEGER NOT NULL,
+    firstName VARCHAR(8),
+    lastName VARCHAR(8),
     DOB DATE,
-    ApplicationStatus BOOLEAN,
-    Email VARCHAR(20),
-    Password VARCHAR(20),
-    MobileNumber VARCHAR(50), # allows country code and spaces and to ensure digits only
-    TelephoneNumber VARCHAR(50),
-    PlaceOfEducation VARCHAR(50),
-    GuardianName VARCHAR(50),
-    RelationshipToAthlete VARCHAR(20),
-    GuardianContactNumber VARCHAR(50),
-    HeardFrom VARCHAR(40),
-    InterestLetter BOOLEAN,
-    PostTestResult VARCHAR(30),
-    PRIMARY KEY PKAthlete(AthleteID),
-    FOREIGN KEY FKAthlete(`CoachID`) REFERENCES Athlete(`AthleteID`)
+    applicationStatus BOOLEAN,
+    email VARCHAR(20),
+    password VARCHAR(20),
+    mobileNumber VARCHAR(50), # allows country code and spaces and to ensure digits only
+    telephoneNumber VARCHAR(50),
+    placeOfEducation VARCHAR(50),
+    guardianName VARCHAR(50),
+    relationshipToAthlete VARCHAR(20),
+    guardianContactNumber VARCHAR(50),
+    heardFrom VARCHAR(40),
+    interestLetter BOOLEAN,
+    postTestResult VARCHAR(30),
+    PRIMARY KEY PKAthlete(athleteID),
+    FOREIGN KEY FKAthlete(`coachID`) REFERENCES Athlete(`athleteID`)
 );
 
 CREATE TABLE `MedicalData` (
-    MedicalDataID INTEGER AUTO_INCREMENT NOT NULL,
-    AthleteID INTEGER NOT NULL,
-    Injuries VARCHAR(100),
-    HeightCM INTEGER,
-    WeightKG INTEGER,
-    ArmSpanCM INTEGER,
-    BasicCore VARCHAR(50),
-    BCNotes VARCHAR(50),
-    Flexibility VARCHAR(50),
-    FNotes VARCHAR(50),
-    PRIMARY KEY PKMedicalData(MedicalDataID),
-    FOREIGN KEY FKMedicalData(AthleteID) REFERENCES Athlete(AthleteID)
+    medicalDataID INTEGER AUTO_INCREMENT NOT NULL,
+    athleteID INTEGER NOT NULL,
+    injuries VARCHAR(100),
+    heightCM INTEGER,
+    weightKG INTEGER,
+    armSpanCM INTEGER,
+    basicCore VARCHAR(50),
+    bCNotes VARCHAR(50),
+    flexibility VARCHAR(50),
+    fNotes VARCHAR(50),
+    PRIMARY KEY PKMedicalData(medicalDataID),
+    FOREIGN KEY FKMedicalData(athleteID) REFERENCES Athlete(athleteID)
 );
 
 CREATE TABLE `AthletePreviousSports` (
-    ApsID INTEGER AUTO_INCREMENT NOT NULL,
-    AthleteID INTEGER NOT NULL,
-    PreviousSport VARCHAR(100),
-    MonthsTesting VARCHAR(50),
-    SessionsPerWeek VARCHAR(50),
-    EndurancePerWeek VARCHAR(50),
-    StrengthPerWeek VARCHAR(50),
-    YearsAtLevel VARCHAR(50),
-    PRIMARY KEY PKAthletePreviousSports(ApsID),
-    FOREIGN KEY FKAthletePreviousSports(AthleteID) REFERENCES Athlete(AthleteID) # double check with team
+    apsID INTEGER AUTO_INCREMENT NOT NULL,
+    athleteID INTEGER NOT NULL,
+    previousSport VARCHAR(100),
+    monthsTesting VARCHAR(50),
+    sessionsPerWeek VARCHAR(50),
+    endurancePerWeek VARCHAR(50),
+    strengthPerWeek VARCHAR(50),
+    yearsAtLevel VARCHAR(50),
+    PRIMARY KEY PKAthletePreviousSports(apsID),
+    FOREIGN KEY FKAthletePreviousSports(athleteID) REFERENCES Athlete(athleteID)
 
 );
 
 CREATE TABLE `Interview` (
-    InterviewID INTEGER AUTO_INCREMENT NOT NULL,
-    AthleteID INTEGER NOT NULL,
-    Questions VARCHAR(100),
-    PRIMARY KEY PKInterview(InterviewID),
-    FOREIGN KEY FKInterview(AthleteID) REFERENCES Athlete(AthleteID)
+    interviewID INTEGER AUTO_INCREMENT NOT NULL,
+    athleteID INTEGER NOT NULL,
+    questions VARCHAR(100),
+    PRIMARY KEY PKInterview(interviewID),
+    FOREIGN KEY FKInterview(athleteID) REFERENCES Athlete(athleteID)
 );
 
 CREATE TABLE `Coach` (
-    CoachID INTEGER AUTO_INCREMENT NOT NULL,
-    Name VARCHAR(20),
-    Username VARCHAR(20),
-    Password VARCHAR(20),
-    PRIMARY KEY PKCoach(CoachID)
+    coachID INTEGER AUTO_INCREMENT NOT NULL,
+    name VARCHAR(20),
+    username VARCHAR(20),
+    password VARCHAR(20),
+    PRIMARY KEY PKCoach(coachID)
 );
 
 CREATE TABLE `AthleteTest` (
-   AthleteTestID INTEGER AUTO_INCREMENT NOT NULL,
-   AthleteID INTEGER NOT NULL,
-   CoachID INTEGER NOT NULL,
-   DateOfTest DATE,
-   AthleteComments VARCHAR(100),
-   LegPress3Reps INTEGER NOT NULL,
-   ArmPress3Reps INTEGER NOT NULL,
-   ArmPull3Reps INTEGER NOT NULL,
-   ArmPull15Reps INTEGER NOT NULL,
-   Score INTEGER NOT NULL,
-   Observations VARCHAR(150),
-   PRIMARY KEY PKAthleteTest (AthleteTestID),
-   FOREIGN KEY FKAthleteTest(AthleteID) REFERENCES Athlete(AthleteID),
-   FOREIGN KEY FKCoachAthleteTest (CoachID) REFERENCES Coach(CoachID)
+   athleteTestID INTEGER AUTO_INCREMENT NOT NULL,
+   athleteID INTEGER NOT NULL,
+   coachID INTEGER NOT NULL,
+   dateOfTest DATE,
+   athleteComments VARCHAR(100),
+   legPress3Reps INTEGER NOT NULL,
+   armPress3Reps INTEGER NOT NULL,
+   armPull3Reps INTEGER NOT NULL,
+   armPull15Reps INTEGER NOT NULL,
+   score INTEGER NOT NULL,
+   observations VARCHAR(150),
+   PRIMARY KEY PKAthleteTest (athleteTestID),
+   FOREIGN KEY FKAthleteTest(athleteID) REFERENCES Athlete(athleteID),
+   FOREIGN KEY FKCoachAthleteTest (coachID) REFERENCES Coach(coachID)
 );
 
 
 CREATE TABLE `MorningMonitoring` (
-    MonitoringID INTEGER NOT NULL AUTO_INCREMENT,
-    AthleteID INTEGER NOT NULL,
-    Date DATE,
-    WalkingHeartRate INTEGER NOT NULL,
-    StandingHeartRate INTEGER NOT NULL,
-    PerceivedShape INTEGER NOT NULL,
-    PerceivedMentalState INTEGER NOT NULL,
-    SleepQuantityHours INTEGER NOT NULL,
+    monitoringID INTEGER NOT NULL AUTO_INCREMENT,
+    athleteID INTEGER NOT NULL,
+    date DATE,
+    walkingHeartRate INTEGER NOT NULL,
+    standingHeartRate INTEGER NOT NULL,
+    perceivedShape INTEGER NOT NULL,
+    perceivedMentalState INTEGER NOT NULL,
+    sleepQuantityHours INTEGER NOT NULL,
     sleepQuality INTEGER,
-    PRIMARY KEY PKMorningMonitoring(MonitoringID),
-    FOREIGN KEY FKMorningMonitoring(AthleteID) REFERENCES Athlete(AthleteID)
+    PRIMARY KEY PKMorningMonitoring(monitoringID),
+    FOREIGN KEY FKMorningMonitoring(athleteID) REFERENCES Athlete(athleteID)
 );
 
 CREATE TABLE `SessionRPE` (
-    SessionRPEID INTEGER NOT NULL AUTO_INCREMENT,
-    AthleteID INTEGER NOT NULL,
-    Date DATE,
+    sessionRPEID INTEGER NOT NULL AUTO_INCREMENT,
+    athleteID INTEGER NOT NULL,
+    date DATE,
     typeOfSession VARCHAR(50),
     RPE INTEGER,
     sessionDurationMinutes INTEGER,
-    PRIMARY KEY PKSessionRPE(SessionRPEID),
-    FOREIGN KEY FKSessionRPE(AthleteID) REFERENCES Athlete(AthleteID)
+    PRIMARY KEY PKSessionRPE(sessionRPEID),
+    FOREIGN KEY FKSessionRPE(athleteID) REFERENCES Athlete(athleteID)
 );
 
 CREATE TABLE `CrossTraining` (
-    CrossTrainingID INTEGER NOT NULL AUTO_INCREMENT,
-    AthleteID INTEGER NOT NULL,
-    Date DATE,
+    crossTrainingID INTEGER NOT NULL AUTO_INCREMENT,
+    athleteID INTEGER NOT NULL,
+    date DATE,
     typeOfCrossTraining VARCHAR(50),
     totalTimeMinutes INTEGER,
     totalDistance VARCHAR(20),
-    PRIMARY KEY PKCrossTraining(CrossTrainingID),
-    FOREIGN KEY FKCrossTraining(AthleteID) REFERENCES Athlete(AthleteID)
+    PRIMARY KEY PKCrossTraining(crossTrainingID),
+    FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
