@@ -4,15 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
 public class Athlete {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +27,10 @@ public class Athlete {
      * The date of birth of the athlete.
      */
     private String dob;
+    /**
+     * A boolean that states if the athlete is applying to the programme (true) or has been accepted (false).
+     */
+    private Boolean applicationStatus;
     /**
      * The athlete's personal email address.
      */
@@ -86,4 +88,8 @@ public class Athlete {
      * A boolean that states if a letter of interest has been sent to the athlete.
      */
     private Boolean interestLetter;
+    /**
+     * A string that states the result after the interview process of an athlete.
+     */
+    private String postTestResult;
 }
