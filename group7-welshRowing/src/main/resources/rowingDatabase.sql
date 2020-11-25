@@ -1,3 +1,5 @@
+# https://lucid.app/lucidchart/invitations/accept/fade6f95-af6c-4643-9f07-1e402e18cd19 following schema
+
 DROP DATABASE IF EXISTS welshRowing;
 
 CREATE DATABASE IF NOT EXISTS welshRowing;
@@ -129,6 +131,8 @@ CREATE TABLE `CrossTraining` (
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
 
+
+# Update examples - Can be removed at a later stage when login function is functioning
 INSERT INTO Athlete (name, gender, email)
 VALUES('Hamid', 'Male', 'hamidfun@gmail.com') , ('Oliver', 'Male', 'oliverlunch@hotmail.com') , ('Nathan' , 'Male', 'nathantechtips@aol.com');
 SELECT * FROM Athlete;
