@@ -6,7 +6,7 @@ USE welshRowing;
 
 CREATE TABLE `Athlete` (
     athleteID INTEGER NOT NULL AUTO_INCREMENT NOT NULL,
-    coachID INTEGER NOT NULL,
+    coachID INTEGER,
     name VARCHAR(30),
     gender VARCHAR(10),
     DOB DATE,
