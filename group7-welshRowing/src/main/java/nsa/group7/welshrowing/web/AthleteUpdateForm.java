@@ -10,11 +10,15 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AthleteForm {
+public class AthleteUpdateForm {
     /**
      * The athleteID from the database.
      */
     private Long athleteID;
+    /**
+     * The userID to be taken from the database.
+     */
+    private Long userID;
     /**
      * The name of the athlete.
      */

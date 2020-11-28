@@ -14,7 +14,16 @@ import javax.persistence.*;
 public class Athlete {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /**
+     * The athleteID.
+     */
     private Long athleteID;
+    /**
+     * The userID linked to the athlete.
+     */
+    @ManyToOne
+    @JoinColumn(name = "userID")
+    private Applicant userID;
     /**
      * The name of the athlete.
      */
@@ -36,10 +45,6 @@ public class Athlete {
      */
     private String email;
     /**
-     * The athlete's password to log into the system.
-     */
-    private String password;
-    /**
      * The athlete's mobile number.
      */
     private String mobileNumber;
@@ -50,11 +55,7 @@ public class Athlete {
     /**
      * The athlete's home address.
      */
-    private String homeAddress;
-    /**
-     * The athlete's university address if applicable.
-     */
-    private String uniAddress;
+    private String address;
     /**
      * The postcode where the athlete is living.
      */
