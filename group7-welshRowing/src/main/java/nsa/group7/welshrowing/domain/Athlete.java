@@ -12,18 +12,12 @@ import javax.persistence.*;
 @Entity
 
 public class Athlete {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     /**
      * The athleteID.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long athleteID;
-    /**
-     * The userID linked to the athlete.
-     */
-    @ManyToOne
-    @JoinColumn(name = "userID")
-    private Applicant userID;
     /**
      * The name of the athlete.
      */
@@ -36,10 +30,6 @@ public class Athlete {
      * The date of birth of the athlete.
      */
     private String dob;
-    /**
-     * A boolean that states if the athlete is applying to the programme (true) or has been accepted (false).
-     */
-    private Boolean applicationStatus;
     /**
      * The athlete's personal email address.
      */

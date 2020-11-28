@@ -39,3 +39,18 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+tasks.bootRun.configure {
+    systemProperty("spring.profiles.active", "dev")
+}
+
+tasks.register("bootRunProd") {
+    group = "application"
+    description = "Runs the Spring Boot application with the prod profile"
+    doFirst {
+        tasks.bootRun.configure {
+            systemProperty("spring.profiles.active", "prod")
+        }
+    }
+    finalizedBy("bootRun")
+}

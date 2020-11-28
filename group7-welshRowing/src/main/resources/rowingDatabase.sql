@@ -6,19 +6,27 @@ CREATE DATABASE IF NOT EXISTS welshRowing;
 
 USE welshRowing;
 
+CREATE TABLE IF NOT EXISTS `user` (
+  `userID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(6) NOT NULL,
+  `password` VARCHAR(10) NOT NULL,
+  `role` VARCHAR(45),
+
+  PRIMARY KEY (`userID`))
+ENGINE = InnoDB;
+
 CREATE TABLE `Athlete` (
-    athleteID INTEGER NOT NULL AUTO_INCREMENT NOT NULL,
+    athleteID INTEGER NOT NULL AUTO_INCREMENT,
     coachID INTEGER,
     name VARCHAR(30),
     gender VARCHAR(10),
     DOB DATE,
-    applicationStatus BOOLEAN,
     email VARCHAR(30),
     password VARCHAR(20),
     mobileNumber VARCHAR(50), # allows country code and spaces and to ensure digits only
     telephoneNumber VARCHAR(50),
-    homeAddress VARCHAR(50),
-    uniAddress VARCHAR(50),
+    address VARCHAR(50),
     postcode VARCHAR(8),
     placeOfEducation VARCHAR(50),
     guardianName VARCHAR(50),

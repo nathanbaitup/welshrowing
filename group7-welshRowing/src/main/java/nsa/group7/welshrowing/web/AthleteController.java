@@ -2,6 +2,7 @@ package nsa.group7.welshrowing.web;
 
 import nsa.group7.welshrowing.domain.Applicant;
 import nsa.group7.welshrowing.domain.ApplicantAuditor;
+import nsa.group7.welshrowing.domain.Athlete;
 import nsa.group7.welshrowing.domain.AthleteAuditor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -19,8 +20,8 @@ import javax.validation.Valid;
 @Controller
 public class AthleteController {
 
-    private AthleteAuditor athleteAuditor;
-    private ApplicantAuditor applicantAuditor;
+    private final AthleteAuditor athleteAuditor;
+    private final ApplicantAuditor applicantAuditor;
 
     @Autowired
     public AthleteController(AthleteAuditor athleteAuditor, ApplicantAuditor applicantAuditor) {
@@ -29,37 +30,28 @@ public class AthleteController {
     }
 
     /**
-     * Directs the user to the entry form where when logged in, can create a new account.
+     * Allows a user to create a new account, automatically assumes user is an applicant
      *
      * @param model - adds to the page model
-     * @return returns the athlete-entry-form html
+     * @return returns the new applicant form
      */
-
     @GetMapping("new-applicant")
     public String serveAthleteEntryForm(Model model) {
-        ApplicantForm applicantForm = new ApplicantForm(null,null,null,null,"applicant");
+        ApplicantForm applicantForm = new ApplicantForm(null, null, null, null, "applicant");
         model.addAttribute("applicant", applicantForm);
         return "new-applicant";
     }
 
-//    @GetMapping("update-details/{id}")
-//    public String serveAthleteUpdateForm(@PathVariable Long userID, Model model) {
-//        Applicant applicant = applicantAuditor.findApplicantById(userID).get();
-//        AthleteUpdateForm athleteUpdateForm = new AthleteUpdateForm(null , applicant.getUserID(), applicant.getName(),"","",true,"","","","","","","","","","","","","",true,"");
-//        model.addAttribute("athlete", athleteUpdateForm);
-//        return "update-athlete";
-//    }
-
     /**
+     * Saves the name, username and password to the database.
      *
-     * @param applicant
-     * @param applicantForm
-     * @param bindings
-     * @param model
-     * @return
+     * @param applicant     - the entity to be stored in the database.
+     * @param applicantForm - data filled out from the form.
+     * @param bindings      - errors from filling out form.
+     * @return returns either the applicant form if any errors have occurred or redirects to the update details page for the user id.
      */
     @PostMapping("new-applicant")
-    public String handleAthleteEntry(@Valid @ModelAttribute("applicant") Applicant applicant, @Valid ApplicantForm applicantForm, BindingResult bindings, Model model){
+    public String handleApplicantCreation(@Valid @ModelAttribute("applicant") Applicant applicant, @Valid ApplicantForm applicantForm, BindingResult bindings) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
@@ -69,12 +61,54 @@ public class AthleteController {
         } else {
             applicant.setPassword(hashPassword(applicantForm.getPassword()));
             applicantAuditor.saveApplicant(applicant);
-            return "new-applicant";
+            return "redirect:/update-details/" + applicant.getUserID();
         }
     }
 
+    /**
+     * Takes the user id and allows them to update their information.
+     *
+     * @param id - the ID of the applicants login credentials.
+     * @param model  - adds the form to the model
+     * @return returns the update details form
+     */
+    @GetMapping("update-details/{id}")
+    public String serveAthleteUpdateForm(@PathVariable Long id, Model model) {
+        Applicant applicant = applicantAuditor.findApplicantById(id).get();
+        AthleteUpdateForm athleteUpdateForm = new AthleteUpdateForm(applicant.getUserID(), applicant.getName());
+        model.addAttribute("athlete", athleteUpdateForm);
+        return "update-athlete";
+    }
 
-    private String hashPassword(String password){
+    /**
+     * Updates a users data and saves into the database
+     *
+     * @param athlete           - the entity to be saved to the database.
+     * @param athleteUpdateForm - the form where user input data has been entered.
+     * @param bindings          - errors from the form.
+     * @return returns the form if any errors occur or redirects to the homepage.
+     */
+    @PostMapping("update-athlete")
+    public String handleAthleteEntry(@Valid @ModelAttribute("athlete") Athlete athlete, @Valid AthleteUpdateForm athleteUpdateForm, BindingResult bindings) {
+        if (bindings.hasErrors()) {
+            System.out.println("Errors:" + bindings.getFieldErrorCount());
+            for (ObjectError oe : bindings.getAllErrors()) {
+                System.out.println(oe);
+            }
+            return "update-athlete";
+        } else {
+            athleteAuditor.saveAthlete(athlete);
+            return "redirect:/";
+        }
+    }
+
+    /**
+     * Method that hashes the user password and salt.
+     *
+     * @param password - the text password entered by the user.
+     * @return returns a salted and hashed version of the plain text password entered by the user.
+     */
+    private String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 }

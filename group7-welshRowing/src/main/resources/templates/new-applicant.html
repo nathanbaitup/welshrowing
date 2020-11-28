@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="/js/newAthleteEntry.js"></script>
-    <title>New Athlete</title>
+    <title>New Applicant</title>
 
 
 </head>
@@ -27,29 +27,33 @@
             <label th:for="name">Please enter your Full Name:</label>
             <input class="form-control" th:field="*{name}" type="text" placeholder="Full Name" required/>
             <br>
-            <span th:errors="*{name}" th:if="${#fields.hasErrors('name')}">Please enter your name.</span>
         </div>
+        <span th:errors="*{name}" th:if="${#fields.hasErrors('name')}">Please enter your name.</span>
+
         <div class="form-group">
             <br>
             <label th:for="username">Please enter a username: </label>
             <input class="form-control" th:field="*{username}" type="text" placeholder="Username" required/>
-            <span th:errors="*{username}" th:if="${#fields.hasErrors('username')}">Please enter a username</span>
             <br>
         </div>
+        <span th:errors="*{username}" th:if="${#fields.hasErrors('username')}">Please enter a username.</span>
+
         <div class="form-group">
             <br>
             <label for="password">Please enter a new Password: </label>
             <input class="form-control" id="password" type="password" placeholder="Password" required/>
-            <span th:errors="*{password}" th:if="${#fields.hasErrors('password')}">Please enter a password.</span>
             <br>
         </div>
+        <span th:errors="*{password}" th:if="${#fields.hasErrors('password')}">Please enter a password.</span>
+
         <div class="form-group">
             <br>
             <label th:for="password">Confirm Password: </label>
             <input class="form-control" th:field="*{password}" type="password" id="confirmPassword" placeholder="Confirm Password" required oninput="checkPasswordsMatch(this)"/>
             <br>
-            <span th:errors="*{password}" th:if="${#fields.hasErrors('password')}">Please enter a password.</span>
         </div>
+        <span th:errors="*{password}" th:if="${#fields.hasErrors('password')}">Please enter a password.</span>
+
 
         <input th:field="*{role}" type="text" hidden/>
 
