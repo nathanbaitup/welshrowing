@@ -4,6 +4,7 @@ import nsa.group7.welshrowing.domain.Applicant;
 import nsa.group7.welshrowing.domain.ApplicantAuditor;
 import nsa.group7.welshrowing.domain.AthleteAuditor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -66,8 +67,14 @@ public class AthleteController {
             }
             return "new-applicant";
         } else {
+            applicant.setPassword(hashPassword(applicantForm.getPassword()));
             applicantAuditor.saveApplicant(applicant);
             return "new-applicant";
         }
+    }
+
+
+    private String hashPassword(String password){
+        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 }
