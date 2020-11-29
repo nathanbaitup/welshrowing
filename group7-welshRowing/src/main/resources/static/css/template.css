@@ -4,7 +4,7 @@
 
 img {
     /*padding: 3% 4%;*/
-    width:20%;
+    width:20%; /* Logo sizing */
 }
 
 .navbar-nav li {
@@ -12,5 +12,5 @@ img {
 }
 
 .nav-link {
-    font-size: 1.2em !important;
+    font-size: 1.2em !important;  /* Makes all links on nav bar bold, font size can go up or down */
 }
