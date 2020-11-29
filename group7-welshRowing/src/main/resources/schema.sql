@@ -8,20 +8,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `userID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `username` VARCHAR(6) NOT NULL,
-  `password` VARCHAR(10) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   `role` VARCHAR(45),
 
   PRIMARY KEY (`userID`))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `athlete` (
-  `athleteID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `userID` INT NOT NULL,
+  `athleteID` INT UNSIGNED NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `gender` VARCHAR(6) NOT NULL,
   `dob` DATE NOT NULL,
   `email` VARCHAR(45),
-  `password` VARCHAR(10) NOT NULL,
   `mobileNumber` VARCHAR(12),
   `telephoneNumber` VARCHAR(10),
 --   will be made into own table, just for testing purposes currently.
@@ -33,9 +31,9 @@ CREATE TABLE IF NOT EXISTS `athlete` (
   `guardianContactNumber` VARCHAR(45),
   `guardianEmail` VARCHAR(45),
   `heardFrom` VARCHAR(45),
-  `interestLetter` INT,
+  `interestLetter` BOOLEAN,
+  `postTestResult` VARCHAR(45),
 
-  PRIMARY KEY (`athleteID`),
-  FOREIGN KEY (`userID`) REFERENCES user(`userID`))
+  PRIMARY KEY (`athleteID`))
 ENGINE = InnoDB;
 
