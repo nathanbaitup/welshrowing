@@ -6,11 +6,11 @@ CREATE DATABASE IF NOT EXISTS welshRowing;
 
 USE welshRowing;
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE IF NOT EXISTS `User` (
   `userID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `username` VARCHAR(6) NOT NULL,
-  `password` VARCHAR(10) NOT NULL,
+  `username` VARCHAR(20) NOT NULL,
+  `password` VARCHAR NOT NULL,
   `role` VARCHAR(45),
 
   PRIMARY KEY (`userID`))
@@ -23,7 +23,6 @@ CREATE TABLE `Athlete` (
     gender VARCHAR(10),
     DOB DATE,
     email VARCHAR(30),
-    password VARCHAR(20),
     mobileNumber VARCHAR(50), # allows country code and spaces and to ensure digits only
     telephoneNumber VARCHAR(50),
     address VARCHAR(50),
@@ -138,11 +137,3 @@ CREATE TABLE `CrossTraining` (
     PRIMARY KEY PKCrossTraining(crossTrainingID),
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
-
-
-# Update examples - Can be removed at a later stage when login function is functioning
-INSERT INTO Athlete (name, gender, email)
-VALUES('Hamid', 'Male', 'hamidfun@gmail.com') , ('Oliver', 'Male', 'oliverlunch@hotmail.com') , ('Nathan' , 'Male', 'nathantechtips@aol.com');
-SELECT * FROM Athlete;
-UPDATE Athlete SET name = 'Dan' WHERE athleteID = 1;
-SELECT * FROM Athlete;
