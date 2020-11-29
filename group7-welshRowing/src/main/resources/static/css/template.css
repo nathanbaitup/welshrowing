@@ -2,9 +2,11 @@
     paddding: .8rem;
 }
 
-img {
-    /*padding: 3% 4%;*/
-    width:20%; /* Logo sizing */
+.carousel-item img{
+    width: auto;
+    height: auto;
+    margin: auto;
+    display: block;
 }
 
 .navbar-nav li {
