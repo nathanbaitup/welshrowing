@@ -21,7 +21,7 @@
 </div>
 
 <div class="entry-form">
-    <form action="#" method="post" th:action="@{/new-applicant}" th:object="${applicant}">
+    <form action="#" method="post" th:action="@{/new-applicant}" th:object="${applicantForm}">
 
         <div class="form-group">
             <label th:for="name">Please enter your Full Name:</label>
@@ -44,7 +44,6 @@
             <input class="form-control" id="password" type="password" placeholder="Password" required/>
             <br>
         </div>
-        <span th:errors="*{password}" th:if="${#fields.hasErrors('password')}">Please enter a password.</span>
 
         <div class="form-group">
             <br>
@@ -53,6 +52,7 @@
             <br>
         </div>
         <span th:errors="*{password}" th:if="${#fields.hasErrors('password')}">Please enter a password.</span>
+        <br><br>
 
 
         <input th:field="*{role}" type="text" hidden/>

@@ -18,12 +18,12 @@ public class ApplicantForm {
     /**
      * The name of the user.
      */
-    @NotBlank(message = "Please enter your full name")
+    @NotBlank(message = "Please enter your full name.")
     private String name;
     /**
      * The username of the user.
      */
-    @NotBlank(message = "Please enter a username")
+    @NotBlank(message = "Please enter a username.")
     private String username;
     /**
      * The users password, checks password contains lower-case, uppercase and numerical values.

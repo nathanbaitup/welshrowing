@@ -38,7 +38,7 @@ public class AthleteController {
     @GetMapping("new-applicant")
     public String serveAthleteEntryForm(Model model) {
         ApplicantForm applicantForm = new ApplicantForm(null, null, null, null, "applicant");
-        model.addAttribute("applicant", applicantForm);
+        model.addAttribute("applicantForm", applicantForm);
         return "new-applicant";
     }
 
@@ -48,15 +48,17 @@ public class AthleteController {
      * @param applicant     - the entity to be stored in the database.
      * @param applicantForm - data filled out from the form.
      * @param bindings      - errors from filling out form.
+     * @param model         - adds to the page model
      * @return returns either the applicant form if any errors have occurred or redirects to the update details page for the user id.
      */
     @PostMapping("new-applicant")
-    public String handleApplicantCreation(@Valid @ModelAttribute("applicant") Applicant applicant, @Valid ApplicantForm applicantForm, BindingResult bindings) {
+    public String handleApplicantCreation(@ModelAttribute("applicant") Applicant applicant, @Valid ApplicantForm applicantForm, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
                 System.out.println(oe);
             }
+            model.addAttribute("applicantForm", applicantForm);
             return "new-applicant";
         } else {
             applicant.setPassword(hashPassword(applicantForm.getPassword()));
@@ -68,15 +70,15 @@ public class AthleteController {
     /**
      * Takes the user id and allows them to update their information.
      *
-     * @param id - the ID of the applicants login credentials.
-     * @param model  - adds the form to the model
+     * @param id    - the ID of the applicants login credentials.
+     * @param model - adds the form to the model
      * @return returns the update details form
      */
     @GetMapping("update-details/{id}")
     public String serveAthleteUpdateForm(@PathVariable Long id, Model model) {
         Applicant applicant = applicantAuditor.findApplicantById(id).get();
         AthleteUpdateForm athleteUpdateForm = new AthleteUpdateForm(applicant.getUserID(), applicant.getName());
-        model.addAttribute("athlete", athleteUpdateForm);
+        model.addAttribute("athleteUpdateForm", athleteUpdateForm);
         return "update-athlete";
     }
 
@@ -86,15 +88,17 @@ public class AthleteController {
      * @param athlete           - the entity to be saved to the database.
      * @param athleteUpdateForm - the form where user input data has been entered.
      * @param bindings          - errors from the form.
+     * @param model             - adds to the page model
      * @return returns the form if any errors occur or redirects to the homepage.
      */
     @PostMapping("update-athlete")
-    public String handleAthleteEntry(@Valid @ModelAttribute("athlete") Athlete athlete, @Valid AthleteUpdateForm athleteUpdateForm, BindingResult bindings) {
+    public String handleAthleteEntry(@ModelAttribute("athlete") Athlete athlete, @Valid AthleteUpdateForm athleteUpdateForm, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
                 System.out.println(oe);
             }
+            model.addAttribute("athleteUpdateForm", athleteUpdateForm);
             return "update-athlete";
         } else {
             athleteAuditor.saveAthlete(athlete);

@@ -21,7 +21,7 @@
 </div>
 
 <div class="entry-form">
-    <form action="#" method="post" th:action="@{/update-athlete}" th:object="${athlete}">
+    <form action="#" method="post" th:action="@{/update-athlete}" th:object="${athleteUpdateForm}">
 
         <input th:field="*{athleteID}" type="hidden"/>
 
@@ -38,7 +38,7 @@
             <input class="form-control" th:field="*{email}" type="email" placeholder="Email Address" required/>
             <br>
         </div>
-        <span th:errors="*{email}" th:if="${#fields.hasErrors('email')}">Please enter your email address</span>
+        <span th:errors="*{email}" th:if="${#fields.hasErrors('email')}">Please enter a valid email address</span>
 
 
         <div class="form-check">
@@ -91,6 +91,7 @@
         </div>
 
         <div class="form-check">
+            <br>
             <label th:for="mobileNumber">Please enter your mobile number: </label>
             <input class="form-control" th:field="*{mobileNumber}" type="text" placeholder="Phone Number"/>
             <br>
