@@ -2,17 +2,36 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/athleteEntryForm.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/template.css">
     <script src="/js/newAthleteEntry.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
     <title>New Applicant</title>
 
 
 </head>
 <header>
+    <!--  Beginning of Navigation section of website  -->
+    <!--Using JQuery to avoid copying and pasting navigation code, creating boiler plate code, refers to navigationBar.html-->
+
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("navigationBar.html");
+        });
+    </script>
+
+    <!-- End of Navigation section of website-->
+
     <h1 id="pageTitle">New Applicant </h1>
+
 </header>
 <body>
 
@@ -26,34 +45,30 @@
         <div class="form-group">
             <label th:for="name">Please enter your Full Name:</label>
             <input class="form-control" th:field="*{name}" type="text" placeholder="Full Name" required/>
-            <br>
         </div>
         <span th:errors="*{name}" th:if="${#fields.hasErrors('name')}">Please enter your name.</span>
+        <br>
 
         <div class="form-group">
-            <br>
             <label th:for="username">Please enter a username: </label>
             <input class="form-control" th:field="*{username}" type="text" placeholder="Username" required/>
-            <br>
         </div>
         <span th:errors="*{username}" th:if="${#fields.hasErrors('username')}">Please enter a username.</span>
+        <br><br>
 
         <div class="form-group">
-            <br>
             <label for="password">Please enter a new Password: </label>
             <input class="form-control" id="password" type="password" placeholder="Password" required/>
             <br>
         </div>
 
         <div class="form-group">
-            <br>
             <label th:for="password">Confirm Password: </label>
-            <input class="form-control" th:field="*{password}" type="password" id="confirmPassword" placeholder="Confirm Password" required oninput="checkPasswordsMatch(this)"/>
-            <br>
+            <input class="form-control" th:field="*{password}" type="password" id="confirmPassword"
+                   placeholder="Confirm Password" required oninput="checkPasswordsMatch(this)"/>
         </div>
         <span th:errors="*{password}" th:if="${#fields.hasErrors('password')}">Please enter a password.</span>
         <br><br>
-
 
         <input th:field="*{role}" type="text" hidden/>
 
