@@ -18,7 +18,12 @@ public class coachDashboardController {
         this.coachAuditor = coachAuditor;
     }
 
-
+    /**
+     *
+     * @param id - The ID provided by the database
+     * @param name - Name of the ID user
+     * @return return the coachDashboard.html file
+     */
     @GetMapping("coachdashboard/{id}")
     public String coachDashboard(@PathVariable Long id, Model name) {
         Applicant aCoachDashboard = coachAuditor.findApplicantById(id).get();

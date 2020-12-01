@@ -24,12 +24,12 @@ public class coachDashboardTest {
     @Autowired
     private MockMvc mockMvc;
 
-
+// connecting to the URL link and reading webpage for substring provided
     @Test
     public void coachNameShows() throws Exception {
         this.mockMvc
                .perform(get("/coachdashboard/1"))
-//                .andDo(print())
+//                .andDo(print())  prints out HTML file, not needed for this test
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Nathan Test")));
     }
