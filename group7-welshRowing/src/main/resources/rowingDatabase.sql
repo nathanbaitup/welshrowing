@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `userID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `username` VARCHAR(20) NOT NULL,
-  `password` VARCHAR NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   `role` VARCHAR(45),
 
   PRIMARY KEY (`userID`))
@@ -137,3 +137,4 @@ CREATE TABLE `CrossTraining` (
     PRIMARY KEY PKCrossTraining(crossTrainingID),
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
+
