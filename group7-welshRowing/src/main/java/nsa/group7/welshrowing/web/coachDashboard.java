@@ -5,5 +5,5 @@ import lombok.Value;
 @Value
 public class coachDashboard {
     private String name;
-    private String message;
+    private String text;
 }
