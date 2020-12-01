@@ -29,7 +29,7 @@ public class bootstrapTests {
                 .perform(get("/"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")));
+                .andExpect(content().string(containsString("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")));
     }
 
 //    Testing for bootstrap on login page
@@ -39,7 +39,7 @@ public class bootstrapTests {
                 .perform(get("/login"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")));
+                .andExpect(content().string(containsString("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")));
     }
 
 //    Testing for bootstrap on new Athlete page
@@ -49,7 +49,7 @@ public class bootstrapTests {
                 .perform(get("/new-athlete"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")));
+                .andExpect(content().string(containsString("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")));
     }
 
 //    Commented out until merged with coachdashboard creation branch.

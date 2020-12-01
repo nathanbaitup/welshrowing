@@ -9,35 +9,26 @@
     <link rel="stylesheet" href="/css/template.css">
     <link rel="stylesheet" href="/css/coachDashboard.css">
 <!--    <H1>Coach Dashboard</H1>-->
-
 </head>
 <body>
+<!--  Beginning of Navigation section of website  -->
 
-</body>
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-<div class="container-fluid">
-    <a class="navbar-brand" href="welcome.html"><img src="images/logo.png"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="welcome.html">Home</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="welcome.html">About</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="login.html">Login</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="welcome.html">Logout</a>
-            </li>
-        </ul>
-    </div>
+<!--Using JQuery to avoid copying and pasting navigation code, creating boiler plate code, refers to navigationBar.html-->
+
+<div id="nav-placeholder">
+
 </div>
-</nav>
+
+<script>
+    $(function(){
+        $("#nav-placeholder").load("navigationBar.html");
+    });
+</script>
+</body>
+
+
+
+<!-- End of Navigation section of website-->
 
 
 <!--    <div th:text="${coachName.message}"></div>-->
