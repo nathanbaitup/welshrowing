@@ -1,7 +1,5 @@
 # https://lucid.app/lucidchart/invitations/accept/fade6f95-af6c-4643-9f07-1e402e18cd19 following schema
 
-DROP DATABASE IF EXISTS welshRowing;
-
 CREATE DATABASE IF NOT EXISTS welshRowing;
 
 USE welshRowing;
