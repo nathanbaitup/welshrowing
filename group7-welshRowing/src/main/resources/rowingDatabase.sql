@@ -1,7 +1,5 @@
 # https://lucid.app/lucidchart/invitations/accept/fade6f95-af6c-4643-9f07-1e402e18cd19 following schema
 
-DROP DATABASE IF EXISTS welshRowing;
-
 CREATE DATABASE IF NOT EXISTS welshRowing;
 
 USE welshRowing;
@@ -10,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `userID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `username` VARCHAR(20) NOT NULL,
-  `password` VARCHAR NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   `role` VARCHAR(45),
 
   PRIMARY KEY (`userID`))
@@ -137,3 +135,4 @@ CREATE TABLE `CrossTraining` (
     PRIMARY KEY PKCrossTraining(crossTrainingID),
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
+
