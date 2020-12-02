@@ -16,9 +16,9 @@
 <H1>Cross Training Form</H1>
 
 <div class="crossTrainingForm">
-    <form action="#" method="post" th:action="@{/submit-crossTraining}" th:object="${crossTrainingSessionForm}">
+    <form action="#" method="post" th:action="@{/submit-crosstraining-form}" th:object="${crossTrainingSessionForm}">
 
-
+        <input th:field="*{athleteID}" >
 
         <div class="crossTrainingForm">
             <label th:for="dateOfSession">Date of Cross Training Workout:</label>
