@@ -21,14 +21,14 @@ public class NewAthleteTests {
 
     @Test
     public void shouldAddAthleteToDB() throws Exception{
-        Athlete athlete = athleteRepoJPA.save(new Athlete(1L, "nathan", "male", "2001-02-24", "test@test.com", "test", "07894561230", " ", "2 test lane", " " , "cf12 3hh", "cardiff university", null, null, null, null, "Facebook", false ));
+        Athlete athlete = athleteRepoJPA.save(new Athlete(1L, "nathan", "male", "2001-02-24", false, "test@test.com", "test", "07894561230", " ", "2 test lane", " " , "cf12 3hh", "cardiff university", null, null, null, null, "Facebook", false, null ));
         assertThat(athlete.getAthleteID()).isGreaterThan(0);
 
     }
 
     @Test
     public void shouldFindAthleteIDFromName() throws Exception{
-        Athlete athlete = athleteRepoJPA.save(new Athlete(2L, "test", "male", "2001-02-24", "test@test.com", "test", "07894561230", " ", "2 test lane", " " , "cf12 3hh", "cardiff university", null, null, null, null, "Facebook", false ));
+        Athlete athlete = athleteRepoJPA.save(new Athlete(2L, "test", "male", "2001-02-24", true, "test@test.com", "test", "07894561230", " ", "2 test lane", " " , "cf12 3hh", "cardiff university", null, null, null, null, "Facebook", false, null ));
 
         Athlete findAthlete = athleteRepoJPA.findByName("test");
     assertEquals(2, findAthlete.getAthleteID());

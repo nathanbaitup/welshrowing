@@ -12,5 +12,6 @@ public class StaticRouter implements WebMvcConfigurer {
         //routing to welcome page when first entering the site.
         registry.addViewController("/").setViewName("forward:/welcome.html");
         registry.addViewController("/login").setViewName("forward:/login.html");
+        registry.addViewController("/forms").setViewName("forward:/form-dashboard.html");
     }
 }
