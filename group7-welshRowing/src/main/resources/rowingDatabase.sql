@@ -62,7 +62,7 @@ CREATE TABLE `AthletePreviousSports` (
     endurancePerWeek VARCHAR(50),
     strengthPerWeek VARCHAR(50),
     yearsAtLevel VARCHAR(50),
-    PRIMARY KEY PKAthletePreviousSports(interviewapsID),
+    PRIMARY KEY PKAthletePreviousSports(apsID),
     FOREIGN KEY FKAthletePreviousSports(athleteID) REFERENCES Athlete(athleteID)
 
 );
