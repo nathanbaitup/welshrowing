@@ -131,7 +131,7 @@ CREATE TABLE `CrossTraining` (
     date DATE,
     typeOfCrossTraining VARCHAR(50),
     totalTimeMinutes INTEGER,
-    totalDistance VARCHAR(20),
+    totalDistance INTEGER,
     PRIMARY KEY PKCrossTraining(crossTrainingID),
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
