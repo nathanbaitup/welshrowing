@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `userID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `username` VARCHAR(20) NOT NULL,
-  `password` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(128) NOT NULL,
   `role` VARCHAR(45),
 
   PRIMARY KEY (`userID`))
@@ -20,6 +20,7 @@ CREATE TABLE `Athlete` (
     name VARCHAR(30),
     gender VARCHAR(10),
     DOB DATE,
+    applicantStatus boolean,
     email VARCHAR(30),
     mobileNumber VARCHAR(50), # allows country code and spaces and to ensure digits only
     telephoneNumber VARCHAR(50),
@@ -61,7 +62,7 @@ CREATE TABLE `AthletePreviousSports` (
     endurancePerWeek VARCHAR(50),
     strengthPerWeek VARCHAR(50),
     yearsAtLevel VARCHAR(50),
-    PRIMARY KEY PKAthletePreviousSports(apsID),
+    PRIMARY KEY PKAthletePreviousSports(interviewapsID),
     FOREIGN KEY FKAthletePreviousSports(athleteID) REFERENCES Athlete(athleteID)
 
 );
@@ -69,7 +70,30 @@ CREATE TABLE `AthletePreviousSports` (
 CREATE TABLE `Interview` (
     interviewID INTEGER AUTO_INCREMENT NOT NULL,
     athleteID INTEGER NOT NULL,
-    questions VARCHAR(100),
+    answer1 VARCHAR(100),
+    answer2 VARCHAR(100),
+    answer3 VARCHAR(100),
+    answer4 VARCHAR(100),
+    answer5 VARCHAR(100),
+    answer6 VARCHAR(100),
+    answer7 int,
+    answer8 int,
+    answer9 int,
+    answer10 int,
+    answer11 VARCHAR(100),
+    answer12 VARCHAR(100),
+    answer13 VARCHAR(100),
+    answer14 int,
+    answer15 int,
+    answer16 int,
+    answer17 int,
+    answer18 int,
+    answer19 int,
+    answer20 int,
+    answer21 int,
+    answer22 int,
+    answer23 int,
+    answer24 int,
     PRIMARY KEY PKInterview(interviewID),
     FOREIGN KEY FKInterview(athleteID) REFERENCES Athlete(athleteID)
 );
@@ -135,4 +159,3 @@ CREATE TABLE `CrossTraining` (
     PRIMARY KEY PKCrossTraining(crossTrainingID),
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
-
