@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `User` (
 ENGINE = InnoDB;
 
 CREATE TABLE `Athlete` (
-    athleteID INTEGER NOT NULL AUTO_INCREMENT,
+    athleteID INTEGER,
     coachID INTEGER,
     name VARCHAR(30),
     gender VARCHAR(10),
@@ -141,7 +141,7 @@ CREATE TABLE `MorningMonitoring` (
 CREATE TABLE `SessionRPE` (
     sessionRPEID INTEGER NOT NULL AUTO_INCREMENT,
     athleteID INTEGER NOT NULL,
-    date DATE,
+    dateOfSession DATE,
     typeOfSession VARCHAR(50),
     RPE INTEGER,
     sessionDurationMinutes INTEGER,
@@ -152,7 +152,7 @@ CREATE TABLE `SessionRPE` (
 CREATE TABLE `CrossTraining` (
     crossTrainingID INTEGER NOT NULL AUTO_INCREMENT,
     athleteID INTEGER NOT NULL,
-    date DATE,
+    dateOfSession DATE,
     typeOfCrossTraining VARCHAR(50),
     totalTimeMinutes INTEGER,
     totalDistance VARCHAR(20),

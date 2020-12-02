@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `athlete` (
   `name` VARCHAR(45) NOT NULL,
   `gender` VARCHAR(6) NOT NULL,
   `dob` DATE NOT NULL,
+  `applicationStatus` BOOLEAN,
   `email` VARCHAR(45),
   `mobileNumber` VARCHAR(12),
   `telephoneNumber` VARCHAR(10),
@@ -36,4 +37,15 @@ CREATE TABLE IF NOT EXISTS `athlete` (
 
   PRIMARY KEY (`athleteID`))
 ENGINE = InnoDB;
+
+CREATE TABLE `SessionRPE` (
+    `sessionRPEID` INTEGER NOT NULL AUTO_INCREMENT,
+    `athleteID` INTEGER NOT NULL,
+    `dateOfSession` DATE,
+    `typeOfSession` VARCHAR(50),
+    `RPE` INTEGER,
+    `sessionDurationMinutes` INTEGER,
+    PRIMARY KEY (`sessionRPEID`),
+    FOREIGN KEY (`athleteID`) REFERENCES `Athlete`(`athleteID`)
+);
 

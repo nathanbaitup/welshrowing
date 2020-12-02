@@ -15,6 +15,11 @@
     padding-right: 2%;
 }
 
+.session-rpe-button{
+    padding-right: 10%;
+    padding-left: 2%;
+}
+
 #parentGuardianEntry{
     display: none;
 }
