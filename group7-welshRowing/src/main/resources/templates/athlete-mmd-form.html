@@ -27,25 +27,28 @@
     <br>
     <form>
         <label for="date">Date of measurements taken:</label><br>
-        <input type="text" id="date" name="date"><br>
+        <input type="date" id="date" name="date"><br>
 
         <label for="whr">Waking heart rate:</label><br>
-        <input type="text" id="whr" name="whr"><br>
+        <input type="number" id="whr" name="whr"><br>
 
         <label for="shr">Standing heart rate:</label><br>
-        <input type="text" id="shr" name="shr"><br>
+        <input type="number" id="shr" name="shr"><br>
 
         <label for="ps">Perceived shape:</label><br>
-        <input type="text" id="ps" name="ps"><br>
+        <input type="number" min="1" max="10" step="1" id="ps" name="ps"><br>
 
         <label for="pms">Percieved mental state:</label><br>
-        <input type="text" id="pms" name="pms"><br>
+        <input type="number" min="1" max="10" step="1"id="pms" name="pms"><br>
 
         <label for="sleepquantity">Sleep quality:</label><br>
-        <input type="text" id="sleepquantity" name="sleepquantity"><br>
+        <input type="number" min="0" max="24" step="0.5"id="sleepquantity" name="sleepquantity"><br>
 
         <label for="sleepquality">Sleep quantity:</label><br>
-        <input type="text" id="sleepquality" name="sleepquality"><br>
+        <input type="number" min="1" max="10" step="1"id="sleepquality" name="sleepquality"><br>
+
+        <br><br>
+        <button class="btn btn-primary" type="submit">Submit</button>
     </form>
 
 
