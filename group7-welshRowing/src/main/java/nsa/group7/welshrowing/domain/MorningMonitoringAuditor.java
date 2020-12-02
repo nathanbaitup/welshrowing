@@ -1,6 +1,10 @@
 package nsa.group7.welshrowing.domain;
 
+import java.util.Optional;
+
 public interface MorningMonitoringAuditor {
 
-    void saveMorningMonitoring(MorningMonitoring morningMonitoring);
+    public void saveMorningMonitoring(MorningMonitoring morningMonitoring);
+
+    Optional<Applicant> findMorningMonitoringById(Long id);
 }
