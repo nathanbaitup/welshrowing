@@ -10,5 +10,11 @@ public interface SessionRPEAuditor {
      */
     public void saveSession(SessionRPE aSession);
 
+    /**
+     * Finds a sessionRPE stored in the database by its id.
+     *
+     * @param id - the id of the session object.
+     * @return returns the sessionRPE by the id searched for.
+     */
     Optional<SessionRPE> findBySessionRPEID(Long id);
 }

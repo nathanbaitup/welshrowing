@@ -54,7 +54,7 @@
             <input class="form-control" th:field="*{dateOfSession}" id="date" type="date" required/>
 
         </div>
-        <span th:errors="*{dateOfSession}" th:if="${#fields.hasErrors('dateOfSession')}">Please enter a date.</span>
+        <span th:errors="*{dateOfSession}" th:if="${#fields.hasErrors('dateOfSession')}">Please enter a date following "dd-mm-yyyy".</span>
         <br>
 
         <div class="form-group">

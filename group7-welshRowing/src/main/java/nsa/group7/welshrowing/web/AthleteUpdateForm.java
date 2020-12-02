@@ -3,6 +3,7 @@ package nsa.group7.welshrowing.web;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -31,6 +32,7 @@ public class AthleteUpdateForm {
      * The date of birth of the athlete.
      */
     @NotBlank
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private String dob;
     /**
      * The athlete's personal email address.
