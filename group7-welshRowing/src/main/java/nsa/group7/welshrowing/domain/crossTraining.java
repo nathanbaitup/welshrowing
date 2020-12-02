@@ -21,6 +21,8 @@ public class crossTraining {
     @JoinColumn(name = "athleteID")
     private Athlete athleteID;
 
+    private String dateOfSession;
+
     private String typeOfCrossTraining;
 
     private Integer totalTimeMinutes;
