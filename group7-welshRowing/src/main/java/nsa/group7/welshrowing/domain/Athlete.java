@@ -16,7 +16,6 @@ public class Athlete {
      * The athleteID.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long athleteID;
     /**
      * The name of the athlete.
