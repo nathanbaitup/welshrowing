@@ -21,6 +21,7 @@ public class Athlete {
     /**
      * The name of the athlete.
      */
+    private Long coachID;
     private String name;
     /**
      * The gender of the athlete. Will be radio button options on form.
@@ -30,6 +31,11 @@ public class Athlete {
      * The date of birth of the athlete.
      */
     private String dob;
+    /**
+     * A boolean that states if the athlete is applying to the programme (true) or has been accepted (false).
+     */
+    private Boolean applicationStatus;
+    /**
     /**
      * The athlete's personal email address.
      */
