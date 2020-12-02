@@ -49,6 +49,7 @@ public class WorkoutController {
             return "submit-crosstraining-form/" + crossTrainingSessionForm.getAthleteID();
         } else {
             crossTrainingAuditor.saveCrossTrainingData(crossTraining);
+            return "redirect:/";
         }
     }
     /**
