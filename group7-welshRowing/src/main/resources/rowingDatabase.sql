@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `User` (
 ENGINE = InnoDB;
 
 CREATE TABLE `Athlete` (
-    athleteID INTEGER NOT NULL AUTO_INCREMENT,
+    athleteID INTEGER,
     coachID INTEGER,
     name VARCHAR(30),
     gender VARCHAR(10),
