@@ -20,7 +20,7 @@ CREATE TABLE `Athlete` (
     name VARCHAR(30),
     gender VARCHAR(10),
     DOB DATE,
-    applicantStatus boolean,
+    applicationStatus boolean,
     email VARCHAR(30),
     mobileNumber VARCHAR(50), # allows country code and spaces and to ensure digits only
     telephoneNumber VARCHAR(50),
