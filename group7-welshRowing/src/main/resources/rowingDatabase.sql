@@ -117,7 +117,7 @@ CREATE TABLE `MorningMonitoring` (
 CREATE TABLE `SessionRPE` (
     sessionRPEID INTEGER NOT NULL AUTO_INCREMENT,
     athleteID INTEGER NOT NULL,
-    date DATE,
+    dateOfSession DATE,
     typeOfSession VARCHAR(50),
     RPE INTEGER,
     sessionDurationMinutes INTEGER,
@@ -128,7 +128,7 @@ CREATE TABLE `SessionRPE` (
 CREATE TABLE `CrossTraining` (
     crossTrainingID INTEGER NOT NULL AUTO_INCREMENT,
     athleteID INTEGER NOT NULL,
-    date DATE,
+    dateOfSession DATE,
     typeOfCrossTraining VARCHAR(50),
     totalTimeMinutes INTEGER,
     totalDistance INTEGER,
