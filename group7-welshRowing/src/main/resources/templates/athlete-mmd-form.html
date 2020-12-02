@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Athlete Morning Monitoring Form</title>
@@ -25,27 +25,33 @@
 <body>
     <h1>Athlete Morning Monitoring Data Entry</h1>
     <br>
-    <form>
-        <label for="date">Date of measurements taken:</label><br>
-        <input type="date" id="date" name="date"><br>
+    <form action="#" method="post" th:action="@{/athlete-mmd-form}" th:object="${MorningMonitoringForm}">
+        <label th:for="monitoringID">MonitoringID:</label><br>
+        <input class="form-control" th:field="*{monitoringID}" type="number"><br>
 
-        <label for="whr">Waking heart rate:</label><br>
-        <input type="number" id="whr" name="whr"><br>
+        <label th:for="athleteID">AthleteID:</label><br>
+        <input class="form-control" th:field="*{athleteID}" type="number"><br>
 
-        <label for="shr">Standing heart rate:</label><br>
-        <input type="number" id="shr" name="shr"><br>
+        <label th:for="date">Date of measurements taken:</label><br>
+        <input class="form-control" th:field="*{date}" type="date"><br>
 
-        <label for="ps">Perceived shape:</label><br>
-        <input type="number" min="1" max="10" step="1" id="ps" name="ps"><br>
+        <label th:for="walkingHeartRate">Walking heart rate:</label><br>
+        <input class="form-control" th:field="*{walkingHeartRate}" type="number"><br>
 
-        <label for="pms">Percieved mental state:</label><br>
-        <input type="number" min="1" max="10" step="1"id="pms" name="pms"><br>
+        <label th:for="standingHeartRate">Standing heart rate:</label><br>
+        <input class="form-control" th:field="*{standingHeartRate}" type="number"><br>
 
-        <label for="sleepquantity">Sleep quality:</label><br>
-        <input type="number" min="0" max="24" step="0.5"id="sleepquantity" name="sleepquantity"><br>
+        <label th:for="perceivedShape">Perceived shape:</label><br>
+        <input class="form-control" th:field="*{percievedShape}" type="number" min="1" max="10" step="1"><br>
 
-        <label for="sleepquality">Sleep quantity:</label><br>
-        <input type="number" min="1" max="10" step="1"id="sleepquality" name="sleepquality"><br>
+        <label th:for="perceivedMentalState">Percieved mental state:</label><br>
+        <input class="form-control" th:field="*{percievedMentalState" type="number" min="1" max="10" step="1"><br>
+
+        <label th:for="sleepQuantityHours">Sleep quality:</label><br>
+        <input class="form-control" th:field="*{sleepQuantityHours}" type="number" min="0" max="24" step="0.5"><br>
+
+        <label th:for="sleepQuality">Sleep quantity:</label><br>
+        <input class="form-control" th:field="*{sleepQuality}" type="number" min="1" max="10" step="1"><br>
 
         <br><br>
         <button class="btn btn-primary" type="submit">Submit</button>
