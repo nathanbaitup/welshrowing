@@ -1,0 +1,44 @@
+.entry-form{
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 30%;
+    padding-right: 40%;
+    width:60%;
+    text-align: center;
+}
+
+.form-group{
+    border: black 1px solid;
+    width: 70%;
+}
+
+#eval {
+    text-align: center;
+    width: 100%;
+}
+
+textarea {
+    width: 90%;
+}
+
+input {
+    width: 30%;
+}
+
+.psych {
+    display: flex;
+    justify-content: center;
+}
+.psych label {
+    width: 70%;
+}
+.psych .form-control {
+    width: 30%;
+}
+
+.title {
+    text-align: center;
+    font-family: Georgia, Times, serif;
+    font-size: 2em;
+    letter-spacing: 0.02em;
+}

@@ -62,11 +62,32 @@ CREATE TABLE `AthletePreviousSports` (
 );
 
 CREATE TABLE `Interview` (
-    interviewID INTEGER AUTO_INCREMENT NOT NULL,
-    athleteID INTEGER NOT NULL,
-    questions VARCHAR(100),
-    PRIMARY KEY PKInterview(interviewID),
-    FOREIGN KEY FKInterview(athleteID) REFERENCES Athlete(athleteID)
+	interviewID INTEGER AUTO_INCREMENT NOT NULL,
+    answer1 VARCHAR(100),
+    answer2 VARCHAR(100),
+    answer3 VARCHAR(100),
+    answer4 VARCHAR(100),
+    answer5 VARCHAR(100),
+    answer6 VARCHAR(100),
+    answer7 int,
+    answer8 int,
+    answer9 int,
+    answer10 int,
+    answer11 VARCHAR(100),
+    answer12 VARCHAR(100),
+    answer13 VARCHAR(100),
+    answer14 int,
+    answer15 int,
+    answer16 int,
+    answer17 int,
+    answer18 int,
+    answer19 int,
+    answer20 int,
+    answer21 int,
+    answer22 int,
+    answer23 int,
+    answer24 int,
+    PRIMARY KEY PKInterview(interviewID)
 );
 
 CREATE TABLE `Coach` (

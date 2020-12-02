@@ -12,10 +12,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class AthleteForm {
     /**
-     * The athleteID from the database.
-     */
-    private Long athleteID;
-    /**
      * The name of the athlete.
      */
     @NotBlank
