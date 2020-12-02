@@ -14,9 +14,9 @@ public class SessionRPEForm {
     private Date dateOfSession;
     private String typeOfSession;
     private int rpe;
-    private int sessionDurationMins;
+    private Integer sessionDurationMinutes;
 
     public SessionRPEForm(Long athleteID){
-        this(athleteID, null, null, 0, 0);
+        this(athleteID, null, null, 0, null);
     }
 }

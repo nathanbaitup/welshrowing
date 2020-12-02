@@ -47,7 +47,7 @@
 <div class="entry-form">
     <form action="#" method="post" th:action="@{/submit-session-rpe}" th:object="${sessionRPEForm}">
 
-        <input th:field="*{athleteID}" type="hidden">
+        <input th:field="*{athleteID}" hidden>
 
         <div class="form-group">
             <label th:for="dateOfSession">Please enter the date of the session:</label>
@@ -113,12 +113,12 @@
 
         <div class="form-group">
             <br>
-            <label th:for="sessionDurationMins">Please enter your Session Duration: *</label>
+            <label th:for="sessionDurationMinutes">Please enter your Session Duration: *</label>
             <p><small>Please enter the duration in number of minutes. Eg: 1 hour 30 mins = 90 minutes</small></p>
-            <input class="form-control" th:field="*{sessionDurationMins}" type="number" placeholder="Number of minutes eg: 45" required/>
+            <input class="form-control" th:field="*{sessionDurationMinutes}" type="text" placeholder="Number of minutes eg: 45" required/>
             <br>
         </div>
-        <span th:errors="*{sessionDurationMins}" th:if="${#fields.hasErrors('sessionDurationMins')}">Please enter your session duration.</span>
+        <span th:errors="*{sessionDurationMinutes}" th:if="${#fields.hasErrors('sessionDurationMinutes')}">Please enter your session duration.</span>
 
         <button class="btn btn-primary" type="submit">Submit</button>
 

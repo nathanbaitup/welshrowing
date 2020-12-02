@@ -18,11 +18,14 @@ public class SessionRPE {
     private Long sessionRPEID;
 
     @ManyToOne
-    @JoinTable(name = "athlete", joinColumns = @JoinColumn(name = "athleteID"))
+    @JoinColumn(name = "athleteID")
     private Athlete athleteID;
 
-    private Date date;
-    private String typeOfCrossTraining;
-    private int totalTimeMinutes;
-    private String totalDistance;
+    private String dateOfSession;
+
+    private String typeOfSession;
+    @Column(name = "RPE")
+    private int rpe;
+
+    private int sessionDurationMinutes;
 }
