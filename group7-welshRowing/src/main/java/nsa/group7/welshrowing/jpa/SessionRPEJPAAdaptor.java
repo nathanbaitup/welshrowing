@@ -6,6 +6,8 @@ import nsa.group7.welshrowing.domain.SessionRPEAuditor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.Optional;
+
 @Controller
 public class SessionRPEJPAAdaptor implements SessionRPEAuditor {
 
@@ -29,5 +31,10 @@ public class SessionRPEJPAAdaptor implements SessionRPEAuditor {
     @Override
     public void saveSession(SessionRPE aSession) {
         sessionRPERepoJPA.save(aSession);
+    }
+
+    @Override
+    public Optional<SessionRPE> findBySessionRPEID(Long id) {
+        return sessionRPERepoJPA.findById(id);
     }
 }
