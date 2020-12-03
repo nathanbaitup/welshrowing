@@ -24,7 +24,7 @@ public class ApplicantForm {
      * The username of the user.
      */
     @NotBlank(message = "Please enter a username.")
-    @Pattern(regexp = "^[a-zA-Z]\\w{3,20}$", message = "Please enter between 3 and 20 characters")
+    @Pattern(regexp = "^[a-zA-Z]\\w{3,20}$", message = "Please enter between 3 and 20 characters. Letters only.")
     private String username;
     /**
      * The users password, checks password contains lower-case, uppercase and numerical values.
