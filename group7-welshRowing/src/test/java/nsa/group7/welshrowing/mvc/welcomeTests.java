@@ -3,6 +3,7 @@ package nsa.group7.welshrowing.mvc;
 import nsa.group7.welshrowing.web.StaticRouter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @ContextConfiguration
-@WebMvcTest
+@WebMvcTest(value = StaticRouter.class,  excludeAutoConfiguration = {SecurityAutoConfiguration.class})
 public class welcomeTests {
     @Autowired
     private MockMvc mockMvc;
@@ -29,11 +30,4 @@ public class welcomeTests {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    public void ShouldShowLoginPage() throws Exception {
-        this.mockMvc
-                .perform(get("/login"))
-                .andDo(print())
-                .andExpect(status().isOk());
-    }
 }
