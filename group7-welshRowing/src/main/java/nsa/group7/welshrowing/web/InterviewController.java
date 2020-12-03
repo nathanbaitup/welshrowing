@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -32,9 +33,9 @@ public class InterviewController {
      * @return returns the athlete-entry-form html
      */
 
-    @GetMapping("interview-form")
-    public String serveInterviewForm(Model model) {
-        InterviewForm interviewForm = new InterviewForm();
+    @GetMapping("interview-form/{athleteID}")
+    public String serveInterviewForm(@PathVariable Long athleteID, Model model) {
+        InterviewForm interviewForm = new InterviewForm(athleteID);
         model.addAttribute("interview", interviewForm);
         return "interview-form";
     }
@@ -57,7 +58,7 @@ public class InterviewController {
             return "interview-form";
         } else {
             interviewAuditor.saveInterview(interviewEntry);
-            return "interview-form";
+            return "redirect:/coachdashboard/1";
         }
     }
 

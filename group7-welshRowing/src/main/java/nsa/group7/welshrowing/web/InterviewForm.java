@@ -133,4 +133,10 @@ public class InterviewForm {
      */
     @NotBlank
     private Integer answer24;
+
+    public InterviewForm(Long athleteID) {
+        this(athleteID, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+    }
+
 }
