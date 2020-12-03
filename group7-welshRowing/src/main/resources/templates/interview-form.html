@@ -12,6 +12,7 @@
 <div class="entry-form">
     <form action="#" th:action="@{/enter-interview-form}" th:object="${interview}" method="post">
         <div class="form-group">
+            <input th:field="*{athleteID}" hidden>
             <label th:for="answer1">What to you is the difference between taking part and competing in sport? What does High Performance/Elite Sport mean?</label>
             <br>
             <textarea class="form-control" th:field="*{answer1}" rows="4" cols="50"/>
@@ -98,7 +99,9 @@
             <br>
             <span th:errors="*{answer13}" th:if="${#fields.hasErrors('answer13')}">Please enter your name.</span>
         </div>
-        <label id="eval">Behavioural Evaluation (1 Low/Left - 10 High/Right)</label>
+        <br>
+        <h4 id="eval">Behavioural Evaluation (1 Low/Left - 10 High/Right)</h4>
+        <br>
         <div class="form-group psych">
             <label th:for="answer14">Risk-Taking</label>
             <input class="form-control" th:field="*{answer14}" type="number" name="process-outcome" min="1" max="10" required/>

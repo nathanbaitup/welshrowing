@@ -17,6 +17,8 @@ public class Interview {
     /**
      *
      */
+    private Long athleteID;
+
     private String answer1;
     /**
      *

@@ -14,20 +14,28 @@
 
 #eval {
     text-align: center;
-    width: 100%;
+    width: 70%;
+    font-family: Times;
+    font-size: 1em;
+    background-color: red;
+    height: 2em;
+
 }
 
 textarea {
     width: 90%;
+    background-color: beige;
 }
 
 input {
     width: 30%;
+    background-color: beige;
 }
 
 .psych {
     display: flex;
     justify-content: center;
+    background-color: lightgreen;
 }
 .psych label {
     width: 70%;
@@ -41,4 +49,10 @@ input {
     font-family: Georgia, Times, serif;
     font-size: 2em;
     letter-spacing: 0.02em;
+}
+.form-group {
+    background-color: lightgreen;
+}
+label {
+    background-color: lightgreen;
 }

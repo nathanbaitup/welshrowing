@@ -13,8 +13,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class InterviewForm {
 
+    private Long athleteID;
 
-    private Long interviewID;
 
     @NotBlank
     private String answer1;
