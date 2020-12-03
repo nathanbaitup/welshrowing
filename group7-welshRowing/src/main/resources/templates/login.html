@@ -7,5 +7,16 @@
 </head>
 <body>
     <h1>login</h1>
+
+    <form action="#" method="post" th:action="@{/login}" th:object="${loginForm}">
+        <label th:for="username">Username:</label><br>
+        <input class="form-control" th:field="*{username}" type="text"><br>
+
+        <label th:for="password">Password:</label><br>
+        <input class="form-control" th:field="*{password}" type="text"><br>
+
+        <button class="btn btn-primary" type="submit">Login</button>
+
+    </form>
 </body>
 </html>
