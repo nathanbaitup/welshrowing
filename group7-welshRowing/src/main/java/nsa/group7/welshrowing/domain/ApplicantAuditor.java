@@ -17,4 +17,12 @@ public interface ApplicantAuditor {
      * @return returns the user object.
      */
     Optional<Applicant> findApplicantById(Long id);
+
+    /**
+     * finds an applicant by their username
+     *
+     * @param username the username of the applicant being searched for
+     * @return the applicant object if found
+     */
+    Applicant findApplicantByUsername(String username);
 }
