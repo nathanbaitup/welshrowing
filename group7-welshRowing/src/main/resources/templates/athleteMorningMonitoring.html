@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Athlete Morning Monitoring Progress</title>
     <link rel="stylesheet" href="/css/template.css">
-    <link rel ="stylesheet" href="css/welcome.css">
+    <link rel ="stylesheet" href="css/athleteMorningMonitoring.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -12,12 +12,11 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script> <!-- Line that brings JQuery in -->
 </head>
 <body>
-
 <!--  Beginning of Navigation section of website  -->
 
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="welcome.html"><img src="/images/logo.png"></a> <!-- Logo location with link to homepage -->
+        <a class="navbar-brand" href="/"><img src="/images/logo.png"></a> <!-- Logo location with link to homepage -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
             <span class="navbar-toggler-icon"></span> <!-- Drop down menu button when page is on mobile -->
         </button>
@@ -40,9 +39,55 @@
     </div>
 </nav>
 
-<H1>Athlete List</H1>
-
 <!-- End of Navigation section of website-->
+<H1>Athlete List</H1>
+<div class="table">
+<table border="1">
+    <thead>
+    <tr>
+        <th>Athlete ID</th>
+        <th>Date</th>
+        <th>Walking Heart Rate</th>
+        <th>Standing Heart Rate</th>
+        <th>Perceived Shape</th>
+        <th>Perceived Mental State</th>
+        <th>Sleep Quantity Hours</th>
+        <th>Sleep Quality</th>
+    </tr>
+    </thead>
+    <tr>
+    <td>1</td>
+    <td>12/05/2020</td>
+    <td>40</td>
+    <td>50</td>
+    <td>10</td>
+    <td>10</td>
+    <td>10</td>
+    <td>6</td>
+    </tr>
+    <tr>
+    <td>2</td>
+    <td>13/05/2020</td>
+    <td>45</td>
+    <td>25</td>
+    <td>6</td>
+    <td>6</td>
+    <td>4</td>
+    <td>6</td>
+    </tr>
+</div>
+<!--    <tr th:each="monitor : ${morningMonitoring}">-->
+<!--        <td th:text="${MorningMonitoring.athleteID}">Athlete ID</td>-->
+<!--        <td th:text="${morningMonitoring.date}">Date</td>-->
+<!--        <td th:text="${morningMonitoring.walkingHeartRate}">Walking Heart Rate</td>-->
+<!--        <td th:text="${morningMonitoring.standingHeartRate}">Standing Heart Rate</td>-->
+<!--        <td th:text="${morningMonitoring.perceivedShape}">Perceived Shape</td>-->
+<!--        <td th:text="${morningMonitoring.perceivedMentalState}">Perceived Mental State</td>-->
+<!--        <td th:text="${morningMonitoring.sleepQuantityHours}">Sleep Quantity Hours</td>-->
+<!--        <td th:text="${morningMonitoring.sleepQuality}">Sleep Quality</td>-->
+    </tr>
+    </tr>
+</table>
 
 </body>
 </html>
