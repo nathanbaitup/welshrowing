@@ -47,7 +47,7 @@ public class WorkoutController {
             return "submit-crosstraining-form/" + crossTrainingSessionForm.getAthleteID();
         } else {
             crossTrainingAuditor.saveCrossTrainingData(crossTraining);
-            return "redirect:/";
+            return "redirect:/athlete-dashboard";
         }
     }
     /**
@@ -84,7 +84,7 @@ public class WorkoutController {
             return "session-rpe-form/" + sessionRPEForm.getAthleteID();
         } else {
             sessionRPEAuditor.saveSession(sessionRPE);
-            return "redirect:/";
+            return "redirect:/athlete-dashboard";
         }
     }
 }

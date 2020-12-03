@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -21,9 +22,9 @@ public class MorningMonitoringController {
         this.morningMonitoringAuditor = morningMonitoringAuditor;
     }
 
-    @GetMapping("/athlete-mmd-form")
-    public String serveMorningMonitoringForm(Model model) {
-        MorningMonitoringForm morningMonitoringForm = new MorningMonitoringForm(null,null,null,0,0,0,0,0,0);
+    @GetMapping("/athlete-mmd-form/{athleteID}")
+    public String serveMorningMonitoringForm(@PathVariable("athleteID") Long athleteID, Model model) {
+        MorningMonitoringForm morningMonitoringForm = new MorningMonitoringForm(athleteID,null,0,0,0,0,0,0);
         model.addAttribute("morningMonitoringForm",morningMonitoringForm);
         return "athlete-mmd-form";
     }
@@ -36,10 +37,10 @@ public class MorningMonitoringController {
                 System.out.println(oe);
             }
             model.addAttribute("morningMonitoringForm", morningMonitoringForm);
-            return "athlete-mmd-form";
+            return "athlete-mmd-form/" + morningMonitoringForm.getAthleteID();
         } else {
             morningMonitoringAuditor.saveMorningMonitoring(morningMonitoring);
-            return "redirect:/";
+            return "redirect:/athlete-dashboard";
         }
     }
 

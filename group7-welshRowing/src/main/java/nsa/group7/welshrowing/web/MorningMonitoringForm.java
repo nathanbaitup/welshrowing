@@ -10,7 +10,6 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MorningMonitoringForm {
-    private Long monitoringID;
 
     private Long athleteID;
 

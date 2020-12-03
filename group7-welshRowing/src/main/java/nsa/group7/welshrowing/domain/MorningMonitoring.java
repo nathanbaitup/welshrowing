@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 
@@ -19,8 +16,9 @@ public class MorningMonitoring {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long monitoringID;
-
-    private Long athleteID;
+    @ManyToOne
+    @JoinColumn(name = "athleteID")
+    private Athlete athleteID;
 
     private Date date;
 
