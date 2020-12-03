@@ -1,8 +1,11 @@
 package nsa.group7.welshrowing.web;
 
+
+import nsa.group7.welshrowing.domain.CrossTraining;
+import nsa.group7.welshrowing.domain.crossTrainingAuditor;
+import org.springframework.beans.factory.annotation.Autowired;
 import nsa.group7.welshrowing.domain.SessionRPE;
 import nsa.group7.welshrowing.domain.SessionRPEAuditor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,17 +17,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
-
 @Controller
 public class WorkoutController {
 
+    private final crossTrainingAuditor crossTrainingAuditor;
     private final SessionRPEAuditor sessionRPEAuditor;
 
     @Autowired
-    public WorkoutController(SessionRPEAuditor aSessionRPEAuditor) {
+    public WorkoutController(crossTrainingAuditor acrossTrainingAuditor, SessionRPEAuditor aSessionRPEAuditor) {
+        crossTrainingAuditor = acrossTrainingAuditor;
         sessionRPEAuditor = aSessionRPEAuditor;
     }
 
+    @GetMapping("submit-crosstraining-form/{athleteID}")
+    public String submitCrossTrainingForm(@PathVariable Long athleteID, Model model) {
+        crossTrainingSessionForm crossTrainingSessionForm = new crossTrainingSessionForm(athleteID,null,null,null,null);
+        model.addAttribute("crossTrainingSessionForm", crossTrainingSessionForm);
+        return "crossTrainingForm";
+    }
+
+    @PostMapping("submit-crosstraining-form")
+    public String postSubmitCrossTrainingForm(@ModelAttribute("crossTrainingSessionForm") CrossTraining crossTraining, @Valid crossTrainingSessionForm crossTrainingSessionForm, BindingResult bindings, Model model) {
+        if (bindings.hasErrors()) {
+            System.out.println("Errors:" + bindings.getFieldErrorCount());
+            for (ObjectError oe : bindings.getAllErrors()) {
+                System.out.println(oe);
+            }
+            model.addAttribute("crossTrainingSessionForm", crossTrainingSessionForm);
+            return "submit-crosstraining-form/" + crossTrainingSessionForm.getAthleteID();
+        } else {
+            crossTrainingAuditor.saveCrossTrainingData(crossTraining);
+            return "redirect:/";
+        }
+    }
     /**
      * Uses the athleteID to navigate to the session-rpe-form with the id populated.
      *

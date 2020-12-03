@@ -27,7 +27,7 @@ public class coachDashboardController {
     @GetMapping("coachdashboard/{id}")
     public String coachDashboard(@PathVariable Long id, Model name) {
         Applicant aCoachDashboard = coachAuditor.findApplicantById(id).get();
-        coachDashboard coachDashboardForm = new coachDashboard (aCoachDashboard.getName(), "text");;
+        coachDashboard coachDashboardForm = new coachDashboard (aCoachDashboard.getName(), "Welcome to your dashboard!");;
         name.addAttribute("coachName", coachDashboardForm);
 
         return "coachDashboard";
