@@ -1,24 +1,30 @@
 # https://lucid.app/lucidchart/invitations/accept/fade6f95-af6c-4643-9f07-1e402e18cd19 following schema
 
-DROP DATABASE IF EXISTS welshRowing;
-
 CREATE DATABASE IF NOT EXISTS welshRowing;
 
 USE welshRowing;
 
+CREATE TABLE IF NOT EXISTS `User` (
+  `userID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(20) NOT NULL,
+  `password` VARCHAR(128) NOT NULL,
+  `role` VARCHAR(45),
+
+  PRIMARY KEY (`userID`))
+ENGINE = InnoDB;
+
 CREATE TABLE `Athlete` (
-    athleteID INTEGER NOT NULL AUTO_INCREMENT NOT NULL,
+    athleteID INTEGER,
     coachID INTEGER,
     name VARCHAR(30),
     gender VARCHAR(10),
     DOB DATE,
     applicationStatus BOOLEAN,
     email VARCHAR(30),
-    password VARCHAR(20),
     mobileNumber VARCHAR(50), # allows country code and spaces and to ensure digits only
     telephoneNumber VARCHAR(50),
-    homeAddress VARCHAR(50),
-    uniAddress VARCHAR(50),
+    address VARCHAR(50),
     postcode VARCHAR(8),
     placeOfEducation VARCHAR(50),
     guardianName VARCHAR(50),
@@ -62,7 +68,8 @@ CREATE TABLE `AthletePreviousSports` (
 );
 
 CREATE TABLE `Interview` (
-	interviewID INTEGER AUTO_INCREMENT NOT NULL,
+    interviewID INTEGER AUTO_INCREMENT NOT NULL,
+    athleteID INTEGER NOT NULL,
     answer1 VARCHAR(100),
     answer2 VARCHAR(100),
     answer3 VARCHAR(100),
@@ -87,7 +94,8 @@ CREATE TABLE `Interview` (
     answer22 int,
     answer23 int,
     answer24 int,
-    PRIMARY KEY PKInterview(interviewID)
+    PRIMARY KEY PKInterview(interviewID),
+    FOREIGN KEY FKInterview(athleteID) REFERENCES Athlete(athleteID)
 );
 
 CREATE TABLE `Coach` (
@@ -133,7 +141,7 @@ CREATE TABLE `MorningMonitoring` (
 CREATE TABLE `SessionRPE` (
     sessionRPEID INTEGER NOT NULL AUTO_INCREMENT,
     athleteID INTEGER NOT NULL,
-    date DATE,
+    dateOfSession DATE,
     typeOfSession VARCHAR(50),
     RPE INTEGER,
     sessionDurationMinutes INTEGER,
@@ -144,18 +152,10 @@ CREATE TABLE `SessionRPE` (
 CREATE TABLE `CrossTraining` (
     crossTrainingID INTEGER NOT NULL AUTO_INCREMENT,
     athleteID INTEGER NOT NULL,
-    date DATE,
+    dateOfSession DATE,
     typeOfCrossTraining VARCHAR(50),
     totalTimeMinutes INTEGER,
     totalDistance VARCHAR(20),
     PRIMARY KEY PKCrossTraining(crossTrainingID),
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
-
-
-# Update examples - Can be removed at a later stage when login function is functioning
-INSERT INTO Athlete (name, gender, email)
-VALUES('Hamid', 'Male', 'hamidfun@gmail.com') , ('Oliver', 'Male', 'oliverlunch@hotmail.com') , ('Nathan' , 'Male', 'nathantechtips@aol.com');
-SELECT * FROM Athlete;
-UPDATE Athlete SET name = 'Dan' WHERE athleteID = 1;
-SELECT * FROM Athlete;
