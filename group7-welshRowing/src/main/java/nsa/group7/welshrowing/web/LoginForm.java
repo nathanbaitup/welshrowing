@@ -3,9 +3,6 @@ package nsa.group7.welshrowing.web;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -14,9 +11,11 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginForm {
+    //username validation
     @NotBlank(message = "Please check your username is correct")
     private String username;
 
+    //password validation
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z].*",message="Must start with a letter")
     @Pattern(regexp = "^.*[a-z].*",message="Must contain lowercase")

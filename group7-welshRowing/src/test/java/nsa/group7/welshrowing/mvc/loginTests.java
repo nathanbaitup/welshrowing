@@ -16,6 +16,7 @@ public class loginTests {
     @Autowired
     private MockMvc mockMvc;
 
+    //tests that login page is displayed correctly and shows correct state.
     @Test
     public void loginPageShows() throws Exception {
         this.mockMvc

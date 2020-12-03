@@ -12,5 +12,11 @@ public interface ApplicantRepoJPA extends JpaRepository<Applicant, Long> {
      */
     Applicant findByUserID(Long id);
 
+    /**
+     * finds user by username to return user object
+     *
+     * @param username the username used to search for user object
+     * @return returns user object.
+     */
     Applicant findByUsername(String username);
 }

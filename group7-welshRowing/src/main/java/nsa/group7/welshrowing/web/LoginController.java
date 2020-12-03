@@ -25,6 +25,12 @@ public class LoginController {
         this.applicantAuditor = applicantAuditor;
     }
 
+    /**
+     * Serves the login page to anyone who is directed to /login
+     *
+     * @param model puts page in model
+     * @return returns loginForm
+     */
     @GetMapping("/login")
     public String serveLoginPage(Model model){
         LoginForm loginForm = new LoginForm();
@@ -32,6 +38,15 @@ public class LoginController {
         return "login";
     }
 
+    /**
+     * Checks the users login and if correct directs them to the correct page. i.e. coach dashboard/athlete dashboard
+     *
+     * @param applicant the entity that the user is trying to login as
+     * @param loginForm the login information from the form
+     * @param bindings errors in form
+     * @param model adds page
+     * @return if errors occur stays on login page but if password is okay redirects to coach or athlete dashboard depending on role.
+     */
     @PostMapping("/login")
     public String handleLoginPage(@ModelAttribute("login") Applicant applicant, @Valid LoginForm loginForm, BindingResult bindings, Model model){
         try {

@@ -29,5 +29,5 @@ public class welcomeTests {
                 .andDo(print())
                 .andExpect(status().isOk());
     }
-    
+
 }
