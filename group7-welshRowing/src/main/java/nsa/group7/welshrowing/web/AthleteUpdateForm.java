@@ -96,6 +96,6 @@ public class AthleteUpdateForm {
     private String postTestResult;
 
     public AthleteUpdateForm(Long athleteID, String name){
-        this(athleteID, name, null, null, true,null, null, null, null, null, null, null, null, null, null, null, null, null);
+        this(athleteID, name, null, null, true, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 }

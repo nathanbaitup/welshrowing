@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/interviewForm.css">
+
+    <title>Title</title>
+
+</head>
+<body>
+<h2 class="title">INTERVIEW FORM</h2>
+<div class="entry-form">
+    <form action="#" th:action="@{/enter-interview-form}" th:object="${interview}" method="post">
+        <div class="form-group">
+            <input th:field="*{athleteID}" hidden>
+            <label th:for="answer1">What to you is the difference between taking part and competing in sport? What does High Performance/Elite Sport mean?</label>
+            <br>
+            <textarea class="form-control" th:field="*{answer1}" rows="4" cols="50"/>
+            <br>
+            <span th:errors="*{answer1}" th:if="${#fields.hasErrors('answer1')}">Please enter your name.</span>
+        </div>
+        <div class="form-group">
+            <label th:for="answer2">What is your experience and feelings about sport to date?</label>
+            <br>
+            <textarea class="form-control" th:field="*{answer2}" rows="4" cols="50" required/>
+            <br>
+            <span th:errors="*{answer2}" th:if="${#fields.hasErrors('answer2')}">Please enter your name.</span>
+        </div>
+        <div class="form-group">
+            <label th:for="answer3">What can you bring to this high-performance training environment?</label>
+            <br>
+            <textarea class="form-control" th:field="*{answer3}" rows="4" cols="50" required/>
+            <br>
+            <span th:errors="*{answer3}" th:if="${#fields.hasErrors('answer3')}">Please enter your name.</span>
+        </div>
+        <div class="form-group">
+            <label th:for="answer4">What can you bring to this high-performance training environment?</label>
+            <br>
+            <textarea class="form-control" th:field="*{answer4}" rows="4" cols="50" required/>
+            <br>
+            <span th:errors="*{answer4}" th:if="${#fields.hasErrors('answer4')}">Please enter your name.</span>
+        </div>
+        <div class="form-group">
+            <label th:for="answer5">What is the role of the coaches to you?</label>
+            <br>
+            <textarea class="form-control" th:field="*{answer5}" rows="4" cols="50" required/>
+            <br>
+            <span th:errors="*{answer5}" th:if="${#fields.hasErrors('answer5')}">Please enter your name.</span>
+        </div>
+        <div class="form-group">
+            <label th:for="answer6">What obstacles, if any, are potential barriers to your compliance and success on a programme like this?</label>
+            <br>
+            <textarea class="form-control" th:field="*{answer6}" rows="4" cols="50" required/>
+            <br>
+            <span th:errors="*{answer6}" th:if="${#fields.hasErrors('answer6')}">Please enter your name.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer7">What motivates you when training? (Process/Outcome)</label>
+            <input class="form-control" th:field="*{answer7}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer7}" th:if="${#fields.hasErrors('answer7')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer8">What motivates you when training? (Intrinsic/Extrinsic)</label>
+            <input class="form-control" th:field="*{answer8}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer8}" th:if="${#fields.hasErrors('answer8')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer9">What motivates you when competing? (Process/Outcome)</label>
+            <input class="form-control" th:field="*{answer9}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer9}" th:if="${#fields.hasErrors('answer9')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer10">What motivates you when competing? (Intrinsic/Extrinsic)</label>
+            <input class="form-control" th:field="*{answer10}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer10}" th:if="${#fields.hasErrors('answer10')}">Please enter your response.</span>
+        </div>
+        <div class="form-group">
+            <label th:for="answer11">What does this opportunity mean to you?</label>
+            <br>
+            <textarea class="form-control" th:field="*{answer11}" rows="4" cols="50" required/>
+            <br>
+            <span th:errors="*{answer11}" th:if="${#fields.hasErrors('answer11')}">Please enter your name.</span>
+        </div>
+        <div class="form-group">
+            <label th:for="answer12">Do you have any role models and if so, why them?</label>
+            <br>
+            <textarea class="form-control" th:field="*{answer12}" rows="4" cols="50" required/>
+            <br>
+            <span th:errors="*{answer12}" th:if="${#fields.hasErrors('answer12')}">Please enter your name.</span>
+        </div>
+        <div class="form-group">
+            <label th:for="answer13">What is your story?</label>
+            <br>
+            <textarea class="form-control" th:field="*{answer13}" rows="4" cols="50" required/>
+            <br>
+            <span th:errors="*{answer13}" th:if="${#fields.hasErrors('answer13')}">Please enter your name.</span>
+        </div>
+        <br>
+        <h4 id="eval">Behavioural Evaluation (1 Low/Left - 10 High/Right)</h4>
+        <br>
+        <div class="form-group psych">
+            <label th:for="answer14">Risk-Taking</label>
+            <input class="form-control" th:field="*{answer14}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer14}" th:if="${#fields.hasErrors('answer14')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer15">Bravery</label>
+            <input class="form-control" th:field="*{answer15}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer15}" th:if="${#fields.hasErrors('answer15')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer16">Resilience</label>
+            <input class="form-control" th:field="*{answer16}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer16}" th:if="${#fields.hasErrors('answer16')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer17">Work Ethic</label>
+            <input class="form-control" th:field="*{answer17}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer17}" th:if="${#fields.hasErrors('answer17')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer18">Confidence</label>
+            <input class="form-control" th:field="*{answer18}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer18}" th:if="${#fields.hasErrors('answer18')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer19">Open Mindedness</label>
+            <input class="form-control" th:field="*{answer19}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer19}" th:if="${#fields.hasErrors('answer19')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer20">On-Off Switch</label>
+            <input class="form-control" th:field="*{answer20}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer20}" th:if="${#fields.hasErrors('answer20')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer21">Light Heartedness</label>
+            <input class="form-control" th:field="*{answer21}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer21}" th:if="${#fields.hasErrors('answer21')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer22">Self-Discipline</label>
+            <input class="form-control" th:field="*{answer22}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer22}" th:if="${#fields.hasErrors('answer22')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer23">Ability to work with others</label>
+            <input class="form-control" th:field="*{answer23}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer23}" th:if="${#fields.hasErrors('answer23')}">Please enter your response.</span>
+        </div>
+        <div class="form-group psych">
+            <label th:for="answer24">Competitiveness</label>
+            <input class="form-control" th:field="*{answer24}" type="number" name="process-outcome" min="1" max="10" required/>
+            <br>
+            <span th:errors="*{answer24}" th:if="${#fields.hasErrors('answer24')}">Please enter your response.</span>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
