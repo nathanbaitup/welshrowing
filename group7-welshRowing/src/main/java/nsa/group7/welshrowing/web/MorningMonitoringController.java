@@ -1,6 +1,8 @@
 package nsa.group7.welshrowing.web;
 
 import nsa.group7.welshrowing.domain.MorningMonitoring;
+import nsa.group7.welshrowing.domain.MorningMonitoringAuditor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MorningMonitoringController {
+
+    private final MorningMonitoringAuditor morningMonitoringAuditor;
+
+    @Autowired
+    public MorningMonitoringController(MorningMonitoringAuditor morningMonitoringAuditor) {
+        this.morningMonitoringAuditor = morningMonitoringAuditor;
+    }
 
     @GetMapping("/athlete-mmd-form")
     public String serveMorningMonitoringForm(Model model) {
@@ -31,7 +40,7 @@ public class MorningMonitoringController {
         } else {
             //applicant.setPassword(hashPassword(applicantForm.getPassword()));
             //applicantAuditor.saveApplicant(applicant);
-            System.out.println(morningMonitoringForm.getAthleteID());
+            morningMonitoringAuditor.saveMorningMonitoring(morningMonitoring);
             return "athlete-mmd-form";
         }
     }
