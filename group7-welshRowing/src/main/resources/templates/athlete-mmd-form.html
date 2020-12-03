@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Athlete Morning Monitoring Form</title>
+
+    <link rel="stylesheet" href="/css/mmdForm.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<header>
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("navigationBar.html");
+        });
+    </script>
+</header>
+
+<body>
+    <h1>Athlete Morning Monitoring Data Entry</h1>
+    <br>
+    <form action="#" method="post" th:action="@{/athlete-mmd-form}" th:object="${morningMonitoringForm}">
+        <div class="row">
+            <label th:for="monitoringID">MonitoringID:</label><br>
+            <input class="form-control" th:field="*{monitoringID}" type="number"><br>
+
+            <label th:for="athleteID">AthleteID:</label><br>
+            <input class="form-control" th:field="*{athleteID}" type="number"><br>
+
+            <label th:for="date">Date of measurements taken:</label><br>
+            <input class="form-control" th:field="*{date}" type="date"><br>
+
+            <label th:for="walkingHeartRate">Walking heart rate:</label><br>
+            <input class="form-control" th:field="*{walkingHeartRate}" type="number"><br>
+
+            <label th:for="standingHeartRate">Standing heart rate:</label><br>
+            <input class="form-control" th:field="*{standingHeartRate}" type="number"><br>
+
+            <label th:for="perceivedShape">Perceived shape:</label><br>
+            <input class="form-control" th:field="*{perceivedShape}" type="number"><br>
+
+            <label th:for="perceivedMentalState">Perceived mental state:</label><br>
+            <input class="form-control" th:field="*{perceivedMentalState}" type="number"><br>
+
+            <label th:for="sleepQuantityHours">Sleep quality:</label><br>
+            <input class="form-control" th:field="*{sleepQuantityHours}" type="number"><br>
+
+            <label th:for="sleepQuality">Sleep quantity:</label><br>
+            <input class="form-control" th:field="*{sleepQuality}" type="number"><br>
+
+            <br><br>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+
+
+</body>
+</html>
