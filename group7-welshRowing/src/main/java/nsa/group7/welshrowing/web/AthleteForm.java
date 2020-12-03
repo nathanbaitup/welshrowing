@@ -4,15 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AthleteUpdateForm {
+public class AthleteForm {
     /**
      * The athleteID from the database.
      */
@@ -33,11 +31,18 @@ public class AthleteUpdateForm {
     @NotBlank
     private String dob;
     /**
+     * A boolean that states if the athlete is applying to the programme (true) or has been accepted (false).
+     */
+    private Boolean applicationStatus;
+    /**
      * The athlete's personal email address.
      */
     @NotBlank
-    @Email
     private String email;
+    /**
+     * The athlete's password to log into the system.
+     */
+    private String password;
     /**
      * The athlete's mobile number.
      */
@@ -49,7 +54,11 @@ public class AthleteUpdateForm {
     /**
      * The athlete's home address.
      */
-    private String address;
+    private String homeAddress;
+    /**
+     * The athlete's university address if applicable.
+     */
+    private String uniAddress;
     /**
      * The postcode where the athlete is living.
      */
@@ -73,7 +82,6 @@ public class AthleteUpdateForm {
     /**
      * The email of the parent or guardian of the athlete, if they are under 18 years of age.
      */
-    @Email
     private String guardianEmail;
     /**
      * A short string about where the athlete heard about Rowing Wales.
@@ -88,8 +96,4 @@ public class AthleteUpdateForm {
      * A string that states the result after the interview process of an athlete.
      */
     private String postTestResult;
-
-    public AthleteUpdateForm(Long athleteID, String name){
-        this(athleteID, name, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-    }
 }

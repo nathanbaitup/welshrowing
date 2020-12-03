@@ -12,9 +12,6 @@ import javax.persistence.*;
 @Entity
 
 public class Athlete {
-    /**
-     * The athleteID.
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long athleteID;
@@ -31,9 +28,17 @@ public class Athlete {
      */
     private String dob;
     /**
+     * A boolean that states if the athlete is applying to the programme (true) or has been accepted (false).
+     */
+    private Boolean applicationStatus;
+    /**
      * The athlete's personal email address.
      */
     private String email;
+    /**
+     * The athlete's password to log into the system.
+     */
+    private String password;
     /**
      * The athlete's mobile number.
      */
@@ -45,7 +50,11 @@ public class Athlete {
     /**
      * The athlete's home address.
      */
-    private String address;
+    private String homeAddress;
+    /**
+     * The athlete's university address if applicable.
+     */
+    private String uniAddress;
     /**
      * The postcode where the athlete is living.
      */

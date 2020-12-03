@@ -3,64 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Welsh Rowing</title>
-    <link rel="stylesheet" href="/css/template.css">
     <link rel ="stylesheet" href="css/welcome.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script> <!-- Line that brings JQuery in -->
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-
-<!--  Beginning of Navigation section of website  -->
-
-<!--Using JQuery to avoid copying and pasting navigation code, creating boiler plate code, refers to navigationBar.html-->
-
-<div id="nav-placeholder">
-
-</div>
-
-<script>
-    $(function(){
-        $("#nav-placeholder").load("navigationBar.html");
-    });
-</script>
-
-<!-- End of Navigation section of website-->
-
-<div id="slides" class="carousel slide" data-ride="carousel">
-<ul class="carousel-indicators">
-    <li data-target="#slides" data-slide-to="0" class="active"></li>
-    <li data-target="#slides" data-slide-to="1"></li>
-    <li data-target="#slides" data-slide-to="2"></li>
-</ul>
-<div class="carousel-inner">
-    <div class="carousel-item active">
-        <img src="images/slidingHomepageImage1.png">
-        <div class="carousel-caption">
-            <h1 class="display-2">Welsh Rowing Club</h1>
-            <h3>Home page</h3>
+    <h1>Athlete Monitoring Dashboard</h1>
+    <img src="images/logo.png">
+    <div class="row"> <!--uses rows and columns to center the button on the screen-->
+        <div class="col-spacer"></div>
+        <div class="col">
+            <a href="/login" class="btn-danger btn" role="button">Login</a>
         </div>
+        <div class="col-spacer"></div>
     </div>
-    <div class="carousel-item">
-        <img src="images/slidingHomepageImage2.png">
-    </div>
-    <div class="carousel-item">
-        <img src="images/slidingHomepageImage3.png">
-    </div>
-</div>
-</div>
-
-<div class="container-fluid">
-<div class="row jumbotron">
-    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
-        <p class="lead">Welcome to the Welsh Rowing Club website.</p>
-    </div>
-</div>
-</div>
-
 
 </body>
 </html>

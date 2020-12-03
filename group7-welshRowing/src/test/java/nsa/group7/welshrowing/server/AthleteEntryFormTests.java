@@ -25,10 +25,10 @@ public class AthleteEntryFormTests {
     public void shouldGetEntryForm() throws Exception {
 
         this.mockMvc
-                .perform(get("/new-applicant"))
+                .perform(get("/new-athlete"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("New Applicant")))
+                .andExpect(content().string(containsString("New Athlete")))
                 .andExpect(content().string(containsString("Please enter your information to create an account.")));
     }
 }

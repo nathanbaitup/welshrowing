@@ -5,19 +5,12 @@ import nsa.group7.welshrowing.domain.AthleteAuditor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 
 @Component
 public class AthleteJPAAdaptor implements AthleteAuditor {
 
     private final AthleteRepoJPA athleteRepoJPA;
 
-    /**
-     * Injects the AthleteRepoJPA interface to communicate with the database.
-     *
-     * @param anAthleteRepoJPA - the variable depending on the Athlete repository to access the database.
-     */
     @Autowired
     public AthleteJPAAdaptor(AthleteRepoJPA anAthleteRepoJPA) {
         athleteRepoJPA = anAthleteRepoJPA;
@@ -41,17 +34,6 @@ public class AthleteJPAAdaptor implements AthleteAuditor {
     @Override
     public void updateAthlete(Athlete anAthlete) {
         athleteRepoJPA.save(anAthlete);
-    }
-
-    /**
-     * Uses the athlete auditor to access the JPA repo and finds all data about an athlete given the id.
-     *
-     * @param id - the id of the athlete.
-     * @return returns the athlete object.
-     */
-    @Override
-    public Optional<Athlete> findAthleteById(Long id) {
-        return athleteRepoJPA.findById(id);
     }
 
 }
