@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "CrossTraining")
-public class crossTraining {
+public class CrossTraining {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long crossTrainingId;

@@ -23,7 +23,7 @@ public class SessionRPETests {
 
     @Test
     public void shouldSaveANewWorkoutSession(){
-        Athlete athlete = athleteRepoJPA.save(new Athlete(1L, "Nathan Baitup", "Male", "18-06-2001", "nathan@nathan.com", "07123456789", "", "1 Test Street", "CF349BD", "Cardiff University", "", "", "", "", "Facebook", false, ""));
+        Athlete athlete = athleteRepoJPA.save(new Athlete(1L, null, "Nathan Baitup", "Male", "18-06-2001",true, "nathan@nathan.com", "07123456789", "", "1 Test Street", "CF349BD", "Cardiff University", "", "", "", "", "Facebook", false, ""));
         sessionRPERepoJPA.save(new SessionRPE(1L, athlete,"2020-12-02","Yoga",5,80));
         List<SessionRPE> sessions = sessionRPERepoJPA.findAll();
         assertEquals(1, sessions.size());
@@ -31,7 +31,7 @@ public class SessionRPETests {
 
     @Test
     public void shouldBeAbleToRetrieveASessionAndSessionDate(){
-        Athlete athlete = athleteRepoJPA.save(new Athlete(1L, "Nathan Baitup", "Male", "18-06-2001", "nathan@nathan.com", "07123456789", "", "1 Test Street", "CF349BD", "Cardiff University", "", "", "", "", "Facebook", false, ""));
+        Athlete athlete = athleteRepoJPA.save(new Athlete(1L, null,"Nathan Baitup", "Male", "18-06-2001",true,  "nathan@nathan.com", "07123456789", "", "1 Test Street", "CF349BD", "Cardiff University", "", "", "", "", "Facebook", false, ""));
         sessionRPERepoJPA.save(new SessionRPE(1L, athlete,"2020-12-25","Circuit",6,60));
         SessionRPE aSession = sessionRPERepoJPA.findBySessionRPEID(1L);
 

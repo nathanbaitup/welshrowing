@@ -1,13 +1,11 @@
 package nsa.group7.welshrowing.web;
 
 
-import nsa.group7.welshrowing.domain.crossTraining;
+import nsa.group7.welshrowing.domain.CrossTraining;
 import nsa.group7.welshrowing.domain.crossTrainingAuditor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import nsa.group7.welshrowing.domain.SessionRPE;
 import nsa.group7.welshrowing.domain.SessionRPEAuditor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,7 +37,7 @@ public class WorkoutController {
     }
 
     @PostMapping("submit-crosstraining-form")
-    public String postSubmitCrossTrainingForm(@ModelAttribute("crossTrainingSessionForm") crossTraining crossTraining, @Valid crossTrainingSessionForm crossTrainingSessionForm, BindingResult bindings, Model model) {
+    public String postSubmitCrossTrainingForm(@ModelAttribute("crossTrainingSessionForm") CrossTraining crossTraining, @Valid crossTrainingSessionForm crossTrainingSessionForm, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
