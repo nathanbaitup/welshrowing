@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -37,7 +38,7 @@ public class SessionRPEForm {
      * The duration of the session stored in minutes.
      */
     @NotBlank
-    @NumberFormat
+    @Pattern(regexp = "[0-9]+", message = "Please only enter numbers.")
     private Integer sessionDurationMinutes;
 
     /**
