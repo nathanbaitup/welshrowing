@@ -3,6 +3,7 @@ package nsa.group7.welshrowing.web;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -31,7 +32,12 @@ public class AthleteUpdateForm {
      * The date of birth of the athlete.
      */
     @NotBlank
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private String dob;
+    /**
+     * The application status of the athlete, if true, still in interview process, if false, has been accepted.
+     */
+    private Boolean applicationStatus;
     /**
      * The athlete's personal email address.
      */
@@ -90,6 +96,6 @@ public class AthleteUpdateForm {
     private String postTestResult;
 
     public AthleteUpdateForm(Long athleteID, String name){
-        this(athleteID, name, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        this(athleteID, name, null, null, true, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 }

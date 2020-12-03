@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class AthleteController {
@@ -102,8 +103,14 @@ public class AthleteController {
             return "update-athlete";
         } else {
             athleteAuditor.saveAthlete(athlete);
-            return "redirect:/";
+            return "redirect:/athlete-dashboard";
         }
+    }
+    @GetMapping("applicants")
+    public String serveApplicantList(Model model) {
+        List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
+        model.addAttribute("listApplicants", applicantList);
+        return "applicant-list";
     }
 
     /**

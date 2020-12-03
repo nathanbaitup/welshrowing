@@ -8,18 +8,19 @@ CREATE TABLE IF NOT EXISTS `User` (
   `userID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `username` VARCHAR(20) NOT NULL,
-  `password` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(128) NOT NULL,
   `role` VARCHAR(45),
 
   PRIMARY KEY (`userID`))
 ENGINE = InnoDB;
 
 CREATE TABLE `Athlete` (
-    athleteID INTEGER NOT NULL AUTO_INCREMENT,
+    athleteID INTEGER,
     coachID INTEGER,
     name VARCHAR(30),
     gender VARCHAR(10),
     DOB DATE,
+    applicationStatus BOOLEAN,
     email VARCHAR(30),
     mobileNumber VARCHAR(50), # allows country code and spaces and to ensure digits only
     telephoneNumber VARCHAR(50),
@@ -69,7 +70,30 @@ CREATE TABLE `AthletePreviousSports` (
 CREATE TABLE `Interview` (
     interviewID INTEGER AUTO_INCREMENT NOT NULL,
     athleteID INTEGER NOT NULL,
-    questions VARCHAR(100),
+    answer1 VARCHAR(100),
+    answer2 VARCHAR(100),
+    answer3 VARCHAR(100),
+    answer4 VARCHAR(100),
+    answer5 VARCHAR(100),
+    answer6 VARCHAR(100),
+    answer7 int,
+    answer8 int,
+    answer9 int,
+    answer10 int,
+    answer11 VARCHAR(100),
+    answer12 VARCHAR(100),
+    answer13 VARCHAR(100),
+    answer14 int,
+    answer15 int,
+    answer16 int,
+    answer17 int,
+    answer18 int,
+    answer19 int,
+    answer20 int,
+    answer21 int,
+    answer22 int,
+    answer23 int,
+    answer24 int,
     PRIMARY KEY PKInterview(interviewID),
     FOREIGN KEY FKInterview(athleteID) REFERENCES Athlete(athleteID)
 );
@@ -117,7 +141,7 @@ CREATE TABLE `MorningMonitoring` (
 CREATE TABLE `SessionRPE` (
     sessionRPEID INTEGER NOT NULL AUTO_INCREMENT,
     athleteID INTEGER NOT NULL,
-    date DATE,
+    dateOfSession DATE,
     typeOfSession VARCHAR(50),
     RPE INTEGER,
     sessionDurationMinutes INTEGER,
@@ -128,11 +152,10 @@ CREATE TABLE `SessionRPE` (
 CREATE TABLE `CrossTraining` (
     crossTrainingID INTEGER NOT NULL AUTO_INCREMENT,
     athleteID INTEGER NOT NULL,
-    date DATE,
+    dateOfSession DATE,
     typeOfCrossTraining VARCHAR(50),
     totalTimeMinutes INTEGER,
-    totalDistance VARCHAR(20),
+    totalDistance INTEGER,
     PRIMARY KEY PKCrossTraining(crossTrainingID),
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
-

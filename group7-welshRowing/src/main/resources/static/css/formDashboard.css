@@ -1,0 +1,58 @@
+.block {
+    display: inline-block;
+    background-color: black;
+    width: 33%;
+    text-align: center;
+    border-radius: 1em;
+    border-top: red 2em solid;
+    color: white;
+    text-decoration: none;
+    font-family: "Georgia", "Times New Roman", serif;
+}
+.link {
+    text-decoration: none;
+    color: white;
+}
+.container {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    flex-direction: row;
+}
+
+.block a {
+    text-decoration: none;
+}
+.block h3 {
+    text-decoration: none;
+}
+
+/* Responsive layout - makes a one column layout instead of a three-column layout */
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column;
+    }
+}
+#formTitle {
+    font-family: Georgia, Times, Serif;
+    font-size: 3em;
+    letter-spacing: 0.03em;
+}
+.block img {
+    width: 80%;
+    height: 300px;
+}
+
+p {
+    color: white;
+}
+
+h2 {
+    text-align: center;
+    font-family: "Georgia", "Times New Roman", serif;
+}
+h3 {
+    color: white;
+    font-family: "Georgia", "Times New Roman", serif;
+}

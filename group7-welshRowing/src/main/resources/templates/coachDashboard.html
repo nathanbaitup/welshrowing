@@ -17,7 +17,7 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="welcome.html"><img src="/images/logo.png"></a> <!-- Logo location with link to homepage -->
+        <a class="navbar-brand" href="/"><img src="/images/logo.png"></a> <!-- Logo location with link to homepage -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
             <span class="navbar-toggler-icon"></span> <!-- Drop down menu button when page is on mobile -->
         </button>
@@ -54,11 +54,28 @@
 
 
 <!-- End of Navigation section of website-->
-
-
+<div class="coachDashboardLead">
+<!--Thymleaf section-->
     <div th:text="${coachName.name}"></div>
     <div th:text="${coachName.text}"></div>
-<!--    <p> <small> Authorised Viewing Only </small> </p>-->
+<br>
+<h3> Visit all Applicants </h3>
+<p>Press the button below to view all current applicants.</p>
+<!--Button to lead to view all applicants -->
+<button class="btn btn-success" onclick="location.href='/applicants'">View all Applicants</button>
+<br>
+<br>
+    <h3> Interview Process </h3>
+    <p>Press the button below to navigate to the interview form.</p>
+    <button class="btn btn-primary" onclick="location.href='/interview-form/2'">Interviews</button>
+
+<br>
+<br>
+    <h3> Athlete Morning Monitoring Progress </h3>
+    <p>Press the button below to navigate to see current Athlete Morning Monitoring Progress.</p>
+    <button class="btn btn-primary" onclick="location.href='/coachdashboard/{id}/athletemorningmonitoring'">Athlete Morning Monitoring</button>
 
 
+    <p> <small> Authorised Viewing Only </small> </p>
+</div>
 </html>
