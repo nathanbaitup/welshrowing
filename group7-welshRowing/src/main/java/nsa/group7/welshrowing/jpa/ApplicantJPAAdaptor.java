@@ -42,4 +42,9 @@ public class ApplicantJPAAdaptor implements ApplicantAuditor {
     public Optional<Applicant> findApplicantById(Long id) {
         return applicantRepoJPA.findById(id);
     }
+
+    @Override
+    public Applicant findApplicantByUsername(String username) {
+        return applicantRepoJPA.findByUsername(username);
+    }
 }

@@ -11,9 +11,11 @@
     <form action="#" method="post" th:action="@{/login}" th:object="${loginForm}">
         <label th:for="username">Username:</label><br>
         <input class="form-control" th:field="*{username}" type="text"><br>
+        <span th:errors="*{username}" th:if="${#fields.hasErrors('username')}">Please enter your username.</span>
 
         <label th:for="password">Password:</label><br>
-        <input class="form-control" th:field="*{password}" type="text"><br>
+        <input class="form-control" th:field="*{password}" type="password"><br>
+        <span th:errors="*{password}" th:if="${#fields.hasErrors('password')}">Please enter your password.</span>
 
         <button class="btn btn-primary" type="submit">Login</button>
 
