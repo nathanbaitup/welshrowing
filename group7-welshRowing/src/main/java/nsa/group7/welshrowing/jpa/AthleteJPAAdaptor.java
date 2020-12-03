@@ -5,6 +5,7 @@ import nsa.group7.welshrowing.domain.AthleteAuditor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -54,4 +55,6 @@ public class AthleteJPAAdaptor implements AthleteAuditor {
         return athleteRepoJPA.findById(id);
     }
 
+    @Override
+    public List<Athlete> findAthletesByApplicationStatus(Boolean anApplicationStatus) { return athleteRepoJPA.findByApplicationStatus(anApplicationStatus); }
 }

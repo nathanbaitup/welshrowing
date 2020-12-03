@@ -25,7 +25,7 @@ public class NewApplicantTests {
 
     @Test
     public void shouldCreateANewApplicant() {
-        applicantRepoJPA.save(new Applicant(null,"Dylan Williams", "dWills", password, "applicant"));
+        applicantRepoJPA.save(new Applicant(1L,"Dylan Williams", "dWills", password, "applicant"));
         Applicant savedApplicant = applicantRepoJPA.findByUserID(1L);
         assertEquals("Dylan Williams", savedApplicant.getName());
         assertEquals(password, savedApplicant.getPassword());

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/applicantList.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/js/applicantList.js"></script>
+    <title>Applicant List</title>
+
+
+</head>
+<header>
+    <h1 id="pageTitle">Applicants</h1>
+</header>
+<body>
+<div align="center">
+    <h1>Applicant List</h1>
+    <br/>
+    <table border="1" cellpadding="10" class="styled-table">
+        <thead>
+        <tr>
+            <th>Athlete ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>Mobile Number</th>
+            <th>Guardian Mobile Number</th>
+            <th>Application Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="athlete : ${listApplicants}">
+            <td th:text="${athlete.athleteID}">Athlete ID</td>
+            <td th:text="${athlete.name}">Name</td>
+            <td th:text="${athlete.gender}">Gender</td>
+            <td th:text="${athlete.dob}">Date of Birth</td>
+            <td th:text="${athlete.mobileNumber}">Mobile Number</td>
+            <td th:text="${athlete.guardianContactNumber}">Guardian Number</td>
+            <td th:text="${athlete.applicationStatus}">Application Status</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
