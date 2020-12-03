@@ -54,11 +54,24 @@
 
 
 <!-- End of Navigation section of website-->
-
-
+<div class="coachDashboardLead">
+<!--Thymleaf section-->
     <div th:text="${coachName.name}"></div>
     <div th:text="${coachName.text}"></div>
-<!--    <p> <small> Authorised Viewing Only </small> </p>-->
+<br>
+<br>
+<br>
 
+<h3> Visit all Applicants </h3>
+<p>Press the button below to view all current applicants.</p>
+<!--Button to lead to view all applicants -->
+<button class="btn btn-success" onclick="location.href='/applicants'">View all Applicants</button>
 
+<br>
+<br>
+<br>
+<br>
+
+    <p> <small> Authorised Viewing Only </small> </p>
+</div>
 </html>
