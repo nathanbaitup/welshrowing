@@ -3,8 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/template.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script> <!-- Line that brings JQuery in -->
 </head>
 <body>
-    <h1>Login page</h1>
+
+<!--  Beginning of Navigation section of website  -->
+
+<!--Using JQuery to avoid copying and pasting navigation code, creating boiler plate code, refers to navigationBar.html-->
+
+<div id="nav-placeholder">
+
+</div>
+
+<script>
+    $(function(){
+        $("#nav-placeholder").load("navigationBar.html");
+    });
+</script>
+
+<!-- End of Navigation section of website-->
+
+<h1>Login page</h1>
 </body>
 </html>
