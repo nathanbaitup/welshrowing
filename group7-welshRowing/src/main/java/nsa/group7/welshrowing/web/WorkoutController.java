@@ -51,6 +51,10 @@ public class WorkoutController {
     @PostMapping("submit-session-rpe")
     public String handleSessionRPEForm(@ModelAttribute("sessionRPEForm") SessionRPE sessionRPE, @Valid SessionRPEForm sessionRPEForm, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
+            System.out.println("Errors:" + bindings.getFieldErrorCount());
+            for (ObjectError oe : bindings.getAllErrors()) {
+                System.out.println(oe);
+            }
             model.addAttribute("sessionRPEForm", sessionRPEForm);
             return "session-rpe-form/" + sessionRPEForm.getAthleteID();
         } else {
