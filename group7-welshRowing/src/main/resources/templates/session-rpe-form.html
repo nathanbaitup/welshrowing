@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="/js/setDate.js"></script>
+    <script src="/js/validation.js"></script>
     <title>Session RPE</title>
 </head>
 <header>
@@ -115,7 +116,7 @@
             <br>
             <label th:for="sessionDurationMinutes">Please enter your Session Duration: *</label>
             <p><small>Please enter the duration in number of minutes. Eg: 1 hour 30 mins = 90 minutes</small></p>
-            <input class="form-control" th:field="*{sessionDurationMinutes}" type="text" placeholder="Number of minutes eg: 45" required/>
+            <input class="form-control" th:field="*{sessionDurationMinutes}" type="text" id="sessionDuration" onchange="checkNumbers()" placeholder="Number of minutes eg: 45" required/>
             <br>
         </div>
         <span th:errors="*{sessionDurationMinutes}" th:if="${#fields.hasErrors('sessionDurationMinutes')}">Please enter your session duration.</span>
