@@ -38,10 +38,8 @@ public class MorningMonitoringController {
             model.addAttribute("morningMonitoringForm", morningMonitoringForm);
             return "athlete-mmd-form";
         } else {
-            //applicant.setPassword(hashPassword(applicantForm.getPassword()));
-            //applicantAuditor.saveApplicant(applicant);
             morningMonitoringAuditor.saveMorningMonitoring(morningMonitoring);
-            return "athlete-mmd-form";
+            return "redirect:/";
         }
     }
 
