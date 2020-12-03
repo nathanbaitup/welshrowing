@@ -15,6 +15,10 @@ import java.util.Date;
 @NoArgsConstructor
 public class AthleteUpdateForm {
     /**
+     * The athleteID from the database.
+     */
+    private Long athleteID;
+    /**
      * The name of the athlete.
      */
     @NotBlank
@@ -92,6 +96,6 @@ public class AthleteUpdateForm {
     private String postTestResult;
 
     public AthleteUpdateForm(Long athleteID, String name){
-        this(athleteID, name, null, null, true,null, null, null, null, null, null, null, null, null, null, null, null, null);
+        this(athleteID, name, null, null, true, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 }
