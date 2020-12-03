@@ -11,7 +11,7 @@ function checkPasswordsMatch(input) {
 }
 //END REFERENCE
 
-    function checkDOB(){
+function checkDOB(){
         // REFERENCE accessed 23/11/2020
         //https://developer.tizen.org/community/code-snippet/web-code-snippet/how-get-daymonthyear-input-date-type
         //used to retrieve date from user input
