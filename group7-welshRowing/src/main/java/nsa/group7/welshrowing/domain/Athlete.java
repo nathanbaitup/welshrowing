@@ -12,12 +12,15 @@ import javax.persistence.*;
 @Entity
 
 public class Athlete {
+    /**
+     * The athleteID.
+     */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long athleteID;
     /**
      * The name of the athlete.
      */
+    private Long coachID;
     private String name;
     /**
      * The gender of the athlete. Will be radio button options on form.
@@ -32,13 +35,10 @@ public class Athlete {
      */
     private Boolean applicationStatus;
     /**
+    /**
      * The athlete's personal email address.
      */
     private String email;
-    /**
-     * The athlete's password to log into the system.
-     */
-    private String password;
     /**
      * The athlete's mobile number.
      */
@@ -50,11 +50,7 @@ public class Athlete {
     /**
      * The athlete's home address.
      */
-    private String homeAddress;
-    /**
-     * The athlete's university address if applicable.
-     */
-    private String uniAddress;
+    private String address;
     /**
      * The postcode where the athlete is living.
      */

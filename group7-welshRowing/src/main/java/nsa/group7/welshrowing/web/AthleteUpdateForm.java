@@ -3,14 +3,17 @@ package nsa.group7.welshrowing.web;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AthleteForm {
+public class AthleteUpdateForm {
     /**
      * The athleteID from the database.
      */
@@ -29,20 +32,18 @@ public class AthleteForm {
      * The date of birth of the athlete.
      */
     @NotBlank
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private String dob;
     /**
-     * A boolean that states if the athlete is applying to the programme (true) or has been accepted (false).
+     * The application status of the athlete, if true, still in interview process, if false, has been accepted.
      */
     private Boolean applicationStatus;
     /**
      * The athlete's personal email address.
      */
     @NotBlank
+    @Email
     private String email;
-    /**
-     * The athlete's password to log into the system.
-     */
-    private String password;
     /**
      * The athlete's mobile number.
      */
@@ -54,11 +55,7 @@ public class AthleteForm {
     /**
      * The athlete's home address.
      */
-    private String homeAddress;
-    /**
-     * The athlete's university address if applicable.
-     */
-    private String uniAddress;
+    private String address;
     /**
      * The postcode where the athlete is living.
      */
@@ -82,6 +79,7 @@ public class AthleteForm {
     /**
      * The email of the parent or guardian of the athlete, if they are under 18 years of age.
      */
+    @Email
     private String guardianEmail;
     /**
      * A short string about where the athlete heard about Rowing Wales.
@@ -96,4 +94,8 @@ public class AthleteForm {
      * A string that states the result after the interview process of an athlete.
      */
     private String postTestResult;
+
+    public AthleteUpdateForm(Long athleteID, String name){
+        this(athleteID, name, null, null, true, null, null, null, null, null, null, null, null, null, null, null, null, null);
+    }
 }

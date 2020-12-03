@@ -15,20 +15,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @SpringBootTest
-public class AthleteEntryFormTests {
+public class ApplicantListTests {
 
     @Autowired
     private MockMvc mockMvc;
 
 
     @Test
-    public void shouldGetEntryForm() throws Exception {
+    public void shouldGetApplicantList() throws Exception {
 
         this.mockMvc
-                .perform(get("/new-applicant"))
+                .perform(get("/applicants"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("New Applicant")))
-                .andExpect(content().string(containsString("Please enter your information to create an account.")));
+                .andExpect(content().string(containsString("Applicant List")))
+                .andExpect(content().string(containsString("Application Status")));
     }
 }

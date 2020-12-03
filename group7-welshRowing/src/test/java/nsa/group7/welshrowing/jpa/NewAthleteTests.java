@@ -2,10 +2,12 @@ package nsa.group7.welshrowing.jpa;
 
 import nsa.group7.welshrowing.domain.Athlete;
 import nsa.group7.welshrowing.domain.AthleteAuditor;
+import nsa.group7.welshrowing.domain.Interview;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import javax.validation.constraints.AssertTrue;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,8 @@ public class NewAthleteTests {
 
     @Autowired
     private AthleteRepoJPA athleteRepoJPA;
+    @Autowired
+    private InterviewRepoJPA interviewRepoJPA;
 
 
     @Test
@@ -33,5 +37,10 @@ public class NewAthleteTests {
         Athlete findAthlete = athleteRepoJPA.findByName("test");
     assertEquals(2, findAthlete.getAthleteID());
 
+    }
+    @Test
+    public void shouldAddInterviewToDB () throws Exception{
+        Interview interview = interviewRepoJPA.save(new Interview(1L, 3L, "Timak", "jkjsk", "kd", "jfk", "jkkj", "then", 6, 8, 5, 3, "ten", "ho", "ti", 7, 8, 4, 3, 2, 3, 4, 4, 5, 6, 7));
+        assertEquals("Timak", interview.getAnswer1());
     }
 }
