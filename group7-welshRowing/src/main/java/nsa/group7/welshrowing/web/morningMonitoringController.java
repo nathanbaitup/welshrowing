@@ -12,12 +12,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class morningMonitoringController {
+public class MorningMonitoringController {
 
     private final MorningMonitoringRepoJPA morningMonitoringAuditor;
 
     @Autowired
-    public morningMonitoringController(MorningMonitoringRepoJPA morningMonitoringAuditor) {
+    public MorningMonitoringController(MorningMonitoringRepoJPA morningMonitoringAuditor) {
         this.morningMonitoringAuditor = morningMonitoringAuditor;
     }
 
