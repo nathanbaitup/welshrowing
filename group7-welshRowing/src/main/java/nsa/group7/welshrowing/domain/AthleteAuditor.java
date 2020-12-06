@@ -27,6 +27,8 @@ public interface AthleteAuditor {
      */
     Optional<Athlete> findAthleteById(Long id);
 
+
+
     public List<Athlete> findAthletesByApplicationStatus(Boolean anApplicationStatus);
 
 }
