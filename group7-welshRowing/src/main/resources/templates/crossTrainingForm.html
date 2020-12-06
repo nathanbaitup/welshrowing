@@ -7,13 +7,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/js/setDate.js"></script>
     <title>Cross Training Form</title>
 
 
 <!--Beginning of NavBar section-->
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="welcome.html"><img src="/images/logo.png"></a> <!-- Logo location with link to homepage -->
+            <a class="navbar-brand" href="/"><img src="/images/logo.png"></a> <!-- Logo location with link to homepage -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span> <!-- Drop down menu button when page is on mobile -->
             </button>
@@ -46,7 +47,7 @@
 <div class="crossTrainingForm">
     <form action="#" method="post" th:action="@{/submit-crosstraining-form}" th:object="${crossTrainingSessionForm}">
 
-        <input th:field="*{athleteID}" >
+        <input th:field="*{athleteID}" hidden >
 
         <div class="crossTrainingForm">
             <label th:for="dateOfSession">Date of Cross Training Workout:</label>

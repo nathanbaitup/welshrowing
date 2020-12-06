@@ -30,11 +30,4 @@ public class welcomeTests {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    public void ShouldShowLoginPage() throws Exception {
-        this.mockMvc
-                .perform(get("/login"))
-                .andDo(print())
-                .andExpect(status().isOk());
-    }
 }

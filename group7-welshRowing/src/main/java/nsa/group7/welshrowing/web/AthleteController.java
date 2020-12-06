@@ -103,7 +103,7 @@ public class AthleteController {
             return "update-athlete";
         } else {
             athleteAuditor.saveAthlete(athlete);
-            return "redirect:/";
+            return "redirect:/athlete-dashboard";
         }
     }
     @GetMapping("applicants")
