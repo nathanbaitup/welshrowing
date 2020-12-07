@@ -116,26 +116,33 @@ public class AthleteController {
     public String serveApplicantTesting(Model model){
         List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
         model.addAttribute("applicantTesting", applicantList);
-        ApplicantTestingForm applicantTestingForm = new ApplicantTestingForm();
-        model.addAttribute("applicantList", applicantTestingForm);
+        ApplicantTesting applicantTesting = new ApplicantTesting();
+        model.addAttribute("applicantList", applicantTesting);
         return "applicant-testing";
     }
 
     @PostMapping("submit-testing")
-    public String handleTestingEntry(@Valid @ModelAttribute("applicantList") ApplicantTestingForm applicantTestingForm, BindingResult bindings, Model model) {
+    public String handleTestingEntry(@Valid @ModelAttribute("applicantList") ApplicantTesting applicantTesting, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
                 System.out.println(oe);
             }
-            model.addAttribute("applicantList", applicantTestingForm);
+            model.addAttribute("applicantList", applicantTesting);
             return "applicant-testing";
         } else {
-            applicantTestingAuditor.saveApplicantTesting(applicantTestingForm);
-            System.out.println(applicantTestingForm);
+            applicantTestingAuditor.saveApplicantTesting(applicantTesting);
             return "redirect:/athlete-dashboard";
         }
     }
+
+    @GetMapping("submit-anthropometry")
+    public String serveApplicantAnthropometry(Model model){
+       Anthropometry anthropometry = new Anthropometry();
+        model.addAttribute("applicantList", anthropometry);
+        return "applicant-anthropometry";
+    }
+
 
     /**
      * Method that hashes the user password and salt.

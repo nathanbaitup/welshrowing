@@ -1,7 +1,7 @@
 package nsa.group7.welshrowing.jpa;
 
 import nsa.group7.welshrowing.domain.ApplicantTestingAuditor;
-import nsa.group7.welshrowing.web.ApplicantTestingForm;
+import nsa.group7.welshrowing.domain.ApplicantTesting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class ApplicantTestingAdaptor implements ApplicantTestingAuditor {
     }
 
     @Override
-    public void saveApplicantTesting(ApplicantTestingForm applicantTestingForm) {
-        applicantTestingRepo.save(applicantTestingForm);
+    public void saveApplicantTesting(ApplicantTesting applicantTesting) {
+        applicantTestingRepo.save(applicantTesting);
     }
 }

@@ -12,15 +12,26 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user")
 public class Applicant {
+    /**
+     * The ID that will be assigned to a user.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userID;
-
+    /**
+     * The name of the user.
+     */
     private String name;
-
+    /**
+     * The username of the user.
+     */
     private String username;
-
+    /**
+     * The users password, checks password contains lower-case, uppercase and numerical values.
+     */
     private String password;
-
+    /**
+     * The role of the user. Will automatically be assumed as 'applicant'
+     */
     private String role;
 }
