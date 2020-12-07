@@ -109,7 +109,7 @@ CREATE TABLE `Coach` (
 CREATE TABLE `AthleteTest` (
    athleteTestID INTEGER AUTO_INCREMENT NOT NULL,
    athleteID INTEGER NOT NULL,
-   coachID INTEGER NOT NULL,
+   coachID INTEGER,
    dateOfTest DATE,
    athleteComments VARCHAR(100),
    legPress3Reps INTEGER NOT NULL,

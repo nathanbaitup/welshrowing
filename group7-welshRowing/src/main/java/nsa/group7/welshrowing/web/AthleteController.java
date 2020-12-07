@@ -1,9 +1,6 @@
 package nsa.group7.welshrowing.web;
 
-import nsa.group7.welshrowing.domain.Applicant;
-import nsa.group7.welshrowing.domain.ApplicantAuditor;
-import nsa.group7.welshrowing.domain.Athlete;
-import nsa.group7.welshrowing.domain.AthleteAuditor;
+import nsa.group7.welshrowing.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
@@ -23,11 +20,13 @@ public class AthleteController {
 
     private final AthleteAuditor athleteAuditor;
     private final ApplicantAuditor applicantAuditor;
+    private final ApplicantTestingAuditor applicantTestingAuditor;
 
     @Autowired
-    public AthleteController(AthleteAuditor athleteAuditor, ApplicantAuditor applicantAuditor) {
+    public AthleteController(AthleteAuditor athleteAuditor, ApplicantAuditor applicantAuditor, ApplicantTestingAuditor applicantTestingAuditor) {
         this.athleteAuditor = athleteAuditor;
         this.applicantAuditor = applicantAuditor;
+        this.applicantTestingAuditor = applicantTestingAuditor;
     }
 
     /**
@@ -111,6 +110,31 @@ public class AthleteController {
         List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
         model.addAttribute("listApplicants", applicantList);
         return "applicant-list";
+    }
+
+    @GetMapping("submit-testing")
+    public String serveApplicantTesting(Model model){
+        List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
+        model.addAttribute("applicantTesting", applicantList);
+        ApplicantTestingForm applicantTestingForm = new ApplicantTestingForm();
+        model.addAttribute("applicantList", applicantTestingForm);
+        return "applicant-testing";
+    }
+
+    @PostMapping("submit-testing")
+    public String handleTestingEntry(@Valid @ModelAttribute("applicantList") ApplicantTestingForm applicantTestingForm, BindingResult bindings, Model model) {
+        if (bindings.hasErrors()) {
+            System.out.println("Errors:" + bindings.getFieldErrorCount());
+            for (ObjectError oe : bindings.getAllErrors()) {
+                System.out.println(oe);
+            }
+            model.addAttribute("applicantList", applicantTestingForm);
+            return "applicant-testing";
+        } else {
+            applicantTestingAuditor.saveApplicantTesting(applicantTestingForm);
+            System.out.println(applicantTestingForm);
+            return "redirect:/athlete-dashboard";
+        }
     }
 
     /**

@@ -43,7 +43,7 @@
         <br>
             <div class="form-group">
                 <label th:for="heightCM">Please enter your height in CM: </label>
-                <input class="form-control" th:field="*{heightCM}" type="int" placeholder="0" required/>
+                <input class="form-control" th:field="*{heightCM}" type="number" placeholder="0" required/>
             </div>
             <span th:errors="*{heightCM}"
                   th:if="${#fields.hasErrors('heightCM')}">Please enter the value.</span>
@@ -51,7 +51,7 @@
 
             <div class="form-group">
                 <label th:for="weightKG">Please enter your weight in KG: </label>
-                <input class="form-control" th:field="*{weightKG}" type="int" placeholder="0" required/>
+                <input class="form-control" th:field="*{weightKG}" type="number" placeholder="0" required/>
             </div>
             <span th:errors="*{weightKG}"
                   th:if="${#fields.hasErrors('weightKG')}">Please enter the value.</span>
@@ -59,7 +59,7 @@
 
             <div class="form-group">
                 <label th:for="armSpanCM">Please enter your Armspan in CM: </label>
-                <input class="form-control" th:field="*{armspanCM}" type="int" placeholder="0" required/>
+                <input class="form-control" th:field="*{armspanCM}" type="number" placeholder="0" required/>
             </div>
             <span th:errors="*{armspan}"
                   th:if="${#fields.hasErrors('armspan')}">Please enter the value.</span>

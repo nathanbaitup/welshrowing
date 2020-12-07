@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <link rel="stylesheet" href="/css/entryForms.css">
     <script src="/js/setDate.js"></script>
+    <script src="/js/athleteForms.js"></script>
     <title>Applicant Testing</title>
 </head>
 
@@ -27,13 +28,15 @@
 
         <div class="form-group blu-margin">
             <label for="applicantSelector">Select the applicant name you are testing:</label>
-            <select class="form-control" id="applicantSelector">
+            <select class="form-control" id="applicantSelector" onchange="setAthleteID()">
                 <option value="0">Select Applicant</option>
-                <option th:each="applicant : ${applicantTesting}" th:value="${applicant.athleteID}"
+                <option id="selectedAthlete" th:each="applicant : ${applicantTesting}" th:value="${applicant.athleteID}"
                         th:text="${applicant.athleteID}+' : '+${applicant.name}"></option>
             </select>
         </div>
         <br>
+
+        <input th:field="*{athleteID}" id="testedAthlete">
 
         <div class="form-group">
             <label th:for="date">Date of Test:</label><br>
@@ -43,8 +46,8 @@
         <br>
 
         <div class="form-group">
-            <label th:for="comments">Any comments about the athlete? </label>
-            <textarea class="form-control" rows="5" cols="40" th:field="*{comments}"
+            <label th:for="athleteComments">Any comments about the athlete? </label>
+            <textarea class="form-control" rows="5" cols="40" th:field="*{athleteComments}"
                       placeholder="Enter comments here"></textarea>
         </div>
         <br>
@@ -56,7 +59,7 @@
 
             <div class="form-group">
                 <label th:for="legPress3Reps">Leg Press (3 Rep): </label>
-                <input class="form-control" th:field="*{legPress3Reps}" type="int" placeholder="0" required/>
+                <input class="form-control" th:field="*{legPress3Reps}" type="number" placeholder="0" required/>
             </div>
             <span th:errors="*{legPress3Reps}"
                   th:if="${#fields.hasErrors('legPress3Reps')}">Please enter the value.</span>
@@ -64,7 +67,7 @@
 
             <div class="form-group">
                 <label th:for="armPress3Reps">Arm Press (3 Rep): </label>
-                <input class="form-control" th:field="*{armPress3Reps}" type="int" placeholder="0" required/>
+                <input class="form-control" th:field="*{armPress3Reps}" type="number" placeholder="0" required/>
             </div>
             <span th:errors="*{ArmPress3Reps}"
                   th:if="${#fields.hasErrors('ArmPress3Reps')}">Please enter the value.</span>
@@ -72,7 +75,7 @@
 
             <div class="form-group">
                 <label th:for="ArmPull3Reps">Arm Pull (3 Rep): </label>
-                <input class="form-control" th:field="*{ArmPull3Reps}" type="int" placeholder="0" required/>
+                <input class="form-control" th:field="*{ArmPull3Reps}" type="number" placeholder="0" required/>
             </div>
             <span th:errors="*{ArmPull3Reps}"
                   th:if="${#fields.hasErrors('ArmPull3Reps')}">Please enter the value.</span>
@@ -80,7 +83,7 @@
 
             <div class="form-group">
                 <label th:for="ArmPull15Reps">Arm Pull (15 Rep): </label>
-                <input class="form-control" th:field="*{ArmPull15Reps}" type="int" placeholder="0" required/>
+                <input class="form-control" th:field="*{ArmPull15Reps}" type="number" placeholder="0" required/>
             </div>
             <span th:errors="*{ArmPull15Reps}"
                   th:if="${#fields.hasErrors('ArmPull15Reps')}">Please enter the value.</span>
@@ -94,7 +97,7 @@
 
             <div class="form-group">
                 <label th:for="score">Score: </label>
-                <input class="form-control" th:field="*{score}" type="int" placeholder="0" required/>
+                <input class="form-control" th:field="*{score}" type="number" placeholder="0" required/>
             </div>
             <span th:errors="*{score}"
                   th:if="${#fields.hasErrors('score')}">Please enter the value.</span>

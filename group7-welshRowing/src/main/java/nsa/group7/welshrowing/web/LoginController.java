@@ -2,7 +2,6 @@ package nsa.group7.welshrowing.web;
 
 import nsa.group7.welshrowing.domain.Applicant;
 import nsa.group7.welshrowing.domain.ApplicantAuditor;
-import nsa.group7.welshrowing.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
