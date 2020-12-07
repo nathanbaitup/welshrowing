@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/template.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="/css/entryForms.css">
+    <script src="/js/setDate.js"></script>
+    <title>Applicant Anthropometry</title>
+</head>
+
+<header>
+    <div id="nav-placeholder"></div>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("navigationBar.html");
+        });
+    </script>
+
+</header>
+
+<body>
+<div class="entry-form">
+    <form action="#" method="post" th:action="@{/submit-anthropometry}" th:object="${anthropometry}">
+
+        <input th:field="*{athleteID}" hidden>
+
+
+        <div class="form-group">
+            <label th:for="injuries">Have you had any previous injuries?:</label><br>
+            <input class="form-control" th:field="*{injuries}" type="text" placeholder="Injury type / No" required><br>
+        </div>
+        <span th:errors="*{injuries}" th:if="${#fields.hasErrors('injuries')}">Please enter text.</span>
+        <br>
+
+        <div class="form-group">
+            <label th:for="comments">Any comments about the athlete? </label>
+            <textarea class="form-control" rows="5" cols="40" th:field="*{comments}"
+                      placeholder="Enter comments here"></textarea>
+        </div>
+        <br>
+            <div class="form-group">
+                <label th:for="heightCM">Please enter your height in CM: </label>
+                <input class="form-control" th:field="*{heightCM}" type="int" placeholder="0" required/>
+            </div>
+            <span th:errors="*{heightCM}"
+                  th:if="${#fields.hasErrors('heightCM')}">Please enter the value.</span>
+            <br>
+
+            <div class="form-group">
+                <label th:for="weightKG">Please enter your weight in KG: </label>
+                <input class="form-control" th:field="*{weightKG}" type="int" placeholder="0" required/>
+            </div>
+            <span th:errors="*{weightKG}"
+                  th:if="${#fields.hasErrors('weightKG')}">Please enter the value.</span>
+            <br>
+
+            <div class="form-group">
+                <label th:for="armSpanCM">Please enter your Armspan in CM: </label>
+                <input class="form-control" th:field="*{armspanCM}" type="int" placeholder="0" required/>
+            </div>
+            <span th:errors="*{armspan}"
+                  th:if="${#fields.hasErrors('armspan')}">Please enter the value.</span>
+            <br>
+
+        <button class="btn btn-primary" type="submit">Submit Your details</button>
+
+    </form>
+</div>
+
+</body>
+</html>
