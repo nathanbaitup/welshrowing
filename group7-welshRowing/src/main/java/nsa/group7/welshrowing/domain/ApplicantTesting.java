@@ -61,4 +61,20 @@ public class ApplicantTesting {
      * Coaches observations under Schwinn.
      */
     private String observations;
+    /**
+     * The basic core of the athlete, marked as green, amber or red.
+     */
+    private String basicCore;
+    /**
+     * Any notes the coach had on the athletes basic core.
+     */
+    private String bcNotes;
+    /**
+     * The flexibility of the athlete, marked as green, amber or red.
+     */
+    private String flexibility;
+    /**
+     * Any notes the coach had on the athletes flexibility.
+     */
+    private String fNotes;
 }

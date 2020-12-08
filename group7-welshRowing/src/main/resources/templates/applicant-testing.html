@@ -118,6 +118,68 @@
             <br>
         </div>
 
+        <div id="basicCore" class="form-group">
+            <h2>Basic Core</h2>
+            <small>Please select either Green, Amber or Red</small>
+            <br><br>
+
+            <div class="form-check">
+                <br>
+                <input class="session-rpe-button" th:field="*{basicCore}" th:value="Green"
+                       type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('basicCore')}">Green</label>
+                <br>
+                <input class="session-rpe-button" th:field="*{basicCore}" th:value="Amber" type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('basicCore')}">Amber</label>
+                <br>
+                <input class="session-rpe-button" th:field="*{basicCore}" th:value="Red" type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('basicCore')}">Red</label>
+            </div>
+            <span th:errors="*{basicCore}"
+                  th:if="${#fields.hasErrors('basicCore')}">Please select an option.</span>
+            <br>
+        </div>
+
+        <div class="form-group">
+            <label th:for="bcNotes">Comments?: </label>
+            <textarea class="form-control" rows="5" cols="40" th:field="*{bcNotes}"
+                      placeholder="Enter comments here"></textarea>
+        </div>
+        <span th:errors="*{bcNotes}"
+              th:if="${#fields.hasErrors('bcNotes')}">Please enter a value.</span>
+        <br>
+
+        <div id="flexibility" class="form-group">
+            <h2>Flexibility</h2>
+            <small>Please select either Green, Amber or Red</small>
+            <br><br>
+
+            <div class="form-check">
+                <br>
+                <input class="session-rpe-button" th:field="*{flexibility}" th:value="Green"
+                       type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('flexibility')}">Green</label>
+                <br>
+                <input class="session-rpe-button" th:field="*{flexibility}" th:value="Amber" type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('flexibility')}">Amber</label>
+                <br>
+                <input class="session-rpe-button" th:field="*{flexibility}" th:value="Red" type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('flexibility')}">Red</label>
+            </div>
+            <span th:errors="*{flexibility}"
+                  th:if="${#fields.hasErrors('flexibility')}">Please select an option.</span>
+            <br>
+        </div>
+
+        <div class="form-group">
+            <label th:for="fNotes">Comments?: </label>
+            <textarea class="form-control" rows="5" cols="40" th:field="*{fNotes}"
+                      placeholder="Enter comments here"></textarea>
+        </div>
+        <span th:errors="*{fNotes}"
+              th:if="${#fields.hasErrors('fNotes')}">Please enter a value.</span>
+        <br>
+
 
         <button class="btn btn-danger" type="submit">Submit Applicant Testing</button>
 
