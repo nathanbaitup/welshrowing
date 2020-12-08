@@ -62,7 +62,7 @@ public class LoginController {
                 model.addAttribute("loginForm", loginForm);
                 return "login";
             } else if (theUser.getRole().equals("coach")) {
-                return "redirect:/coachdashboard/" + theUser.getUserID();
+                return "redirect:/coach-dashboard/" + theUser.getUserID();
             } else {
                 return "redirect:/athlete-dashboard";
             }

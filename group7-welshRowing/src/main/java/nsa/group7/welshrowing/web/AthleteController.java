@@ -20,14 +20,12 @@ public class AthleteController {
 
     private final AthleteAuditor athleteAuditor;
     private final ApplicantAuditor applicantAuditor;
-    private final ApplicantTestingAuditor applicantTestingAuditor;
     private final AnthropometryAuditor anthropometryAuditor;
 
     @Autowired
-    public AthleteController(AthleteAuditor athleteAuditor, ApplicantAuditor applicantAuditor, ApplicantTestingAuditor applicantTestingAuditor, AnthropometryAuditor anthropometryAuditor) {
+    public AthleteController(AthleteAuditor athleteAuditor, ApplicantAuditor applicantAuditor, AnthropometryAuditor anthropometryAuditor) {
         this.athleteAuditor = athleteAuditor;
         this.applicantAuditor = applicantAuditor;
-        this.applicantTestingAuditor = applicantTestingAuditor;
         this.anthropometryAuditor = anthropometryAuditor;
     }
 
@@ -107,6 +105,12 @@ public class AthleteController {
             return "redirect:/athlete-dashboard";
         }
     }
+
+    /**
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("applicants")
     public String serveApplicantList(Model model) {
         List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
@@ -114,30 +118,13 @@ public class AthleteController {
         return "applicant-list";
     }
 
-    @GetMapping("submit-testing")
-    public String serveApplicantTesting(Model model){
-        List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
-        model.addAttribute("applicantTesting", applicantList);
-        ApplicantTesting applicantTesting = new ApplicantTesting();
-        model.addAttribute("applicantList", applicantTesting);
-        return "applicant-testing";
-    }
-
-    @PostMapping("submit-testing")
-    public String handleTestingEntry(@Valid @ModelAttribute("applicantList") ApplicantTesting applicantTesting, BindingResult bindings, Model model) {
-        if (bindings.hasErrors()) {
-            System.out.println("Errors:" + bindings.getFieldErrorCount());
-            for (ObjectError oe : bindings.getAllErrors()) {
-                System.out.println(oe);
-            }
-            model.addAttribute("applicantList", applicantTesting);
-            return "applicant-testing";
-        } else {
-            applicantTestingAuditor.saveApplicantTesting(applicantTesting);
-            return "redirect:/athlete-dashboard";
-        }
-    }
-
+    /**
+     * Generates the anthropometry form for an athlete to enter their medical data.
+     *
+     * @param id - the athlete ID.
+     * @param model - adds to the page.
+     * @return returns the anthropometry form.
+     */
     @GetMapping("submit-anthropometry/{id}")
     public String serveApplicantAnthropometry(@PathVariable("id") Long id, Model model){
         Athlete athlete = athleteAuditor.findAthleteById(id).get();
@@ -147,6 +134,15 @@ public class AthleteController {
         return "applicant-anthropometry";
     }
 
+    /**
+     * Saves an athletes anthropometry data into the database.
+     *
+     * @param anthropometry - the anthropometry entity.
+     * @param anthropometryForm - the form data.
+     * @param bindings - any errors if form isn't valid.
+     * @param model - adds to the page.
+     * @return returns either the form to append any errors or redirects to the athlete dashboard and saves the data.
+     */
     @PostMapping("submit-anthropometry")
     public String handleApplicantAnthropometry(@ModelAttribute("anthropometry") Anthropometry anthropometry, @Valid AnthropometryForm anthropometryForm, BindingResult bindings, Model model){
         if (bindings.hasErrors()) {
@@ -162,6 +158,14 @@ public class AthleteController {
         }
     }
 
+    @GetMapping("submit-previous-sports/{id}")
+    public String serveApplicantPreviousSports(@PathVariable("id") Long id, Model model){
+        Athlete athlete = athleteAuditor.findAthleteById(id).get();
+
+        AthletePreviousSportsForm athletePreviousSportsForm = new AthletePreviousSportsForm(athlete.getAthleteID());
+        model.addAttribute("previousSports", athletePreviousSportsForm);
+        return "previous-sports";
+    }
 
     /**
      * Method that hashes the user password and salt.

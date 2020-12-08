@@ -10,17 +10,18 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "MedicalData")
-public class Anthropometry {
+@Table(name = "AthletePreviousSports")
+public class AthletePreviousSports {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long medicalDataID;
+    private Long apsID;
     @ManyToOne
     @JoinColumn(name = "athleteID")
     private Athlete athleteID;
-    private String injuries;
-    private Integer heightCM;
-    private Integer weightKG;
-    private Integer armspanCM;
-
+    private String previousSports;
+    private String monthsTesting;
+    private String sessionsPerWeek;
+    private String endurancePerWeek;
+    private String strengthPerWeek;
+    private String yearsAtLevel;
 }
