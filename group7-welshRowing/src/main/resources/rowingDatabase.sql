@@ -1,5 +1,7 @@
 # https://lucid.app/lucidchart/invitations/accept/fade6f95-af6c-4643-9f07-1e402e18cd19 following schema
 
+# DROP DATABASE IF EXISTS welshRowing;
+
 CREATE DATABASE IF NOT EXISTS welshRowing;
 
 USE welshRowing;
@@ -159,3 +161,45 @@ CREATE TABLE `CrossTraining` (
     PRIMARY KEY PKCrossTraining(crossTrainingID),
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
+
+
+
+DELIMITER //
+
+# Trigger in the event the role of the user during signup is left blank/null, auto default role to 'User'
+CREATE TRIGGER roleCheckUser BEFORE INSERT ON User FOR EACH ROW IF NEW.role = NULL
+THEN SET NEW.role = 'User'; END IF;//
+
+# Trigger in the event that Athlete DOB is greater than the current date, it will auto to NULL
+CREATE TRIGGER dobCheckAthlete BEFORE INSERT ON Athlete FOR EACH ROW IF NEW.DOB > CURDATE()
+    THEN SET NEW.DOB = NULL; END IF;//
+
+# Trigger in the event that bCNotes is left blank/null, set the value in the database to N/A
+CREATE TRIGGER notesMedicalBC BEFORE INSERT ON MedicalData FOR EACH ROW IF NEW.bCNotes = NULL
+    THEN SET NEW.bCNotes = 'N/A'; END IF ;//
+
+# Trigger in the event that fNotes is left blank/null, set the value in the database to N/A
+CREATE TRIGGER notesMedicalF BEFORE INSERT ON MedicalData FOR EACH ROW IF NEW.fNotes = NULL
+    THEN SET NEW.fNotes = 'N/A'; END IF ;//
+
+# Trigger in the event the INT for question 7 is not answered/null default the value to 0
+CREATE TRIGGER interviewIntNullSeven BEFORE INSERT ON Interview FOR EACH ROW IF NEW.answer7 = NULL
+    THEN SET NEW.answer7 = 0; END IF;//
+
+# Trigger in the event the INT for question 8 is not answered/null default the value to 0
+CREATE TRIGGER interviewIntNullEight BEFORE INSERT ON Interview FOR EACH ROW IF NEW.answer8 = NULL
+THEN SET NEW.answer8 = 0; END IF;//
+
+# Trigger in the event the INT for question 9 is not answered/null default the value to 0
+CREATE TRIGGER interviewIntNullNine BEFORE INSERT ON Interview FOR EACH ROW IF NEW.answer9 = NULL
+THEN SET NEW.answer9 = 0; END IF;//
+
+# Trigger in the event the INT for question 9 is not answered/null default the value to 0
+CREATE TRIGGER interviewIntNullTen BEFORE INSERT ON Interview FOR EACH ROW IF NEW.answer10 = NULL
+    THEN SET NEW.answer10 = 0; END IF;//
+
+#14-25 INT CHECKER
+CREATE TRIGGER interviewIntNullFourteen BEFORE INSERT ON Interview FOR EACH ROW IF NEW.answer14 = NULL
+THEN SET NEW.answer14 = 0; END IF;//
+
+DELIMITER ;
