@@ -159,3 +159,13 @@ CREATE TABLE `CrossTraining` (
     PRIMARY KEY PKCrossTraining(crossTrainingID),
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
+
+DELIMITER //
+CREATE TRIGGER encrypt_medical_data BEFORE INSERT ON MedicalData FOR EACH ROW
+BEGIN
+    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, 'key');
+    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, 'key');
+    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, 'key');
+    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, 'key');
+END//
+DELIMITER ;
