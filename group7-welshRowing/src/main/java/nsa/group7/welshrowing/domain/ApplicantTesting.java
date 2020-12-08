@@ -30,32 +30,36 @@ public class ApplicantTesting {
     /**
      * The date of the test.
      */
-    @NotBlank
+    @NotBlank(message = "Please enter the date of the test.")
     private String dateOfTest;
     /**
      * Any comments the coach wants to make about the athlete.
      */
-    @NotBlank
     private String athleteComments;
     /**
      * Athletes legPress3Reps results.
      */
+    @NotBlank(message = "Please enter the result.")
     private int legPress3Reps;
     /**
      * Athletes armPress3Reps results.
      */
+    @NotBlank(message = "Please enter the result.")
     private int armPress3Reps;
     /**
      * Athletes armPull3Reps results.
      */
+    @NotBlank(message = "Please enter the result.")
     private int armPull3Reps;
     /**
      * Athletes armPull3Reps results.
      */
+    @NotBlank(message = "Please enter the result.")
     private int armPull15Reps;
     /**
      * Athletes score on Schwinn.
      */
+    @NotBlank(message = "Please enter the result.")
     private int score;
     /**
      * Coaches observations under Schwinn.
@@ -64,6 +68,7 @@ public class ApplicantTesting {
     /**
      * The basic core of the athlete, marked as green, amber or red.
      */
+    @NotBlank(message = "Please select an option.")
     private String basicCore;
     /**
      * Any notes the coach had on the athletes basic core.
@@ -72,6 +77,7 @@ public class ApplicantTesting {
     /**
      * The flexibility of the athlete, marked as green, amber or red.
      */
+    @NotBlank(message = "Please select an option.")
     private String flexibility;
     /**
      * Any notes the coach had on the athletes flexibility.

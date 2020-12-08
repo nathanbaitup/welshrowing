@@ -19,6 +19,11 @@ public class LoginController {
 
     private final ApplicantAuditor applicantAuditor;
 
+    /**
+     * Injects all of the auditors needed to save input data into the database.
+     *
+     * @param applicantAuditor -the applicant Auditor.
+     */
     @Autowired
     public LoginController(ApplicantAuditor applicantAuditor){
         this.applicantAuditor = applicantAuditor;

@@ -21,7 +21,13 @@ public class coachDashboardController {
     private final AthleteAuditor athleteAuditor;
     private final ApplicantTestingAuditor applicantTestingAuditor;
 
-
+    /**
+     * Injects all of the auditors needed to save input data into the database.
+     *
+     * @param coachAuditor - the ApplicantAuditor.
+     * @param athleteAuditor - the athleteAuditor.
+     * @param applicantTestingAuditor - the applicantTesting Auditor.
+     */
 
     @Autowired
     public coachDashboardController(ApplicantAuditor coachAuditor, AthleteAuditor athleteAuditor,  ApplicantTestingAuditor applicantTestingAuditor) {

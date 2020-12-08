@@ -8,25 +8,145 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <link rel="stylesheet" href="/css/entryForms.css">
     <script src="/js/setDate.js"></script>
-    <title>Applicant Anthropometry</title>
+    <title>Previous Sports</title>
 </head>
 
 <header>
-    <div id="nav-placeholder"></div>
-    <script>
-        $(function () {
-            $("#nav-placeholder").load("navigationBar.html");
-        });
-    </script>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img src="/images/logo.png"></a> <!-- Logo location with link to homepage -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span> <!-- Drop down menu button when page is on mobile -->
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"> <!--Each button object for nav-->
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">About</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/new-applicant">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 id="pageTitle">Update Profile </h1>
 
 </header>
 
 <body>
+<p> Please fill in the details below about any previous sporting history.</p>
+<br>
 <div class="entry-form">
     <form action="#" method="post" th:action="@{/submit-previous-sports}" th:object="${previousSports}">
 
         <input th:field="*{athleteID}" hidden>
 
+        <div class="form-group">
+            <label th:for="previousSport">Have you done any previous sports?</label><br>
+            <input class="form-control" th:field="*{previousSport}" type="text" placeholder="Previous Sports" required><br>
+        </div>
+        <span th:errors="*{previousSport}" th:if="${#fields.hasErrors('previousSport')}">Please enter text.</span>
+        <br>
+
+        <div class="form-check">
+            <label th:for="monthsTesting">Number of months spent training last year:</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{monthsTesting}" th:value="'0-3'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('monthsTesting')}">0-3 Months</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{monthsTesting}" th:value="'3-5'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('monthsTesting')}">3-5 Months</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{monthsTesting}" th:value="'5-8'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('monthsTesting')}">5-8 Months</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{monthsTesting}" th:value="'8-10'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('monthsTesting')}">8-10 Months</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{monthsTesting}" th:value="'10-12'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('monthsTesting')}">10-12 Months</label>
+        </div>
+        <br>
+        <div class="form-check">
+            <label th:for="sessionsPerWeek">Number of sessions per week (including competitions):</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{sessionsPerWeek}" th:value="'0-3'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('sessionsPerWeek')}">0-3 Sessions</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{sessionsPerWeek}" th:value="'3-5'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('sessionsPerWeek')}">3-5 Sessions</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{sessionsPerWeek}" th:value="'5-8'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('sessionsPerWeek')}">5-8 Sessions</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{sessionsPerWeek}" th:value="'8-10'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('sessionsPerWeek')}">8-10 Sessions</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{sessionsPerWeek}" th:value="'10-12'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('sessionsPerWeek')}">10-12 Sessions</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{sessionsPerWeek}" th:value="'12+'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('sessionsPerWeek')}">12 or more Sessions</label>
+        </div>
+        <br>
+        <div class="form-check">
+            <label th:for="endurancePerWeek">Number of endurance sessions per week:</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{endurancePerWeek}" th:value="0" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('endurancePerWeek')}">0 Sessions</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{endurancePerWeek}" th:value="1" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('endurancePerWeek')}">1 Session</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{endurancePerWeek}" th:value="2" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('endurancePerWeek')}">2 Sessions</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{endurancePerWeek}" th:value="3" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('endurancePerWeek')}">3 Sessions</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{endurancePerWeek}" th:value="'4+'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('endurancePerWeek')}">4 or more Sessions</label>
+        </div>
+        <br>
+        <div class="form-check">
+            <label th:for="strengthPerWeek">Number of strength sessions per week:</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{strengthPerWeek}" th:value="0" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('strengthPerWeek')}">0 Sessions</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{strengthPerWeek}" th:value="1" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('strengthPerWeek')}">1 Session</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{strengthPerWeek}" th:value="2" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('strengthPerWeek')}">2 Sessions</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{strengthPerWeek}" th:value="3" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('strengthPerWeek')}">3 Sessions</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{strengthPerWeek}" th:value="'4+'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('strengthPerWeek')}">4 or more Sessions</label>
+        </div>
+        <br>
+        <div class="form-check">
+            <label th:for="yearsAtLevel">Number of years training at this level:</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{yearsAtLevel}" th:value="'0-1'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('yearsAtLevel')}">0-1 Year</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{yearsAtLevel}" th:value="'1-2'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('yearsAtLevel')}">1-2 Years</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{yearsAtLevel}" th:value="'2+'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('yearsAtLevel')}">2 or more Years</label>
+        </div>
+        <br>
 
         <button class="btn btn-primary" type="submit">Submit Your details</button>
 
