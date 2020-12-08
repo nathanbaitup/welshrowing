@@ -9,6 +9,10 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 
 public class Redirection {
+
+    // Using tomcat to create a redirection disabling access from HTTP
+    // Tomcat varies depending on the Spring version used!
+    // Tomcat factory listens for HTTP requests on ports, by default is set to port 8080
     @Bean
     public ServletWebServerFactory servletContainer() {
         TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
@@ -26,6 +30,8 @@ public class Redirection {
         return tomcat;
     }
 
+
+// Redirection connector validating port 8080 as not secure and a redirect statement in place.
     private Connector redirectConnector() {
         Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
         connector.setScheme("http");
