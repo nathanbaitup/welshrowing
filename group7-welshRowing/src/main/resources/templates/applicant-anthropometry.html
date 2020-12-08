@@ -35,12 +35,6 @@
         <span th:errors="*{injuries}" th:if="${#fields.hasErrors('injuries')}">Please enter text.</span>
         <br>
 
-        <div class="form-group">
-            <label th:for="comments">Any comments about the athlete? </label>
-            <textarea class="form-control" rows="5" cols="40" th:field="*{comments}"
-                      placeholder="Enter comments here"></textarea>
-        </div>
-        <br>
             <div class="form-group">
                 <label th:for="heightCM">Please enter your height in CM: </label>
                 <input class="form-control" th:field="*{heightCM}" type="number" placeholder="0" required/>
@@ -58,11 +52,11 @@
             <br>
 
             <div class="form-group">
-                <label th:for="armSpanCM">Please enter your Armspan in CM: </label>
+                <label th:for="armspanCM">Please enter your Armspan in CM: </label>
                 <input class="form-control" th:field="*{armspanCM}" type="number" placeholder="0" required/>
             </div>
-            <span th:errors="*{armspan}"
-                  th:if="${#fields.hasErrors('armspan')}">Please enter the value.</span>
+            <span th:errors="*{armspanCM}"
+                  th:if="${#fields.hasErrors('armspanCM')}">Please enter the value.</span>
             <br>
 
         <button class="btn btn-primary" type="submit">Submit Your details</button>

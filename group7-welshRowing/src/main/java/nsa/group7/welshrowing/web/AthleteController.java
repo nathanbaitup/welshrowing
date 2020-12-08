@@ -21,12 +21,14 @@ public class AthleteController {
     private final AthleteAuditor athleteAuditor;
     private final ApplicantAuditor applicantAuditor;
     private final ApplicantTestingAuditor applicantTestingAuditor;
+    private final AnthropometryAuditor anthropometryAuditor;
 
     @Autowired
-    public AthleteController(AthleteAuditor athleteAuditor, ApplicantAuditor applicantAuditor, ApplicantTestingAuditor applicantTestingAuditor) {
+    public AthleteController(AthleteAuditor athleteAuditor, ApplicantAuditor applicantAuditor, ApplicantTestingAuditor applicantTestingAuditor, AnthropometryAuditor anthropometryAuditor) {
         this.athleteAuditor = athleteAuditor;
         this.applicantAuditor = applicantAuditor;
         this.applicantTestingAuditor = applicantTestingAuditor;
+        this.anthropometryAuditor = anthropometryAuditor;
     }
 
     /**
@@ -136,11 +138,28 @@ public class AthleteController {
         }
     }
 
-    @GetMapping("submit-anthropometry")
-    public String serveApplicantAnthropometry(Model model){
-       Anthropometry anthropometry = new Anthropometry();
-        model.addAttribute("applicantList", anthropometry);
+    @GetMapping("submit-anthropometry/{id}")
+    public String serveApplicantAnthropometry(@PathVariable("id") Long id, Model model){
+        Athlete athlete = athleteAuditor.findAthleteById(id).get();
+
+        AnthropometryForm anthropometryForm = new AnthropometryForm(athlete.getAthleteID());
+        model.addAttribute("anthropometry", anthropometryForm);
         return "applicant-anthropometry";
+    }
+
+    @PostMapping("submit-anthropometry")
+    public String handleApplicantAnthropometry(@ModelAttribute("anthropometry") Anthropometry anthropometry, @Valid AnthropometryForm anthropometryForm, BindingResult bindings, Model model){
+        if (bindings.hasErrors()) {
+            System.out.println("Errors:" + bindings.getFieldErrorCount());
+            for (ObjectError oe : bindings.getAllErrors()) {
+                System.out.println(oe);
+            }
+            model.addAttribute("anthropometry", anthropometryForm);
+            return "applicant-testing";
+        } else {
+            anthropometryAuditor.saveAnthropometricData(anthropometry);
+            return "redirect:/athlete-dashboard";
+        }
     }
 
 
