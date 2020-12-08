@@ -31,7 +31,7 @@ public class Redirection {
     }
 
 
-// Redirection connector validating port 8080 as not secure and a redirect statement in place.
+// Redirection connector validating port 8080 as not secure and a redirect statement in place requiring the user to use HTTPS.
     private Connector redirectConnector() {
         Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
         connector.setScheme("http");
