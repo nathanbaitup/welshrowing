@@ -37,7 +37,7 @@ public class Redirection {
         connector.setScheme("http");
         connector.setPort(8080);
         connector.setSecure(false);
-        connector.setRedirectPort(8843);
+        connector.setRedirectPort(8080);
         return connector;
     }
 }
