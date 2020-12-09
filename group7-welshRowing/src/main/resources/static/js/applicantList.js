@@ -2,8 +2,8 @@
 
 $(document).ready(function() {
     $("#acceptButton").click(function(e) {
-        print('Click works')
-        var aID = athleteID.innerHTML;
+        var aID = $(this).closest("tr").find(".athleteID").text().trim()
+        console.log(aID);
         $.ajax({
             type : "GET",
             url : "/applicantToAthlete",
@@ -19,7 +19,3 @@ $(document).ready(function() {
         location.reload()
     });
 });
-
-
-
-

@@ -33,8 +33,8 @@
         </thead>
         <tbody>
         <tr th:each="athlete : ${listApplicants}">
-            <td id="athleteID" th:text="${athlete.athleteID}">Athlete ID</td>
-            <td id="name" th:text="${athlete.name}">Name</td>
+            <td class="athleteID" th:text="${athlete.athleteID}">Athlete ID</td>
+            <td th:text="${athlete.name}">Name</td>
             <td th:text="${athlete.gender}">Gender</td>
             <td th:text="${athlete.dob}">Date of Birth</td>
             <td th:text="${athlete.mobileNumber}">Mobile Number</td>
