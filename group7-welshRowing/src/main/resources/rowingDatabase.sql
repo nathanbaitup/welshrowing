@@ -2,6 +2,14 @@
 
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'adminpassword';
 GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
+
+CREATE USER 'coach'@'localhost' IDENTIFIED BY 'coachpassword';
+FLUSH PRIVILEGES;
+
+CREATE USER 'athlete'@'localhost' IDENTIFIED BY 'athletepassword';
+FLUSH PRIVILEGES;
+
 
 CREATE DATABASE IF NOT EXISTS welshRowing;
 
