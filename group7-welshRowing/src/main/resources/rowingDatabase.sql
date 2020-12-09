@@ -144,7 +144,7 @@ CREATE TABLE `Interview` (
     answer23 int,
     answer24 int,
     PRIMARY KEY PKInterview(interviewID),
-    FORinterviewEIGN KEY FKInterview(athleteID) REFERENCES Athlete(athleteID)
+    FOREIGN KEY FKInterview(athleteID) REFERENCES Athlete(athleteID)
 );
 
 CREATE TABLE `Coach` (
@@ -213,7 +213,7 @@ CREATE TABLE `CrossTraining` (
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
 
-INSERT INTO Athlete values (8, 8, "Polk", "Female", null, true, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO Athlete values (8, 8, 'Polk', 'Female', null, true, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 CREATE VIEW crossTrainingAdmins
 AS
@@ -247,3 +247,216 @@ GRANT SELECT ON crossTrainingAthletes TO [athlete];
 GRANT SELECT ON interviewAdmins TO [admin];
 GRANT SELECT ON interviewCoaches TO [coach];
 GRANT SELECT ON interviewAthletes TO [athlete];
+
+
+
+DELIMITER //
+
+# Trigger for validation of Email within the Athlete table, checks to see if email contains '@'
+# Signals SQL 45000 signing a unhandled exception, and prints out the message to the console
+CREATE TRIGGER emailValidationAthlete BEFORE INSERT ON Athlete FOR EACH ROW
+    BEGIN
+        IF NEW.`email` NOT LIKE '%_@%_.__%' THEN
+            SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Athlete Table - Email = This is not a valid email, please try again';
+        end if;
+    end //
+
+# Trigger for validation of Interview questions, making sure they are not null
+# If null will trigger SQL Signal state printing out a message to the user
+# Running for question 14-24
+
+CREATE TRIGGER interviewNullOne BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer1 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 1 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwo BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer2 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 2 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullThree BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer3 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 3 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullFour BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer4 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 4 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullFive BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer5 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 5 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullSix BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer6 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 6 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullSeven BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer7 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 7 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullEight BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer8 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 8 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullNine BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer9 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 9 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer10 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 10 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullEleven BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer11 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 11 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwelve BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer12 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 12 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullThirteen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer13 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 13 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullFourteen BEFORE INSERT ON Interview FOR EACH ROW
+    BEGIN
+        IF NEW.answer14 IS NULL THEN
+            SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 14 is NULL, please select / type an option';
+        end if;
+    end //
+
+CREATE TRIGGER interviewNullFifteen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer15 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 15 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullSixteen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer16 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 16 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullSeventeen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer17 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 17 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullEighteen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer18 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 18 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullNineteen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer19 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 19 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwenty BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer20 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 20 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwentyOne BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer21 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 21 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwentyTwo BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer22 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 22 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwentyThree BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer23 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 23 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwentyFour BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer24 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 24 is NULL, please select / type an option';
+    end if;
+end //
+
+DELIMITER ;
+
