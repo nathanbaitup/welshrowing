@@ -31,9 +31,9 @@ public class SessionRPETests {
 
     @Test
     public void shouldBeAbleToRetrieveASession(){
-        Athlete athlete = athleteRepoJPA.save(new Athlete(1L, null, "Nathan Baitup", "Male", "18-06-2001", true,"nathan@nathan.com", "07123456789", "", "1 Test Street", "CF349BD", "Cardiff University", "", "", "", "", "Facebook", false, ""));
-        sessionRPERepoJPA.save(new SessionRPE(1L, athlete,"2020-12-25","Circuit",6,60));
-        SessionRPE aSession = sessionRPERepoJPA.findBySessionRPEID(1L);
+        Athlete athlete = athleteRepoJPA.save(new Athlete(2L, null, "Nathan Baitup", "Male", "18-06-2001", true,"nathan@nathan.com", "07123456789", "", "1 Test Street", "CF349BD", "Cardiff University", "", "", "", "", "Facebook", false, ""));
+        sessionRPERepoJPA.save(new SessionRPE(2L, athlete,"2020-12-25","Circuit",6,60));
+        SessionRPE aSession = sessionRPERepoJPA.findBySessionRPEID(2L);
 
         assertEquals("Circuit", aSession.getTypeOfSession());
         assertEquals("2020-12-25", aSession.getDateOfSession());

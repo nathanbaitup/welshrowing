@@ -14,9 +14,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`userID`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `athlete` (
-  `athleteID` INT UNSIGNED NOT NULL,
-  `coachID` INT,
+CREATE TABLE IF NOT EXISTS `Athlete` (
+  `athleteID` INTEGER,
+  `coachID` INTEGER,
   `name` VARCHAR(45) NOT NULL,
   `gender` VARCHAR(6) NOT NULL,
   `dob` DATE NOT NULL,
@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS `athlete` (
   `email` VARCHAR(45),
   `mobileNumber` VARCHAR(12),
   `telephoneNumber` VARCHAR(10),
---   will be made into own table, just for testing purposes currently.
   `address` VARCHAR(50),
   `postcode` VARCHAR (8),
   `placeOfEducation` VARCHAR(45) ,
@@ -34,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `athlete` (
   `guardianEmail` VARCHAR(45),
   `heardFrom` VARCHAR(45),
   `interestLetter` BOOLEAN,
-  `postTestResult` VARCHAR(45),
+  `postTestResult` VARCHAR(60),
 
   PRIMARY KEY (`athleteID`))
 ENGINE = InnoDB;

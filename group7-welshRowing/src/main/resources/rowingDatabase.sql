@@ -86,7 +86,7 @@ CREATE TABLE `Athlete` (
     guardianContactNumber VARCHAR(50),
     heardFrom VARCHAR(40),
     interestLetter BOOLEAN,
-    postTestResult VARCHAR(30),
+    postTestResult VARCHAR(60),
     PRIMARY KEY PKAthlete(athleteID),
     FOREIGN KEY FKAthlete(`coachID`) REFERENCES Athlete(`athleteID`)
 );

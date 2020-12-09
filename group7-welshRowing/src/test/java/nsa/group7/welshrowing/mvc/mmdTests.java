@@ -18,7 +18,7 @@ public class mmdTests {
     @Test
     public void mmdFormShows() throws Exception {
         this.mockMvc
-                .perform(get("/athlete-mmd-form"))
+                .perform(get("/athlete-mmd-form/2"))
                 .andExpect(status().isOk());
     }
 }
