@@ -10,7 +10,7 @@ public class athleteMonitoringController {
     @GetMapping("/coachdashboard/athletemonitoring")
     public String athleteMonitoring(){
 
-        return "athleteMorningMonitoring";
+        return "coachMorningMonitoring";
 
     }
 
