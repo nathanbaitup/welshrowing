@@ -1,9 +1,11 @@
 # https://lucid.app/lucidchart/invitations/accept/fade6f95-af6c-4643-9f07-1e402e18cd19 following schema
 
+#creates admin user with password adminpassword and gives them all permissions over all tables
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'adminpassword';
 GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
 FLUSH PRIVILEGES;
 
+#creates coach user with password coachpassword and gives them all permissions to insert,select,update, and delete on all tables.
 CREATE USER 'coach'@'localhost' IDENTIFIED BY 'coachpassword';
 GRANT INSERT ON welshrowing TO 'coach'@'localhost';
 GRANT SELECT ON welshrowing TO 'coach'@'localhost';
@@ -11,6 +13,7 @@ GRANT UPDATE ON welshrowing TO 'coach'@'localhost';
 GRANT DELETE ON welshrowing TO 'coach'@'localhost';
 FLUSH PRIVILEGES;
 
+#creates athlete user with password athletepassword and gives them all permissions to insert,select,update on tables needed.
 CREATE USER 'athlete'@'localhost' IDENTIFIED BY 'athletepassword';
 GRANT SELECT ON welshrowing.User TO 'athlete'@'localhost';
 GRANT INSERT ON welshrowing.User TO 'athlete'@'localhost';
