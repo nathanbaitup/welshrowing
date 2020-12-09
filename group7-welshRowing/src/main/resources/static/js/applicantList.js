@@ -1,20 +1,24 @@
 
+
 $(document).ready(function() {
     $("#acceptButton").click(function(e) {
-        e.preventDefault();
+        print('Click works')
+        var aID = athleteID.innerHTML;
         $.ajax({
             type : "GET",
-            url : "/applicants",
+            url : "/applicantToAthlete",
+            dataType : "json",
             data : {
-                "id" : "$(\"#athleteID\").val()"
+                "id" : aID
             },
             success: function(data){
                 //response from controller
+
             }
         });
+        location.reload()
     });
 });
-
 
 
 

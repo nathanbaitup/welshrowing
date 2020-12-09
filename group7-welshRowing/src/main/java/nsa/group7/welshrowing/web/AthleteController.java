@@ -115,13 +115,17 @@ public class AthleteController {
         return "applicant-list";
     }
 
-    @RequestMapping("/applicants")
+    @RequestMapping("/applicantToAthlete")
     @ResponseBody
-    public String applicantToAthlete(@RequestParam int id, HttpServletRequest request, HttpServletResponse response, Model model) {
-        Long athleteID = new Long(id);
+    public String applicantToAthlete(@RequestParam String id, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Long athleteID = Long.parseLong(id);
+        System.out.println("////////////////////////" + athleteID);
         Optional<Athlete> optionalAthlete = athleteAuditor.findAthleteById(athleteID);
+
         Athlete athlete = optionalAthlete.get();
+        System.out.println("////////////////////////" + athlete.toString());
         athlete.setApplicationStatus(false);
+        System.out.println("////////////////////////" + athlete.getApplicationStatus());
         athleteAuditor.updateAthlete(athlete);
         return "applicants";
     }
