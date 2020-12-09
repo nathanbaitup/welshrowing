@@ -1,4 +1,4 @@
-package nsa.group7.welshrowing.domain;
+package nsa.group7.welshrowing.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,26 +7,20 @@ import nsa.group7.welshrowing.domain.Athlete;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "AthleteTest")
-public class ApplicantTesting {
+
+public class ApplicantTestingForm {
     /**
      * The test ID.
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long athleteTestID;
     /**
      * The ID of the athlete completing the test.
      */
-    @ManyToOne
-    @JoinColumn(name = "athleteID")
-    private Athlete athleteID;
+    private Long athleteID;
     /**
      * The date of the test.
      */
@@ -78,5 +72,9 @@ public class ApplicantTesting {
      * Any notes the coach had on the athletes flexibility.
      */
     private String fNotes;
-
+    /**
+     * The result of an athlete being tested.
+     */
+    @NotBlank(message = "Please select an option.")
+    private String postTestResult;
 }
