@@ -23,6 +23,12 @@ public class WorkoutController {
     private final crossTrainingAuditor crossTrainingAuditor;
     private final SessionRPEAuditor sessionRPEAuditor;
 
+    /**
+     * Injects all of the auditors needed to save input data into the database.
+     *
+     * @param acrossTrainingAuditor - the CrossTraining Auditor.
+     * @param aSessionRPEAuditor - the SessionRPE Auditor.
+     */
     @Autowired
     public WorkoutController(crossTrainingAuditor acrossTrainingAuditor, SessionRPEAuditor aSessionRPEAuditor) {
         crossTrainingAuditor = acrossTrainingAuditor;

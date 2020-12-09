@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/template.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="/css/entryForms.css">
+    <script src="/js/setDate.js"></script>
+    <script src="/js/athleteForms.js"></script>
+    <title>Applicant Testing</title>
+</head>
+
+<header>
+    <div id="nav-placeholder"></div>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("navigationBar.html");
+        });
+    </script>
+
+    <h1 id="pageTitle">Applicant Testing</h1>
+
+</header>
+
+<body>
+<p>Below is the form to test an applicant, start by selecting the name of the applicant that you are testing</p>
+<br>
+<div class="entry-form">
+    <form action="#" method="post" th:action="@{/submit-testing}" th:object="${applicantList}">
+
+        <div class="form-group blu-margin">
+            <label for="applicantSelector">Select the applicant name you are testing:</label>
+            <select class="form-control" id="applicantSelector" onchange="setAthleteID()">
+                <option value="0">Select Applicant</option>
+                <option id="selectedAthlete" th:each="applicant : ${applicantTesting}" th:value="${applicant.athleteID}"
+                        th:text="${applicant.athleteID}+' : '+${applicant.name}"></option>
+            </select>
+        </div>
+        <br>
+
+        <input th:field="*{athleteID}" id="testedAthlete" hidden>
+
+        <div class="form-group">
+            <label th:for="date">Date of Test:</label><br>
+            <input class="form-control" th:field="*{dateOfTest}" id="date" type="date"><br>
+        </div>
+        <span th:errors="*{dateOfTest}" th:if="${#fields.hasErrors('dateOfTest')}">Please enter a valid date.</span>
+        <br>
+
+        <div class="form-group">
+            <label th:for="athleteComments">Any comments about the athlete? </label>
+            <textarea class="form-control" rows="5" cols="40" th:field="*{athleteComments}"
+                      placeholder="Enter comments here"></textarea>
+        </div>
+        <br>
+
+        <div id="conceptIITesting" class="form-group">
+            <h2>Concept II Dyno</h2>
+            <small>Please fill in testing data from the completed test.</small>
+            <br><br>
+
+            <div class="form-group">
+                <label th:for="legPress3Reps">Leg Press (3 Rep): </label>
+                <input class="form-control" th:field="*{legPress3Reps}" type="number" placeholder="0" required/>
+            </div>
+            <span th:errors="*{legPress3Reps}"
+                  th:if="${#fields.hasErrors('legPress3Reps')}">Please enter the value.</span>
+            <br>
+
+            <div class="form-group">
+                <label th:for="armPress3Reps">Arm Press (3 Rep): </label>
+                <input class="form-control" th:field="*{armPress3Reps}" type="number" placeholder="0" required/>
+            </div>
+            <span th:errors="*{ArmPress3Reps}"
+                  th:if="${#fields.hasErrors('ArmPress3Reps')}">Please enter the value.</span>
+            <br>
+
+            <div class="form-group">
+                <label th:for="ArmPull3Reps">Arm Pull (3 Rep): </label>
+                <input class="form-control" th:field="*{ArmPull3Reps}" type="number" placeholder="0" required/>
+            </div>
+            <span th:errors="*{ArmPull3Reps}"
+                  th:if="${#fields.hasErrors('ArmPull3Reps')}">Please enter the value.</span>
+            <br>
+
+            <div class="form-group">
+                <label th:for="ArmPull15Reps">Arm Pull (15 Rep): </label>
+                <input class="form-control" th:field="*{ArmPull15Reps}" type="number" placeholder="0" required/>
+            </div>
+            <span th:errors="*{ArmPull15Reps}"
+                  th:if="${#fields.hasErrors('ArmPull15Reps')}">Please enter the value.</span>
+            <br>
+        </div>
+
+        <div id="schwinnTesting" class="form-group">
+            <h2>Schwinn</h2>
+            <small>Please fill in testing data from the completed test.</small>
+            <br><br>
+
+            <div class="form-group">
+                <label th:for="score">Score: </label>
+                <input class="form-control" th:field="*{score}" type="number" placeholder="0" required/>
+            </div>
+            <span th:errors="*{score}"
+                  th:if="${#fields.hasErrors('score')}">Please enter the value.</span>
+            <br>
+
+            <div class="form-check">
+                <label th:for="${#ids.next('observations')}">Observations: </label>
+                <br>
+                <input class="session-rpe-button" th:field="*{observations}" th:value="'Pushed Themselves'"
+                       type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('observations')}">Pushed Themselves</label>
+                <br>
+                <input class="session-rpe-button" th:field="*{observations}" th:value="'Gave Up'" type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('observations')}">Gave Up</label>
+            </div>
+            <span th:errors="*{observations}"
+                  th:if="${#fields.hasErrors('observations')}">Please select an option.</span>
+            <br>
+        </div>
+
+        <div id="basicCore" class="form-group">
+            <h2>Basic Core</h2>
+            <small>Please select either Green, Amber or Red</small>
+            <br><br>
+
+            <div class="form-check">
+                <br>
+                <input class="session-rpe-button" th:field="*{basicCore}" th:value="Green"
+                       type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('basicCore')}">Green</label>
+                <br>
+                <input class="session-rpe-button" th:field="*{basicCore}" th:value="Amber" type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('basicCore')}">Amber</label>
+                <br>
+                <input class="session-rpe-button" th:field="*{basicCore}" th:value="Red" type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('basicCore')}">Red</label>
+            </div>
+            <span th:errors="*{basicCore}"
+                  th:if="${#fields.hasErrors('basicCore')}">Please select an option.</span>
+            <br>
+
+            <div class="form-group">
+                <label th:for="bcNotes">Comments?: </label>
+                <textarea class="form-control" rows="5" cols="40" th:field="*{bcNotes}"
+                          placeholder="Enter comments here"></textarea>
+            </div>
+            <span th:errors="*{bcNotes}"
+                  th:if="${#fields.hasErrors('bcNotes')}">Please enter a value.</span>
+            <br>
+        </div>
+
+        <div id="flexibility" class="form-group">
+            <h2>Flexibility</h2>
+            <small>Please select either Green, Amber or Red</small>
+            <br><br>
+
+            <div class="form-check">
+                <br>
+                <input class="session-rpe-button" th:field="*{flexibility}" th:value="Green"
+                       type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('flexibility')}">Green</label>
+                <br>
+                <input class="session-rpe-button" th:field="*{flexibility}" th:value="Amber" type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('flexibility')}">Amber</label>
+                <br>
+                <input class="session-rpe-button" th:field="*{flexibility}" th:value="Red" type="radio">
+                <label class="form-check-label" th:for="${#ids.prev('flexibility')}">Red</label>
+            </div>
+            <span th:errors="*{flexibility}"
+                  th:if="${#fields.hasErrors('flexibility')}">Please select an option.</span>
+            <br>
+
+
+            <div class="form-group">
+                <label th:for="fNotes">Comments?: </label>
+                <textarea class="form-control" rows="5" cols="40" th:field="*{fNotes}"
+                          placeholder="Enter comments here"></textarea>
+            </div>
+            <span th:errors="*{fNotes}"
+                  th:if="${#fields.hasErrors('fNotes')}">Please enter a value.</span>
+            <br>
+        </div>
+
+        <div class="form-check">
+            <label> Follow Up</label>
+            <small>What happens next?</small>
+            <br>
+            <input class="session-rpe-button" th:field="*{postTestResult}" th:value="'Letter of thanks - join a local club'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('postTestResult')}">Letter of thanks - join a local club</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{postTestResult}" th:value="'Borderline results. Invitation to Re-test. Train externally.'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('postTestResult')}">Borderline results. Invitation to Re-test. Train externally.</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{postTestResult}" th:value="'Borderline results. Invitation to Re-test. Train internally.'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('postTestResult')}">Borderline results. Invitation to Re-test. Train internally.</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{postTestResult}" th:value="'Not START. Train alongside squad.'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('postTestResult')}">Not START. Train alongside squad.</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{postTestResult}" th:value="'START.'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('postTestResult')}">START.</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{postTestResult}" th:value="'Introduction programme/between clubs'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('postTestResult')}">Introduction programme/between clubs</label>
+            <br>
+            <input class="session-rpe-button" th:field="*{postTestResult}" th:value="'8 weeks'" type="radio">
+            <label class="form-check-label" th:for="${#ids.prev('postTestResult')}">8 weeks</label>
+        </div>
+        <span th:errors="*{postTestResult}"
+              th:if="${#fields.hasErrors('postTestResult')}">Please select an option.</span>
+        <br>
+
+
+        <button class="btn btn-danger" type="submit">Submit Applicant Testing</button>
+
+    </form>
+</div>
+
+</body>
+</html>

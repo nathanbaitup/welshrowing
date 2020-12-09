@@ -86,7 +86,7 @@ CREATE TABLE `Athlete` (
     guardianContactNumber VARCHAR(50),
     heardFrom VARCHAR(40),
     interestLetter BOOLEAN,
-    postTestResult VARCHAR(30),
+    postTestResult VARCHAR(60),
     PRIMARY KEY PKAthlete(athleteID),
     FOREIGN KEY FKAthlete(`coachID`) REFERENCES Athlete(`athleteID`)
 );
@@ -98,10 +98,6 @@ CREATE TABLE `MedicalData` (
     heightCM INTEGER,
     weightKG INTEGER,
     armSpanCM INTEGER,
-    basicCore VARCHAR(50),
-    bCNotes VARCHAR(50),
-    flexibility VARCHAR(50),
-    fNotes VARCHAR(50),
     PRIMARY KEY PKMedicalData(medicalDataID),
     FOREIGN KEY FKMedicalData(athleteID) REFERENCES Athlete(athleteID)
 );
@@ -162,7 +158,7 @@ CREATE TABLE `Coach` (
 CREATE TABLE `AthleteTest` (
    athleteTestID INTEGER AUTO_INCREMENT NOT NULL,
    athleteID INTEGER NOT NULL,
-   coachID INTEGER NOT NULL,
+   coachID INTEGER,
    dateOfTest DATE,
    athleteComments VARCHAR(100),
    legPress3Reps INTEGER NOT NULL,
@@ -171,6 +167,10 @@ CREATE TABLE `AthleteTest` (
    armPull15Reps INTEGER NOT NULL,
    score INTEGER NOT NULL,
    observations VARCHAR(150),
+   basicCore VARCHAR(5),
+   bCNotes VARCHAR(50),
+   flexibility VARCHAR(5),
+   fNotes VARCHAR(50),
    PRIMARY KEY PKAthleteTest (athleteTestID),
    FOREIGN KEY FKAthleteTest(athleteID) REFERENCES Athlete(athleteID),
    FOREIGN KEY FKCoachAthleteTest (coachID) REFERENCES Coach(coachID)

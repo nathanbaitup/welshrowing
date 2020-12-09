@@ -1,9 +1,6 @@
 package nsa.group7.welshrowing.web;
 
-import nsa.group7.welshrowing.domain.Applicant;
-import nsa.group7.welshrowing.domain.ApplicantAuditor;
-import nsa.group7.welshrowing.domain.Athlete;
-import nsa.group7.welshrowing.domain.AthleteAuditor;
+import nsa.group7.welshrowing.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
@@ -23,11 +20,23 @@ public class AthleteController {
 
     private final AthleteAuditor athleteAuditor;
     private final ApplicantAuditor applicantAuditor;
+    private final AnthropometryAuditor anthropometryAuditor;
+    private final AthletePreviousSportsAuditor athletePreviousSportsAuditor;
 
+    /**
+     * Injects all of the auditors needed to save input data into the database.
+     *
+     * @param athleteAuditor - the athleteAuditor.
+     * @param applicantAuditor - the applicantAuditor.
+     * @param anthropometryAuditor - the anthropometryAuditor.
+     * @param athletePreviousSportsAuditor - the athletePreviousSportsAuditor.
+     */
     @Autowired
-    public AthleteController(AthleteAuditor athleteAuditor, ApplicantAuditor applicantAuditor) {
+    public AthleteController(AthleteAuditor athleteAuditor, ApplicantAuditor applicantAuditor, AnthropometryAuditor anthropometryAuditor, AthletePreviousSportsAuditor athletePreviousSportsAuditor) {
         this.athleteAuditor = athleteAuditor;
         this.applicantAuditor = applicantAuditor;
+        this.anthropometryAuditor = anthropometryAuditor;
+        this.athletePreviousSportsAuditor = athletePreviousSportsAuditor;
     }
 
     /**
@@ -106,11 +115,97 @@ public class AthleteController {
             return "redirect:/athlete-dashboard";
         }
     }
+
+    /**
+     *
+     * @param model - adds to the page
+     * @return returns a list of applicants to the coach
+     */
     @GetMapping("applicants")
     public String serveApplicantList(Model model) {
         List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
         model.addAttribute("listApplicants", applicantList);
         return "applicant-list";
+    }
+
+    /**
+     * Generates the anthropometry form for an athlete to enter their medical data.
+     *
+     * @param id - the athlete ID.
+     * @param model - adds to the page.
+     * @return returns the anthropometry form.
+     */
+    @GetMapping("submit-anthropometry/{id}")
+    public String serveApplicantAnthropometry(@PathVariable("id") Long id, Model model){
+        Athlete athlete = athleteAuditor.findAthleteById(id).get();
+
+        AnthropometryForm anthropometryForm = new AnthropometryForm(athlete.getAthleteID());
+        model.addAttribute("anthropometry", anthropometryForm);
+        return "applicant-anthropometry";
+    }
+
+    /**
+     * Saves an athletes anthropometry data into the database.
+     *
+     * @param anthropometry - the anthropometry entity.
+     * @param anthropometryForm - the form data.
+     * @param bindings - any errors if form isn't valid.
+     * @param model - adds to the page.
+     * @return returns either the form to append any errors or redirects to the athlete dashboard and saves the data.
+     */
+    @PostMapping("submit-anthropometry")
+    public String handleApplicantAnthropometry(@ModelAttribute("anthropometry") Anthropometry anthropometry, @Valid AnthropometryForm anthropometryForm, BindingResult bindings, Model model){
+        if (bindings.hasErrors()) {
+            System.out.println("Errors:" + bindings.getFieldErrorCount());
+            for (ObjectError oe : bindings.getAllErrors()) {
+                System.out.println(oe);
+            }
+            model.addAttribute("anthropometry", anthropometryForm);
+            return "applicant-anthropometry";
+        } else {
+            anthropometryAuditor.saveAnthropometricData(anthropometry);
+            return "redirect:/athlete-dashboard";
+        }
+    }
+
+    /**
+     * Generates the submit previous sports page for an athlete to enter their previous sport data.
+     *
+     * @param id - the athleteID.
+     * @param model - adds to the page.
+     * @return returns the previous sports form.
+     */
+    @GetMapping("submit-previous-sports/{id}")
+    public String serveApplicantPreviousSports(@PathVariable("id") Long id, Model model){
+        Athlete athlete = athleteAuditor.findAthleteById(id).get();
+
+        AthletePreviousSportsForm athletePreviousSportsForm = new AthletePreviousSportsForm(athlete.getAthleteID());
+        model.addAttribute("previousSports", athletePreviousSportsForm);
+        return "previous-sports";
+    }
+
+    /**
+     * Saves an athletes previous sports data into the database.
+     *
+     * @param athletePreviousSports - the athlete previous sports entity.
+     * @param athletePreviousSportsForm - the form data.
+     * @param bindings - any errors if form isn't valid.
+     * @param model - adds to the page.
+     * @return returns either the form to append any errors or redirects to the athlete dashboard and saves the data.
+     */
+    @PostMapping("submit-previous-sports")
+    public String handlePreviousSports(@ModelAttribute("previousSports") AthletePreviousSports athletePreviousSports, @Valid AthletePreviousSportsForm athletePreviousSportsForm, BindingResult bindings, Model model){
+        if (bindings.hasErrors()) {
+            System.out.println("Errors:" + bindings.getFieldErrorCount());
+            for (ObjectError oe : bindings.getAllErrors()) {
+                System.out.println(oe);
+            }
+            model.addAttribute("previousSports", athletePreviousSportsForm);
+            return "previous-sports";
+        } else {
+            athletePreviousSportsAuditor.savePreviousSportsData(athletePreviousSports);
+            return "redirect:/athlete-dashboard";
+        }
     }
 
     /**
