@@ -95,7 +95,7 @@ CREATE TABLE `Interview` (
     answer23 int,
     answer24 int,
     PRIMARY KEY PKInterview(interviewID),
-    FOREIGN KEY FKInterview(athleteID) REFERENCES Athlete(athleteID)
+    FORinterviewEIGN KEY FKInterview(athleteID) REFERENCES Athlete(athleteID)
 );
 
 CREATE TABLE `Coach` (
@@ -159,3 +159,38 @@ CREATE TABLE `CrossTraining` (
     PRIMARY KEY PKCrossTraining(crossTrainingID),
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
+
+INSERT INTO Athlete values (8, 8, "Polk", "Female", null, true, null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+CREATE VIEW crossTrainingAdmins
+AS
+  SELECT crossTrainingID, athleteID, dateofSession, typeOfCrossTraining, totalTimeMinutes, totalDistance FROM CrossTraining;
+
+CREATE VIEW crossTrainingCoaches
+AS
+  SELECT crossTrainingID, athleteID, dateofSession, typeOfCrossTraining, totalTimeMinutes, totalDistance FROM CrossTraining;
+
+CREATE VIEW crossTrainingAthletes
+AS
+  SELECT crossTrainingID, athleteID, dateofSession, typeOfCrossTraining, totalTimeMinutes, totalDistance FROM CrossTraining;
+
+CREATE VIEW interviewAdmins
+AS
+  SELECT interviewID, athleteID, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16, answer17, answer18, answer19, answer20, answer21, answer22, answer23, answer24 FROM interview;
+
+CREATE VIEW interviewCoaches
+AS
+  SELECT interviewID, athleteID, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16, answer17, answer18, answer19, answer20, answer21, answer22, answer23, answer24 FROM interview;
+
+CREATE VIEW interviewAthletes
+AS
+  SELECT interviewID, athleteID FROM interview;
+
+SELECT * FROM interviewAthletes;
+
+GRANT SELECT ON crossTrainingAdmins TO [admin];
+GRANT SELECT ON crossTrainingCoaches TO [coach];
+GRANT SELECT ON crossTrainingAthletes TO [athlete];
+GRANT SELECT ON interviewAdmins TO [admin];
+GRANT SELECT ON interviewCoaches TO [coach];
+GRANT SELECT ON interviewAthletes TO [athlete];
