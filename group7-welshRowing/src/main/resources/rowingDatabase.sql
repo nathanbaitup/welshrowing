@@ -1,5 +1,8 @@
 # https://lucid.app/lucidchart/invitations/accept/fade6f95-af6c-4643-9f07-1e402e18cd19 following schema
 
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'adminpassword';
+GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
+
 CREATE DATABASE IF NOT EXISTS welshRowing;
 
 USE welshRowing;
