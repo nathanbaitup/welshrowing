@@ -10,4 +10,6 @@ public interface MorningMonitoringAuditor {
     Optional<Applicant> findMorningMonitoringById(Long id);
 
     public List<MorningMonitoring> listMorningMonitoring();
+
+    MorningMonitoring findById(Long id);
 }
