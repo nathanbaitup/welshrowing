@@ -12,6 +12,41 @@ GRANT DELETE ON welshrowing TO 'coach'@'localhost';
 FLUSH PRIVILEGES;
 
 CREATE USER 'athlete'@'localhost' IDENTIFIED BY 'athletepassword';
+GRANT SELECT ON welshrowing.User TO 'athlete'@'localhost';
+GRANT INSERT ON welshrowing.User TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.User TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.Athlete TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.Athlete TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.Athlete TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.MedicalData TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.MedicalData TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.MedicalData TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.AthletePreviousSports TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.AthletePreviousSports TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.AthletePreviousSports TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.Interview TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.Interview TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.Interview TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.AthleteTest TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.AthleteTest TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.AthleteTest TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.MorningMonitoring TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.MorningMonitoring TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.MorningMonitoring TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.SessionRPE TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.SessionRPE TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.SessionRPE TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.CrossTraining TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.CrossTraining TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.CrossTraining TO 'athlete'@'localhost';
 FLUSH PRIVILEGES;
 
 
