@@ -9,5 +9,5 @@ import java.util.List;
 public interface MorningMonitoringRepoJPA extends JpaRepository<MorningMonitoring, Long> {
     MorningMonitoring findByMonitoringID(Long id);
 
-//    List<MorningMonitoring> selectAllMonitoring();
+
 }

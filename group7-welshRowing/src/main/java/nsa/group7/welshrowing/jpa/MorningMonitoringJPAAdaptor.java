@@ -30,8 +30,17 @@ public class MorningMonitoringJPAAdaptor implements MorningMonitoringAuditor {
         return Optional.empty();
     }
 
+
+    public List<MorningMonitoring> listMorningMonitoring(String athleteID) {
+        return null;
+    }
+
     @Override
+    public MorningMonitoring findById(Long id) {
+        return null;
+    }
+
     public List<MorningMonitoring> listMorningMonitoring() {
-        return listMorningMonitoring();
+        return listMorningMonitoring("1");
     }
 }
