@@ -202,4 +202,15 @@ CREATE TRIGGER interviewIntNullTen BEFORE INSERT ON Interview FOR EACH ROW IF NE
 CREATE TRIGGER interviewIntNullFourteen BEFORE INSERT ON Interview FOR EACH ROW IF NEW.answer14 = NULL
 THEN SET NEW.answer14 = 0; END IF;//
 
+# Trigger for validation of Email within the Athlete table, checks to see if email contains '@'
+# Signals SQL 45000 signing a unhandled exception, and prints out the message to the console
+CREATE TRIGGER emailValidationAthlete BEFORE INSERT ON Athlete FOR EACH ROW
+    BEGIN
+        IF NEW.`email` NOT LIKE '%_@%_.__%' THEN
+            SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Athlete Table - Email = This is not a valid email, please try again';
+        end if;
+    end //
+
 DELIMITER ;
+
