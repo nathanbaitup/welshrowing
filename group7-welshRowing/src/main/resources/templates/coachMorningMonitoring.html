@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Athlete Morning Monitoring Progress</title>
     <link rel="stylesheet" href="/css/template.css">
-    <link rel ="stylesheet" href="css/athleteMorningMonitoring.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -39,11 +39,12 @@
 </nav>
 
 <!-- End of Navigation section of website-->
-<H1>Athlete List</H1>
+<H1>Coach Morning Monitoring List</H1>
 <div class="table">
     <table border="1">
         <thead>
         <tr>
+            <th>Monitoring ID</th>
             <th>Athlete ID</th>
             <th>Date</th>
             <th>Walking Heart Rate</th>
@@ -53,15 +54,16 @@
             <th>Sleep Quantity Hours</th>
             <th>Sleep Quality</th>
         <tbody>
-        <tr th:each="monitor : ${morningMonitoring}">
-            <td th:text="${morningMonitoring.athleteID}">Athlete ID</td>
-            <td th:text="${morningMonitoring.date}">Date</td>
-            <td th:text="${morningMonitoring.walkingHeartRate}">Walking Heart Rate</td>
-            <td th:text="${morningMonitoring.standingHeartRate}">Standing Heart Rate</td>
-            <td th:text="${morningMonitoring.perceivedShape}">Perceived Shape</td>
-            <td th:text="${morningMonitoring.percievedMentalState}">Perceived Mental State</td>
-            <td th:text="${morningMonitoring.sleepQuantityHours}">Sleep Quantity Hours</td>
-            <td th:text="${morningMonitoring.sleepQuality}">Sleep Quality</td>
+        <tr th:each="monitor : ${listMorningMonitoring}">
+            <td th:text="${monitor.monitoringID}">Monitoring ID</td>
+            <td th:text="${monitor.athleteID}">Athlete ID</td>
+            <td th:text="${monitor.date}">Date</td>
+            <td th:text="${monitor.walkingHeartRate}">Walking Heart Rate</td>
+            <td th:text="${monitor.standingHeartRate}">Standing Heart Rate</td>
+            <td th:text="${monitor.perceivedShape}">Perceived Shape</td>
+            <td th:text="${monitor.perceivedMentalState}">Perceived Mental State</td>
+            <td th:text="${monitor.sleepQuantityHours}">Sleep Quantity Hours</td>
+            <td th:text="${monitor.sleepQuality}">Sleep Quality</td>
         </tr>
         </tbody>
     </table>
