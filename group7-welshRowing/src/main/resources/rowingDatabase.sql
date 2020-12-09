@@ -5,6 +5,10 @@ GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
 FLUSH PRIVILEGES;
 
 CREATE USER 'coach'@'localhost' IDENTIFIED BY 'coachpassword';
+GRANT INSERT ON welshrowing TO 'coach'@'localhost';
+GRANT SELECT ON welshrowing TO 'coach'@'localhost';
+GRANT UPDATE ON welshrowing TO 'coach'@'localhost';
+GRANT DELETE ON welshrowing TO 'coach'@'localhost';
 FLUSH PRIVILEGES;
 
 CREATE USER 'athlete'@'localhost' IDENTIFIED BY 'athletepassword';
