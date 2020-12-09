@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class athleteMonitoringController {
 
-    @GetMapping("/coachdashboard/athletemonitoring")
+    @GetMapping("/coachdashboard/coachathletemonitoring")
     public String athleteMonitoring(){
 
         return "coachMorningMonitoring";
