@@ -20,7 +20,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/").permitAll();
             http.headers()
                     .contentSecurityPolicy("script-src 'self'; report-uri /csp-report-endpoint/");
+            http.authorizeRequests().antMatchers("/h2-console/**").permitAll()
+                    .and().csrf().ignoringAntMatchers("/h2-console/**")
+                    .and().headers().frameOptions().sameOrigin();
         }
-
-
     }
