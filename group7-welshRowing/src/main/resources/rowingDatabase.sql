@@ -1,4 +1,5 @@
 # https://lucid.app/lucidchart/invitations/accept/fade6f95-af6c-4643-9f07-1e402e18cd19 following schema
+# DROP DATABASE IF EXISTS  welshRowing;
 
 CREATE DATABASE IF NOT EXISTS welshRowing;
 
@@ -159,3 +160,16 @@ CREATE TABLE `CrossTraining` (
     PRIMARY KEY PKCrossTraining(crossTrainingID),
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
+
+# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10,10);
+# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10);
+# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10);
+# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10);
+# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10);
+# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10);
+# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10);
+
+# INSERT INTO Athlete (athleteID, coachID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address, postcode, placeOfEducation, guardianName, relationshipToAthlete, guardianEmail, guardianContactNumber, heardFrom, interestLetter, postTestResult) VALUES (1,1,'Test','Male','2020-08-09',1,'test@test',999,999,'test','test','test','test','test','test','test','test',1,'test');
+# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (1,'2020-08-09',10,10,10,10,10,10);
+#
+# SELECT * FROM MorningMonitoring;
