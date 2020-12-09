@@ -55,6 +55,35 @@ public class AthleteJPAAdaptor implements AthleteAuditor {
         return athleteRepoJPA.findById(id);
     }
 
+    /**
+     * Finds a list of all athletes who are in the application stage of their trial.
+     *
+     * @param anApplicationStatus the status of the application, should return true.
+     * @return returns a list of current applicants in the system.
+     */
     @Override
     public List<Athlete> findAthletesByApplicationStatus(Boolean anApplicationStatus) { return athleteRepoJPA.findByApplicationStatus(anApplicationStatus); }
+
+    /**
+     * Takes a string from the applicant test form and the athlete ID to update the postTestResult field in the athlete table.
+     *
+     * @param postTestStatus - the string that a coach will give to the applicant based off testing.
+     * @param athleteID - the ID of the applicant.
+     */
+    @Override
+    public void setPostTestStatus(String postTestStatus, Long athleteID) {
+        athleteRepoJPA.setPostTestStatus(postTestStatus, athleteID);
+    }
+
+    /**
+     * Takes an ID input to update the application status of an athlete.
+     *
+     * @param applicationStatus - the status of if an athlete is an applicant (true), or if they are not (false).
+     * @param athleteID - the ID of the athlete to update.
+     */
+    @Override
+    public void setApplicationStatus(Boolean applicationStatus, Long athleteID) {
+        athleteRepoJPA.setApplicationStatus(applicationStatus, athleteID);
+    }
+
 }

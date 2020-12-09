@@ -118,8 +118,8 @@ public class AthleteController {
 
     /**
      *
-     * @param model
-     * @return
+     * @param model - adds to the page
+     * @return returns a list of applicants to the coach
      */
     @GetMapping("applicants")
     public String serveApplicantList(Model model) {
