@@ -20,14 +20,14 @@ public class CoachAthleteMonitoringController {
         this.morningMonitoringAuditor = morningMonitoringAuditor;
     }
 
-    @GetMapping("/coachdashboard/coachmorningmonitoring")
-    public String athleteMonitoring(){
+//    @GetMapping("/coachdashboard/coachmorningmonitoring")
+//    public String athleteMonitoring(){
+//
+//        return "coachMorningMonitoring";
+//
+//    }
 
-        return "coachMorningMonitoring";
-
-    }
-
-    @GetMapping("morningMonitoring") // Previously morningMonitoring
+    @GetMapping("/coachdashboard/coachmorningmonitoring") // Previously morningMonitoring
     public String serveMorningMonitoringList(Model model) {
         List<MorningMonitoring> morningMonitoringList = morningMonitoringAuditor.listMorningMonitoring();
         model.addAttribute("listMorningMonitoring", morningMonitoringList);
