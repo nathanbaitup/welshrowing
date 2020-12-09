@@ -2,9 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/athleteDashboard.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
+
+
     <title>Athlete Dashboard</title>
 </head>
 <body>
     <h1>test dashboard</h1>
+
+    <div id="chartContainer">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [0,25,50,75,100,125],
+                datasets: [{
+                    data: [54,55,55,59,61,56,55],
+                    label: "Waking Heart Rate",
+                    borderColor: "#3e95cd",
+                    fill: false
+                }, {
+                    data: [57,59,60,71,73,61,61],
+                    label: "Standing Heart Rate",
+                    borderColor: "#8e5ea2",
+                    fill: false
+                }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Morning Monitoring Heart rates(BPM)',
+                }
+            }
+        });
+    </script>
+
+
 </body>
 </html>
