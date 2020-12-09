@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             http.authorizeRequests()
                     .antMatchers("/").permitAll();
             http.headers()
-                    .contentSecurityPolicy("script-src 'self'; report-uri /csp-report-endpoint/");
+                    .contentSecurityPolicy("script-src 'self' https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css; report-uri /csp-report-endpoint/");
             http.authorizeRequests().antMatchers("/h2-console/**").permitAll()
                     .and().csrf().ignoringAntMatchers("/h2-console/**")
                     .and().headers().frameOptions().sameOrigin();
