@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/athleteDashboard.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel ="stylesheet" href="css/formDashboard.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <title>Athlete Dashboard</title>
+</head>
+<header>
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function(){
+            $("#nav-placeholder").load("navigationBar.html");
+        });
+    </script>
+
+</header>
+<body>
+<h2 id="formTitle">Your Forms</h2>
+    <div class="formContainer">
+        <div class="block">
+            <h3 class="link"><a href="/athlete-mmd-form/2" class="link">Morning Monitoring</a></h3>
+            <a href="/athlete-mmd-form/2"><img id="big" src="https://i.pinimg.com/736x/85/5d/f2/855df22700990ca085d87970f354054f.jpg"></a>
+            <p>Daily monitoring of physical and psychological metrics</p>
+        </div>
+        <div class="block">
+            <h3 class="link"><a href="/submit-session-rpe/2" class="link">Workout Training</a></h3>
+            <a href="/submit-session-rpe/2"><img src="https://www.pngitem.com/pimgs/m/121-1210928_bodybuilding-and-dumbbells-vector-image-illustration-transparent-background.png"></a>
+            <p>Enter data about your workout sessions</p>
+        </div>
+        <div class="block">
+            <h3 class="link"><a href="/submit-crosstraining-form/2" class="link">Cross Training</a></h3>
+            <a href="/submit-crosstraining-form/2"><img src="https://img.pngio.com/vector-running-man-man-clipart-vector-running-man-png-and-vector-png-of-person-running-650_795.png"></a>
+            <p>Enter data about your cross training sessions</p>
+        </div>
+    </div>
+    <div class="formContainer">
+        <div class="block-graph">
+            <img src="images/sRPE.png">
+        </div>
+        <div class="graph">
+            <div id="chartContainer">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [0,25,50,75,100,125],
+                datasets: [{
+                    data: [54,55,55,59,61,56,55],
+                    label: "Waking Heart Rate",
+                    borderColor: "#3e95cd",
+                    fill: false
+                }, {
+                    data: [57,59,60,71,73,61,61],
+                    label: "Standing Heart Rate",
+                    borderColor: "#8e5ea2",
+                    fill: false
+                }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Morning Monitoring Heart rates(BPM)',
+                }
+            }
+        });
+    </script>
+
+
+</body>
+</html>
