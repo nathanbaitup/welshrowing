@@ -213,7 +213,6 @@ CREATE TABLE `CrossTraining` (
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
 
-INSERT INTO Athlete values (8, 8, 'Polk', 'Female', null, true, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 CREATE VIEW crossTrainingAdmins
 AS
@@ -491,3 +490,209 @@ BEGIN
 
 END //
 DELIMITER ;
+
+CREATE TABLE `UserAudit` (
+     athleteID INTEGER NOT NULL,
+     deletedDate DATE,
+     deleted_by VARCHAR(50)
+);
+
+
+
+
+  
+   DELIMITER //
+
+CREATE TRIGGER athlete_after_delete
+AFTER DELETE
+   ON athlete FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.athleteID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+
+   DELIMITER //
+
+CREATE TRIGGER athletetest_after_delete
+AFTER DELETE
+   ON athletetest FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.athleteID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+
+   DELIMITER //
+
+CREATE TRIGGER crosstraining_after_delete
+AFTER DELETE
+   ON crosstraining FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.athleteID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+
+   DELIMITER //
+
+CREATE TRIGGER medicaldata_after_delete
+AFTER DELETE
+   ON medicaldata FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.athleteID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+
+   DELIMITER //
+
+CREATE TRIGGER morningmonitoring_after_delete
+AFTER DELETE
+   ON morningmonitoring FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.athleteID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+
+   DELIMITER //
+
+CREATE TRIGGER sessionrpe_after_delete
+AFTER DELETE
+   ON sessionrpe FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.athleteID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+   DELIMITER //
+
+CREATE TRIGGER user_after_delete
+AFTER DELETE
+   ON user FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.userID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+
+CREATE VIEW userAuditAdmin
+AS
+	SELECT athleteID, deletedDate, deleted_by FROM useraudit;
+    
+CREATE VIEW userAuditCoach
+AS
+	SELECT deletedDate FROM useraudit;
