@@ -515,7 +515,7 @@ BEGIN
    SELECT USER() INTO userName;
 
    -- Insert record into audit table
-   INSERT INTO users_audit
+   INSERT INTO UserAudit
    ( athleteID,
      deletedDate,
      deleted_by)
@@ -542,7 +542,7 @@ BEGIN
    SELECT USER() INTO userName;
 
    -- Insert record into audit table
-   INSERT INTO users_audit
+   INSERT INTO UserAudit
    ( athleteID,
      deletedDate,
      deleted_by)
@@ -569,7 +569,7 @@ BEGIN
    SELECT USER() INTO userName;
 
    -- Insert record into audit table
-   INSERT INTO users_audit
+   INSERT INTO UserAudit
    ( athleteID,
      deletedDate,
      deleted_by)
@@ -596,7 +596,7 @@ BEGIN
    SELECT USER() INTO userName;
 
    -- Insert record into audit table
-   INSERT INTO users_audit
+   INSERT INTO UserAudit
    ( athleteID,
      deletedDate,
      deleted_by)
@@ -623,7 +623,7 @@ BEGIN
    SELECT USER() INTO userName;
 
    -- Insert record into audit table
-   INSERT INTO users_audit
+   INSERT INTO UserAudit
    ( athleteID,
      deletedDate,
      deleted_by)
@@ -650,7 +650,7 @@ BEGIN
    SELECT USER() INTO userName;
 
    -- Insert record into audit table
-   INSERT INTO users_audit
+   INSERT INTO UserAudit
    ( athleteID,
      deletedDate,
      deleted_by)
@@ -676,12 +676,12 @@ BEGIN
    SELECT USER() INTO userName;
 
    -- Insert record into audit table
-   INSERT INTO users_audit
+   INSERT INTO UserAudit
    ( athleteID,
      deletedDate,
      deleted_by)
    VALUES
-   ( OLD.athleteID,
+   ( OLD.userID,
      SYSDATE(),
      userName );
 
