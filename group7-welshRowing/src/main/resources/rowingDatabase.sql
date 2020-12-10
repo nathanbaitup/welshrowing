@@ -458,5 +458,36 @@ BEGIN
     end if;
 end //
 
-DELIMITER ;
 
+-- Trigger that encrypts an athletes medical data before it is inserted into the database.
+CREATE TRIGGER encrypt_medical_data BEFORE INSERT ON MedicalData FOR EACH ROW
+BEGIN
+    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, 'ypT9pYnCjTuP8n4jr7eW');
+    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, 'ypT9pYnCjTuP8n4jr7eW');
+    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, 'ypT9pYnCjTuP8n4jr7eW');
+    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, 'ypT9pYnCjTuP8n4jr7eW');
+END//
+-- Trigger that encrypts an athletes medical data before it is updated and saved to the database.
+CREATE TRIGGER encrypt_medical_data_update BEFORE UPDATE ON MedicalData FOR EACH ROW
+BEGIN
+    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, 'ypT9pYnCjTuP8n4jr7eW');
+    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, 'ypT9pYnCjTuP8n4jr7eW');
+    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, 'ypT9pYnCjTuP8n4jr7eW');
+    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, 'ypT9pYnCjTuP8n4jr7eW');
+END//
+
+-- SP that if provided the correct key, will decrypt an athletes medical data if updates are needed.
+CREATE PROCEDURE decrypt_data(
+    IN theAthleteID INT,
+    IN theKey VARCHAR(255)
+)
+BEGIN
+    SELECT medicalDataID, athleteID,
+           AES_DECRYPT(injuries, theKey) as 'injuries',
+           AES_DECRYPT(heightCM, theKey) as 'heightCM',
+           AES_DECRYPT(weightKG, theKey) as 'weightKG',
+           AES_DECRYPT(armSpanCM, theKey) as 'armSpanCM'
+    FROM MedicalData WHERE athleteID = theAthleteID;
+
+END //
+DELIMITER ;

@@ -16,7 +16,6 @@ public class AnthropometryForm {
     /**
      * The athleteID.
      */
-    @NotBlank
     private Long athleteID;
     /**
      * Any injuries that can affect an athletes performance.
@@ -26,17 +25,14 @@ public class AnthropometryForm {
     /**
      * The height of the athlete in centimeters.
      */
-    @NotBlank(message = "Please enter the athletes height in CM.")
     private Integer heightCM;
     /**
      * The weight of the athlete in kilograms.
      */
-    @NotBlank(message = "Please enter the athletes weight in KG.")
     private Integer weightKG;
     /**
      * The arm span of the athlete in centimeters.
      */
-    @NotBlank(message = "Please enter the athletes armspan in CM.")
     private Integer armspanCM;
 
     public AnthropometryForm(Long athleteID){
