@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class athleteDashboardController {
-
-    @GetMapping("testgraphs")
+    @GetMapping("athlete-dashboard")
     public String athleteDashboard(Model model){
         model.addAttribute(" ");
         return "athleteDashboard";
