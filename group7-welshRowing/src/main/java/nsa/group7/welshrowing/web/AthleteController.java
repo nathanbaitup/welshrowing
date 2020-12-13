@@ -144,6 +144,15 @@ public class AthleteController {
         return "applicants";
     }
 
+    @RequestMapping("/rejectApplicant")
+    @ResponseBody
+    public String rejectApplicant(@RequestParam String id, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Long athleteID = Long.parseLong(id);
+        Optional<Athlete> optionalAthlete = athleteAuditor.findAthleteById(athleteID);
+        Athlete athlete = optionalAthlete.get();
+        return "applicants";
+    }
+
     /**
      * Generates the anthropometry form for an athlete to enter their medical data.
      *
