@@ -3,7 +3,7 @@ package nsa.group7.welshrowing.jpa;
 import nsa.group7.welshrowing.domain.CrossTraining;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface crossTrainingRepoJPA extends JpaRepository<CrossTraining, Long> {
+public interface CrossTrainingRepoJPA extends JpaRepository<CrossTraining, Long> {
     /**
      *
      * @param id - ID of the Athletes session

@@ -96,7 +96,6 @@ public class GenerateModel {
         componentView.addAllComponents();
         componentView.addAllPeople();
         componentView.add(relationalDatabase);
-        componentView.enableAutomaticLayout();
 
         // Tags
         webApplication.getComponents().stream().filter(c -> c.getTechnology().equals(SpringComponentFinderStrategy.SPRING_MVC_CONTROLLER)).forEach(c -> c.addTags("Spring MVC Controller"));
