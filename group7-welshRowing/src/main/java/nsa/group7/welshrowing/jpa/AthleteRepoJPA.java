@@ -58,4 +58,5 @@ public interface AthleteRepoJPA extends JpaRepository<Athlete, Long> {
     @Query("UPDATE Athlete athlete SET athlete.applicationStatus = :applicationStatus WHERE athlete.athleteID = :athleteID")
     void setApplicationStatus(@Param("applicationStatus") Boolean applicationStatus ,@Param("athleteID") Long athleteID);
 
+    Athlete findByAthleteID(Long id);
 }
