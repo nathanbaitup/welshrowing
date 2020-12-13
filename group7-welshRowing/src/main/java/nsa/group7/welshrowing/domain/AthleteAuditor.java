@@ -14,9 +14,9 @@ public interface AthleteAuditor {
     /**
      * Method that removes all the information of an athlete object in the database.
      *
-     * @param anAthlete - the athlete object to remove
+     * @param aID - the athleteID to find and delete within the database.
      */
-    public void removeAthlete(Athlete anAthlete);
+    public void deleteAthlete(Long aID);
 
     /**
      * Method that allows for an athlete object to be updated.

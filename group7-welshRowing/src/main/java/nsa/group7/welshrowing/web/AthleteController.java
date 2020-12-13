@@ -148,8 +148,7 @@ public class AthleteController {
     @ResponseBody
     public String rejectApplicant(@RequestParam String id, HttpServletRequest request, HttpServletResponse response, Model model) {
         Long athleteID = Long.parseLong(id);
-        Optional<Athlete> optionalAthlete = athleteAuditor.findAthleteById(athleteID);
-        Athlete athlete = optionalAthlete.get();
+        athleteAuditor.deleteAthlete(athleteID);
         return "applicants";
     }
 
