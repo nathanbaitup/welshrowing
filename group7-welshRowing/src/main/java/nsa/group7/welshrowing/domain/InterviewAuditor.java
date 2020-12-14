@@ -1,5 +1,8 @@
 package nsa.group7.welshrowing.domain;
 
+/**
+ * Provides a set of methods for managing Interview objects.
+ */
 public interface InterviewAuditor {
 
     /**

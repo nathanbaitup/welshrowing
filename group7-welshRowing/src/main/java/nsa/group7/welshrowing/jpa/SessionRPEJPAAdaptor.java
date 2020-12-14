@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 
 import java.util.Optional;
 
+/**
+ * Provides a set of methods for managing and retrieving RPE Session Workout objects.
+ */
 @Component
 public class SessionRPEJPAAdaptor implements SessionRPEAuditor {
 

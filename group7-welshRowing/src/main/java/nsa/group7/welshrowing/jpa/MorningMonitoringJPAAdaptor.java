@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+/**
+ * Provides a set of methods for managing and retrieving Morning Monitoring objects.
+ */
 @Component
 public class MorningMonitoringJPAAdaptor implements MorningMonitoringAuditor {
 

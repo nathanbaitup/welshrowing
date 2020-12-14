@@ -4,6 +4,9 @@ import nsa.group7.welshrowing.domain.Applicant;
 import nsa.group7.welshrowing.domain.ApplicantTesting;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+/**
+ * Provides a set of methods using the JPA Repository to communicate to the database.
+ */
 public interface ApplicantTestingRepo extends JpaRepository<ApplicantTesting, Long> {
     /**
      * Finds an AthleteTest by athleteTestID to return the user object. For use within ApplicantTesting.class.

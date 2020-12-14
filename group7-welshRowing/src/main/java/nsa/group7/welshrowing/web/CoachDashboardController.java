@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Provides a set of methods for serving and handling Coach data.
+ */
 @Controller
 public class CoachDashboardController {
 

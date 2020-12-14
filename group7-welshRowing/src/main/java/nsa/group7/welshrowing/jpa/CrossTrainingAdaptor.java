@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 
 import java.util.Optional;
 
+/**
+ * Provides a set of methods for managing and retrieving Cross Training Workout objects.
+ */
 @Component
 public class CrossTrainingAdaptor implements crossTrainingAuditor {
 

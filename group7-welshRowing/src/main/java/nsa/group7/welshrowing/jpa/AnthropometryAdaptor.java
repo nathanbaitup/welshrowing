@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * Provides a set of methods for saving and decrypting anthropometric data.
+ */
 @Component
 public class AnthropometryAdaptor implements AnthropometryAuditor {
 

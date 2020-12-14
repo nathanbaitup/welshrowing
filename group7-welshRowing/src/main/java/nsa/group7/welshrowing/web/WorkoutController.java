@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
+/**
+ * Provides a set of methods for serving and handling Workout data.
+ */
 @Controller
 public class WorkoutController {
 

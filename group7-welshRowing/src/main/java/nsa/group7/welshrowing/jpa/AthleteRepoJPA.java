@@ -11,7 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Provides a set of methods using the JPA Repository to communicate to the database.
+ */
 public interface AthleteRepoJPA extends JpaRepository<Athlete, Long> {
     /**
      * Finds an athletes name.

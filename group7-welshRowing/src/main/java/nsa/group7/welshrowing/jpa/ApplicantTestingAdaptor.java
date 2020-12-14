@@ -5,6 +5,9 @@ import nsa.group7.welshrowing.domain.ApplicantTesting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Provides a set of methods for managing and retrieving Applicant Testing objects.
+ */
 @Component
 public class ApplicantTestingAdaptor implements ApplicantTestingAuditor {
     private final ApplicantTestingRepo applicantTestingRepo;
