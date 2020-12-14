@@ -27,9 +27,15 @@ public class CoachAthleteMonitoringController {
 //
 //    }
 
+    /**
+     * redirects to coachmorningmonitoring html page
+     * Populates morningMonitoringList with SQL MorningMonitoring table information
+     * @param model placeholder which .addAttribute populating with data SQL table
+     * @return file name coachMorningMonitoring
+     */
     @GetMapping("/coachdashboard/coachmorningmonitoring") // Previously morningMonitoring
     public String serveMorningMonitoringList(Model model) {
-        List<MorningMonitoring> morningMonitoringList = morningMonitoringAuditor.listMorningMonitoring();
+        List<MorningMonitoring> morningMonitoringList = morningMonitoringAuditor.findAllMonitoringMonitoring();
         model.addAttribute("listMorningMonitoring", morningMonitoringList);
         return "coachMorningMonitoring";
     }

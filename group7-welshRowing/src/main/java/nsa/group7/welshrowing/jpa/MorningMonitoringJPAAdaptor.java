@@ -30,9 +30,14 @@ public class MorningMonitoringJPAAdaptor implements MorningMonitoringAuditor {
         return Optional.empty();
     }
 
+    /**
+     * Creating a new list based off MorningMonitoring SQL Table
+     * findAll() is an extension of the JPARepository
+     * @return Returning morningMonitoringRepoJPA.findAll()
+     */
+    public List<MorningMonitoring> findAllMonitoringMonitoring() {
+        return morningMonitoringRepoJPA.findAll();
 
-    public List<MorningMonitoring> listMorningMonitoring(String athleteID) {
-        return null;
     }
 
     @Override
@@ -40,7 +45,5 @@ public class MorningMonitoringJPAAdaptor implements MorningMonitoringAuditor {
         return null;
     }
 
-    public List<MorningMonitoring> listMorningMonitoring() {
-        return listMorningMonitoring("1");
-    }
 }
+

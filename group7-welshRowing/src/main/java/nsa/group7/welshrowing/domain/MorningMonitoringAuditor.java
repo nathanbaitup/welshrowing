@@ -9,7 +9,7 @@ public interface MorningMonitoringAuditor {
 
     Optional<Applicant> findMorningMonitoringById(Long id);
 
-    public List<MorningMonitoring> listMorningMonitoring();
+    public List<MorningMonitoring> findAllMonitoringMonitoring();
 
     MorningMonitoring findById(Long id);
 }
