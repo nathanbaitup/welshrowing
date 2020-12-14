@@ -28,17 +28,19 @@
             <th>Mobile Number</th>
             <th>Guardian Mobile Number</th>
             <th>Application Status</th>
+            <th>Button</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="athlete : ${listApplicants}">
-            <td th:text="${athlete.athleteID}">Athlete ID</td>
+            <td class="athleteID" th:text="${athlete.athleteID}">Athlete ID</td>
             <td th:text="${athlete.name}">Name</td>
             <td th:text="${athlete.gender}">Gender</td>
             <td th:text="${athlete.dob}">Date of Birth</td>
             <td th:text="${athlete.mobileNumber}">Mobile Number</td>
             <td th:text="${athlete.guardianContactNumber}">Guardian Number</td>
             <td th:text="${athlete.applicationStatus}">Application Status</td>
+            <td><button class="button" type="submit" id="acceptButton">ACCEPT</button></td>
         </tr>
         </tbody>
     </table>

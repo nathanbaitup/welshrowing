@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/template.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="/css/entryForms.css">
+    <script src="/js/setDate.js"></script>
+    <title>Applicant Anthropometry</title>
+</head>
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img src="/images/logo.png"></a> <!-- Logo location with link to homepage -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span> <!-- Drop down menu button when page is on mobile -->
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"> <!--Each button object for nav-->
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">About</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/new-applicant">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 id="pageTitle">Anthropometrics </h1>
+
+</header>
+
+<body>
+<p>Please fill in the form below to enter to submit your anthropometric data.</p>
+<br>
+<div class="entry-form">
+    <form action="#" method="post" th:action="@{/submit-anthropometry}" th:object="${anthropometry}">
+
+        <input th:field="*{athleteID}" hidden>
+
+
+        <div class="form-group">
+            <label th:for="injuries">Have you had any previous injuries?:</label><br>
+            <input class="form-control" th:field="*{injuries}" type="text" placeholder="Injury type / No" required><br>
+        </div>
+        <span th:errors="*{injuries}" th:if="${#fields.hasErrors('injuries')}">Please enter text.</span>
+        <br>
+
+            <div class="form-group">
+                <label th:for="heightCM">Please enter your height in CM: </label>
+                <input class="form-control" th:field="*{heightCM}" type="number" placeholder="0" required/>
+            </div>
+            <span th:errors="*{heightCM}"
+                  th:if="${#fields.hasErrors('heightCM')}">Please enter the value.</span>
+            <br>
+
+            <div class="form-group">
+                <label th:for="weightKG">Please enter your weight in KG: </label>
+                <input class="form-control" th:field="*{weightKG}" type="number" placeholder="0" required/>
+            </div>
+            <span th:errors="*{weightKG}"
+                  th:if="${#fields.hasErrors('weightKG')}">Please enter the value.</span>
+            <br>
+
+            <div class="form-group">
+                <label th:for="armspanCM">Please enter your Armspan in CM: </label>
+                <input class="form-control" th:field="*{armspanCM}" type="number" placeholder="0" required/>
+            </div>
+            <span th:errors="*{armspanCM}"
+                  th:if="${#fields.hasErrors('armspanCM')}">Please enter the value.</span>
+            <br>
+
+        <button class="btn btn-primary" type="submit">Submit Your details</button>
+
+    </form>
+</div>
+
+</body>
+</html>

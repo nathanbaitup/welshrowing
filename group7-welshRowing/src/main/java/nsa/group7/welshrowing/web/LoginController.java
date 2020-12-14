@@ -2,7 +2,6 @@ package nsa.group7.welshrowing.web;
 
 import nsa.group7.welshrowing.domain.Applicant;
 import nsa.group7.welshrowing.domain.ApplicantAuditor;
-import nsa.group7.welshrowing.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,11 @@ public class LoginController {
 
     private final ApplicantAuditor applicantAuditor;
 
+    /**
+     * Injects all of the auditors needed to save input data into the database.
+     *
+     * @param applicantAuditor -the applicant Auditor.
+     */
     @Autowired
     public LoginController(ApplicantAuditor applicantAuditor){
         this.applicantAuditor = applicantAuditor;
@@ -63,7 +67,7 @@ public class LoginController {
                 model.addAttribute("loginForm", loginForm);
                 return "login";
             } else if (theUser.getRole().equals("coach")) {
-                return "redirect:/coachdashboard/" + theUser.getUserID();
+                return "redirect:/coach-dashboard/" + theUser.getUserID();
             } else {
                 return "redirect:/athlete-dashboard";
             }

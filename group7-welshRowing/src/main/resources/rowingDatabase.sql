@@ -1,5 +1,57 @@
 # https://lucid.app/lucidchart/invitations/accept/fade6f95-af6c-4643-9f07-1e402e18cd19 following schema
-# DROP DATABASE IF EXISTS  welshRowing;
+
+#creates admin user with password adminpassword and gives them all permissions over all tables
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'adminpassword';
+GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
+
+#creates coach user with password coachpassword and gives them all permissions to insert,select,update, and delete on all tables.
+CREATE USER 'coach'@'localhost' IDENTIFIED BY 'coachpassword';
+GRANT INSERT ON welshrowing TO 'coach'@'localhost';
+GRANT SELECT ON welshrowing TO 'coach'@'localhost';
+GRANT UPDATE ON welshrowing TO 'coach'@'localhost';
+GRANT DELETE ON welshrowing TO 'coach'@'localhost';
+FLUSH PRIVILEGES;
+
+#creates athlete user with password athletepassword and gives them all permissions to insert,select,update on tables needed.
+CREATE USER 'athlete'@'localhost' IDENTIFIED BY 'athletepassword';
+GRANT SELECT ON welshrowing.User TO 'athlete'@'localhost';
+GRANT INSERT ON welshrowing.User TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.User TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.Athlete TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.Athlete TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.Athlete TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.MedicalData TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.MedicalData TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.MedicalData TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.AthletePreviousSports TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.AthletePreviousSports TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.AthletePreviousSports TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.Interview TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.Interview TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.Interview TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.AthleteTest TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.AthleteTest TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.AthleteTest TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.MorningMonitoring TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.MorningMonitoring TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.MorningMonitoring TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.SessionRPE TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.SessionRPE TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.SessionRPE TO 'athlete'@'localhost';
+
+GRANT INSERT ON welshrowing.CrossTraining TO 'athlete'@'localhost';
+GRANT UPDATE ON welshrowing.CrossTraining TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.CrossTraining TO 'athlete'@'localhost';
+FLUSH PRIVILEGES;
+
 
 CREATE DATABASE IF NOT EXISTS welshRowing;
 
@@ -34,7 +86,7 @@ CREATE TABLE `Athlete` (
     guardianContactNumber VARCHAR(50),
     heardFrom VARCHAR(40),
     interestLetter BOOLEAN,
-    postTestResult VARCHAR(30),
+    postTestResult VARCHAR(60),
     PRIMARY KEY PKAthlete(athleteID),
     FOREIGN KEY FKAthlete(`coachID`) REFERENCES Athlete(`athleteID`)
 );
@@ -46,10 +98,6 @@ CREATE TABLE `MedicalData` (
     heightCM INTEGER,
     weightKG INTEGER,
     armSpanCM INTEGER,
-    basicCore VARCHAR(50),
-    bCNotes VARCHAR(50),
-    flexibility VARCHAR(50),
-    fNotes VARCHAR(50),
     PRIMARY KEY PKMedicalData(medicalDataID),
     FOREIGN KEY FKMedicalData(athleteID) REFERENCES Athlete(athleteID)
 );
@@ -110,7 +158,7 @@ CREATE TABLE `Coach` (
 CREATE TABLE `AthleteTest` (
    athleteTestID INTEGER AUTO_INCREMENT NOT NULL,
    athleteID INTEGER NOT NULL,
-   coachID INTEGER NOT NULL,
+   coachID INTEGER,
    dateOfTest DATE,
    athleteComments VARCHAR(100),
    legPress3Reps INTEGER NOT NULL,
@@ -119,6 +167,10 @@ CREATE TABLE `AthleteTest` (
    armPull15Reps INTEGER NOT NULL,
    score INTEGER NOT NULL,
    observations VARCHAR(150),
+   basicCore VARCHAR(5),
+   bCNotes VARCHAR(50),
+   flexibility VARCHAR(5),
+   fNotes VARCHAR(50),
    PRIMARY KEY PKAthleteTest (athleteTestID),
    FOREIGN KEY FKAthleteTest(athleteID) REFERENCES Athlete(athleteID),
    FOREIGN KEY FKCoachAthleteTest (coachID) REFERENCES Coach(coachID)
@@ -161,15 +213,486 @@ CREATE TABLE `CrossTraining` (
     FOREIGN KEY FKCrossTraining(athleteID) REFERENCES Athlete(athleteID)
 );
 
-# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10,10);
-# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10);
-# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10);
-# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10);
-# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10);
-# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10);
-# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (2020-08-09,10,10,10,10,10,10);
 
-# INSERT INTO Athlete (athleteID, coachID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address, postcode, placeOfEducation, guardianName, relationshipToAthlete, guardianEmail, guardianContactNumber, heardFrom, interestLetter, postTestResult) VALUES (1,1,'Test','Male','2020-08-09',1,'test@test',999,999,'test','test','test','test','test','test','test','test',1,'test');
-# INSERT INTO MorningMonitoring (athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape, perceivedMentalState, sleepQuantityHours, sleepQuality) VALUES (1,'2020-08-09',10,10,10,10,10,10);
-#
-# SELECT * FROM MorningMonitoring;
+CREATE VIEW crossTrainingAdmins
+AS
+  SELECT crossTrainingID, athleteID, dateofSession, typeOfCrossTraining, totalTimeMinutes, totalDistance FROM CrossTraining;
+
+CREATE VIEW crossTrainingCoaches
+AS
+  SELECT crossTrainingID, athleteID, dateofSession, typeOfCrossTraining, totalTimeMinutes, totalDistance FROM CrossTraining;
+
+CREATE VIEW crossTrainingAthletes
+AS
+  SELECT crossTrainingID, athleteID, dateofSession, typeOfCrossTraining, totalTimeMinutes, totalDistance FROM CrossTraining;
+
+CREATE VIEW interviewAdmins
+AS
+  SELECT interviewID, athleteID, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16, answer17, answer18, answer19, answer20, answer21, answer22, answer23, answer24 FROM interview;
+
+CREATE VIEW interviewCoaches
+AS
+  SELECT interviewID, athleteID, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16, answer17, answer18, answer19, answer20, answer21, answer22, answer23, answer24 FROM interview;
+
+CREATE VIEW interviewAthletes
+AS
+  SELECT interviewID, athleteID FROM interview;
+
+SELECT * FROM interviewAthletes;
+
+GRANT SELECT ON crossTrainingAdmins TO [admin];
+GRANT SELECT ON crossTrainingCoaches TO [coach];
+GRANT SELECT ON crossTrainingAthletes TO [athlete];
+GRANT SELECT ON interviewAdmins TO [admin];
+GRANT SELECT ON interviewCoaches TO [coach];
+GRANT SELECT ON interviewAthletes TO [athlete];
+
+
+
+DELIMITER //
+
+# Trigger for validation of Email within the Athlete table, checks to see if email contains '@'
+# Signals SQL 45000 signing a unhandled exception, and prints out the message to the console
+CREATE TRIGGER emailValidationAthlete BEFORE INSERT ON Athlete FOR EACH ROW
+    BEGIN
+        IF NEW.`email` NOT LIKE '%_@%_.__%' THEN
+            SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Athlete Table - Email = This is not a valid email, please try again';
+        end if;
+    end //
+
+# Trigger for validation of Interview questions, making sure they are not null
+# If null will trigger SQL Signal state printing out a message to the user
+# Running for question 14-24
+
+CREATE TRIGGER interviewNullOne BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer1 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 1 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwo BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer2 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 2 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullThree BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer3 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 3 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullFour BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer4 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 4 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullFive BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer5 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 5 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullSix BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer6 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 6 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullSeven BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer7 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 7 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullEight BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer8 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 8 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullNine BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer9 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 9 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer10 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 10 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullEleven BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer11 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 11 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwelve BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer12 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 12 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullThirteen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer13 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 13 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullFourteen BEFORE INSERT ON Interview FOR EACH ROW
+    BEGIN
+        IF NEW.answer14 IS NULL THEN
+            SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 14 is NULL, please select / type an option';
+        end if;
+    end //
+
+CREATE TRIGGER interviewNullFifteen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer15 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 15 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullSixteen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer16 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 16 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullSeventeen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer17 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 17 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullEighteen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer18 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 18 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullNineteen BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer19 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 19 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwenty BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer20 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 20 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwentyOne BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer21 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 21 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwentyTwo BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer22 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 22 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwentyThree BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer23 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 23 is NULL, please select / type an option';
+    end if;
+end //
+
+CREATE TRIGGER interviewNullTwentyFour BEFORE INSERT ON Interview FOR EACH ROW
+BEGIN
+    IF NEW.answer24 IS NULL THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Question 24 is NULL, please select / type an option';
+    end if;
+end //
+
+
+-- Trigger that encrypts an athletes medical data before it is inserted into the database.
+CREATE TRIGGER encrypt_medical_data BEFORE INSERT ON MedicalData FOR EACH ROW
+BEGIN
+    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, 'ypT9pYnCjTuP8n4jr7eW');
+    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, 'ypT9pYnCjTuP8n4jr7eW');
+    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, 'ypT9pYnCjTuP8n4jr7eW');
+    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, 'ypT9pYnCjTuP8n4jr7eW');
+END//
+-- Trigger that encrypts an athletes medical data before it is updated and saved to the database.
+CREATE TRIGGER encrypt_medical_data_update BEFORE UPDATE ON MedicalData FOR EACH ROW
+BEGIN
+    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, 'ypT9pYnCjTuP8n4jr7eW');
+    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, 'ypT9pYnCjTuP8n4jr7eW');
+    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, 'ypT9pYnCjTuP8n4jr7eW');
+    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, 'ypT9pYnCjTuP8n4jr7eW');
+END//
+
+-- SP that if provided the correct key, will decrypt an athletes medical data if updates are needed.
+CREATE PROCEDURE decrypt_data(
+    IN theAthleteID INT,
+    IN theKey VARCHAR(255)
+)
+BEGIN
+    SELECT medicalDataID, athleteID,
+           AES_DECRYPT(injuries, theKey) as 'injuries',
+           AES_DECRYPT(heightCM, theKey) as 'heightCM',
+           AES_DECRYPT(weightKG, theKey) as 'weightKG',
+           AES_DECRYPT(armSpanCM, theKey) as 'armSpanCM'
+    FROM MedicalData WHERE athleteID = theAthleteID;
+
+END //
+DELIMITER ;
+
+CREATE TABLE `UserAudit` (
+     athleteID INTEGER NOT NULL,
+     deletedDate DATE,
+     deleted_by VARCHAR(50)
+);
+
+
+
+
+  
+   DELIMITER //
+
+CREATE TRIGGER athlete_after_delete
+AFTER DELETE
+   ON athlete FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.athleteID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+
+   DELIMITER //
+
+CREATE TRIGGER athletetest_after_delete
+AFTER DELETE
+   ON athletetest FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.athleteID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+
+   DELIMITER //
+
+CREATE TRIGGER crosstraining_after_delete
+AFTER DELETE
+   ON crosstraining FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.athleteID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+
+   DELIMITER //
+
+CREATE TRIGGER medicaldata_after_delete
+AFTER DELETE
+   ON medicaldata FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.athleteID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+
+   DELIMITER //
+
+CREATE TRIGGER morningmonitoring_after_delete
+AFTER DELETE
+   ON morningmonitoring FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.athleteID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+
+   DELIMITER //
+
+CREATE TRIGGER sessionrpe_after_delete
+AFTER DELETE
+   ON sessionrpe FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.athleteID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+   DELIMITER //
+
+CREATE TRIGGER user_after_delete
+AFTER DELETE
+   ON user FOR EACH ROW
+
+BEGIN
+
+   DECLARE userName varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO userName;
+
+   -- Insert record into audit table
+   INSERT INTO UserAudit
+   ( athleteID,
+     deletedDate,
+     deleted_by)
+   VALUES
+   ( OLD.userID,
+     SYSDATE(),
+     userName );
+
+END; //
+
+DELIMITER ;
+
+CREATE VIEW userAuditAdmin
+AS
+	SELECT athleteID, deletedDate, deleted_by FROM useraudit;
+    
+CREATE VIEW userAuditCoach
+AS
+	SELECT deletedDate FROM useraudit;

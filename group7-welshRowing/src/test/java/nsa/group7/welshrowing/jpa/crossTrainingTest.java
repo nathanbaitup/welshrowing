@@ -30,9 +30,9 @@ public class crossTrainingTest {
 
     @Test
     public void shouldBeAbleToRetrieveCrossTrainingRecord(){
-        Athlete athlete = athleteRepoJPA.save(new Athlete(1L, null, "Testing", "Male", "17-08-2001", true, "testing@testing.com", "01234567890", "", "1 Test Street", "CF244BX", "Cardiff University", "", "", "", "", "Facebook", false, ""));
-        crossTrainingRepoJPA.save(new CrossTraining(1L, athlete, "1998-02-05", "RoadCycle", null, 2));
-        CrossTraining aCrossTraining = crossTrainingRepoJPA.findByCrossTrainingId(1L);
+        Athlete athlete = athleteRepoJPA.save(new Athlete(2L, null, "Testing", "Male", "17-08-2001", true, "testing@testing.com", "01234567890", "", "1 Test Street", "CF244BX", "Cardiff University", "", "", "", "", "Facebook", false, ""));
+        crossTrainingRepoJPA.save(new CrossTraining(2L, athlete, "1998-02-05", "RoadCycle", null, 2));
+        CrossTraining aCrossTraining = crossTrainingRepoJPA.findByCrossTrainingId(2L);
 
         assertEquals("RoadCycle", aCrossTraining.getTypeOfCrossTraining());
         assertEquals("1998-02-05", aCrossTraining.getDateOfSession());
