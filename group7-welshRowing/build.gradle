@@ -43,6 +43,9 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+test {
+    exclude 'nsa/group7/welshrowing/structurizr/**'
+}
 
 tasks.bootRun.configure {
     systemProperty("spring.profiles.active", "dev")
