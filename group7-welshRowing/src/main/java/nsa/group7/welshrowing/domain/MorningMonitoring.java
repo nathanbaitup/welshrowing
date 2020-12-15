@@ -19,7 +19,7 @@ public class MorningMonitoring {
     private Long monitoringID;
     @ManyToOne
     @JoinColumn(name = "athleteID")
-    private Athlete athleteID;
+    private Athlete athlete;
 
     private Date date;
 
