@@ -2,11 +2,15 @@ package nsa.group7.welshrowing.jpa;
 import nsa.group7.welshrowing.domain.SessionRPE;
 import nsa.group7.welshrowing.domain.SessionRPEAuditor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.util.Optional;
 
-@Controller
+/**
+ * Provides a set of methods for managing and retrieving RPE Session Workout objects.
+ */
+@Component
 public class SessionRPEJPAAdaptor implements SessionRPEAuditor {
 
     private final SessionRPERepoJPA sessionRPERepoJPA;
