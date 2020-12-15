@@ -7,6 +7,7 @@ import nsa.group7.welshrowing.domain.MorningMonitoringAuditor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -31,4 +32,21 @@ public class MorningMonitoringJPAAdaptor implements MorningMonitoringAuditor {
     public Optional<Applicant> findMorningMonitoringById(Long id) {
         return Optional.empty();
     }
+
+    /**
+     * Creating a new list based off MorningMonitoring SQL Table
+     * findAll() is an extension of the JPARepository
+     * @return Returning morningMonitoringRepoJPA.findAll()
+     */
+    public List<MorningMonitoring> findAllMonitoringMonitoring() {
+        return morningMonitoringRepoJPA.findAll();
+
+    }
+
+    @Override
+    public MorningMonitoring findById(Long id) {
+        return null;
+    }
+
 }
+
