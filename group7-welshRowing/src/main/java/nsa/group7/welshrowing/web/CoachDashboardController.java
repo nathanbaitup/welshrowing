@@ -6,15 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@SessionAttributes(names = {"users"})
 public class CoachDashboardController {
 
     private final ApplicantAuditor coachAuditor;
@@ -36,19 +35,27 @@ public class CoachDashboardController {
         this.applicantTestingAuditor = applicantTestingAuditor;
     }
 
+    @ModelAttribute("users")
+    public List<Long> users() {
+        return new ArrayList<Long>();
+    }
+
     /**
      * @param id   - The ID provided by the database
      * @param name - Name of the ID user
      * @return return the coachDashboard.html file
      */
-    @GetMapping("coach-dashboard/{id}")
-    public String coachDashboard(@PathVariable Long id, Model name) {
-        Applicant aCoachDashboard = coachAuditor.findApplicantById(id).get();
-        coachDashboard coachDashboardForm = new coachDashboard(aCoachDashboard.getName(), "Welcome to your dashboard!");
-        ;
-        name.addAttribute("coachName", coachDashboardForm);
-
-        return "coachDashboard";
+    @GetMapping("coach/coach-dashboard/{id}")
+    public String coachDashboard(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model name) {
+        if (users.get(users.size() - 1).equals(id)) {
+            System.out.println("List of Users: " + users);
+            Applicant aCoachDashboard = coachAuditor.findApplicantById(id).get();
+            coachDashboard coachDashboardForm = new coachDashboard(aCoachDashboard.getName(), "Welcome to your dashboard!");
+            name.addAttribute("coachName", coachDashboardForm);
+            return "coachDashboard";
+        } else {
+            return "redirect:/coach/coach-dashboard/" + users.get(users.size() - 1);
+        }
     }
 
     /**
@@ -57,7 +64,7 @@ public class CoachDashboardController {
      * @param model - adds to the page.
      * @return returns the submit testing form, with the list of current applicants to select from.
      */
-    @GetMapping("submit-testing")
+    @GetMapping("coach/submit-testing")
     public String serveApplicantTesting(Model model) {
         List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
         model.addAttribute("applicantTesting", applicantList);
@@ -76,8 +83,7 @@ public class CoachDashboardController {
      * @return returns either the form to append errors or submits data to the database and redirects to the coach dashboard.
      */
     @PostMapping("submit-testing")
-    public String handleTestingEntry(@ModelAttribute("applicantList") ApplicantTesting applicantTesting, @Valid ApplicantTestingForm applicantTestingForm, BindingResult bindings, Model model) {
-        String postResult = applicantTestingForm.getPostTestResult();
+    public String handleTestingEntry(@ModelAttribute("applicantList") ApplicantTesting applicantTesting, @ModelAttribute("users") List<Long> users, @Valid ApplicantTestingForm applicantTestingForm, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
@@ -89,11 +95,11 @@ public class CoachDashboardController {
             athleteAuditor.setApplicationStatus(Boolean.FALSE, applicantTestingForm.getAthleteID());
             athleteAuditor.setPostTestStatus(applicantTestingForm.getPostTestResult(), applicantTestingForm.getAthleteID());
             applicantTestingAuditor.saveApplicantTesting(applicantTesting);
-            return "redirect:/coach-dashboard/1";
+            return "redirect:/coach/coach-dashboard/" + users.get(users.size() - 1);
         } else {
             athleteAuditor.setPostTestStatus(applicantTestingForm.getPostTestResult(), applicantTestingForm.getAthleteID());
             applicantTestingAuditor.saveApplicantTesting(applicantTesting);
-            return "redirect:/coach-dashboard/1";
+            return "redirect:/coach/coach-dashboard/" + users.get(users.size() - 1);
         }
     }
 }
