@@ -53,7 +53,7 @@ public class CoachDashboardController {
         if (users.get(users.size() - 1).equals(id)) {
             System.out.println("List of Users: " + users);
             Applicant aCoachDashboard = coachAuditor.findApplicantById(id).get();
-            coachDashboard coachDashboardForm = new coachDashboard(aCoachDashboard.getName(), "Welcome to your dashboard!");
+            CoachDashboard coachDashboardForm = new CoachDashboard(aCoachDashboard.getName(), "Welcome to your dashboard!");
             name.addAttribute("coachName", coachDashboardForm);
             return "coachDashboard";
         } else {

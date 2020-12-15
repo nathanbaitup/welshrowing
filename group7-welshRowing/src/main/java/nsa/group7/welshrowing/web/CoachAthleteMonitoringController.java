@@ -7,10 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@SessionAttributes(names = {"users"})
 public class CoachAthleteMonitoringController {
 
     private final MorningMonitoringAuditor morningMonitoringAuditor;
@@ -20,12 +25,10 @@ public class CoachAthleteMonitoringController {
         this.morningMonitoringAuditor = morningMonitoringAuditor;
     }
 
-//    @GetMapping("/coachdashboard/coachmorningmonitoring")
-//    public String athleteMonitoring(){
-//
-//        return "coachMorningMonitoring";
-//
-//    }
+    @ModelAttribute("users")
+    public List<Long> users() {
+        return new ArrayList<Long>();
+    }
 
     /**
      * redirects to coachmorningmonitoring html page
@@ -33,11 +36,16 @@ public class CoachAthleteMonitoringController {
      * @param model placeholder which .addAttribute populating with data SQL table
      * @return file name coachMorningMonitoring
      */
-    @GetMapping("/coachdashboard/coachmorningmonitoring") // Previously morningMonitoring
-    public String serveMorningMonitoringList(Model model) {
-        List<MorningMonitoring> morningMonitoringList = morningMonitoringAuditor.findAllMonitoringMonitoring();
-        model.addAttribute("listMorningMonitoring", morningMonitoringList);
-        return "coachMorningMonitoring";
+    @GetMapping("/coach/coach-dashboard/{id}/coach-morning-monitoring") // Previously morningMonitoring
+    public String serveMorningMonitoringList(@PathVariable("id") Long id, @ModelAttribute("users") List<Long> users, Model model) {
+        if (users.get(users.size() - 1).equals(id)) {
+            System.out.println("List of Users: " + users);
+            List<MorningMonitoring> morningMonitoringList = morningMonitoringAuditor.findAllMonitoringMonitoring();
+            model.addAttribute("listMorningMonitoring", morningMonitoringList);
+            return "coachMorningMonitoring";
+        } else {
+            return "redirect:/404";
+        }
     }
 
 }

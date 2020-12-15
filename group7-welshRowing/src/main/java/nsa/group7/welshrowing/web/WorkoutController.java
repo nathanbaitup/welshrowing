@@ -10,17 +10,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Provides a set of methods for serving and handling Workout data.
  */
 @Controller
+@SessionAttributes(names = {"users"})
 public class WorkoutController {
 
     private final crossTrainingAuditor crossTrainingAuditor;
@@ -38,25 +38,34 @@ public class WorkoutController {
         sessionRPEAuditor = aSessionRPEAuditor;
     }
 
-    @GetMapping("submit-crosstraining-form/{athleteID}")
-    public String submitCrossTrainingForm(@PathVariable Long athleteID, Model model) {
-        CrossTrainingSessionForm crossTrainingSessionForm = new CrossTrainingSessionForm(athleteID,null,null,null,null);
-        model.addAttribute("crossTrainingSessionForm", crossTrainingSessionForm);
-        return "crossTrainingForm";
+    @ModelAttribute("users")
+    public List<Long> users() {
+        return new ArrayList<Long>();
     }
 
-    @PostMapping("submit-crosstraining-form")
-    public String postSubmitCrossTrainingForm(@ModelAttribute("crossTrainingSessionForm") CrossTraining crossTraining, @Valid CrossTrainingSessionForm crossTrainingSessionForm, BindingResult bindings, Model model) {
+    @GetMapping("submit-cross-training-form/{athleteID}")
+    public String submitCrossTrainingForm(@PathVariable Long athleteID, @ModelAttribute("users") List<Long> users, Model model) {
+        if (users.get(users.size() - 1).equals(athleteID)) {
+            CrossTrainingSessionForm crossTrainingSessionForm = new CrossTrainingSessionForm(athleteID, null, null, null, null);
+            model.addAttribute("crossTrainingSessionForm", crossTrainingSessionForm);
+            return "crossTrainingForm";
+        } else {
+            return "redirect:/404";
+        }
+    }
+
+    @PostMapping("submit-cross-training-form")
+    public String postSubmitCrossTrainingForm(@ModelAttribute("crossTrainingSessionForm") CrossTraining crossTraining, @ModelAttribute("users") List<Long> users, @Valid CrossTrainingSessionForm crossTrainingSessionForm, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
                 System.out.println(oe);
             }
             model.addAttribute("crossTrainingSessionForm", crossTrainingSessionForm);
-            return "submit-crosstraining-form/" + crossTrainingSessionForm.getAthleteID();
+            return "submit-cross-training-form/" + users.get(users.size() - 1);
         } else {
             crossTrainingAuditor.saveCrossTrainingData(crossTraining);
-            return "redirect:/athlete-dashboard";
+            return "redirect:/athlete-dashboard/" + users.get(users.size() - 1);
         }
     }
     /**
@@ -67,10 +76,14 @@ public class WorkoutController {
      * @return returns the session-rpe-form.
      */
     @GetMapping("submit-session-rpe/{athleteID}")
-    public String serveSessionRPEForm(@PathVariable Long athleteID, Model model) {
-        SessionRPEForm sessionRPEForm = new SessionRPEForm(athleteID);
-        model.addAttribute("sessionRPEForm", sessionRPEForm);
-        return "session-rpe-form";
+    public String serveSessionRPEForm(@PathVariable Long athleteID, @ModelAttribute("users") List<Long> users, Model model) {
+        if (users.get(users.size() - 1).equals(athleteID)) {
+            SessionRPEForm sessionRPEForm = new SessionRPEForm(athleteID);
+            model.addAttribute("sessionRPEForm", sessionRPEForm);
+            return "session-rpe-form";
+        } else {
+            return "redirect:/404";
+        }
     }
 
     /**
@@ -83,17 +96,17 @@ public class WorkoutController {
      * @return returns the form if errors or the homepage.
      */
     @PostMapping("submit-session-rpe")
-    public String handleSessionRPEForm(@ModelAttribute("sessionRPEForm") SessionRPE sessionRPE, @Valid SessionRPEForm sessionRPEForm, BindingResult bindings, Model model) {
+    public String handleSessionRPEForm(@ModelAttribute("sessionRPEForm") SessionRPE sessionRPE, @ModelAttribute("users") List<Long> users, @Valid SessionRPEForm sessionRPEForm, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
                 System.out.println(oe);
             }
             model.addAttribute("sessionRPEForm", sessionRPEForm);
-            return "session-rpe-form/" + sessionRPEForm.getAthleteID();
+            return "session-rpe-form/" + users.get(users.size() - 1);
         } else {
             sessionRPEAuditor.saveSession(sessionRPE);
-            return "redirect:/athlete-dashboard";
+            return "redirect:/athlete-dashboard/" + users.get(users.size() - 1);
         }
     }
 }
