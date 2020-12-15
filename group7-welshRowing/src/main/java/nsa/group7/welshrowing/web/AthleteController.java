@@ -9,16 +9,21 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
+@SessionAttributes(names = {"users"})
+
+
 public class AthleteController {
 
     private final AthleteAuditor athleteAuditor;
@@ -45,6 +50,12 @@ public class AthleteController {
         this.env = env;
     }
 
+    @ModelAttribute("users")
+    public List<Long> users() {
+        return new ArrayList<Long>();
+    }
+
+
     /**
      * Allows a user to create a new account, automatically assumes user is an applicant
      *
@@ -62,13 +73,20 @@ public class AthleteController {
      * Saves the name, username and password to the database.
      *
      * @param applicant     - the entity to be stored in the database.
+     * @param users         - session attribute.
+     * @param attributes    - adds the userID to the current session.
      * @param applicantForm - data filled out from the form.
      * @param bindings      - errors from filling out form.
      * @param model         - adds to the page model
      * @return returns either the applicant form if any errors have occurred or redirects to the update details page for the user id.
      */
     @PostMapping("new-applicant")
-    public String handleApplicantCreation(@ModelAttribute("applicant") Applicant applicant, @Valid ApplicantForm applicantForm, BindingResult bindings, Model model) {
+    public String handleApplicantCreation(@ModelAttribute("applicant") Applicant applicant,
+                                          @ModelAttribute("users") List<Long> users,
+                                          RedirectAttributes attributes,
+                                          @Valid ApplicantForm applicantForm,
+                                          BindingResult bindings,
+                                          Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
@@ -79,7 +97,10 @@ public class AthleteController {
         } else {
             applicant.setPassword(hashPassword(applicantForm.getPassword()));
             applicantAuditor.saveApplicant(applicant);
-            return "redirect:/update-details/" + applicant.getUserID();
+            users.add(applicant.getUserID());
+            attributes.addFlashAttribute("users", users);
+            System.out.println("List of Users: " + users);
+            return "redirect:/update-details/" + users.get(users.size() - 1);
         }
     }
 
@@ -87,15 +108,20 @@ public class AthleteController {
      * Takes the user id and allows them to update their information.
      *
      * @param id    - the ID of the applicants login credentials.
+     * @param users - session attribute.
      * @param model - adds the form to the model
      * @return returns the update details form
      */
     @GetMapping("update-details/{id}")
-    public String serveAthleteUpdateForm(@PathVariable Long id, Model model) {
-        Applicant applicant = applicantAuditor.findApplicantById(id).get();
-        AthleteUpdateForm athleteUpdateForm = new AthleteUpdateForm(applicant.getUserID(), applicant.getName());
-        model.addAttribute("athleteUpdateForm", athleteUpdateForm);
-        return "update-athlete";
+    public String serveAthleteUpdateForm(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model model) {
+        if (users.get(users.size() - 1).equals(id)) {
+            Applicant applicant = applicantAuditor.findApplicantById(id).get();
+            AthleteUpdateForm athleteUpdateForm = new AthleteUpdateForm(applicant.getUserID(), applicant.getName());
+            model.addAttribute("athleteUpdateForm", athleteUpdateForm);
+            return "update-athlete";
+        } else {
+            return "redirect:/404";
+        }
     }
 
     /**
@@ -104,11 +130,12 @@ public class AthleteController {
      * @param athlete           - the entity to be saved to the database.
      * @param athleteUpdateForm - the form where user input data has been entered.
      * @param bindings          - errors from the form.
+     * @param users             - session attribute.
      * @param model             - adds to the page model
      * @return returns the form if any errors occur or redirects to the homepage.
      */
     @PostMapping("update-athlete")
-    public String handleAthleteEntry(@ModelAttribute("athlete") Athlete athlete, @Valid AthleteUpdateForm athleteUpdateForm, BindingResult bindings, Model model) {
+    public String handleAthleteEntry(@ModelAttribute("athlete") Athlete athlete, @Valid AthleteUpdateForm athleteUpdateForm, BindingResult bindings, @ModelAttribute("users") List<Long> users, Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
@@ -118,19 +145,26 @@ public class AthleteController {
             return "update-athlete";
         } else {
             athleteAuditor.saveAthlete(athlete);
-            return "redirect:/athlete-dashboard";
+            return "redirect:/athlete-dashboard/" + users.get(users.size() - 1);
         }
     }
 
     /**
+     * @param id    - coach id to check that a coach is signed in.
+     * @param users - session attribute
      * @param model - adds to the page
      * @return returns a list of applicants to the coach
      */
-    @GetMapping("applicants")
-    public String serveApplicantList(Model model) {
-        List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
-        model.addAttribute("listApplicants", applicantList);
-        return "applicant-list";
+    @GetMapping("applicants/{id}")
+    public String serveApplicantList(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model model) {
+
+        if (users.get(users.size() - 1).equals(id)) {
+            List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
+            model.addAttribute("listApplicants", applicantList);
+            return "applicant-list";
+        } else {
+            return "redirect:/404";
+        }
     }
 
     @RequestMapping("/applicantToAthlete")
@@ -152,12 +186,16 @@ public class AthleteController {
      * @return returns the anthropometry form.
      */
     @GetMapping("submit-anthropometry/{id}")
-    public String serveApplicantAnthropometry(@PathVariable("id") Long id, Model model) {
-        Athlete athlete = athleteAuditor.findAthleteById(id).get();
+    public String serveApplicantAnthropometry(@PathVariable("id") Long id, @ModelAttribute("users") List<Long> users, Model model) {
 
-        AnthropometryForm anthropometryForm = new AnthropometryForm(athlete.getAthleteID());
-        model.addAttribute("anthropometry", anthropometryForm);
-        return "applicant-anthropometry";
+        if (users.get(users.size() - 1).equals(id)) {
+            Athlete athlete = athleteAuditor.findAthleteById(id).get();
+            AnthropometryForm anthropometryForm = new AnthropometryForm(athlete.getAthleteID());
+            model.addAttribute("anthropometry", anthropometryForm);
+            return "applicant-anthropometry";
+        } else {
+            return "redirect:/404";
+        }
     }
 
     /**
@@ -168,11 +206,15 @@ public class AthleteController {
      * @return returns the applicant anthropometry form.
      */
     @GetMapping("update-anthropometry/{id}")
-    public String serveApplicantUpdateAnthropometryForm(@PathVariable("id") Long id, Model model) {
-        Anthropometry anthropometry = anthropometryAuditor.decryptData(id, env.getProperty("app.key"));
-        Anthropometry anthropometryForm = new Anthropometry(anthropometry.getMedicalDataID(), anthropometry.getAthleteID(), anthropometry.getInjuries(), anthropometry.getHeightCM(), anthropometry.getWeightKG(), anthropometry.getArmspanCM());
-        model.addAttribute("anthropometry", anthropometryForm);
-        return "applicant-anthropometry";
+    public String serveApplicantUpdateAnthropometryForm(@PathVariable("id") Long id, @ModelAttribute("users") List<Long> users, Model model) {
+        if (users.get(users.size() - 1).equals(id)) {
+            Anthropometry anthropometry = anthropometryAuditor.decryptData(id, env.getProperty("app.key"));
+            Anthropometry anthropometryForm = new Anthropometry(anthropometry.getMedicalDataID(), anthropometry.getAthleteID(), anthropometry.getInjuries(), anthropometry.getHeightCM(), anthropometry.getWeightKG(), anthropometry.getArmspanCM());
+            model.addAttribute("anthropometry", anthropometryForm);
+            return "applicant-anthropometry";
+        } else {
+            return "redirect:/404";
+        }
     }
 
     /**
@@ -185,7 +227,7 @@ public class AthleteController {
      * @return returns either the form to append any errors or redirects to the athlete dashboard and saves the data.
      */
     @PostMapping("submit-anthropometry")
-    public String handleApplicantAnthropometry(@ModelAttribute("anthropometry") Anthropometry anthropometry, @Valid AnthropometryForm anthropometryForm, BindingResult bindings, Model model) {
+    public String handleApplicantAnthropometry(@ModelAttribute("anthropometry") Anthropometry anthropometry, @ModelAttribute("users") List<Long> users, @Valid AnthropometryForm anthropometryForm, BindingResult bindings, Model model) {
         try {
             Anthropometry medicalID = anthropometryAuditor.decryptData(anthropometryForm.getAthleteID(), env.getProperty("app.key"));
             if (bindings.hasErrors()) {
@@ -198,10 +240,10 @@ public class AthleteController {
             } else if (anthropometryForm.getAthleteID().equals(medicalID.getAthleteID().getAthleteID())) {
                 anthropometry.setMedicalDataID(medicalID.getMedicalDataID());
                 anthropometryAuditor.saveAnthropometricData(anthropometry);
-                return "redirect:/athlete-dashboard";
+                return "redirect:/athlete-dashboard/" + users.get(users.size() - 1);
             } else {
                 anthropometryAuditor.saveAnthropometricData(anthropometry);
-                return "redirect:/athlete-dashboard";
+                return "redirect:/athlete-dashboard/" + users.get(users.size() - 1);
             }
         } catch (NullPointerException npe) {
 
@@ -214,7 +256,7 @@ public class AthleteController {
                 return "applicant-anthropometry";
             } else {
                 anthropometryAuditor.saveAnthropometricData(anthropometry);
-                return "redirect:/athlete-dashboard";
+                return "redirect:/athlete-dashboard/" + users.get(users.size() - 1);
             }
         }
     }
@@ -227,12 +269,15 @@ public class AthleteController {
      * @return returns the previous sports form.
      */
     @GetMapping("submit-previous-sports/{id}")
-    public String serveApplicantPreviousSports(@PathVariable("id") Long id, Model model) {
-        Athlete athlete = athleteAuditor.findAthleteById(id).get();
-
-        AthletePreviousSportsForm athletePreviousSportsForm = new AthletePreviousSportsForm(athlete.getAthleteID());
-        model.addAttribute("previousSports", athletePreviousSportsForm);
-        return "previous-sports";
+    public String serveApplicantPreviousSports(@PathVariable("id") Long id, @ModelAttribute("users") List<Long> users, Model model) {
+        if (users.get(users.size() - 1).equals(id)) {
+            Athlete athlete = athleteAuditor.findAthleteById(id).get();
+            AthletePreviousSportsForm athletePreviousSportsForm = new AthletePreviousSportsForm(athlete.getAthleteID());
+            model.addAttribute("previousSports", athletePreviousSportsForm);
+            return "previous-sports";
+        } else {
+            return "redirect:/404";
+        }
     }
 
     /**
@@ -245,7 +290,7 @@ public class AthleteController {
      * @return returns either the form to append any errors or redirects to the athlete dashboard and saves the data.
      */
     @PostMapping("submit-previous-sports")
-    public String handlePreviousSports(@ModelAttribute("previousSports") AthletePreviousSports athletePreviousSports, @Valid AthletePreviousSportsForm athletePreviousSportsForm, BindingResult bindings, Model model) {
+    public String handlePreviousSports(@ModelAttribute("previousSports") AthletePreviousSports athletePreviousSports, @ModelAttribute("users") List<Long> users, @Valid AthletePreviousSportsForm athletePreviousSportsForm, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
@@ -255,7 +300,7 @@ public class AthleteController {
             return "previous-sports";
         } else {
             athletePreviousSportsAuditor.savePreviousSportsData(athletePreviousSports);
-            return "redirect:/athlete-dashboard";
+            return "redirect:/athlete-dashboard/" + users.get(users.size() - 1);
         }
     }
 
