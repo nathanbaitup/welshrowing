@@ -11,13 +11,19 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
+@SessionAttributes(names = {"users"})
 public class LoginController {
 
     private final ApplicantAuditor applicantAuditor;
+
 
     /**
      * Injects all of the auditors needed to save input data into the database.
@@ -27,6 +33,11 @@ public class LoginController {
     @Autowired
     public LoginController(ApplicantAuditor applicantAuditor){
         this.applicantAuditor = applicantAuditor;
+    }
+
+    @ModelAttribute("users")
+    public List<Long> users() {
+        return new ArrayList<Long>();
     }
 
     /**
@@ -52,10 +63,15 @@ public class LoginController {
      * @return if errors occur stays on login page but if password is okay redirects to coach or athlete dashboard depending on role.
      */
     @PostMapping("/login")
-    public String handleLoginPage(@ModelAttribute("login") Applicant applicant, @Valid LoginForm loginForm, BindingResult bindings, Model model){
+    public String handleLoginPage(
+                                  @ModelAttribute("login") Applicant applicant,
+                                  @ModelAttribute("users") List<Long> users,
+                                  RedirectAttributes attributes,
+                                  @Valid LoginForm loginForm,
+                                  BindingResult bindings,
+                                  Model model){
         try {
             Applicant theUser = applicantAuditor.findApplicantByUsername(loginForm.getUsername());
-
             if (bindings.hasErrors()) {
                 System.out.println("Errors:" + bindings.getFieldErrorCount());
                 for (ObjectError oe : bindings.getAllErrors()) {
@@ -67,9 +83,15 @@ public class LoginController {
                 model.addAttribute("loginForm", loginForm);
                 return "login";
             } else if (theUser.getRole().equals("coach")) {
-                return "redirect:/coach-dashboard/" + theUser.getUserID();
+                users.add(theUser.getUserID());
+                attributes.addFlashAttribute("users", users);
+                System.out.println("List of Users: " + users);
+                return "redirect:/coach-dashboard/" + users.get(users.size() - 1);
             } else {
-                return "redirect:/athlete-dashboard";
+                users.add(theUser.getUserID());
+                attributes.addFlashAttribute("users", users);
+                System.out.println("List of Users: " + users);
+                return "redirect:/athlete-dashboard/" + users.get(users.size() - 1);
             }
         } catch (Exception e){
             System.out.println(e);
@@ -78,5 +100,6 @@ public class LoginController {
             return "login";
 
         }
+
     }
 }
