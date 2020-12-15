@@ -41,7 +41,7 @@ public class AthleteController {
     private final ApplicantAuditor applicantAuditor;
     private final AnthropometryAuditor anthropometryAuditor;
     private final AthletePreviousSportsAuditor athletePreviousSportsAuditor;
-    private Environment env;
+    private final Environment env;
 
     /**
      * Injects all of the auditors needed to save input data into the database.
@@ -60,6 +60,7 @@ public class AthleteController {
         this.athletePreviousSportsAuditor = athletePreviousSportsAuditor;
         this.env = env;
     }
+
     @Autowired
     private JavaMailSender sender;
 
