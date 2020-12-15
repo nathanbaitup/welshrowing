@@ -3,16 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/interviewForm.css">
+    <script src="/js/athleteForms.js"></script>
 
-    <title>Title</title>
+
+    <title>Interview Process</title>
 
 </head>
 <body>
 <h2 class="title">INTERVIEW FORM</h2>
 <div class="entry-form">
     <form action="#" th:action="@{/enter-interview-form}" th:object="${interview}" method="post">
+
+        <div class="form-group blu-margin">
+            <label for="applicantSelector">Select the applicant name you are testing:</label>
+            <select class="form-control" id="applicantSelector" onchange="setAthleteID()">
+                <option value="0">Select Applicant</option>
+                <option id="selectedAthlete" th:each="applicant : ${applicantTesting}" th:value="${applicant.athleteID}"
+                        th:text="${applicant.athleteID}+' : '+${applicant.name}"></option>
+            </select>
+        </div>
+        <br>
+
+        <input th:field="*{athleteID}" id="testedAthlete" hidden>
         <div class="form-group">
-            <input th:field="*{athleteID}" hidden>
             <label th:for="answer1">What to you is the difference between taking part and competing in sport? What does High Performance/Elite Sport mean?</label>
             <br>
             <textarea class="form-control" th:field="*{answer1}" rows="4" cols="50"/>
