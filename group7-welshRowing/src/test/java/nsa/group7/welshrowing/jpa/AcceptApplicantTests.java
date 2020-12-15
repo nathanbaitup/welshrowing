@@ -3,10 +3,15 @@ package nsa.group7.welshrowing.jpa;
 import nsa.group7.welshrowing.domain.Athlete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest
+@SpringBootTest
+@AutoConfigureMockMvc
+@TestPropertySource(locations = "classpath:application-prod.properties")
 public class AcceptApplicantTests {
 
     @Autowired
@@ -17,4 +22,5 @@ public class AcceptApplicantTests {
         athlete.setApplicationStatus(false);
         assertThat(athlete.getApplicationStatus()).isFalse();
     }
+
 }
