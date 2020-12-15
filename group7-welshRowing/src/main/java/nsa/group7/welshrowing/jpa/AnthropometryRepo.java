@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
+/**
+ * Provides a set of methods using the JPA Repository to communicate to the database.
+ */
 public interface AnthropometryRepo extends JpaRepository<Anthropometry, Long> {
     /**
      * Method that runs the stored procedure to decrypt an athletes medical data if needed to be updated.

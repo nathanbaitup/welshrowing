@@ -18,6 +18,9 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Provides a set of methods for serving and handling Logging in and out data.
+ */
 @Controller
 @SessionAttributes(names = {"users"})
 public class LoginController {

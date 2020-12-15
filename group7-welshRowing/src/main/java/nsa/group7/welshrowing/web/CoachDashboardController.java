@@ -12,6 +12,9 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Provides a set of methods for serving and handling Coach data.
+ */
 @Controller
 @SessionAttributes(names = {"users"})
 public class CoachDashboardController {
