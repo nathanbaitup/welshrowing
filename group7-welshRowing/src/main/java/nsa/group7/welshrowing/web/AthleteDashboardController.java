@@ -31,7 +31,7 @@ public class AthleteDashboardController {
         try {
             if (users.get(users.size() - 1).equals(id)) {
                 System.out.println("List of Users: " + users);
-                model.addAttribute(" ");
+                model.addAttribute("userID", id);
                 return "athleteDashboard";
             } else {
                 return "redirect:/athlete-dashboard/" + +users.get(users.size() - 1);

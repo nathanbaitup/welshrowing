@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/athleteDashboard.css">
-    <link rel ="stylesheet" href="/css/formDashboard.css">
+    <link rel="stylesheet" href="/css/formDashboard.css">
 
     <title>Athlete Dashboard</title>
 </head>
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"><img src="/images/logo.png"></a> <!-- Logo location with link to homepage -->
+            <a class="navbar-brand" href="/"><img src="/images/logo.png"></a>
+            <!-- Logo location with link to homepage -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span> <!-- Drop down menu button when page is on mobile -->
             </button>
@@ -44,65 +46,83 @@
 </header>
 <body>
 <h2 id="formTitle">Your Forms</h2>
-    <div class="formContainer">
-        <div class="block">
-            <h3 class="link"><a href="<%= request.getContextPath()%>/athlete-mmd-form/{id}" >Morning Monitoring</a></h3>
-            <a href="/athlete-mmd-form/2"><img id="big" src="https://i.pinimg.com/736x/85/5d/f2/855df22700990ca085d87970f354054f.jpg"></a>
-            <p>Daily monitoring of physical and psychological metrics</p>
-        </div>
-        <div class="block">
-            <h3 class="link"><a href="/submit-session-rpe/2" class="link">Workout Training</a></h3>
-            <a href="/submit-session-rpe/2"><img src="https://www.pngitem.com/pimgs/m/121-1210928_bodybuilding-and-dumbbells-vector-image-illustration-transparent-background.png"></a>
-            <p>Enter data about your workout sessions</p>
-        </div>
-        <div class="block">
-            <h3 class="link"><a href="/submit-crosstraining-form/2" class="link">Cross Training</a></h3>
-            <a href="/submit-crosstraining-form/2"><img src="https://img.pngio.com/vector-running-man-man-clipart-vector-running-man-png-and-vector-png-of-person-running-650_795.png"></a>
-            <p>Enter data about your cross training sessions</p>
+
+<div class="formContainer">
+    <div class="block">
+        <h3 class="link"><a th:href="@{/athlete-mmd-form/{id} (id=${userID})}">Morning Monitoring</a></h3>
+        <a th:href="@{/athlete-mmd-form/{id} (id=${userID})}"><img id="big" src="https://i.pinimg.com/736x/85/5d/f2/855df22700990ca085d87970f354054f.jpg"></a>
+        <p>Daily monitoring of physical and psychological metrics</p>
+    </div>
+</div>
+<div class="formContainer">
+    <div class="block">
+        <h3 class="link"><a th:href="@{/submit-session-rpe/{id} (id=${userID})}" class="link">Workout Training</a></h3>
+        <a th:href="@{/submit-session-rpe/{id} (id=${userID})}"><img src="https://www.pngitem.com/pimgs/m/121-1210928_bodybuilding-and-dumbbells-vector-image-illustration-transparent-background.png"></a>
+        <p>Enter data about your workout sessions</p>
+    </div>
+</div>
+<div class="formContainer">
+    <div class="block">
+        <h3 class="link"><a th:href="@{/submit-cross-training-form/{id} (id=${userID})}" class="link">Cross Training</a></h3>
+        <a th:href="@{/submit-cross-training-form/{id} (id=${userID})}"><img src="https://img.pngio.com/vector-running-man-man-clipart-vector-running-man-png-and-vector-png-of-person-running-650_795.png"></a>
+        <p>Enter data about your cross training sessions</p>
+    </div>
+</div>
+<div class="formContainer">
+    <div class="block">
+        <h3 class="link">Medical Data</h3>
+        <p>Enter your medical data here</p>
+        <a th:href="@{/submit-anthropometry/{id} (id=${userID})}" class="btn btn-primary"> Enter your Medical Data </a>
+    </div>
+    <div class="block">
+        <h3 class="link">Previous Sports</h3>
+        <p>Enter your previous sporting data here.</p>
+        <a th:href="@{/submit-previous-sports/{id} (id=${userID})}" class="btn btn-primary"> Enter your Sporting History </a>
+    </div>
+</div>
+
+<div class="formContainer">
+    <div class="block-graph">
+        <img src="images/sRPE.png">
+    </div>
+    <div class="graph">
+        <div id="chartContainer">
+            <canvas id="myChart"></canvas>
         </div>
     </div>
-    <div class="formContainer">
-        <div class="block-graph">
-            <img src="images/sRPE.png">
-        </div>
-        <div class="graph">
-            <div id="chartContainer">
-                <canvas id="myChart"></canvas>
-            </div>
-        </div>
 
-    </div>
+</div>
 
 
-    <script>
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["04/10/20","05/10/20","06/10/20","07/10/20","08/10/20","09/10/20","10/10/20"],
-                datasets: [{
-                    data: [54,55,55,59,61,56,55],
-                    label: "Waking Heart Rate",
-                    borderColor: "#3e95cd",
-                    fill: false
-                }, {
-                    data: [57,59,60,71,73,61,61],
-                    label: "Standing Heart Rate",
-                    borderColor: "#8e5ea2",
-                    fill: false
-                }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                title: {
-                    display: true,
-                    text: 'Morning Monitoring Heart rates(BPM)',
-                }
+<script>
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["04/10/20", "05/10/20", "06/10/20", "07/10/20", "08/10/20", "09/10/20", "10/10/20"],
+            datasets: [{
+                data: [54, 55, 55, 59, 61, 56, 55],
+                label: "Waking Heart Rate",
+                borderColor: "#3e95cd",
+                fill: false
+            }, {
+                data: [57, 59, 60, 71, 73, 61, 61],
+                label: "Standing Heart Rate",
+                borderColor: "#8e5ea2",
+                fill: false
             }
-        });
-    </script>
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: 'Morning Monitoring Heart rates(BPM)',
+            }
+        }
+    });
+</script>
 
 
 </body>
