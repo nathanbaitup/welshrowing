@@ -36,6 +36,8 @@ public interface AthleteAuditor {
      */
     Optional<Athlete> findAthleteById(Long id);
 
+
+
     /**
      * Method that finds all athletes who are in the application status.
      *

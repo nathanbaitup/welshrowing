@@ -48,5 +48,12 @@ public class MorningMonitoringJPAAdaptor implements MorningMonitoringAuditor {
         return null;
     }
 
+    @Override
+    public MorningMonitoring findById(int id) {
+        return null;
+    }
+
+
+
 }
 

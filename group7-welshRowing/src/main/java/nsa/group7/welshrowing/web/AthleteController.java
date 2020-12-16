@@ -31,9 +31,8 @@ import java.util.Optional;
  */
 @Controller
 @SessionAttributes(names = {"users"})
-
-
 public class AthleteController {
+
 
 
     private final AthleteAuditor athleteAuditor;

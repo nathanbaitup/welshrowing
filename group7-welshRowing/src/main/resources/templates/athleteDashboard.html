@@ -94,35 +94,57 @@
 </div>
 
 
-<script>
-    var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ["04/10/20", "05/10/20", "06/10/20", "07/10/20", "08/10/20", "09/10/20", "10/10/20"],
-            datasets: [{
-                data: [54, 55, 55, 59, 61, 56, 55],
-                label: "Waking Heart Rate",
-                borderColor: "#3e95cd",
-                fill: false
-            }, {
-                data: [57, 59, 60, 71, 73, 61, 61],
-                label: "Standing Heart Rate",
-                borderColor: "#8e5ea2",
-                fill: false
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var wakingHR = /*[[${graphs.wakingHR}]]*/ 'default';
+        var standingHR = /*[[${graphs.standingHR}]]*/ 'default';
+        var shape = /*[[${graphs.shape}]]*/ 'default';
+        var dates = /*[[${graphs.dates}]]*/ 'default';
+        var osHR = new Array(standingHR[0]-wakingHR[0],standingHR[1]-wakingHR[1],standingHR[2]-wakingHR[2],standingHR[3]-wakingHR[3],standingHR[4]-wakingHR[4],standingHR[5]-wakingHR[5],standingHR[6]-wakingHR[6],standingHR[7]-wakingHR[7]);
+
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [dates[0],dates[1],dates[2],dates[3],dates[4],dates[5],dates[6]],
+                datasets: [{
+                    data: wakingHR,
+                    label: "Waking Heart Rate",
+                    borderColor: "#3e95cd",
+                    fill: false,
+                    lineTension: 0
+                }, {
+                    data: standingHR,
+                    label: "Standing Heart Rate",
+                    borderColor: "#8e5ea2",
+                    lineTension: 0,
+                    fill: false
+                }, {
+                    data: shape,
+                    label: "Shape",
+                    borderColor: "#FF0000",
+                    lineTension: 0,
+                    fill: false
+                }, {
+                    data: osHR,
+                    label: "Osmotic HR",
+                    borderColor: "#008000",
+                    lineTension: 0,
+                    fill: false
+                }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Morning Monitoring Heart rates(BPM)',
+                }
             }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            title: {
-                display: true,
-                text: 'Morning Monitoring Heart rates(BPM)',
-            }
-        }
-    });
-</script>
+        });
+        /*]]>*/
+    </script>
 
 
 </body>
