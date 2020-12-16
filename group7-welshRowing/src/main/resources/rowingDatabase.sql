@@ -729,4 +729,3 @@ GRANT EXECUTE ON PROCEDURE welshrowing.find_number_athletes TO 'webAppUser'@'loc
 GRANT EXECUTE ON PROCEDURE welshrowing.find_number_coaches TO 'webAppUser'@'localhost';
 GRANT EXECUTE ON PROCEDURE welshrowing.find_number_applicants TO 'webAppUser'@'localhost';
 GRANT EXECUTE ON PROCEDURE welshrowing.user_cnt TO 'webAppUser'@'localhost';
-GRANT INSERT ON welshrowing.* TO 'webAppUser'@'localhost';
