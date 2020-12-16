@@ -35,7 +35,6 @@ import java.util.Optional;
 public class AthleteController {
 
 
-
     private final AthleteAuditor athleteAuditor;
     private final ApplicantAuditor applicantAuditor;
     private final AnthropometryAuditor anthropometryAuditor;
@@ -63,6 +62,11 @@ public class AthleteController {
 //    @Autowired
 //    private JavaMailSender sender;
 
+    /**
+     * Creates an arraylist of user sessions.
+     *
+     * @return returns a list of current users.
+     */
     @ModelAttribute("users")
     public List<Long> users() {
         return new ArrayList<Long>();
@@ -172,7 +176,7 @@ public class AthleteController {
     public String serveApplicantList(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model model) {
         Optional<Applicant> findCoach = applicantAuditor.findApplicantById(id);
         Applicant isCoach = findCoach.get();
-        if (users.get(users.size() - 1).equals(id) && isCoach.getRole().equals("coach")){
+        if (users.get(users.size() - 1).equals(id) && isCoach.getRole().equals("coach")) {
             List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
             model.addAttribute("listApplicants", applicantList);
             return "applicant-list";
@@ -217,6 +221,7 @@ public class AthleteController {
      * Generates the anthropometry form for an athlete to enter their medical data.
      *
      * @param id    - the athlete ID.
+     * @param users - session attribute.
      * @param model - adds to the page.
      * @return returns the anthropometry form.
      */
@@ -236,7 +241,8 @@ public class AthleteController {
     /**
      * Returns the anthropometry form with fields already completed to update data.
      *
-     * @param id    the athlete ID.
+     * @param id    - the athlete ID.
+     * @param users - session attribute.
      * @param model - adds to the page.
      * @return returns the applicant anthropometry form.
      */
@@ -256,6 +262,7 @@ public class AthleteController {
      * Saves an athletes anthropometry data into the database.
      *
      * @param anthropometry     - the anthropometry entity.
+     * @param users             - session attribute.
      * @param anthropometryForm - the form data.
      * @param bindings          - any errors if form isn't valid.
      * @param model             - adds to the page.
@@ -300,6 +307,7 @@ public class AthleteController {
      * Generates the submit previous sports page for an athlete to enter their previous sport data.
      *
      * @param id    - the athleteID.
+     * @param users - session attribute.
      * @param model - adds to the page.
      * @return returns the previous sports form.
      */
@@ -319,6 +327,7 @@ public class AthleteController {
      * Saves an athletes previous sports data into the database.
      *
      * @param athletePreviousSports     - the athlete previous sports entity.
+     * @param users                     - session attribute.
      * @param athletePreviousSportsForm - the form data.
      * @param bindings                  - any errors if form isn't valid.
      * @param model                     - adds to the page.

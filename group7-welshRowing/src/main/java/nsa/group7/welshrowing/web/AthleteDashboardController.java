@@ -40,13 +40,21 @@ public class AthleteDashboardController {
     }
 
     /**
-     * @return
+     * @return returns an arraylist of current users.
      */
     @ModelAttribute("users")
     public List<Long> users() {
         return new ArrayList<Long>();
     }
 
+    /**
+     * Checks that an athlete is signed in and returns them their dashboard.
+     *
+     * @param id - the athlete ID.
+     * @param users - session attribute.
+     * @param model - adds to the page.
+     * @return returns the athlete dashboard.
+     */
     @GetMapping("athlete-dashboard/{id}")
     public String athleteDashboard(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model model) {
         try {

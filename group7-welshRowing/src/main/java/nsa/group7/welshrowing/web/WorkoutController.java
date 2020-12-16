@@ -30,7 +30,7 @@ public class WorkoutController {
      * Injects all of the auditors needed to save input data into the database.
      *
      * @param acrossTrainingAuditor - the CrossTraining Auditor.
-     * @param aSessionRPEAuditor - the SessionRPE Auditor.
+     * @param aSessionRPEAuditor    - the SessionRPE Auditor.
      */
     @Autowired
     public WorkoutController(crossTrainingAuditor acrossTrainingAuditor, SessionRPEAuditor aSessionRPEAuditor) {
@@ -38,11 +38,20 @@ public class WorkoutController {
         sessionRPEAuditor = aSessionRPEAuditor;
     }
 
+    /**
+     * @return returns a list of users
+     */
     @ModelAttribute("users")
     public List<Long> users() {
         return new ArrayList<Long>();
     }
 
+    /**
+     * @param athleteID - the athleteID.
+     * @param users     - session attribute.
+     * @param model     - adds to the page.
+     * @return returns the cross training form.
+     */
     @GetMapping("submit-cross-training-form/{athleteID}")
     public String submitCrossTrainingForm(@PathVariable Long athleteID, @ModelAttribute("users") List<Long> users, Model model) {
         if (users.get(users.size() - 1).equals(athleteID)) {
@@ -54,6 +63,14 @@ public class WorkoutController {
         }
     }
 
+    /**
+     * @param crossTraining            - the object to save.
+     * @param users                    - session attribute.
+     * @param crossTrainingSessionForm - the inputted form.
+     * @param bindings                 -  any errors.
+     * @param model                    - adds to the page.
+     * @return returns the athlete dashboard.
+     */
     @PostMapping("submit-cross-training-form")
     public String postSubmitCrossTrainingForm(@ModelAttribute("crossTrainingSessionForm") CrossTraining crossTraining, @ModelAttribute("users") List<Long> users, @Valid CrossTrainingSessionForm crossTrainingSessionForm, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
@@ -68,10 +85,12 @@ public class WorkoutController {
             return "redirect:/athlete-dashboard/" + users.get(users.size() - 1);
         }
     }
+
     /**
      * Uses the athleteID to navigate to the session-rpe-form with the id populated.
      *
      * @param athleteID - the athleteID
+     * @param users     - session attribute.
      * @param model     - updates the form with the needed attributes.
      * @return returns the session-rpe-form.
      */
@@ -89,10 +108,11 @@ public class WorkoutController {
     /**
      * Submits the athletes session to the database and redirects to the homepage, returns the form if any errors are found.
      *
-     * @param sessionRPE - the entity to be stored in the database.
+     * @param sessionRPE     - the entity to be stored in the database.
+     * @param users          - session attribute.
      * @param sessionRPEForm - the user inputs from the form.
-     * @param bindings - any resulting errors from filling in the form.
-     * @param model - updates the form with needed attributes.
+     * @param bindings       - any resulting errors from filling in the form.
+     * @param model          - updates the form with needed attributes.
      * @return returns the form if errors or the homepage.
      */
     @PostMapping("submit-session-rpe")

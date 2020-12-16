@@ -20,12 +20,21 @@ public class CoachAthleteMonitoringController {
     private final MorningMonitoringAuditor morningMonitoringAuditor;
     private final ApplicantAuditor applicantAuditor;
 
+    /**
+     * Injects the needed auditors to work with the database.
+     *
+     * @param morningMonitoringAuditor - the morningMonitoring auditor.
+     * @param applicantAuditor         - the applicant auditor.
+     */
     @Autowired
     public CoachAthleteMonitoringController(MorningMonitoringAuditor morningMonitoringAuditor, ApplicantAuditor applicantAuditor) {
         this.morningMonitoringAuditor = morningMonitoringAuditor;
         this.applicantAuditor = applicantAuditor;
     }
 
+    /**
+     * @return returns a list of sessions.
+     */
     @ModelAttribute("users")
     public List<Long> users() {
         return new ArrayList<Long>();
@@ -34,6 +43,9 @@ public class CoachAthleteMonitoringController {
     /**
      * redirects to coachmorningmonitoring html page
      * Populates morningMonitoringList with SQL MorningMonitoring table information
+     *
+     * @param id    - the coach ID.
+     * @param users - session attribute.
      * @param model placeholder which .addAttribute populating with data SQL table
      * @return file name coachMorningMonitoring
      */

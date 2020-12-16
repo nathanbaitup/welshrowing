@@ -36,10 +36,13 @@ public class LoginController {
      * @param applicantAuditor -the applicant Auditor.
      */
     @Autowired
-    public LoginController(ApplicantAuditor applicantAuditor){
+    public LoginController(ApplicantAuditor applicantAuditor) {
         this.applicantAuditor = applicantAuditor;
     }
 
+    /**
+     * @return returns a list of users.
+     */
     @ModelAttribute("users")
     public List<Long> users() {
         return new ArrayList<Long>();
@@ -52,9 +55,9 @@ public class LoginController {
      * @return returns loginForm
      */
     @GetMapping("/login")
-    public String serveLoginPage(Model model){
+    public String serveLoginPage(Model model) {
         LoginForm loginForm = new LoginForm();
-        model.addAttribute("loginForm",loginForm);
+        model.addAttribute("loginForm", loginForm);
         return "login";
     }
 
@@ -63,18 +66,19 @@ public class LoginController {
      *
      * @param applicant the entity that the user is trying to login as
      * @param loginForm the login information from the form
-     * @param bindings errors in form
-     * @param model adds page
+     * @param users     - session attribute.
+     * @param bindings  errors in form
+     * @param model     adds page
      * @return if errors occur stays on login page but if password is okay redirects to coach or athlete dashboard depending on role.
      */
     @PostMapping("/login")
     public String handleLoginPage(
-                                  @ModelAttribute("login") Applicant applicant,
-                                  @ModelAttribute("users") List<Long> users,
-                                  RedirectAttributes attributes,
-                                  @Valid LoginForm loginForm,
-                                  BindingResult bindings,
-                                  Model model){
+            @ModelAttribute("login") Applicant applicant,
+            @ModelAttribute("users") List<Long> users,
+            RedirectAttributes attributes,
+            @Valid LoginForm loginForm,
+            BindingResult bindings,
+            Model model) {
         try {
             Applicant theUser = applicantAuditor.findApplicantByUsername(loginForm.getUsername());
             if (bindings.hasErrors()) {
@@ -98,16 +102,23 @@ public class LoginController {
                 System.out.println("List of Users: " + users);
                 return "redirect:/athlete-dashboard/" + users.get(users.size() - 1);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             System.out.println();
-            model.addAttribute("loginForm",loginForm);
+            model.addAttribute("loginForm", loginForm);
             return "login";
 
         }
 
     }
 
+    /**
+     * Logs the current user out of their session.
+     *
+     * @param req   - http request.
+     * @param model - adds to the page model
+     * @return returns the logout page with no current users.
+     */
     @GetMapping("logout")
     public String flush(HttpServletRequest req, Model model) {
 

@@ -39,14 +39,18 @@ public class CoachDashboardController {
         this.applicantTestingAuditor = applicantTestingAuditor;
     }
 
+    /**
+     * @return returns a list of users.
+     */
     @ModelAttribute("users")
     public List<Long> users() {
         return new ArrayList<Long>();
     }
 
     /**
-     * @param id   - The ID provided by the database
-     * @param name - Name of the ID user
+     * @param id    - The ID provided by the database
+     * @param users - session attribute.
+     * @param name  - Name of the ID user
      * @return return the coachDashboard.html file
      */
     @GetMapping("coach-dashboard/{id}")
@@ -89,6 +93,7 @@ public class CoachDashboardController {
      * Submits an applicant test to the database, if they pass the test, they are removed from the applicant list.
      *
      * @param applicantTesting     - the ApplicantTesting entity.
+     * @param users                - session attribute.
      * @param applicantTestingForm - the form to take and validate user inputs.
      * @param bindings             -  any errors.
      * @param model                - adds the form to the page given there are errors
