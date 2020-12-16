@@ -671,6 +671,19 @@ INSERT INTO user(name,username,password,role) VALUES ("Oliver Holdaway", "oliver
 INSERT INTO user(name,username,password,role) VALUES ("Coach Name", "coachaccount", "Password1","coach");
 INSERT INTO user(name,username,password,role) VALUES ("Nathan Baitup", "nathanbaitup", "Password1","coach");
 
+INSERT INTO athlete(athleteID,name,gender,DOB,applicationStatus,email,mobileNumber,telephoneNumber,address,postcode,placeOfEducation,interestLetter,postTestResult)
+	VALUES (1,"Bob Smith","Male","2000-10-28",1,"bob@gmail.com","01757507758","02972503307","14 park road","PO13 5HE","Cardiff University",true,"");
+INSERT INTO athlete(athleteID,name,gender,DOB,applicationStatus,email,mobileNumber,telephoneNumber,address,postcode,placeOfEducation,interestLetter,postTestResult)
+	VALUES (2,"James Dean","Male","2000-12-15",1,"james@gmail.com","01757506558","02972453307","14 green road","PO13 5HE","Cardiff University",true,"");
+INSERT INTO athlete(athleteID,name,gender,DOB,applicationStatus,email,mobileNumber,telephoneNumber,address,postcode,placeOfEducation,interestLetter,postTestResult)
+	VALUES (3,"Bob Ross","Male","2000-08-15",0,"bobross@gmail.com","01753206558","02472453307","14 lake road","PO13 5HE","Cardiff University",true,"8 Weeks");
+INSERT INTO athlete(athleteID,name,gender,DOB,applicationStatus,email,mobileNumber,telephoneNumber,address,postcode,placeOfEducation,interestLetter,postTestResult)
+	VALUES (4,"Hamid Iqbal","Male","2001-08-15",0,"hamid@gmail.com","01753209958","02472453907","14 red close","PO13 5HE","Cardiff University",true,"8 Weeks");
+INSERT INTO athlete(athleteID,name,gender,DOB,applicationStatus,email,mobileNumber,telephoneNumber,address,postcode,placeOfEducation,interestLetter,postTestResult)
+	VALUES (5,"Oliver Holdaway","Male","2000-10-27",0,"oliver@gmail.com","01753209658","02473353907","19 red close","PO13 5HE","Cardiff University",true,"8 Weeks");
+    
+
+
 
 
 
