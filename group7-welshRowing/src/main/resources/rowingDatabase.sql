@@ -696,4 +696,7 @@ AS
 CREATE VIEW userAuditCoach
 AS
 	SELECT deletedDate FROM useraudit;
-    
+
+SELECT * FROM User;
+UPDATE user SET role="coach" WHERE userID =11;
+
