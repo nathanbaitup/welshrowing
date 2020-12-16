@@ -1,10 +1,10 @@
-<h1 align="center">Welcome to Group 7 - Client Project - Welsh Rowing Association 👋</h1>
+<h1 align="center">Welcome to Group 7 - Client Project - Welsh Rowing Association</h1>
 <p>
 </p>
 
 > Client Project for the Welsh Rowing Association on behalf of group 7
 
-### 🏠 [Homepage](https://git.cardiff.ac.uk/c1926084/clientproject-group7)
+### 🏠 [GitLab Homepage](https://git.cardiff.ac.uk/c1926084/clientproject-group7)
 
 ## Install
 
