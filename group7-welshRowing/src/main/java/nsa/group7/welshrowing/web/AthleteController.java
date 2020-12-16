@@ -2,6 +2,7 @@ package nsa.group7.welshrowing.web;
 
 import nsa.group7.welshrowing.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.core.env.Environment;
@@ -169,8 +170,9 @@ public class AthleteController {
      */
     @GetMapping("applicants/{id}")
     public String serveApplicantList(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model model) {
-
-        if (users.get(users.size() - 1).equals(id)) {
+        Optional<Applicant> findCoach = applicantAuditor.findApplicantById(id);
+        Applicant isCoach = findCoach.get();
+        if (users.get(users.size() - 1).equals(id) && isCoach.getRole().equals("coach")){
             List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
             model.addAttribute("listApplicants", applicantList);
             return "applicant-list";

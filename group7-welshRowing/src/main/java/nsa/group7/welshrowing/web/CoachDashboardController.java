@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Provides a set of methods for serving and handling Coach data.
@@ -51,9 +52,12 @@ public class CoachDashboardController {
     @GetMapping("coach-dashboard/{id}")
     public String coachDashboard(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model name) {
         try {
-            if (users.get(users.size() - 1).equals(id)) {
+            Optional<Applicant> findCoach = coachAuditor.findApplicantById(id);
+            Applicant isCoach = findCoach.get();
+            if (users.get(users.size() - 1).equals(id) && isCoach.getRole().equals("coach")) {
                 System.out.println("List of Users: " + users);
                 Applicant aCoachDashboard = coachAuditor.findApplicantById(id).get();
+                name.addAttribute("coachID", id);
                 CoachDashboard coachDashboardForm = new CoachDashboard(aCoachDashboard.getName(), "Welcome to your dashboard!");
                 name.addAttribute("coachName", coachDashboardForm);
                 return "coachDashboard";

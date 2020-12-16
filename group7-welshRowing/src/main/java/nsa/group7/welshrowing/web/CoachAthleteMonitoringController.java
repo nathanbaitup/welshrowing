@@ -1,8 +1,6 @@
 package nsa.group7.welshrowing.web;
 
-import nsa.group7.welshrowing.domain.Athlete;
-import nsa.group7.welshrowing.domain.MorningMonitoring;
-import nsa.group7.welshrowing.domain.MorningMonitoringAuditor;
+import nsa.group7.welshrowing.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,16 +11,19 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @SessionAttributes(names = {"users"})
 public class CoachAthleteMonitoringController {
 
     private final MorningMonitoringAuditor morningMonitoringAuditor;
+    private final ApplicantAuditor applicantAuditor;
 
     @Autowired
-    public CoachAthleteMonitoringController(MorningMonitoringAuditor morningMonitoringAuditor) {
+    public CoachAthleteMonitoringController(MorningMonitoringAuditor morningMonitoringAuditor, ApplicantAuditor applicantAuditor) {
         this.morningMonitoringAuditor = morningMonitoringAuditor;
+        this.applicantAuditor = applicantAuditor;
     }
 
     @ModelAttribute("users")
@@ -36,9 +37,11 @@ public class CoachAthleteMonitoringController {
      * @param model placeholder which .addAttribute populating with data SQL table
      * @return file name coachMorningMonitoring
      */
-    @GetMapping("/coach-dashboard/{id}/coach-morning-monitoring") // Previously morningMonitoring
+    @GetMapping("/coach-morning-monitoring/{id}") // Previously morningMonitoring
     public String serveMorningMonitoringList(@PathVariable("id") Long id, @ModelAttribute("users") List<Long> users, Model model) {
-        if (users.get(users.size() - 1).equals(id)) {
+        Optional<Applicant> findCoach = applicantAuditor.findApplicantById(id);
+        Applicant isCoach = findCoach.get();
+        if (users.get(users.size() - 1).equals(id) && isCoach.getRole().equals("coach")) {
             System.out.println("List of Users: " + users);
             List<MorningMonitoring> morningMonitoringList = morningMonitoringAuditor.findAllMonitoringMonitoring();
             model.addAttribute("listMorningMonitoring", morningMonitoringList);
