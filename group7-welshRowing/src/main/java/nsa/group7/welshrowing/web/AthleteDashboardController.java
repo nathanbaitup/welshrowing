@@ -51,7 +51,7 @@ public class AthleteDashboardController {
 
         //checks through the full list of morning monitoring entries and puts the ones for right athlete id into a different list
         for(MorningMonitoring entry : fullList){
-            if(entry.getAthlete().equals(athlete)){
+            if(entry.getAthleteID().equals(athlete)){
                 relevantList.add(entry);
             }
         }
