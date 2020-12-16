@@ -238,17 +238,6 @@ CREATE VIEW interviewAthletes
 AS
   SELECT interviewID, athleteID FROM interview;
 
-SELECT * FROM interviewAthletes;
-
-GRANT SELECT ON crossTrainingAdmins TO [admin];
-GRANT SELECT ON crossTrainingCoaches TO [coach];
-GRANT SELECT ON crossTrainingAthletes TO [athlete];
-GRANT SELECT ON interviewAdmins TO [admin];
-GRANT SELECT ON interviewCoaches TO [coach];
-GRANT SELECT ON interviewAthletes TO [athlete];
-
-
-
 DELIMITER //
 
 # Trigger for validation of Email within the Athlete table, checks to see if email contains '@'
@@ -696,3 +685,46 @@ AS
 CREATE VIEW userAuditCoach
 AS
 	SELECT deletedDate FROM useraudit;
+    
+   
+DELIMITER //
+DROP PROCEDURE IF EXISTS user_cnt;
+CREATE DEFINER='webAppUser'@'localhost' PROCEDURE user_cnt()
+SQL SECURITY INVOKER
+BEGIN
+SELECT COUNT(*) as total_users FROM mysql.user;
+END;//
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS find_number_applicants;
+CREATE DEFINER='webAppUser'@'localhost' PROCEDURE find_number_applicants()
+SQL SECURITY INVOKER
+BEGIN
+SELECT COUNT(*) as total_applicants FROM athlete WHERE applicationStatus=1;
+END;//
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS find_number_coaches;
+CREATE DEFINER='webAppUser'@'localhost' PROCEDURE find_number_coaches()
+SQL SECURITY INVOKER
+BEGIN
+SELECT COUNT(*) as total_coaches FROM coach;
+END;//
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS find_number_athletes;
+CREATE DEFINER='webAppUser'@'localhost' PROCEDURE find_number_athletes()
+SQL SECURITY INVOKER
+BEGIN
+	SELECT COUNT(*) as total_applicants FROM athlete WHERE applicationStatus=0;
+END;//
+DELIMITER ;
+
+GRANT EXECUTE ON PROCEDURE welshrowing.find_number_athletes TO 'webAppUser'@'localhost';
+GRANT EXECUTE ON PROCEDURE welshrowing.find_number_coaches TO 'webAppUser'@'localhost';
+GRANT EXECUTE ON PROCEDURE welshrowing.find_number_applicants TO 'webAppUser'@'localhost';
+GRANT EXECUTE ON PROCEDURE welshrowing.user_cnt TO 'webAppUser'@'localhost';
+GRANT INSERT ON welshrowing.* TO 'webAppUser'@'localhost';
