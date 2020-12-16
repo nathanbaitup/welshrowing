@@ -682,7 +682,50 @@ INSERT INTO athlete(athleteID,name,gender,DOB,applicationStatus,email,mobileNumb
 INSERT INTO athlete(athleteID,name,gender,DOB,applicationStatus,email,mobileNumber,telephoneNumber,address,postcode,placeOfEducation,interestLetter,postTestResult)
 	VALUES (5,"Oliver Holdaway","Male","2000-10-27",0,"oliver@gmail.com","01753209658","02473353907","19 red close","PO13 5HE","Cardiff University",true,"8 Weeks");
     
-
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (3,"2020-12-16",56,40,7,4,9,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (3,"2020-12-17",70,99,6,7,8,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (3,"2020-12-18",55,56,7,4,9,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (3,"2020-12-19",65,70,4,3,7,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (3,"2020-12-20",38,40,7,7,5,5);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (3,"2020-12-21",56,60,2,1,7,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (3,"2020-12-22",56,80,9,9,6,9);
+    
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (4,"2020-12-16",67,90,7,4,9,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (4,"2020-12-17",70,99,6,7,8,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (4,"2020-12-18",33,44,7,4,9,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (4,"2020-12-19",65,70,4,3,7,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (4,"2020-12-20",38,40,7,7,5,5);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (4,"2020-12-21",60,70,2,1,7,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (4,"2020-12-22",56,80,9,9,6,9);
+    
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (5,"2020-12-16",30,90,7,4,9,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (5,"2020-12-17",56,70,6,7,8,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (5,"2020-12-18",36,43,7,4,9,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (5,"2020-12-19",57,70,4,3,7,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (5,"2020-12-20",38,40,7,7,5,5);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (5,"2020-12-21",50,70,2,1,7,9);
+INSERT INTO morningmonitoring(athleteID,date,walkingHeartRate,standingHeartRate,perceivedShape,perceivedMentalState,sleepQuantityHours,sleepQuality)
+	VALUES (5,"2020-12-22",66,80,9,9,6,9);
 
 
 
