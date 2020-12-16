@@ -54,8 +54,30 @@
 
 </header>
 <body>
-<h2 id="formTitle">Your Forms</h2>
-
+<br>
+<h2 id="formTitle">Your Dashboard</h2>
+<br><br>
+<div class="formContainer">
+    <div class="block">
+        <h3 class="link">Medical Data</h3>
+        <p>Enter your medical data here</p>
+        <a th:href="@{/submit-anthropometry/{id} (id=${userID})}" class="btn btn-primary"> Enter your Medical Data </a>
+        <br>
+    </div>
+    <div class="block">
+        <h3 class="link">Update Medical Data</h3>
+        <p>Update your medical data</p>
+        <a th:href="@{/update-anthropometry/{id} (id=${userID})}" class="btn btn-primary"> Update your Medical Data </a>
+        <br>
+    </div>
+    <div class="block">
+        <h3 class="link">Previous Sports</h3>
+        <p>Enter your previous sporting data here.</p>
+        <a th:href="@{/submit-previous-sports/{id} (id=${userID})}" class="btn btn-primary"> Enter your Sporting History </a>
+        <br>
+    </div>
+<br><br>
+</div>
 <div class="formContainer">
     <div class="block">
         <h3 class="link"><a th:href="@{/athlete-mmd-form/{id} (id=${userID})}">Morning Monitoring</a></h3>
@@ -74,18 +96,6 @@
     </div>
 </div>
 
-<div class="formContainer">
-    <div class="block">
-        <h3 class="link">Medical Data</h3>
-        <p>Enter your medical data here</p>
-        <a th:href="@{/submit-anthropometry/{id} (id=${userID})}" class="btn btn-primary"> Enter your Medical Data </a>
-    </div>
-    <div class="block">
-        <h3 class="link">Previous Sports</h3>
-        <p>Enter your previous sporting data here.</p>
-        <a th:href="@{/submit-previous-sports/{id} (id=${userID})}" class="btn btn-primary"> Enter your Sporting History </a>
-    </div>
-</div>
 <br><br>
 <h2>Morning Monitoring:</h2>
 <div id="disclaimer" ><small >Below is your morning monitoring graph, based off the last weeks data. Note: This requires at least 7 days data to populate.</small></div>
