@@ -58,6 +58,12 @@ public class AthleteController {
         this.athletePreviousSportsAuditor = athletePreviousSportsAuditor;
         this.env = env;
     }
+    /*
+    Injects JavaMailSender class from javax.mail dependency.
+         */
+    @Autowired
+    private JavaMailSender sender;
+
 
 //    @Autowired
 //    private JavaMailSender sender;
@@ -162,7 +168,21 @@ public class AthleteController {
             return "update-athlete";
         } else {
             athleteAuditor.saveAthlete(athlete);
-            return "redirect:/athlete-dashboard/" + users.get(users.size() - 1);
+            //Create new mimemessage object using sender method.
+            MimeMessage message = sender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            //Try to create an email to the applicant about the application process using the email and name stored in the JPA repository.
+            try {
+                helper.setTo(athlete.getEmail());
+                helper.setText("Dear " + athlete.getName() + "\n \n Thank you for your interest in joining the WelshRowing project, to complete your application you must now fill out the forms found on the athlete-dashboard and provide us with more information. Soon, if your application is not rejected, you will be sent information regarding an interview with one of our coaches. If all goes well you will enter the 8 week program as an athlete. \n \n Many thanks, \n The WelshRowing Team");
+                helper.setSubject("Welshrowing Application Response");
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+            //Send the email if no exception is caught.
+            sender.send(message);
+            return "redirect:/athlete-dashboard";
+
         }
     }
 
