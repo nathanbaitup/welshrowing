@@ -37,6 +37,7 @@ public class AthleteDashboardController {
         int[] standingHR = {0,0,0,0,0,0,0};
         int[] shape = {0,0,0,0,0,0,0};
         String[] dates = {"","","","","","",""};
+
         Athlete athlete = new Athlete();
 
         List<MorningMonitoring> fullList = graphAuditor.findAllMonitoringMonitoring();
