@@ -12,7 +12,11 @@ public interface MorningMonitoringAuditor {
 
     Optional<Applicant> findMorningMonitoringById(Long id);
 
+
     public List<MorningMonitoring> findAllMonitoringMonitoring();
 
     MorningMonitoring findById(Long id);
+
+    MorningMonitoring findById(int id);
+
 }

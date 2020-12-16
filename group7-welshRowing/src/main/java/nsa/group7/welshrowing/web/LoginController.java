@@ -72,7 +72,7 @@ public class LoginController {
             } else if (theUser.getRole().equals("coach")) {
                 return "redirect:/coach-dashboard/" + theUser.getUserID();
             } else {
-                return "redirect:/athlete-dashboard";
+                return "redirect:/athlete-dashboard" + theUser.getUserID();
             }
         } catch (Exception e){
             System.out.println(e);
