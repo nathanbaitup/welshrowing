@@ -29,13 +29,4 @@ test
 👤 **Nathan Baitup, Hamid Iqbal, Oliver Holloway, Joe Baiely**
 
 
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://git.cardiff.ac.uk/c1926084/clientproject-group7/-/issues?scope=all&utf8=%E2%9C%93&state=all). 
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+issues board aviable via this link <br />Feel free to check [issues page](https://git.cardiff.ac.uk/c1926084/clientproject-group7/-/issues?scope=all&utf8=%E2%9C%93&state=all). 
