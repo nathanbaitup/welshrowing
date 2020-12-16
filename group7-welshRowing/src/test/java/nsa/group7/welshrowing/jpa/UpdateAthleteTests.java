@@ -40,4 +40,18 @@ public class UpdateAthleteTests {
         System.out.println(applicantList);
         assertThat(applicantList.contains(athlete));
     }
+    @Test
+    public void shouldDeleteFromApplicantList () throws Exception {
+        Athlete athlete = athleteRepoJPA.save(new Athlete(3L, null, "Tim Tom", "Male", "20-05-2000", true, "tim@tom.com", "9094043", "904920492", "1 Test Street", "CF42 YES", " ", " ", " ", "930913019", " ", " ", false, " "));
+        Athlete athlete2 = athleteRepoJPA.save(new Athlete(4L, null, "Tom Tim", "Male", "20-05-2000", true, "tom@tim.com", "9094043", "904231143", "1 Park Lane", "CF42 SEY", " ", " ", " ", "931231231", " ", " ", false, " "));
+        List<Athlete> applicantList = athleteRepoJPA.findByApplicationStatus(true);
+        System.out.println(applicantList);
+        assertThat(applicantList.contains(athlete));
+        assertThat(applicantList.contains(athlete2));
+        athleteRepoJPA.deleteById(athlete.getAthleteID());
+        System.out.println(applicantList.size());
+        assertThat(applicantList.size()==1);
+
+
+    }
 }

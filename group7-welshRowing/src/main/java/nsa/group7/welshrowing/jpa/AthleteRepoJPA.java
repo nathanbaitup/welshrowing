@@ -22,6 +22,7 @@ public interface AthleteRepoJPA extends JpaRepository<Athlete, Long> {
      * @return returns the athletes name
      */
     Athlete findByName(String aName);
+
     /**
      * Finds an athlete by their ID.
      *

@@ -30,9 +30,3 @@ used to ensure password and confirm password values match */
 .styled-table tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
-
-#ALTitle {
-    text-align: center;
-    font-family: "Georgia", Times, serif;
-    font-size: 3em;
-}
