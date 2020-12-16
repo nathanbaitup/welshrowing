@@ -18,4 +18,5 @@ public interface MorningMonitoringAuditor {
     MorningMonitoring findById(Long id);
 
     MorningMonitoring findById(int id);
+
 }

@@ -16,4 +16,7 @@ public class AthleteMMDGraphForm {
 
     //int array for the 7 day shape readings
     private int[] shape;
+
+    //string array of dates
+    private String[] dates;
 }
