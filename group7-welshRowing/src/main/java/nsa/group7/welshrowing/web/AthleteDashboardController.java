@@ -59,8 +59,13 @@ public class AthleteDashboardController {
         if(relevantList.size()>=7) {
             for (int i = 0; i < 7; i++) {
                 int j = relevantList.size()-1;
+
+                shape[6-i] = relevantList.get(j-i).getSleepQuality() +
+                             relevantList.get(j-i).getSleepQuantityHours() +
+                             relevantList.get(j-i).getPerceivedMentalState() +
+                             relevantList.get(j-i).getPerceivedShape();
+
                 wakingHR[6-i] = relevantList.get(j-i).getWalkingHeartRate();
-                System.out.println(relevantList.get(j-i).getWalkingHeartRate());
                 standingHR[6-i] = relevantList.get(j-i).getStandingHeartRate();
                 dates[6-i] = relevantList.get(j-i).getDate().toString();
             }
