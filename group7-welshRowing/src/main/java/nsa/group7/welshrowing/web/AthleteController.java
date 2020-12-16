@@ -3,6 +3,8 @@ package nsa.group7.welshrowing.web;
 import nsa.group7.welshrowing.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -47,6 +51,9 @@ public class AthleteController {
         this.athletePreviousSportsAuditor = athletePreviousSportsAuditor;
         this.env = env;
     }
+    @Autowired
+    private JavaMailSender sender;
+
 
     /**
      * Allows a user to create a new account, automatically assumes user is an applicant
@@ -121,7 +128,18 @@ public class AthleteController {
             return "update-athlete";
         } else {
             athleteAuditor.saveAthlete(athlete);
+            MimeMessage message = sender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            try {
+                helper.setTo(athlete.getEmail());
+                helper.setText("Dear " + athlete.getName() + "\n \n We thank you greatly for your interest in joining the WelshRowing organisation, however at this moment in time you have been rejected from the program, but we do believe in second-chances so as you continue to improve and train we are open to reassessing your potential and encourage you to reapply. \n \n Many thanks, \n The WelshRowing Team");
+                helper.setSubject("Welshrowing Application Response");
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+            sender.send(message);
             return "redirect:/athlete-dashboard";
+
         }
     }
 
