@@ -121,7 +121,7 @@ public class AthleteController {
      * @return returns the form if any errors occur or redirects to the homepage.
      */
     @PostMapping("update-athlete")
-    public String handleAthleteEntry(@ModelAttribute("athlete") Athlete athlete, @Valid AthleteUpdateForm athleteUpdateForm, BindingResult bindings, Model model) {
+    public String handleAthleteEntry( @ModelAttribute("athlete") Athlete athlete, @Valid AthleteUpdateForm athleteUpdateForm, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
@@ -131,7 +131,7 @@ public class AthleteController {
             return "update-athlete";
         } else {
             athleteAuditor.saveAthlete(athlete);
-            return "redirect:/athlete-dashboard";
+            return "redirect:/athlete-dashboard/"+athlete.getAthleteID();
         }
     }
 
