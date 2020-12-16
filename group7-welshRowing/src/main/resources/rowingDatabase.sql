@@ -1,57 +1,18 @@
 # https://lucid.app/lucidchart/invitations/accept/fade6f95-af6c-4643-9f07-1e402e18cd19 following schema
-
 #creates admin user with password adminpassword and gives them all permissions over all tables
+DROP USER IF EXISTS 'admin'@'localhost';
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'adminpassword';
 GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
 FLUSH PRIVILEGES;
 
 #creates coach user with password coachpassword and gives them all permissions to insert,select,update, and delete on all tables.
-CREATE USER 'coach'@'localhost' IDENTIFIED BY 'coachpassword';
-GRANT INSERT ON welshrowing TO 'coach'@'localhost';
-GRANT SELECT ON welshrowing TO 'coach'@'localhost';
-GRANT UPDATE ON welshrowing TO 'coach'@'localhost';
-GRANT DELETE ON welshrowing TO 'coach'@'localhost';
+DROP USER IF EXISTS 'webappuser'@'localhost';
+CREATE USER 'webappuser'@'localhost' IDENTIFIED BY 'XuKIB5IN';
+GRANT INSERT ON welshrowing.* TO 'webappuser'@'localhost';
+GRANT SELECT ON welshrowing.* TO 'webappuser'@'localhost';
+GRANT UPDATE ON welshrowing.* TO 'webappuser'@'localhost';
+GRANT DELETE ON welshrowing.* TO 'webappuser'@'localhost';
 FLUSH PRIVILEGES;
-
-#creates athlete user with password athletepassword and gives them all permissions to insert,select,update on tables needed.
-CREATE USER 'athlete'@'localhost' IDENTIFIED BY 'athletepassword';
-GRANT SELECT ON welshrowing.User TO 'athlete'@'localhost';
-GRANT INSERT ON welshrowing.User TO 'athlete'@'localhost';
-GRANT UPDATE ON welshrowing.User TO 'athlete'@'localhost';
-
-GRANT INSERT ON welshrowing.Athlete TO 'athlete'@'localhost';
-GRANT UPDATE ON welshrowing.Athlete TO 'athlete'@'localhost';
-GRANT SELECT ON welshrowing.Athlete TO 'athlete'@'localhost';
-
-GRANT INSERT ON welshrowing.MedicalData TO 'athlete'@'localhost';
-GRANT UPDATE ON welshrowing.MedicalData TO 'athlete'@'localhost';
-GRANT SELECT ON welshrowing.MedicalData TO 'athlete'@'localhost';
-
-GRANT INSERT ON welshrowing.AthletePreviousSports TO 'athlete'@'localhost';
-GRANT UPDATE ON welshrowing.AthletePreviousSports TO 'athlete'@'localhost';
-GRANT SELECT ON welshrowing.AthletePreviousSports TO 'athlete'@'localhost';
-
-GRANT INSERT ON welshrowing.Interview TO 'athlete'@'localhost';
-GRANT UPDATE ON welshrowing.Interview TO 'athlete'@'localhost';
-GRANT SELECT ON welshrowing.Interview TO 'athlete'@'localhost';
-
-GRANT INSERT ON welshrowing.AthleteTest TO 'athlete'@'localhost';
-GRANT UPDATE ON welshrowing.AthleteTest TO 'athlete'@'localhost';
-GRANT SELECT ON welshrowing.AthleteTest TO 'athlete'@'localhost';
-
-GRANT INSERT ON welshrowing.MorningMonitoring TO 'athlete'@'localhost';
-GRANT UPDATE ON welshrowing.MorningMonitoring TO 'athlete'@'localhost';
-GRANT SELECT ON welshrowing.MorningMonitoring TO 'athlete'@'localhost';
-
-GRANT INSERT ON welshrowing.SessionRPE TO 'athlete'@'localhost';
-GRANT UPDATE ON welshrowing.SessionRPE TO 'athlete'@'localhost';
-GRANT SELECT ON welshrowing.SessionRPE TO 'athlete'@'localhost';
-
-GRANT INSERT ON welshrowing.CrossTraining TO 'athlete'@'localhost';
-GRANT UPDATE ON welshrowing.CrossTraining TO 'athlete'@'localhost';
-GRANT SELECT ON welshrowing.CrossTraining TO 'athlete'@'localhost';
-FLUSH PRIVILEGES;
-
 
 CREATE DATABASE IF NOT EXISTS welshRowing;
 
@@ -240,12 +201,12 @@ AS
 
 SELECT * FROM interviewAthletes;
 
-GRANT SELECT ON crossTrainingAdmins TO [admin];
-GRANT SELECT ON crossTrainingCoaches TO [coach];
-GRANT SELECT ON crossTrainingAthletes TO [athlete];
-GRANT SELECT ON interviewAdmins TO [admin];
-GRANT SELECT ON interviewCoaches TO [coach];
-GRANT SELECT ON interviewAthletes TO [athlete];
+#GRANT SELECT ON crossTrainingAdmins TO [admin];
+#GRANT SELECT ON crossTrainingCoaches TO [coach];
+#GRANT SELECT ON crossTrainingAthletes TO [athlete];
+#GRANT SELECT ON interviewAdmins TO [admin];
+#GRANT SELECT ON interviewCoaches TO [coach];
+#GRANT SELECT ON interviewAthletes TO [athlete];
 
 
 
@@ -699,4 +660,6 @@ AS
 
 SELECT * FROM User;
 UPDATE user SET role="coach" WHERE userID =11;
+
+
 
