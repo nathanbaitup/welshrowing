@@ -8,7 +8,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/template.css">
     <link rel="stylesheet" href="/css/coachDashboard.css">
-<!--    <H1>Coach Dashboard</H1>-->
+    <script type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <!--    <H1>Coach Dashboard</H1>-->
 </head>
 <body>
 <!--  Beginning of Navigation section of website  -->
@@ -37,38 +39,49 @@
                 </li>
             </ul>
         </div>
+        <div class="row-navbar">
+            <div id="google_translate_element">
+                <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                    }
+                </script>
+            </div>
+        </div>
     </div>
 </nav>
 
 <!-- End of Navigation section of website-->
 <div class="coachDashboardLead">
-<!--Thymleaf section-->
+    <!--Thymleaf section-->
     <div th:text="${coachName.name}"></div>
     <div th:text="${coachName.text}"></div>
-<br>
-<h3> Visit all Applicants </h3>
-<p>Press the button below to view all current applicants.</p>
-<!--Button to lead to view all applicants -->
-<a class="btn btn-success" th:href="@{/applicants/{id} (id = ${coachID})}">View all Applicants</a>
-<br>
-<br>
+    <br>
+    <h3> Visit all Applicants </h3>
+    <p>Press the button below to view all current applicants.</p>
+    <!--Button to lead to view all applicants -->
+    <a class="btn btn-success" th:href="@{/applicants/{id} (id = ${coachID})}">View all Applicants</a>
+    <br>
+    <br>
     <h3> Interview Process </h3>
     <p>Press the button below to navigate to the interview form.</p>
     <a class="btn btn-primary" th:href="@{/interview-form/{id} (id = ${coachID})}">Interviews</a>
 
-<br>
-<br>
+    <br>
+    <br>
     <h3> Athlete Morning Monitoring Progress </h3>
     <p>Press the button below to navigate to see current Athlete Morning Monitoring Progress.</p>
-    <a class="btn btn-primary" th:href="@{/coach-morning-monitoring/{id} (id = ${coachID})}">Athlete Morning Monitoring</a>
+    <a class="btn btn-primary" th:href="@{/coach-morning-monitoring/{id} (id = ${coachID})}">Athlete Morning
+        Monitoring</a>
 
     <br>
     <br>
-
     <h3> Testing Forms </h3>
     <p>Press the button below to navigate to the testing form to submit data about each applicant.</p>
     <button class="btn btn-primary" onclick="location.href='/submit-testing'">Applicant Testing</button>
-
-    <p> <small> Authorised Viewing Only </small> </p>
+    <br>
+    <br>
+    <p><small> Authorised Viewing Only </small></p>
 </div>
+</body>
 </html>

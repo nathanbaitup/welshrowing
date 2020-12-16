@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Athlete Morning Monitoring Progress</title>
+    <link rel="stylesheet" href="/css/tables.css">
     <link rel="stylesheet" href="/css/template.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script> <!-- Line that brings JQuery in -->
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
 <!--  Beginning of Navigation section of website  -->
@@ -35,13 +37,22 @@
                 </li>
             </ul>
         </div>
+        <div class="row-navbar">
+            <div id="google_translate_element">
+                <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                    }
+                </script>
+            </div>
+        </div>
     </div>
 </nav>
 
 <!-- End of Navigation section of website-->
-<H1>Coach Morning Monitoring List</H1>
-<div class="table">
-    <table border="1">
+<div class="table" align="center">
+    <H1>Coach Morning Monitoring List</H1>
+    <table border="1" cellpadding="10" class="styled-table">
         <thead>
         <tr>
             <th>Monitoring ID</th>

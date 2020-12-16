@@ -23,3 +23,7 @@
 #parentGuardianEntry{
     display: none;
 }
+
+.pageTitles {
+    text-align: center;
+}

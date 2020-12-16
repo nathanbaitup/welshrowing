@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/entryForms.css">
+    <link rel="stylesheet" href="/css/newApplicant.css">
     <link rel="stylesheet" href="/css/template.css">
     <script src="/js/athleteForms.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <title>New Applicant</title>
 
@@ -30,14 +32,15 @@
 
     <!-- End of Navigation section of website-->
 
+    <div class="titles">
     <h1 id="pageTitle">New Applicant </h1>
-
+        <p>Please enter your information to create an account.</p>
+    </div>
 </header>
 <body>
 
-<div>
-    <p>Please enter your information to create an account.</p>
-</div>
+
+
 
 <div class="entry-form">
     <form action="#" method="post" th:action="@{/new-applicant}" th:object="${applicantForm}">
