@@ -1,5 +1,11 @@
 # https://lucid.app/lucidchart/invitations/accept/fade6f95-af6c-4643-9f07-1e402e18cd19 following schema
 
+CREATE USER 'webAppUser'@'localhost' IDENTIFIED BY 'webAppUserPassword';
+GRANT ALL PRIVILEGES ON * . * TO 'webAppUser'@'localhost';
+FLUSH PRIVILEGES;
+
+
+
 #creates admin user with password adminpassword and gives them all permissions over all tables
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'adminpassword';
 GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
@@ -688,7 +694,6 @@ AS
     
    
 DELIMITER //
-DROP PROCEDURE IF EXISTS user_cnt;
 CREATE DEFINER='webAppUser'@'localhost' PROCEDURE user_cnt()
 SQL SECURITY INVOKER
 BEGIN
@@ -697,7 +702,6 @@ END;//
 DELIMITER ;
 
 DELIMITER //
-DROP PROCEDURE IF EXISTS find_number_applicants;
 CREATE DEFINER='webAppUser'@'localhost' PROCEDURE find_number_applicants()
 SQL SECURITY INVOKER
 BEGIN
@@ -706,7 +710,6 @@ END;//
 DELIMITER ;
 
 DELIMITER //
-DROP PROCEDURE IF EXISTS find_number_coaches;
 CREATE DEFINER='webAppUser'@'localhost' PROCEDURE find_number_coaches()
 SQL SECURITY INVOKER
 BEGIN
@@ -715,7 +718,6 @@ END;//
 DELIMITER ;
 
 DELIMITER //
-DROP PROCEDURE IF EXISTS find_number_athletes;
 CREATE DEFINER='webAppUser'@'localhost' PROCEDURE find_number_athletes()
 SQL SECURITY INVOKER
 BEGIN
