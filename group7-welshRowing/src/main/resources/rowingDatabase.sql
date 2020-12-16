@@ -661,5 +661,18 @@ AS
 SELECT * FROM User;
 UPDATE user SET role="coach" WHERE userID =11;
 
+#inserting dummy data
+INSERT INTO user(name,username,password,role) VALUES ("Bob Smith", "userbob", "Bestbob55","athlete");
+INSERT INTO user(name,username,password,role) VALUES ("James Dean", "userjames", "Password1","athlete");
+INSERT INTO user(name,username,password,role) VALUES ("Bob Ross", "painterbob", "Painting58","athlete");
+INSERT INTO user(name,username,password,role) VALUES ("Hamid Iqbal", "hamidiqbal", "Password1","athlete");
+INSERT INTO user(name,username,password,role) VALUES ("Oliver Holdaway", "oliverholdaway", "Password1","athlete");
+
+INSERT INTO user(name,username,password,role) VALUES ("Coach Name", "coachaccount", "Password1","coach");
+INSERT INTO user(name,username,password,role) VALUES ("Nathan Baitup", "nathanbaitup", "Password1","coach");
+
+
+
+
 
 
