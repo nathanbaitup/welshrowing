@@ -26,25 +26,28 @@
 
     <!-- End of Navigation section of website-->
 
-    <h1 id="pageTitle">Login </h1>
-
 </header>
 <body>
-    <p>Please enter your login information.</p>
-        <form action="#" method="post" th:action="@{/login}" th:object="${loginForm}">
-            <div class="row justify-content-center">
+    <div class="text-center">
+        <h1 id="pageTitle">
+            Login
+        </h1>
+        <p>Please enter your login information.</p>
+    </div>
+    <form action="#" method="post" th:action="@{/login}" th:object="${loginForm}">
+        <div class="row justify-content-center">
 
-                <label th:for="username">Username:</label><br>
-                <input class="form-control" th:field="*{username}" type="text"><br>
-                <span th:errors="*{username}" th:if="${#fields.hasErrors('username')}">Please enter your username.</span>
+            <label th:for="username">Username:</label><br>
+            <input class="form-control" th:field="*{username}" type="text"><br>
+            <span th:errors="*{username}" th:if="${#fields.hasErrors('username')}">Please enter your username.</span>
 
-                <label th:for="password">Password:</label><br>
-                <input class="form-control" th:field="*{password}" type="password"><br>
-                <span th:errors="*{password}" th:if="${#fields.hasErrors('password')}">Please enter your password.</span>
-                <br>
-                <button class="btn btn-primary" type="submit">Login</button>
-            </div>
-        </form>
+            <label th:for="password">Password:</label><br>
+            <input class="form-control" th:field="*{password}" type="password"><br>
+            <span th:errors="*{password}" th:if="${#fields.hasErrors('password')}">Please enter your password.</span>
+            <br>
+            <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+    </form>
 
 </body>
 </html>

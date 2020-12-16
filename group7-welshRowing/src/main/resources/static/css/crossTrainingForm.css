@@ -1,0 +1,11 @@
+.row {
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 30%;
+    padding-right: 30%;
+    width:100%;
+}
+
+.heading {
+    text-align: center;
+}
