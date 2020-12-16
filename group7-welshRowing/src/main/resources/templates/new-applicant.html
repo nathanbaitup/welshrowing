@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/entryForms.css">
+    <link rel="stylesheet" href="/css/newApplicant.css">
     <link rel="stylesheet" href="/css/template.css">
     <script src="/js/athleteForms.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -31,14 +32,15 @@
 
     <!-- End of Navigation section of website-->
 
+    <div class="titles">
     <h1 id="pageTitle">New Applicant </h1>
-
+        <p>Please enter your information to create an account.</p>
+    </div>
 </header>
 <body>
 
-<div>
-    <p>Please enter your information to create an account.</p>
-</div>
+
+
 
 <div class="entry-form">
     <form action="#" method="post" th:action="@{/new-applicant}" th:object="${applicantForm}">
