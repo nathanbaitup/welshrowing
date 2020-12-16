@@ -36,7 +36,6 @@ import java.util.Optional;
 public class AthleteController {
 
 
-
     private final AthleteAuditor athleteAuditor;
     private final ApplicantAuditor applicantAuditor;
     private final AnthropometryAuditor anthropometryAuditor;
@@ -61,8 +60,8 @@ public class AthleteController {
         this.env = env;
     }
 
-    @Autowired
-    private JavaMailSender sender;
+//    @Autowired
+//    private JavaMailSender sender;
 
     @ModelAttribute("users")
     public List<Long> users() {
@@ -198,16 +197,16 @@ public class AthleteController {
         Long athleteID = Long.parseLong(id);
         Optional<Athlete> optionalAthlete = athleteAuditor.findAthleteById(athleteID);
         Athlete athlete = optionalAthlete.get();
-        MimeMessage message = sender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
-        try {
-            helper.setTo(athlete.getEmail());
-            helper.setText("Dear " + athlete.getName() + "\n \n We thank you greatly for your interest in joining the WelshRowing organisation, however at this moment in time you have been rejected from the program, but we do believe in second-chances so as you continue to improve and train we are open to reassessing your potential and encourage you to reapply. \n \n Many thanks, \n The WelshRowing Team");
-            helper.setSubject("Welshrowing Application Response");
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-        sender.send(message);
+//        MimeMessage message = sender.createMimeMessage();
+//        MimeMessageHelper helper = new MimeMessageHelper(message);
+//        try {
+//            helper.setTo(athlete.getEmail());
+//            helper.setText("Dear " + athlete.getName() + "\n \n We thank you greatly for your interest in joining the WelshRowing organisation, however at this moment in time you have been rejected from the program, but we do believe in second-chances so as you continue to improve and train we are open to reassessing your potential and encourage you to reapply. \n \n Many thanks, \n The WelshRowing Team");
+//            helper.setSubject("Welshrowing Application Response");
+//        } catch (MessagingException e) {
+//            e.printStackTrace();
+//        }
+//        sender.send(message);
         System.out.println(athlete.toString());
         athleteAuditor.deleteAthlete(athleteID);
         return "applicants";

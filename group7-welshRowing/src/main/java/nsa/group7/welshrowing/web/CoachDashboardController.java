@@ -48,16 +48,21 @@ public class CoachDashboardController {
      * @param name - Name of the ID user
      * @return return the coachDashboard.html file
      */
-    @GetMapping("coach/coach-dashboard/{id}")
+    @GetMapping("coach-dashboard/{id}")
     public String coachDashboard(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model name) {
-        if (users.get(users.size() - 1).equals(id)) {
-            System.out.println("List of Users: " + users);
-            Applicant aCoachDashboard = coachAuditor.findApplicantById(id).get();
-            CoachDashboard coachDashboardForm = new CoachDashboard(aCoachDashboard.getName(), "Welcome to your dashboard!");
-            name.addAttribute("coachName", coachDashboardForm);
-            return "coachDashboard";
-        } else {
-            return "redirect:/coach/coach-dashboard/" + users.get(users.size() - 1);
+        try {
+            if (users.get(users.size() - 1).equals(id)) {
+                System.out.println("List of Users: " + users);
+                Applicant aCoachDashboard = coachAuditor.findApplicantById(id).get();
+                CoachDashboard coachDashboardForm = new CoachDashboard(aCoachDashboard.getName(), "Welcome to your dashboard!");
+                name.addAttribute("coachName", coachDashboardForm);
+                return "coachDashboard";
+            } else {
+                return "redirect:/coach-dashboard/" + users.get(users.size() - 1);
+            }
+        } catch (Exception e) {
+            System.out.println();
+            return "redirect:/404";
         }
     }
 
@@ -67,7 +72,7 @@ public class CoachDashboardController {
      * @param model - adds to the page.
      * @return returns the submit testing form, with the list of current applicants to select from.
      */
-    @GetMapping("coach/submit-testing")
+    @GetMapping("submit-testing")
     public String serveApplicantTesting(Model model) {
         List<Athlete> applicantList = athleteAuditor.findAthletesByApplicationStatus(Boolean.TRUE);
         model.addAttribute("applicantTesting", applicantList);
@@ -79,10 +84,10 @@ public class CoachDashboardController {
     /**
      * Submits an applicant test to the database, if they pass the test, they are removed from the applicant list.
      *
-     * @param applicantTesting - the ApplicantTesting entity.
+     * @param applicantTesting     - the ApplicantTesting entity.
      * @param applicantTestingForm - the form to take and validate user inputs.
-     * @param bindings -  any errors.
-     * @param model - adds the form to the page given there are errors
+     * @param bindings             -  any errors.
+     * @param model                - adds the form to the page given there are errors
      * @return returns either the form to append errors or submits data to the database and redirects to the coach dashboard.
      */
     @PostMapping("submit-testing")
@@ -94,15 +99,15 @@ public class CoachDashboardController {
             }
             model.addAttribute("applicantList", applicantTestingForm);
             return "applicant-testing";
-        } else if (applicantTestingForm.getPostTestResult().equals("START.") || applicantTestingForm.getPostTestResult().equals("8 weeks")){
+        } else if (applicantTestingForm.getPostTestResult().equals("START.") || applicantTestingForm.getPostTestResult().equals("8 weeks")) {
             athleteAuditor.setApplicationStatus(Boolean.FALSE, applicantTestingForm.getAthleteID());
             athleteAuditor.setPostTestStatus(applicantTestingForm.getPostTestResult(), applicantTestingForm.getAthleteID());
             applicantTestingAuditor.saveApplicantTesting(applicantTesting);
-            return "redirect:/coach/coach-dashboard/" + users.get(users.size() - 1);
+            return "redirect:/coach-dashboard/" + users.get(users.size() - 1);
         } else {
             athleteAuditor.setPostTestStatus(applicantTestingForm.getPostTestResult(), applicantTestingForm.getAthleteID());
             applicantTestingAuditor.saveApplicantTesting(applicantTesting);
-            return "redirect:/coach/coach-dashboard/" + users.get(users.size() - 1);
+            return "redirect:/coach-dashboard/" + users.get(users.size() - 1);
         }
     }
 }
