@@ -3,16 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/interviewForm.css">
+    <script src="/js/athleteForms.js"></script>
 
-    <title>Title</title>
+
+    <title>Interview Process</title>
 
 </head>
+<header>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img src="/images/logo.png"></a> <!-- Logo location with link to homepage -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span> <!-- Drop down menu button when page is on mobile -->
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"> <!--Each button object for nav-->
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/new-applicant">Sign Up</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/logout">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
 <body>
-<h2 class="title">INTERVIEW FORM</h2>
+<h2 class="title">Interview Form</h2>
 <div class="entry-form">
     <form action="#" th:action="@{/enter-interview-form}" th:object="${interview}" method="post">
+
+        <div class="form-group blu-margin">
+            <label for="applicantSelector">Select the applicant name you are testing:</label>
+            <select class="form-control" id="applicantSelector" onchange="setAthleteID()">
+                <option value="0">Select Applicant</option>
+                <option id="selectedAthlete" th:each="applicant : ${applicantTesting}" th:value="${applicant.athleteID}"
+                        th:text="${applicant.athleteID}+' : '+${applicant.name}"></option>
+            </select>
+        </div>
+        <br>
+
+        <input th:field="*{athleteID}" id="testedAthlete" hidden>
         <div class="form-group">
-            <input th:field="*{athleteID}" hidden>
             <label th:for="answer1">What to you is the difference between taking part and competing in sport? What does High Performance/Elite Sport mean?</label>
             <br>
             <textarea class="form-control" th:field="*{answer1}" rows="4" cols="50"/>
