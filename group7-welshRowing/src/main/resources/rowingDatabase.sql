@@ -700,3 +700,19 @@ AS
 SELECT * FROM User;
 UPDATE user SET role="coach" WHERE userID =11;
 
+DELIMITER //
+CREATE PROCEDURE find_completed_morning_data ()
+BEGIN
+SELECT a.athleteID, a.name FROM Athlete a INNER JOIN MorningMonitoring mm ON a.athleteID=mm.athleteID
+WHERE mm.date = curdate() ORDER BY a.athleteID asc;
+END //
+DELIMITER ;
+SELECT athleteID, name FROM Athlete;
+
+DELIMITER //
+CREATE PROCEDURE find_all_athletes ()
+BEGIN
+SELECT athleteID, name FROM Athlete
+ORDER BY athleteID asc;
+END //
+DELIMITER ;
