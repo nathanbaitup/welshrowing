@@ -17,44 +17,45 @@
 
 </head>
 <header>
-    <h1 id="pageTitle">Applicants</h1>
-</header>
-<body>
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="welcome.html"><img src="images/logo.png"></a> <!-- Logo location with link to homepage -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span> <!-- Drop down menu button when page is on mobile -->
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"> <!--Each button object for nav-->
-                    <a class="nav-link" href="welcome.html">Home</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="welcome.html">About</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="login.html">Login</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="welcome.html">Logout</a>
-                </li>
-            </ul>
-        </div>
-        <div class="row-navbar">
-            <div id="google_translate_element">
-                <script type="text/javascript">
-                    function googleTranslateElementInit() {
-                        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-                    }
-                </script>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img src="/images/logo.png"></a> <!-- Logo location with link to homepage -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span> <!-- Drop down menu button when page is on mobile -->
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"> <!--Each button object for nav-->
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/new-applicant">Sign Up</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/logout">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row-navbar">
+                <div id="google_translate_element">
+                    <script type="text/javascript">
+                        function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                        }
+                    </script>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>
+<body>
+
+
 <div align="center">
-    <h1>Applicant List</h1>
+    <h1 id="pageTitle">Applicants</h1>
     <br/>
     <table border="1" cellpadding="10" class="styled-table">
         <thead>

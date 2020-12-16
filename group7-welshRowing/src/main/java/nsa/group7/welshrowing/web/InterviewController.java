@@ -88,7 +88,7 @@ public class InterviewController {
             return "interview-form";
         } else {
             interviewAuditor.saveInterview(interviewEntry);
-            return "redirect:/coach/coach-dashboard/" + users.get(users.size() - 1);
+            return "redirect:/coach-dashboard/" + users.get(users.size() - 1);
         }
     }
 
