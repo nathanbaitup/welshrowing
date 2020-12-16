@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,5 +106,17 @@ public class LoginController {
 
         }
 
+    }
+
+    @GetMapping("logout")
+    public String flush(HttpServletRequest req, Model model) {
+
+        model.addAttribute("users", new ArrayList<Long>());
+
+        HttpSession session = req.getSession();
+        session.removeAttribute("users");
+        session.invalidate();
+        System.out.println("List of Users: " + users());
+        return "redirect:/logout-page";
     }
 }

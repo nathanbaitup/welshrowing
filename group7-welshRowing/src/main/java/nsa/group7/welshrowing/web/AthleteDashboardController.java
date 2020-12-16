@@ -27,13 +27,17 @@ public class AthleteDashboardController {
 
     @GetMapping("athlete-dashboard/{id}")
     public String athleteDashboard(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model model){
-        if (users.get(users.size() - 1).equals(id)) {
-            System.out.println("List of Users: " + users);
-            model.addAttribute(" ");
-            return "athleteDashboard";
-        } else {
-            return "redirect:/athlete-dashboard/" + + users.get(users.size() - 1);
+        try {
+            if (users.get(users.size() - 1).equals(id)) {
+                System.out.println("List of Users: " + users);
+                model.addAttribute(" ");
+                return "athleteDashboard";
+            } else {
+                return "redirect:/athlete-dashboard/" + +users.get(users.size() - 1);
+            }
+        } catch (Exception e){
+            System.out.println();
+            return "redirect:/404";
         }
-
     }
 }

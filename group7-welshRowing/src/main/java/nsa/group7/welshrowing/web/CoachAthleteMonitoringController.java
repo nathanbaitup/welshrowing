@@ -36,7 +36,7 @@ public class CoachAthleteMonitoringController {
      * @param model placeholder which .addAttribute populating with data SQL table
      * @return file name coachMorningMonitoring
      */
-    @GetMapping("/coach/coach-dashboard/{id}/coach-morning-monitoring") // Previously morningMonitoring
+    @GetMapping("/coach-dashboard/{id}/coach-morning-monitoring") // Previously morningMonitoring
     public String serveMorningMonitoringList(@PathVariable("id") Long id, @ModelAttribute("users") List<Long> users, Model model) {
         if (users.get(users.size() - 1).equals(id)) {
             System.out.println("List of Users: " + users);
