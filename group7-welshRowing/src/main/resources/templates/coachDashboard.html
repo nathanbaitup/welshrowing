@@ -49,20 +49,22 @@
 <h3> Visit all Applicants </h3>
 <p>Press the button below to view all current applicants.</p>
 <!--Button to lead to view all applicants -->
-<button class="btn btn-success" onclick="location.href='/applicants'">View all Applicants</button>
+<a class="btn btn-success" th:href="@{/applicants/{id} (id = ${coachID})}">View all Applicants</a>
 <br>
 <br>
     <h3> Interview Process </h3>
     <p>Press the button below to navigate to the interview form.</p>
-    <a class="btn btn-primary" th:href="@{/interview-form/{id} (id = ${coachID})}'">Interviews</a>
+    <a class="btn btn-primary" th:href="@{/interview-form/{id} (id = ${coachID})}">Interviews</a>
 
 <br>
 <br>
     <h3> Athlete Morning Monitoring Progress </h3>
     <p>Press the button below to navigate to see current Athlete Morning Monitoring Progress.</p>
-    <button class="btn btn-primary" onclick="location.href='/coachdashboard/coachmorningmonitoring'">Athlete Morning Monitoring</button>
+    <a class="btn btn-primary" th:href="@{/coach-morning-monitoring/{id} (id = ${coachID})}">Athlete Morning Monitoring</a>
 
     <br>
+    <br>
+
     <h3> Testing Forms </h3>
     <p>Press the button below to navigate to the testing form to submit data about each applicant.</p>
     <button class="btn btn-primary" onclick="location.href='/submit-testing'">Applicant Testing</button>

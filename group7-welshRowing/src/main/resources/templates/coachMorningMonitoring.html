@@ -57,7 +57,7 @@
 <!--    Referencing the athlete table and referencing the athleteID column within the table -->
         <tr th:each="monitor : ${listMorningMonitoring}">
             <td th:text="${monitor.monitoringID}">Monitoring ID</td>
-            <td th:text="${monitor.athlete.athleteID}">Athlete ID</td>
+            <td th:text="${monitor.athleteID.athleteID}">Athlete ID</td>
             <td th:text="${monitor.date}">Date</td>
             <td th:text="${monitor.walkingHeartRate}">Walking Heart Rate</td>
             <td th:text="${monitor.standingHeartRate}">Standing Heart Rate</td>
