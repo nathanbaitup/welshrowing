@@ -53,21 +53,18 @@
         <a th:href="@{/athlete-mmd-form/{id} (id=${userID})}"><img id="big" src="https://i.pinimg.com/736x/85/5d/f2/855df22700990ca085d87970f354054f.jpg"></a>
         <p>Daily monitoring of physical and psychological metrics</p>
     </div>
-</div>
-<div class="formContainer">
     <div class="block">
         <h3 class="link"><a th:href="@{/submit-session-rpe/{id} (id=${userID})}" class="link">Workout Training</a></h3>
         <a th:href="@{/submit-session-rpe/{id} (id=${userID})}"><img src="https://www.pngitem.com/pimgs/m/121-1210928_bodybuilding-and-dumbbells-vector-image-illustration-transparent-background.png"></a>
         <p>Enter data about your workout sessions</p>
     </div>
-</div>
-<div class="formContainer">
     <div class="block">
         <h3 class="link"><a th:href="@{/submit-cross-training-form/{id} (id=${userID})}" class="link">Cross Training</a></h3>
         <a th:href="@{/submit-cross-training-form/{id} (id=${userID})}"><img src="https://img.pngio.com/vector-running-man-man-clipart-vector-running-man-png-and-vector-png-of-person-running-650_795.png"></a>
         <p>Enter data about your cross training sessions</p>
     </div>
 </div>
+
 <div class="formContainer">
     <div class="block">
         <h3 class="link">Medical Data</h3>
@@ -94,57 +91,57 @@
 </div>
 
 
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var wakingHR = /*[[${graphs.wakingHR}]]*/ 'default';
-        var standingHR = /*[[${graphs.standingHR}]]*/ 'default';
-        var shape = /*[[${graphs.shape}]]*/ 'default';
-        var dates = /*[[${graphs.dates}]]*/ 'default';
-        var osHR = new Array(standingHR[0]-wakingHR[0],standingHR[1]-wakingHR[1],standingHR[2]-wakingHR[2],standingHR[3]-wakingHR[3],standingHR[4]-wakingHR[4],standingHR[5]-wakingHR[5],standingHR[6]-wakingHR[6],standingHR[7]-wakingHR[7]);
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var wakingHR = /*[[${graphs.wakingHR}]]*/ 'default';
+    var standingHR = /*[[${graphs.standingHR}]]*/ 'default';
+    var shape = /*[[${graphs.shape}]]*/ 'default';
+    var dates = /*[[${graphs.dates}]]*/ 'default';
+    var osHR = new Array(standingHR[0] - wakingHR[0], standingHR[1] - wakingHR[1], standingHR[2] - wakingHR[2], standingHR[3] - wakingHR[3], standingHR[4] - wakingHR[4], standingHR[5] - wakingHR[5], standingHR[6] - wakingHR[6], standingHR[7] - wakingHR[7]);
 
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [dates[0],dates[1],dates[2],dates[3],dates[4],dates[5],dates[6]],
-                datasets: [{
-                    data: wakingHR,
-                    label: "Waking Heart Rate",
-                    borderColor: "#3e95cd",
-                    fill: false,
-                    lineTension: 0
-                }, {
-                    data: standingHR,
-                    label: "Standing Heart Rate",
-                    borderColor: "#8e5ea2",
-                    lineTension: 0,
-                    fill: false
-                }, {
-                    data: shape,
-                    label: "Shape",
-                    borderColor: "#FF0000",
-                    lineTension: 0,
-                    fill: false
-                }, {
-                    data: osHR,
-                    label: "Osmotic HR",
-                    borderColor: "#008000",
-                    lineTension: 0,
-                    fill: false
-                }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                title: {
-                    display: true,
-                    text: 'Morning Monitoring Heart rates(BPM)',
-                }
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [dates[0], dates[1], dates[2], dates[3], dates[4], dates[5], dates[6]],
+            datasets: [{
+                data: wakingHR,
+                label: "Waking Heart Rate",
+                borderColor: "#3e95cd",
+                fill: false,
+                lineTension: 0
+            }, {
+                data: standingHR,
+                label: "Standing Heart Rate",
+                borderColor: "#8e5ea2",
+                lineTension: 0,
+                fill: false
+            }, {
+                data: shape,
+                label: "Shape",
+                borderColor: "#FF0000",
+                lineTension: 0,
+                fill: false
+            }, {
+                data: osHR,
+                label: "Osmotic HR",
+                borderColor: "#008000",
+                lineTension: 0,
+                fill: false
             }
-        });
-        /*]]>*/
-    </script>
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: 'Morning Monitoring Heart rates(BPM)',
+            }
+        }
+    });
+    /*]]>*/
+</script>
 
 
 </body>
