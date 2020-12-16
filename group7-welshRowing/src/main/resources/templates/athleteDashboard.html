@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -59,21 +59,37 @@
     </div>
 
 
-    <script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var wakingHR = /*[[${graphs.wakingHR}]]*/ 'default';
+        var standingHR = /*[[${graphs.standingHR}]]*/ 'default';
+        var shape = /*[[${graphs.shape}]]*/ 'default';
+        var osHR = new Array(standingHR[0]-wakingHR[0],standingHR[1]-wakingHR[1],standingHR[2]-wakingHR[2],standingHR[3]-wakingHR[3],standingHR[4]-wakingHR[4],standingHR[5]-wakingHR[5],standingHR[6]-wakingHR[6],standingHR[7]-wakingHR[7]);
+
         var ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: ["04/10/20","05/10/20","06/10/20","07/10/20","08/10/20","09/10/20","10/10/20"],
                 datasets: [{
-                    data: [54,55,55,59,61,56,55],
+                    data: wakingHR,
                     label: "Waking Heart Rate",
                     borderColor: "#3e95cd",
                     fill: false
                 }, {
-                    data: [57,59,60,71,73,61,61],
+                    data: standingHR,
                     label: "Standing Heart Rate",
                     borderColor: "#8e5ea2",
+                    fill: false
+                }, {
+                    data: shape,
+                    label: "Shape",
+                    borderColor: "#FF0000",
+                    fill: false
+                }, {
+                    data: osHR,
+                    label: "osmotic HR",
+                    borderColor: "#008000",
                     fill: false
                 }
                 ]
@@ -87,6 +103,7 @@
                 }
             }
         });
+        /*]]>*/
     </script>
 
 
