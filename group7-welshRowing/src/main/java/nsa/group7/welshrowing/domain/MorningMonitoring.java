@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.annotation.sql.DataSourceDefinition;
 import javax.persistence.*;
 import java.sql.Date;
 

@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="/js/setDate.js"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 
 <header>
@@ -25,23 +26,33 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">About</a>
+                        <a class="nav-link" href="/new-applicant">Sign Up</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="/login">Login</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/new-applicant">Sign Up</a>
+                        <a class="nav-link" href="/logout">Log Out</a>
                     </li>
                 </ul>
+            </div>
+            <div class="row-navbar">
+                <div id="google_translate_element">
+                    <script type="text/javascript">
+                        function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                        }
+                    </script>
+                </div>
             </div>
         </div>
     </nav>
 </header>
 
 <body>
+<div class="h1-center">
     <h1>Athlete Morning Monitoring Data Entry</h1>
-    <br>
+</div>
     <form action="#" method="post" th:action="@{/athlete-mmd-form}" th:object="${morningMonitoringForm}">
         <div class="row">
 

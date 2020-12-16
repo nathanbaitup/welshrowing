@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+/**
+ * Provides a set of methods for managing and retrieving Applicant objects.
+ */
 @Component
 public class ApplicantJPAAdaptor implements ApplicantAuditor {
 

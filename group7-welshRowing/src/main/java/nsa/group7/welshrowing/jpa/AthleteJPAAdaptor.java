@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Provides a set of methods for managing and retrieving Athlete objects.
+ */
 @Component
 public class AthleteJPAAdaptor implements AthleteAuditor {
 
@@ -33,7 +35,13 @@ public class AthleteJPAAdaptor implements AthleteAuditor {
     public void saveAthlete(Athlete anAthlete) {
         athleteRepoJPA.save(anAthlete);
     }
-
+    /**
+     * Uses the athlete auditor interface to access the JPA repository and automatically removes the athlete within the database.
+     *
+     * @param aID - the id to find and then delete from the database.
+     */
+    @Override
+    public void deleteAthlete(Long aID) { athleteRepoJPA.deleteById(aID); }
     /**
      * Uses the athlete auditor interface to access the JPA repository and automatically updates the athlete object within the database if the data already exists.
      *

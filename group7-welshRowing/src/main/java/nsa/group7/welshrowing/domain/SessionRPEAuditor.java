@@ -2,6 +2,9 @@ package nsa.group7.welshrowing.domain;
 
 import java.util.Optional;
 
+/**
+ * Provides a set of methods for managing and retrieving RPE Session Workouts objects.
+ */
 public interface SessionRPEAuditor {
     /**
      * Method that saves all information of an session object.

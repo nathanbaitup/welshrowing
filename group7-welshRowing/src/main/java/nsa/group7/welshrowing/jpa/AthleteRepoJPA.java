@@ -11,7 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Provides a set of methods using the JPA Repository to communicate to the database.
+ */
 public interface AthleteRepoJPA extends JpaRepository<Athlete, Long> {
     /**
      * Finds an athletes name.
@@ -20,6 +22,7 @@ public interface AthleteRepoJPA extends JpaRepository<Athlete, Long> {
      * @return returns the athletes name
      */
     Athlete findByName(String aName);
+
     /**
      * Finds an athlete by their ID.
      *
@@ -58,4 +61,5 @@ public interface AthleteRepoJPA extends JpaRepository<Athlete, Long> {
     @Query("UPDATE Athlete athlete SET athlete.applicationStatus = :applicationStatus WHERE athlete.athleteID = :athleteID")
     void setApplicationStatus(@Param("applicationStatus") Boolean applicationStatus ,@Param("athleteID") Long athleteID);
 
+    Athlete findByAthleteID(Long id);
 }

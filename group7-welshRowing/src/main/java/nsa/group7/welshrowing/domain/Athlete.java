@@ -18,9 +18,12 @@ public class Athlete {
     @Id
     private Long athleteID;
     /**
-     * The name of the athlete.
+     * The coachID;
      */
     private Long coachID;
+    /**
+     * The name of the athlete.
+     */
     private String name;
     /**
      * The gender of the athlete. Will be radio button options on form.

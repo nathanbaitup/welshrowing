@@ -5,6 +5,9 @@ import nsa.group7.welshrowing.domain.InterviewAuditor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Provides a set of methods for managing and retrieving Interview objects.
+ */
 @Component
 public class InterviewJPAAdaptor implements InterviewAuditor {
 

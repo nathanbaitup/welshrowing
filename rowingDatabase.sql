@@ -240,12 +240,12 @@ AS
 
 SELECT * FROM interviewAthletes;
 
-GRANT SELECT ON crossTrainingAdmins TO [admin];
-GRANT SELECT ON crossTrainingCoaches TO [coach];
-GRANT SELECT ON crossTrainingAthletes TO [athlete];
-GRANT SELECT ON interviewAdmins TO [admin];
-GRANT SELECT ON interviewCoaches TO [coach];
-GRANT SELECT ON interviewAthletes TO [athlete];
+GRANT SELECT ON crossTrainingAdmins TO 'root'@'localhost';
+GRANT SELECT ON crossTrainingCoaches TO 'coach'@'localhost';
+GRANT SELECT ON crossTrainingAthletes TO 'athlete'@'localhost';
+GRANT SELECT ON interviewAdmins TO 'root'@'localhost';
+GRANT SELECT ON interviewCoaches TO 'coach'@'localhost';
+GRANT SELECT ON interviewAthletes TO 'athlete'@'localhost';
 
 
 
@@ -696,7 +696,5 @@ AS
 CREATE VIEW userAuditCoach
 AS
 	SELECT deletedDate FROM useraudit;
-
-SELECT * FROM User;
-UPDATE user SET role="coach" WHERE userID =11;
-
+    
+SHOW GRANTS FOR 'athlete'@'localhost';

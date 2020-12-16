@@ -1,11 +1,13 @@
 package nsa.group7.welshrowing.jpa;
 
-import nsa.group7.welshrowing.domain.Anthropometry;
 import nsa.group7.welshrowing.domain.AthletePreviousSports;
 import nsa.group7.welshrowing.domain.AthletePreviousSportsAuditor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Provides a set of methods for managing and retrieving Previous Sporting objects.
+ */
 @Component
 public class AthletePreviousSportsAdaptor implements AthletePreviousSportsAuditor {
 

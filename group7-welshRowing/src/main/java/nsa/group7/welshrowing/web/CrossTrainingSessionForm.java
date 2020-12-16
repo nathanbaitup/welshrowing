@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 
-public class crossTrainingSessionForm {
+public class CrossTrainingSessionForm {
     /**
      * athleteID in database.
      */
@@ -46,7 +46,7 @@ public class crossTrainingSessionForm {
      * @param athleteID
      */
 
-    public crossTrainingSessionForm(Long athleteID){
+    public CrossTrainingSessionForm(Long athleteID){
         this(athleteID, null, null, 0, null);
     }
 }

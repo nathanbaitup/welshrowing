@@ -2,12 +2,14 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/crossTrainingForm.css">
     <link rel="stylesheet" href="/css/template.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="/js/setDate.js"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <title>Cross Training Form</title>
 
 
@@ -24,15 +26,24 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">About</a>
+                        <a class="nav-link" href="/new-applicant">Sign Up</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="/login">Login</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/new-applicant">Sign Up</a>
+                        <a class="nav-link" href="/logout">Log Out</a>
                     </li>
                 </ul>
+            </div>
+            <div class="row-navbar">
+                <div id="google_translate_element">
+                    <script type="text/javascript">
+                        function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                        }
+                    </script>
+                </div>
             </div>
         </div>
     </nav>
@@ -41,15 +52,16 @@
 
 
 <body>
+<div class="heading">
 <H1>Cross Training Form</H1>
-
+</div>
 <!--Cross Training Form begin-->
 <div class="crossTrainingForm">
     <form action="#" method="post" th:action="@{/submit-crosstraining-form}" th:object="${crossTrainingSessionForm}">
 
         <input th:field="*{athleteID}" hidden >
 
-        <div class="crossTrainingForm">
+        <div class="row">
             <label th:for="dateOfSession">Date of Cross Training Workout:</label>
             <input class="form-control" th:field="*{dateOfSession}" id="date" type="date" required/>
 
@@ -63,14 +75,16 @@
                 <option th:value="Swimming">Swimming</option>
             </select>
             <span th:errors="*{typeOfCrossTraining}" th:if="${#fields.hasErrors('typeOfCrossTraining')}">Please select a Cross Training workout</span>
-        </div>
-        <div class="form-group">
+
             <label th:for="totalTimeMinutes">Please enter the amount of minutes of training: </label>
             <input class="form-control" th:field="*{totalTimeMinutes}" type="text">
             <label th:for="totalDistance">Please enter the distance you completed during your training </label>
             <input class="form-control" th:field="*{totalDistance}" type="text">
-        </div>
+
+        <br><br>
+            <br>
         <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
     </form>
 </div>
 <!--Cross Training Form End-->

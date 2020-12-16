@@ -1,44 +1,39 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <title>Athlete Morning Monitoring Progress</title>
     <link rel="stylesheet" href="/css/tables.css">
     <link rel="stylesheet" href="/css/template.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script> <!
-    <script src="/js/applicantList.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script> <!-- Line that brings JQuery in -->
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <title>Applicant List</title>
-
-
 </head>
-<header>
-    <h1 id="pageTitle">Applicants</h1>
-</header>
 <body>
+<!--  Beginning of Navigation section of website  -->
+
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="welcome.html"><img src="images/logo.png"></a> <!-- Logo location with link to homepage -->
+        <a class="navbar-brand" href="/"><img src="/images/logo.png"></a> <!-- Logo location with link to homepage -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
             <span class="navbar-toggler-icon"></span> <!-- Drop down menu button when page is on mobile -->
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"> <!--Each button object for nav-->
-                    <a class="nav-link" href="welcome.html">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="welcome.html">About</a>
+                    <a class="nav-link" href="/new-applicant">Sign Up</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="login.html">Login</a>
+                    <a class="nav-link" href="/login">Login</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="welcome.html">Logout</a>
+                    <a class="nav-link" href="/logout">Log Out</a>
                 </li>
             </ul>
         </div>
@@ -53,34 +48,34 @@
         </div>
     </div>
 </nav>
-<div align="center">
-    <h1>Applicant List</h1>
-    <br/>
+
+<!-- End of Navigation section of website-->
+<div class="table" align="center">
+    <H1>Coach Morning Monitoring List</H1>
     <table border="1" cellpadding="10" class="styled-table">
         <thead>
         <tr>
+            <th>Monitoring ID</th>
             <th>Athlete ID</th>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Date of Birth</th>
-            <th>Mobile Number</th>
-            <th>Guardian Mobile Number</th>
-            <th>Application Status</th>
-            <th>Accept</th>
-            <th>Reject</th>
-        </tr>
-        </thead>
+            <th>Date</th>
+            <th>Walking Heart Rate</th>
+            <th>Standing Heart Rate</th>
+            <th>Perceived Shape</th>
+            <th>Perceived Mental State</th>
+            <th>Sleep Quantity Hours</th>
+            <th>Sleep Quality</th>
         <tbody>
-        <tr th:each="athlete : ${listApplicants}">
-            <td class="athleteID" th:text="${athlete.athleteID}">Athlete ID</td>
-            <td th:text="${athlete.name}">Name</td>
-            <td th:text="${athlete.gender}">Gender</td>
-            <td th:text="${athlete.dob}">Date of Birth</td>
-            <td th:text="${athlete.mobileNumber}">Mobile Number</td>
-            <td th:text="${athlete.guardianContactNumber}">Guardian Number</td>
-            <td th:text="${athlete.applicationStatus}">Application Status</td>
-            <td><button class="button" type="submit" id="acceptButton">ACCEPT</button></td>
-            <td><button class="button" type="submit" id="rejectButton">REJECT</button></td>
+<!--    Referencing the athlete table and referencing the athleteID column within the table -->
+        <tr th:each="monitor : ${listMorningMonitoring}">
+            <td th:text="${monitor.monitoringID}">Monitoring ID</td>
+            <td th:text="${monitor.athleteID.athleteID}">Athlete ID</td>
+            <td th:text="${monitor.date}">Date</td>
+            <td th:text="${monitor.walkingHeartRate}">Walking Heart Rate</td>
+            <td th:text="${monitor.standingHeartRate}">Standing Heart Rate</td>
+            <td th:text="${monitor.perceivedShape}">Perceived Shape</td>
+            <td th:text="${monitor.perceivedMentalState}">Perceived Mental State</td>
+            <td th:text="${monitor.sleepQuantityHours}">Sleep Quantity Hours</td>
+            <td th:text="${monitor.sleepQuality}">Sleep Quality</td>
         </tr>
         </tbody>
     </table>
