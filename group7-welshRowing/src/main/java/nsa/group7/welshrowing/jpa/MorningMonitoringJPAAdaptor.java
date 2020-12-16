@@ -53,6 +53,15 @@ public class MorningMonitoringJPAAdaptor implements MorningMonitoringAuditor {
         return null;
     }
 
+    @Override
+    public List<String> findAllAthletes() {
+        return morningMonitoringRepoJPA.findAllAthletes();
+    }
+
+    @Override
+    public List<String> findCompletedMonitoringData() {
+        return morningMonitoringRepoJPA.findCompletedMorningData();
+    }
 
 
 }

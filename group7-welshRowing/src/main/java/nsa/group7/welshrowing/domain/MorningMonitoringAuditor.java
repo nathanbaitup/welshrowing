@@ -19,4 +19,8 @@ public interface MorningMonitoringAuditor {
 
     MorningMonitoring findById(int id);
 
+    List<String> findAllAthletes();
+
+    List<String> findCompletedMonitoringData();
+
 }
