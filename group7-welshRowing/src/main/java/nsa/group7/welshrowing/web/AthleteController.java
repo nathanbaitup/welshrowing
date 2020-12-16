@@ -181,7 +181,7 @@ public class AthleteController {
             }
             //Send the email if no exception is caught.
             sender.send(message);
-            return "redirect:/athlete-dashboard";
+            return "redirect:/athlete-dashboard/"+ users.get(users.size() - 1);
 
         }
     }
@@ -207,34 +207,34 @@ public class AthleteController {
 
     @RequestMapping("/applicantToAthlete")
     @ResponseBody
-    public String applicantToAthlete(@RequestParam String id, HttpServletRequest request, HttpServletResponse response, Model model) {
+    public String applicantToAthlete(@RequestParam String id, @ModelAttribute("users") List<Long> users, HttpServletRequest request, HttpServletResponse response, Model model) {
         Long athleteID = Long.parseLong(id);
         Optional<Athlete> optionalAthlete = athleteAuditor.findAthleteById(athleteID);
         Athlete athlete = optionalAthlete.get();
         athlete.setApplicationStatus(false);
         athleteAuditor.updateAthlete(athlete);
-        return "applicants";
+        return "applicants/" + users.get(users.size() - 1);
     }
 
     @RequestMapping("/rejectApplicant")
     @ResponseBody
-    public String rejectApplicant(@RequestParam String id, HttpServletRequest request, HttpServletResponse response, Model model) {
+    public String rejectApplicant(@RequestParam String id, @ModelAttribute("users") List<Long> users, HttpServletRequest request, HttpServletResponse response, Model model) {
         Long athleteID = Long.parseLong(id);
         Optional<Athlete> optionalAthlete = athleteAuditor.findAthleteById(athleteID);
         Athlete athlete = optionalAthlete.get();
-//        MimeMessage message = sender.createMimeMessage();
-//        MimeMessageHelper helper = new MimeMessageHelper(message);
-//        try {
-//            helper.setTo(athlete.getEmail());
-//            helper.setText("Dear " + athlete.getName() + "\n \n We thank you greatly for your interest in joining the WelshRowing organisation, however at this moment in time you have been rejected from the program, but we do believe in second-chances so as you continue to improve and train we are open to reassessing your potential and encourage you to reapply. \n \n Many thanks, \n The WelshRowing Team");
-//            helper.setSubject("Welshrowing Application Response");
-//        } catch (MessagingException e) {
-//            e.printStackTrace();
-//        }
-//        sender.send(message);
+        MimeMessage message = sender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        try {
+            helper.setTo(athlete.getEmail());
+            helper.setText("Dear " + athlete.getName() + "\n \n We thank you greatly for your interest in joining the WelshRowing organisation, however at this moment in time you have been rejected from the program, but we do believe in second-chances so as you continue to improve and train we are open to reassessing your potential and encourage you to reapply. \n \n Many thanks, \n The WelshRowing Team");
+            helper.setSubject("Welshrowing Application Response");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        sender.send(message);
         System.out.println(athlete.toString());
         athleteAuditor.deleteAthlete(athleteID);
-        return "applicants";
+        return "applicants/" + users.get(users.size() - 1);
     }
 
     /**
