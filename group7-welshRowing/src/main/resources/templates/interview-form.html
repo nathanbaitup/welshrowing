@@ -2,9 +2,13 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/interviewForm.css">
+    <link rel="stylesheet" href="/css/entryForms.css">
     <script src="/js/athleteForms.js"></script>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <title>Interview Process</title>
 
@@ -32,16 +36,25 @@
                     </li>
                 </ul>
             </div>
+            <div class="row-navbar">
+                <div id="google_translate_element">
+                    <script type="text/javascript">
+                        function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                        }
+                    </script>
+                </div>
+            </div>
         </div>
     </nav>
 </header>
 <body>
-<h2 class="title">Interview Form</h2>
+<h2 class="pageTitles">Interview Form</h2>
 <div class="entry-form">
     <form action="#" th:action="@{/enter-interview-form}" th:object="${interview}" method="post">
 
         <div class="form-group blu-margin">
-            <label for="applicantSelector">Select the applicant name you are testing:</label>
+            <label for="applicantSelector">Select the applicant name you are interviewing:</label>
             <select class="form-control" id="applicantSelector" onchange="setAthleteID()">
                 <option value="0">Select Applicant</option>
                 <option id="selectedAthlete" th:each="applicant : ${applicantTesting}" th:value="${applicant.athleteID}"
