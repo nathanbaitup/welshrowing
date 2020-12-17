@@ -14,11 +14,11 @@ $(document).ready(function() {
 
             }
         });
-        location.reload()
     })
     $("#rejectButton").click(function(e) {
         var aID = $(this).closest("tr").find(".athleteID").text().trim()
         console.log(aID);
+        console.log("got here")
         $.ajax({
             type : "GET",
             url : "/rejectApplicant",
@@ -31,7 +31,6 @@ $(document).ready(function() {
 
             }
         });
-        location.reload()
     })
 
 });
