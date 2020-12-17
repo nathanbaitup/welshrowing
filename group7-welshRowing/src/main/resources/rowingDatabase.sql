@@ -647,8 +647,8 @@ AS
 CREATE VIEW userAuditCoach
 AS
 	SELECT deletedDate FROM useraudit;
-    
-   
+
+
 DELIMITER //
 CREATE DEFINER='webappuser'@'localhost' PROCEDURE user_cnt()
 SQL SECURITY INVOKER
@@ -681,11 +681,29 @@ BEGIN
 END;//
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE find_completed_morning_data ()
+BEGIN
+SELECT a.athleteID, a.name FROM Athlete a INNER JOIN MorningMonitoring mm ON a.athleteID=mm.athleteID
+WHERE mm.date = curdate() ORDER BY a.athleteID asc;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE find_all_athletes ()
+BEGIN
+SELECT athleteID, name FROM Athlete
+ORDER BY athleteID asc;
+END //
+DELIMITER ;
+
 GRANT EXECUTE ON PROCEDURE welshrowing.find_number_athletes TO 'webappuser'@'localhost';
 GRANT EXECUTE ON PROCEDURE welshrowing.find_number_coaches TO 'webappuser'@'localhost';
 GRANT EXECUTE ON PROCEDURE welshrowing.find_number_applicants TO 'webappuser'@'localhost';
 GRANT EXECUTE ON PROCEDURE welshrowing.user_cnt TO 'webappuser'@'localhost';
 GRANT EXECUTE ON PROCEDURE welshrowing.decrypt_data TO 'webappuser'@'localhost';
+GRANT EXECUTE ON PROCEDURE welshrowing.find_all_athletes TO 'webappuser'@'localhost';
+GRANT EXECUTE ON PROCEDURE welshrowing.find_completed_morning_data TO 'webappuser'@'localhost';
 
 #inserting dummy data
 INSERT INTO user(name,username,password,role) VALUES ("Bob Smith", "userbob", "$2a$10$3/Gbi2ytLNUsPgIoB8oeF.KllszbevLs4IxBmTbtNq48g8qD1PqDy","athlete");

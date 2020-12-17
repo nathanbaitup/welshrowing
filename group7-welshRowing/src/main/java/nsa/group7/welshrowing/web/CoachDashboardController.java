@@ -23,6 +23,7 @@ public class CoachDashboardController {
     private final ApplicantAuditor coachAuditor;
     private final AthleteAuditor athleteAuditor;
     private final ApplicantTestingAuditor applicantTestingAuditor;
+    private final NotDoneMorningMonitoringAuditor morningMonitoringAuditor;
 
     /**
      * Injects all of the auditors needed to save input data into the database.
@@ -33,10 +34,11 @@ public class CoachDashboardController {
      */
 
     @Autowired
-    public CoachDashboardController(ApplicantAuditor coachAuditor, AthleteAuditor athleteAuditor, ApplicantTestingAuditor applicantTestingAuditor) {
+    public CoachDashboardController(ApplicantAuditor coachAuditor, AthleteAuditor athleteAuditor, ApplicantTestingAuditor applicantTestingAuditor, NotDoneMorningMonitoringAuditor morningMonitoringAuditor) {
         this.coachAuditor = coachAuditor;
         this.athleteAuditor = athleteAuditor;
         this.applicantTestingAuditor = applicantTestingAuditor;
+        this.morningMonitoringAuditor = morningMonitoringAuditor;
     }
 
     /**
@@ -59,9 +61,9 @@ public class CoachDashboardController {
             Optional<Applicant> findCoach = coachAuditor.findApplicantById(id);
             Applicant isCoach = findCoach.get();
             if (users.get(users.size() - 1).equals(id) && isCoach.getRole().equals("coach")) {
-                System.out.println("List of Users: " + users);
                 Applicant aCoachDashboard = coachAuditor.findApplicantById(id).get();
                 name.addAttribute("coachID", id);
+                name.addAttribute("morningData", viewUncompletedMorningData());
                 CoachDashboard coachDashboardForm = new CoachDashboard(aCoachDashboard.getName(), "Welcome to your dashboard!");
                 name.addAttribute("coachName", coachDashboardForm);
                 return "coachDashboard";
@@ -118,5 +120,27 @@ public class CoachDashboardController {
             applicantTestingAuditor.saveApplicantTesting(applicantTesting);
             return "redirect:/coach-dashboard/" + users.get(users.size() - 1);
         }
+    }
+
+    /**
+     * Method that compares a list of athletes who have completed their morning monitoring to a list of all athletes, and finds those who haven't done morning monitoring.
+     * @return returns a list of those who haven't done morning monitoring.
+     */
+    public List<NotDoneMorningMonitoring> viewUncompletedMorningData() {
+        List<NotDoneMorningMonitoring> allAthletes = morningMonitoringAuditor.findAllAthletes();
+        List<NotDoneMorningMonitoring> completedMorning = morningMonitoringAuditor.findCompletedMonitoringData();
+        List<NotDoneMorningMonitoring> uncompletedMorningData = new ArrayList<>();
+
+        for (int i = 0; i < allAthletes.size(); i++) {
+            if (!(completedMorning.size() == allAthletes.size())) {
+                completedMorning.add(new NotDoneMorningMonitoring());
+            }
+        }
+        for (NotDoneMorningMonitoring allAthlete : allAthletes) {
+            if (!completedMorning.contains(allAthlete)) {
+                uncompletedMorningData.add(allAthlete);
+            }
+        }
+        return uncompletedMorningData;
     }
 }
