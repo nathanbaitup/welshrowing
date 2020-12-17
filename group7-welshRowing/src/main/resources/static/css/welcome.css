@@ -18,3 +18,13 @@
 .footerhomepage {
     text-align: center;
 }
+.logout{
+    text-align: center;
+}
+
+#loggedOutText{
+    color: #009879;
+}
+#pageTitle{
+    text-align: center;
+}
