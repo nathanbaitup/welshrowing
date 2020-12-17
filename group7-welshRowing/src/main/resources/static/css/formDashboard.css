@@ -10,9 +10,13 @@ canvas{
     border-radius: 1em;
     border-top: red 2em solid;
     color: white;
+    padding: 3%;
 }
 .information{
     text-align: center;
+}
+.container{
+    padding-left: 3%;
 }
 .graph {
     margin-top: 0.4%;
