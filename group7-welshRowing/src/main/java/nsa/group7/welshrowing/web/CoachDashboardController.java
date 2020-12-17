@@ -23,7 +23,7 @@ public class CoachDashboardController {
     private final ApplicantAuditor coachAuditor;
     private final AthleteAuditor athleteAuditor;
     private final ApplicantTestingAuditor applicantTestingAuditor;
-    private final MorningMonitoringAuditor morningMonitoringAuditor;
+    private final NotDoneMorningMonitoringAuditor morningMonitoringAuditor;
 
     /**
      * Injects all of the auditors needed to save input data into the database.
@@ -34,7 +34,7 @@ public class CoachDashboardController {
      */
 
     @Autowired
-    public CoachDashboardController(ApplicantAuditor coachAuditor, AthleteAuditor athleteAuditor, ApplicantTestingAuditor applicantTestingAuditor, MorningMonitoringAuditor morningMonitoringAuditor) {
+    public CoachDashboardController(ApplicantAuditor coachAuditor, AthleteAuditor athleteAuditor, ApplicantTestingAuditor applicantTestingAuditor, NotDoneMorningMonitoringAuditor morningMonitoringAuditor) {
         this.coachAuditor = coachAuditor;
         this.athleteAuditor = athleteAuditor;
         this.applicantTestingAuditor = applicantTestingAuditor;
@@ -122,23 +122,23 @@ public class CoachDashboardController {
         }
     }
 
-
-    public List<String> viewUncompletedMorningData(){
-        List<String> allAthletes = morningMonitoringAuditor.findAllAthletes();
-        List<String> completedMorning = morningMonitoringAuditor.findCompletedMonitoringData();
-        List<String> uncompletedMorningData = new ArrayList<>();
+    /**
+     * Method that compares a list of athletes who have completed their morning monitoring to a list of all athletes, and finds those who haven't done morning monitoring.
+     * @return returns a list of those who haven't done morning monitoring.
+     */
+    public List<NotDoneMorningMonitoring> viewUncompletedMorningData() {
+        List<NotDoneMorningMonitoring> allAthletes = morningMonitoringAuditor.findAllAthletes();
+        List<NotDoneMorningMonitoring> completedMorning = morningMonitoringAuditor.findCompletedMonitoringData();
+        List<NotDoneMorningMonitoring> uncompletedMorningData = new ArrayList<>();
 
         for (int i = 0; i < allAthletes.size(); i++) {
-            if (!(completedMorning.size() == allAthletes.size())){
-                completedMorning.add(" ");
+            if (!(completedMorning.size() == allAthletes.size())) {
+                completedMorning.add(new NotDoneMorningMonitoring());
             }
         }
-
-        for (int i = 0; i < allAthletes.size() ; i++) {
-            if (allAthletes.get(i).contains(completedMorning.get(i))){
-                System.out.println("already there");
-            } else {
-                uncompletedMorningData.add(allAthletes.get(i));
+        for (NotDoneMorningMonitoring allAthlete : allAthletes) {
+            if (!completedMorning.contains(allAthlete)) {
+                uncompletedMorningData.add(allAthlete);
             }
         }
         return uncompletedMorningData;

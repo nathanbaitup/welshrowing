@@ -53,11 +53,11 @@
 <!-- End of Navigation section of website-->
 
 <div class="coachDashboardLead">
+    <h2 id="formTitle">Coach Dashboard</h2>
+    <br>
     <!--Thymleaf section-->
     <div th:text="${coachName.name}"></div>
     <div th:text="${coachName.text}"></div>
-
-    <div th:text="${morningData}"></div>
     <br>
 
     <div class="container">
@@ -76,7 +76,7 @@
                 <div class="information">
                     <h3> Interview Process </h3>
                     <p>Press the button below to navigate to the interview form.</p>
-                    <a class="btn btn-primary" th:href="@{/interview-form/{id} (id = ${coachID})}">Interviews</a>
+                    <a class="btn btn-success" th:href="@{/interview-form/{id} (id = ${coachID})}">Interviews</a>
                 </div>
             </div>
         <br>
@@ -85,7 +85,7 @@
                 <div class="information">
                     <h3> Athlete Morning Monitoring Progress </h3>
                     <p>Press the button below to navigate to see current Athlete Morning Monitoring Progress.</p>
-                    <a class="btn btn-primary" th:href="@{/coach-morning-monitoring/{id} (id = ${coachID})}">Athlete
+                    <a class="btn btn-success" th:href="@{/coach-morning-monitoring/{id} (id = ${coachID})}">Athlete
                         Morning
                         Monitoring</a>
                 </div>
@@ -96,7 +96,18 @@
                 <div class="information">
                     <h3> Testing Forms </h3>
                     <p>Press the button below to navigate to the testing form to submit data about each applicant.</p>
-                    <button class="btn btn-primary" onclick="location.href='/submit-testing'">Applicant Testing</button>
+                    <button class="btn btn-success" onclick="location.href='/submit-testing'">Applicant Testing</button>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="information">
+                    <h3> Morning Monitoring </h3>
+                    <p>Who hasn't done their morning monitoring? View the list here!</p>
+                    <p th:each="athlete: ${morningData}"
+                        th:text="${athlete.name}">
+                    </p>
+
                 </div>
             </div>
         <br>
