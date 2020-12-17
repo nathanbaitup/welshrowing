@@ -5,6 +5,7 @@
     <title>Athlete Morning Monitoring Form</title>
 
     <link rel="stylesheet" href="/css/mmdForm.css">
+    <link rel="stylesheet" href="/css/entryForms.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -65,25 +66,68 @@
             <input class="form-control" th:field="*{walkingHeartRate}" type="number"><br>
 
             <label th:for="standingHeartRate">Standing heart rate:</label><br>
-            <input class="form-control" th:field="*{standingHeartRate}" type="number"><br>
+            <input class="form-control" th:field="*{standingHeartRate}" type="number"><br><br>
 
-            <label th:for="perceivedShape">Perceived shape:</label><br>
-            <input class="form-control" th:field="*{perceivedShape}" type="number"><br>
+            <br><label th:for="perceivedShape">Perceived shape:</label><br>
+            <p><small>1 being completely fatigued and unable to train, 10 being peak physical and health state. </small></p>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="10" th:value="5" class="slider" th:field="*{perceivedShape}"  id="psSlider">
+                <p>Value: <span id="valuePS"></span></p>
+            </div><br>
 
             <label th:for="perceivedMentalState">Perceived mental state:</label><br>
-            <input class="form-control" th:field="*{perceivedMentalState}" type="number"><br>
+            <p><small>1 being emotionally and mentally low, unable to focus, 10 being emotionally and mentally strong, fully motivated and positive. </small></p>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="10" th:value="5" class="slider" th:field="*{perceivedMentalState}"  id="msSlider">
+                <p>Value: <span id="valueMS"></span></p>
+            </div>
 
             <label th:for="sleepQuantityHours">Sleep quality:</label><br>
+            <p><small>Number of hours sleeping.  Please log 30 minutes as 0.5 e.g. 7 hours 30 minutes would be noted as 7.5</small></p>
             <input class="form-control" th:field="*{sleepQuantityHours}" type="number"><br>
 
             <label th:for="sleepQuality">Sleep quantity:</label><br>
-            <input class="form-control" th:field="*{sleepQuality}" type="number"><br>
+            <p><small>1 being emotionally and mentally low, unable to focus, 10 being emotionally and mentally strong, fully motivated and positive. </small></p>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="10" th:value="5" class="slider" th:field="*{sleepQuality}"  id="sqSlider">
+                <p>Value: <span id="valueSQ"></span></p>
+            </div><br>
 
             <br><br>
             <button class="btn btn-primary" type="submit">Submit</button>
         </div>
     </form>
 
+
+<!--REFERENCE ACCESSED 17/12/2020-->
+<!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_rangeslider_round-->
+<!--Used for slider JS-->
+<script>
+    var psSlider = document.getElementById("psSlider");
+    var psOutput = document.getElementById("valuePS");
+    psOutput.innerHTML = psSlider.value;
+
+    psSlider.oninput = function() {
+        psOutput.innerHTML = this.value;
+    }
+
+    var msSlider = document.getElementById("msSlider");
+    var msOutput = document.getElementById("valueMS");
+    psOutput.innerHTML = psSlider.value;
+
+    msSlider.oninput = function() {
+        msOutput.innerHTML = this.value;
+    }
+
+    var sqSlider = document.getElementById("sqSlider");
+    var sqOutput = document.getElementById("valueSQ");
+    sqOutput.innerHTML = psSlider.value;
+
+    sqSlider.oninput = function() {
+        sqOutput.innerHTML = this.value;
+    }
+</script>
+<!--END REFERENCE-->
 
 </body>
 </html>

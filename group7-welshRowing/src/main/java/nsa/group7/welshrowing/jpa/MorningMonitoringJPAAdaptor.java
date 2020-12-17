@@ -1,9 +1,6 @@
 package nsa.group7.welshrowing.jpa;
 
-import nsa.group7.welshrowing.domain.Applicant;
-import nsa.group7.welshrowing.domain.ApplicantAuditor;
-import nsa.group7.welshrowing.domain.MorningMonitoring;
-import nsa.group7.welshrowing.domain.MorningMonitoringAuditor;
+import nsa.group7.welshrowing.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -53,6 +50,15 @@ public class MorningMonitoringJPAAdaptor implements MorningMonitoringAuditor {
         return null;
     }
 
+    /**
+     *
+     * @param id - the athleteID.
+     * @return returns a morning monitoring object.
+     */
+    @Override
+    public List<MorningMonitoring> findByAthleteID(Athlete id) {
+        return morningMonitoringRepoJPA.findByAthleteID(id);
+    }
 
 
 }

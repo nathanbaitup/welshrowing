@@ -86,36 +86,12 @@
             <br>
             <label th:for="${#ids.next('rpe')}">Please enter your RPE</label>
             <p><small>Rate of Perceived Exertion - How hard you found the session.</small></p>
-            <input class="session-rpe-button" th:field="*{rpe}" th:value="1"  type="radio">
-            <label class="form-check-label" th:for="${#ids.prev('rpe')}">1 <small>No Effort/Exertion  </small> </label>
-
-            <input class="session-rpe-button" th:field="*{rpe}" th:value="2" type="radio">
-            <label class="form-check-label" th:for="${#ids.prev('rpe')}">2  </label>
-
-            <input class="session-rpe-button" th:field="*{rpe}" th:value="3" type="radio">
-            <label class="form-check-label" th:for="${#ids.prev('rpe')}">3  </label>
-
-            <input class="session-rpe-button" th:field="*{rpe}" th:value="4" type="radio">
-            <label class="form-check-label" th:for="${#ids.prev('rpe')}">4  </label>
-
-            <input class="session-rpe-button" th:field="*{rpe}" th:value="5" type="radio">
-            <label class="form-check-label" th:for="${#ids.prev('rpe')}">5  </label>
-
-            <input class="session-rpe-button" th:field="*{rpe}" th:value="6" type="radio">
-            <label class="form-check-label" th:for="${#ids.prev('rpe')}">6  </label>
-
-            <input class="session-rpe-button" th:field="*{rpe}" th:value="7" type="radio">
-            <label class="form-check-label" th:for="${#ids.prev('rpe')}">7  </label>
-
-            <input class="session-rpe-button" th:field="*{rpe}" th:value="8" type="radio">
-            <label class="form-check-label" th:for="${#ids.prev('rpe')}">8  </label>
-
-            <input class="session-rpe-button" th:field="*{rpe}" th:value="9" type="radio">
-            <label class="form-check-label" th:for="${#ids.prev('rpe')}">9  </label>
-
-            <input class="session-rpe-button" th:field="*{rpe}" th:value="10" type="radio">
-            <label class="form-check-label" th:for="${#ids.prev('rpe')}">10<small> Maximum Effort/Exertion</small></label>
-
+            <br>
+            <p><small>1 - No Effort/Exertion || 10 -  Maximum Effort/Exertion </small></p>
+            <div class="slidecontainer">
+            <input type="range" min="1" max="10" th:value="5" class="slider" th:field="*{rpe}"  id="rpeSlider">
+                <p>Value: <span id="value"></span></p>
+            </div>
             <br>
         </div>
         <span th:errors="*{rpe}" th:if="${#fields.hasErrors('rpe')}">Please select your RPE.</span>
@@ -133,5 +109,18 @@
 
     </form>
 </div>
+<!--REFERENCE ACCESSED 17/12/2020-->
+<!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_rangeslider_round-->
+<!--Used for slider JS-->
+<script>
+    var slider = document.getElementById("rpeSlider");
+    var output = document.getElementById("value");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+</script>
+<!--END REFERENCE-->
 </body>
 </html>

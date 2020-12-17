@@ -1,7 +1,6 @@
 package nsa.group7.welshrowing.web;
 
-import nsa.group7.welshrowing.domain.MorningMonitoring;
-import nsa.group7.welshrowing.domain.MorningMonitoringAuditor;
+import nsa.group7.welshrowing.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Provides a set of methods for serving and handling Morning Monitoring data.
@@ -21,13 +21,15 @@ import java.util.List;
 public class MorningMonitoringController {
 
     private final MorningMonitoringAuditor morningMonitoringAuditor;
+    private final AthleteAuditor athleteAuditor;
 
     /**
      * @param morningMonitoringAuditor - the morning monitoring auditor.
      */
     @Autowired
-    public MorningMonitoringController(MorningMonitoringAuditor morningMonitoringAuditor) {
+    public MorningMonitoringController(MorningMonitoringAuditor morningMonitoringAuditor, AthleteAuditor athleteAuditor) {
         this.morningMonitoringAuditor = morningMonitoringAuditor;
+        this.athleteAuditor = athleteAuditor;
     }
 
     /**
@@ -79,6 +81,27 @@ public class MorningMonitoringController {
         } else {
             morningMonitoringAuditor.saveMorningMonitoring(morningMonitoring);
             return "redirect:/athlete-dashboard/" + users.get(users.size() - 1);
+        }
+    }
+
+    /**
+     * populates morningMonitoringList with the data of the athlete
+     *
+     * @param id    - the athlete ID.
+     * @param users - session attribute.
+     * @param model - adds the list of morning monitoring data to the page.
+     * @return  returns the morning monitoring list.
+     */
+    @GetMapping("/morning-monitoring-data/{id}") // Previously morningMonitoring
+    public String serveMorningMonitoringList(@PathVariable("id") Long id, @ModelAttribute("users") List<Long> users, Model model) {
+        Optional<Athlete> athlete = athleteAuditor.findAthleteById(id);
+        Athlete theAthlete = athlete.get();
+        if (users.get(users.size() - 1).equals(id)) {
+            List<MorningMonitoring> morningMonitoringList = morningMonitoringAuditor.findByAthleteID(theAthlete);
+            model.addAttribute("listMorningMonitoring", morningMonitoringList);
+            return "coachMorningMonitoring";
+        } else {
+            return "redirect:/404";
         }
     }
 
