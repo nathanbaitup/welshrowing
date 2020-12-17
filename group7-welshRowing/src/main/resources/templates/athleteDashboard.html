@@ -11,9 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/css/athleteDashboard.css">
-    <link rel="stylesheet" href="/css/formDashboard.css">
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!--        <link rel="stylesheet" href="/css/athleteDashboard.css">-->
+        <link rel="stylesheet" href="/css/formDashboard.css">
+    <script type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <title>Athlete Dashboard</title>
 </head>
@@ -41,48 +42,95 @@
                     </li>
                 </ul>
             </div>
+            <div class="row-navbar">
+                <div id="google_translate_element">
+                    <script type="text/javascript">
+                        function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                        }
+                    </script>
+                </div>
+            </div>
         </div>
     </nav>
 
 </header>
 <body>
-<h2 id="formTitle">Your Forms</h2>
+<br>
+<h2 id="formTitle">Your Dashboard</h2>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="information">
+                <h3>Medical Data</h3>
+                <p>Enter your medical data here</p>
+                <a th:href="@{/submit-anthropometry/{id} (id=${userID})}" class="btn btn-primary"> Enter your Medical
+                    Data </a>
 
-<div class="formContainer">
-    <div class="block">
-        <h3 class="link"><a th:href="@{/athlete-mmd-form/{id} (id=${userID})}">Morning Monitoring</a></h3>
-        <a th:href="@{/athlete-mmd-form/{id} (id=${userID})}"><img id="big" src="https://i.pinimg.com/736x/85/5d/f2/855df22700990ca085d87970f354054f.jpg"></a>
-        <p>Daily monitoring of physical and psychological metrics</p>
+            </div>
+        </div>
+        <br><br>
+        <div class="col-md-4">
+            <div class="information">
+                <h3>Update Medical Data</h3>
+                <p>Update your medical data</p>
+                <a th:href="@{/update-anthropometry/{id} (id=${userID})}" class="btn btn-primary"> Update your Medical
+                    Data </a>
+            </div>
+        </div>
+        <br><br>
+        <div class="col-md-4">
+            <div class="information">
+                <h3>Previous Sports</h3>
+                <p>Enter your previous sporting data here.</p>
+                <a th:href="@{/submit-previous-sports/{id} (id=${userID})}" class="btn btn-primary"> Enter your Sporting
+                    History </a>
+            </div>
+        </div>
+        <br><br>
     </div>
-    <div class="block">
-        <h3 class="link"><a th:href="@{/submit-session-rpe/{id} (id=${userID})}" class="link">Workout Training</a></h3>
-        <a th:href="@{/submit-session-rpe/{id} (id=${userID})}"><img src="https://www.pngitem.com/pimgs/m/121-1210928_bodybuilding-and-dumbbells-vector-image-illustration-transparent-background.png"></a>
-        <p>Enter data about your workout sessions</p>
-    </div>
-    <div class="block">
-        <h3 class="link"><a th:href="@{/submit-cross-training-form/{id} (id=${userID})}" class="link">Cross Training</a></h3>
-        <a th:href="@{/submit-cross-training-form/{id} (id=${userID})}"><img src="https://img.pngio.com/vector-running-man-man-clipart-vector-running-man-png-and-vector-png-of-person-running-650_795.png"></a>
-        <p>Enter data about your cross training sessions</p>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="information">
+                <h3 class="link"><a th:href="@{/athlete-mmd-form/{id} (id=${userID})}">Morning Monitoring</a></h3>
+                <a th:href="@{/athlete-mmd-form/{id} (id=${userID})}"><img id="big"
+                                                                           src="https://i.pinimg.com/736x/85/5d/f2/855df22700990ca085d87970f354054f.jpg"></a>
+                <p>Daily monitoring of physical and psychological metrics</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="information">
+                <h3 class="link"><a th:href="@{/submit-session-rpe/{id} (id=${userID})}" class="link">Workout
+                    Training</a>
+                </h3>
+                <a th:href="@{/submit-session-rpe/{id} (id=${userID})}"><img
+                        src="https://www.pngitem.com/pimgs/m/121-1210928_bodybuilding-and-dumbbells-vector-image-illustration-transparent-background.png"></a>
+                <p>Enter data about your workout sessions</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="information">
+                <h3 class="link"><a th:href="@{/submit-cross-training-form/{id} (id=${userID})}" class="link">Cross
+                    Training</a>
+                </h3>
+                <a th:href="@{/submit-cross-training-form/{id} (id=${userID})}"><img
+                        src="https://img.pngio.com/vector-running-man-man-clipart-vector-running-man-png-and-vector-png-of-person-running-650_795.png"></a>
+                <p>Enter data about your cross training sessions</p>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="formContainer">
-    <div class="block">
-        <h3 class="link">Medical Data</h3>
-        <p>Enter your medical data here</p>
-        <a th:href="@{/submit-anthropometry/{id} (id=${userID})}" class="btn btn-primary"> Enter your Medical Data </a>
-    </div>
-    <div class="block">
-        <h3 class="link">Previous Sports</h3>
-        <p>Enter your previous sporting data here.</p>
-        <a th:href="@{/submit-previous-sports/{id} (id=${userID})}" class="btn btn-primary"> Enter your Sporting History </a>
-    </div>
-</div>
+<br><br>
+<h2>Morning Monitoring:</h2>
+<div id="disclaimer"><small>Below is your morning monitoring graph, based off the last weeks data. Note: This requires
+    at least 7 days data to populate.</small></div>
+<br>
 
-<div class="formContainer">
-    <div class="block-graph">
-        <img src="images/sRPE.png">
-    </div>
+<div id="morningMonitoring" class="formContainer">
     <div class="graph">
         <div id="chartContainer">
             <canvas id="myChart"></canvas>

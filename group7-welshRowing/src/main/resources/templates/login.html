@@ -39,7 +39,7 @@
 
             <label th:for="username">Username:</label><br>
             <input class="form-control" th:field="*{username}" type="text"><br>
-            <span th:errors="*{username}" th:if="${#fields.hasErrors('username')}">Please enter your username.</span>
+            <span th:errors="*{username}" th:if="${#fields.hasErrors('username')}">Please enter your username.</span><br>
 
             <label th:for="password">Password:</label><br>
             <input class="form-control" th:field="*{password}" type="password"><br>
