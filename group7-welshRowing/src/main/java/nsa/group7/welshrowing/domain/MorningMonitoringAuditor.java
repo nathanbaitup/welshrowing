@@ -19,8 +19,13 @@ public interface MorningMonitoringAuditor {
 
     MorningMonitoring findById(int id);
 
-    List<String> findAllAthletes();
+    /**
+     *
+     * @param id - the athleteID.
+     * @return returns a morning monitoring object per athleteID.
+     */
+    List<MorningMonitoring> findByAthleteID(Athlete id);
 
-    List<String> findCompletedMonitoringData();
+
 
 }
