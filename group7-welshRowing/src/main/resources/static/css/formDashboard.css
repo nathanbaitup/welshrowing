@@ -1,12 +1,22 @@
-.block {
-    display: inline-block;
+canvas{
+    width: 90% !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.col-md-4 {
     background-color: black;
-    width: 33%;
-    text-align: center;
     border-radius: 1em;
     border-top: red 2em solid;
     color: white;
-    text-decoration: none;
+    padding: 3%;
+}
+.information{
+    text-align: center;
+}
+.container{
+    padding-left: 3%;
 }
 .graph {
     margin-top: 0.4%;
@@ -39,34 +49,22 @@
     text-decoration: none;
     color: white;
 }
-.container {
-    text-align: center;
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    flex-direction: row;
-}
 
-.block a {
-    text-decoration: none;
-}
-.block h3 {
-    text-decoration: none;
-}
 
-/* Responsive layout - makes a one column layout instead of a three-column layout */
+ /*Responsive layout - makes a one column layout instead of a three-column layout */
 @media (max-width: 800px) {
-    .container {
-        flex-direction: column;
+    .block {
+        flex-direction: row;
     }
 }
 #formTitle {
     font-size: 3em;
     letter-spacing: 0.03em;
 }
-.block img {
+.col-md-4 img {
     width: 80%;
     height: 300px;
+    text-align: center;
 }
 
 .block-graph img {
@@ -84,4 +82,28 @@ h2 {
 }
 h3 {
     color: white;
+}
+
+.disclaimer{
+    text-align: center;
+}
+
+#morningMonitoring{
+    text-align: center;
+}
+
+#disclaimer{
+    text-align: center;
+}
+
+.graph {
+    margin-top: 0.4%;
+    display: inline-block;
+    background-color: black;
+    width: 66%;
+    text-align: center;
+    border-radius: 1em;
+    border-top: red 2em solid;
+    color: white;
+    text-decoration: none;
 }

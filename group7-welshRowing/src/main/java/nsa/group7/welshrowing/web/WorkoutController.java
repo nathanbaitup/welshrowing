@@ -71,7 +71,7 @@ public class WorkoutController {
      * @param model                    - adds to the page.
      * @return returns the athlete dashboard.
      */
-    @PostMapping("submit-cross-training-form")
+    @PostMapping("submit-crosstraining-form")
     public String postSubmitCrossTrainingForm(@ModelAttribute("crossTrainingSessionForm") CrossTraining crossTraining, @ModelAttribute("users") List<Long> users, @Valid CrossTrainingSessionForm crossTrainingSessionForm, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());

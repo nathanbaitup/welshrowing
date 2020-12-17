@@ -39,8 +39,6 @@ public class UpdateAthleteTests {
         List<Athlete> applicantList = athleteRepoJPA.findByApplicationStatus(true);
         System.out.println(applicantList);
         assertThat(applicantList.contains(athlete));
-
-
     }
     @Test
     public void shouldDeleteFromApplicantList () throws Exception {
