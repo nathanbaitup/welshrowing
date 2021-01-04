@@ -37,8 +37,8 @@ CREATE TABLE `Athlete` (
                            DOB DATE,
                            applicationStatus BOOLEAN,
                            email VARCHAR(30),
-                           mobileNumber VARCHAR(50), # allows country code and spaces and to ensure digits only
-                               telephoneNumber VARCHAR(50),
+                           mobileNumber VARCHAR(12), # allows country code and spaces and to ensure digits only
+                            telephoneNumber VARCHAR(12),
                            address VARCHAR(50),
                            postcode VARCHAR(8),
                            placeOfEducation VARCHAR(50),
@@ -212,9 +212,25 @@ BEGIN
 end if;
 end //
 
+CREATE TRIGGER mobileNumberValidationLargerAthlete BEFORE INSERT ON Athlete FOR EACH ROW
+BEGIN
+    IF (NEW.`mobileNumber` < 12) THEN
+        SIGNAL SQLSTATE VALUE '45000'
+        SET MESSAGE_TEXT = 'Mobile number too long, please retry';
+    end if;
+end //
+
+CREATE TRIGGER mobileNumberValidationSmallerAthlete BEFORE INSERT ON Athlete FOR EACH ROW
+BEGIN
+    IF (NEW.`mobileNumber` > 10) THEN
+        SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = 'Mobile number too long, please retry';
+    end if;
+end //
+
 # Trigger for validation of Interview questions, making sure they are not null
 # If null will trigger SQL Signal state printing out a message to the user
-# Running for question 14-24
+# Running for question 1-24
 
 CREATE TRIGGER interviewNullOne BEFORE INSERT ON Interview FOR EACH ROW
 BEGIN
