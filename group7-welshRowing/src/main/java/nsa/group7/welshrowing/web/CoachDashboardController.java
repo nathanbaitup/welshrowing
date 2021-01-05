@@ -57,25 +57,16 @@ public class CoachDashboardController {
      */
     @GetMapping("coach-dashboard/{id}")
     public String coachDashboard(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model name) {
-        try {
-            Optional<Applicant> findCoach = coachAuditor.findApplicantById(id);
-            Applicant isCoach = findCoach.get();
-            if (users.get(users.size() - 1).equals(id) && isCoach.getRole().equals("coach")) {
-                Applicant aCoachDashboard = coachAuditor.findApplicantById(id).get();
-                name.addAttribute("coachID", id);
-                name.addAttribute("morningData", viewUncompletedMorningData());
-                CoachDashboard coachDashboardForm = new CoachDashboard(aCoachDashboard.getName(), "Welcome to your dashboard!");
-                name.addAttribute("coachName", coachDashboardForm);
-                return "coachDashboard";
-            } else {
-                return "redirect:/coach-dashboard/" + users.get(users.size() - 1);
-            }
-        } catch (Exception e) {
-            System.out.println();
-            return "redirect:/404";
+        if (users.get(users.size() - 1).equals(id)) {
+            System.out.println("List of Users: " + users);
+            Applicant aCoachDashboard = coachAuditor.findApplicantById(id).get();
+            CoachDashboard coachDashboardForm = new CoachDashboard(aCoachDashboard.getName(), "Welcome to your dashboard!");
+            name.addAttribute("coachName", coachDashboardForm);
+            return "coachDashboard";
+        } else {
+            return "redirect:/coach/coach-dashboard/" + users.get(users.size() - 1);
         }
     }
-
     /**
      * Directs the coach to the applicant testing form with a drop down list of all current applicants.
      *
