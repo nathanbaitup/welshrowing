@@ -9,10 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="/js/setDate.js"></script>
-    <script src="/js/limitDateNow.js"></script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <title>Cross Training Form</title>
-
 
 
 <!--Beginning of NavBar section-->
@@ -68,8 +66,7 @@
             <input class="form-control" th:field="*{dateOfSession}" id="date" type="date" required/>
 
             <label th:for="typeOfCrossTraining">Type of Cross Training Workout:</label>
-            <select class="form-control" id="crossTrainingType" th:field="*{typeOfCrossTraining}" required>
-                <option value="" selected="selected">Select Workout</option>
+            <select class="form-control" id="crossTrainingType" th:field="*{typeOfCrossTraining}">
                 <option th:value="OutdoorRun">Outdoor Run</option>
                 <option th:value="RoadCycle">Road Cycle</option>
                 <option th:value="ConceptII-WattBike">Concept II / Watt Bike</option>
@@ -80,13 +77,13 @@
             <span th:errors="*{typeOfCrossTraining}" th:if="${#fields.hasErrors('typeOfCrossTraining')}">Please select a Cross Training workout</span>
 
             <label th:for="totalTimeMinutes">Please enter the amount of minutes of training: </label>
-            <input class="form-control" th:field="*{totalTimeMinutes}" type="number" required>
-            <label th:for="totalDistance">Please enter the distance you completed during your training (meters)</label>
-            <input class="form-control" th:field="*{totalDistance}" type="number" required>
+            <input class="form-control" th:field="*{totalTimeMinutes}" type="text">
+            <label th:for="totalDistance">Please enter the distance you completed during your training </label>
+            <input class="form-control" th:field="*{totalDistance}" type="text">
 
-        <br>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <br><br>
             <br>
+        <button class="btn btn-primary" type="submit">Submit</button>
         </div>
     </form>
 </div>
