@@ -375,6 +375,6 @@ public class AthleteController {
      * @return returns a salted and hashed version of the plain text password entered by the user.
      */
     private String hashPassword(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt());
+        return BCrypt.hashpw(password, BCrypt.gensalt(12));
     }
 }
