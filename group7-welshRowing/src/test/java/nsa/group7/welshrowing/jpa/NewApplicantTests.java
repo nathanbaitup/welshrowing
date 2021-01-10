@@ -25,10 +25,10 @@ public class NewApplicantTests {
 
     @Test
     public void shouldCreateANewApplicant() {
-        applicantRepoJPA.save(new Applicant(1L,"Dylan Williams", "dWills", password, "applicant"));
+        applicantRepoJPA.save(new Applicant(1L,"Dylan Williams", "dWills", hashPassword(password), "applicant"));
         Applicant savedApplicant = applicantRepoJPA.findByUserID(1L);
         assertEquals("Dylan Williams", savedApplicant.getName());
-        assertEquals(password, savedApplicant.getPassword());
+        assertNotEquals(password, savedApplicant.getPassword());
     }
 
     @Test
@@ -36,7 +36,6 @@ public class NewApplicantTests {
         applicantRepoJPA.save(new Applicant(2L,"Zac Farro", "zFarro", hashPassword(checkPassword), "applicant"));
         Applicant savedApplicant = applicantRepoJPA.findByUserID(2L);
         assertEquals("Zac Farro", savedApplicant.getName());
-        assertNotEquals(checkPassword, savedApplicant.getPassword());
         assertTrue(BCrypt.checkpw(checkPassword, savedApplicant.getPassword()));
     }
 
