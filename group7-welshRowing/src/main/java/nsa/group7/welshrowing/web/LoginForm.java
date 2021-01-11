@@ -16,11 +16,10 @@ public class LoginForm {
     private String username;
 
     //password validation
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,64}$", message = "Password must contain:" +
+            "\nBetween 8 and 64 characters,\nA Capital Letter,\nA Lowercase Letter," +
+            "\nA number,\nA Special Character(# ? ! @ $ % ^ & * -)")
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z].*",message="Must start with a letter")
-    @Pattern(regexp = "^.*[a-z].*",message="Must contain lowercase")
-    @Pattern(regexp = "^.*[A-Z].*",message="Must contain upper-case")
-    @Pattern(regexp = "^.*[\\d].*",message="Must contain a number")
     private String password;
 
 
