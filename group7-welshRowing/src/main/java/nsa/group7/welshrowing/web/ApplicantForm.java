@@ -33,6 +33,7 @@ public class ApplicantForm {
     @Pattern(regexp = ".*[a-z].*", message = "Must contain lower-case")
     @Pattern(regexp = ".*[A-Z.].*", message = "Must contain upper-case")
     @Pattern(regexp = ".*[\\d].*", message = "Must contain a number")
+    @NotBlank
     private String password;
 
     private String role;

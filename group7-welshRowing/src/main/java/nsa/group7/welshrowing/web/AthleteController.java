@@ -123,7 +123,27 @@ public class AthleteController {
             users.add(applicant.getUserID());
             attributes.addFlashAttribute("users", users);
             System.out.println("List of Users: " + users);
-            return "redirect:/update-details/" + users.get(users.size() - 1);
+            return "redirect:/enter-details/" + users.get(users.size() - 1);
+        }
+    }
+
+    /**
+     * Takes the user id and allows them to update their information.
+     *
+     * @param id    - the ID of the applicants login credentials.
+     * @param users - session attribute.
+     * @param model - adds the form to the model
+     * @return returns the update details form
+     */
+    @GetMapping("enter-details/{id}")
+    public String serveAthleteEntryForm(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model model) {
+        if (users.get(users.size() - 1).equals(id)) {
+            Applicant applicant = applicantAuditor.findApplicantById(id).get();
+            AthleteUpdateForm athleteUpdateForm = new AthleteUpdateForm(applicant.getUserID(), applicant.getName());
+            model.addAttribute("athleteUpdateForm", athleteUpdateForm);
+            return "update-athlete";
+        } else {
+            return "redirect:/404";
         }
     }
 
@@ -138,8 +158,13 @@ public class AthleteController {
     @GetMapping("update-details/{id}")
     public String serveAthleteUpdateForm(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model model) {
         if (users.get(users.size() - 1).equals(id)) {
-            Applicant applicant = applicantAuditor.findApplicantById(id).get();
-            AthleteUpdateForm athleteUpdateForm = new AthleteUpdateForm(applicant.getUserID(), applicant.getName());
+            Athlete a = athleteAuditor.findAthleteById(id).get();
+            AthleteUpdateForm athleteUpdateForm = new AthleteUpdateForm(
+                    a.getAthleteID(), a.getName(), a.getGender(), a.getDob(), a.getApplicationStatus(), a.getEmail(),
+                    a.getMobileNumber(), a.getTelephoneNumber(), a.getAddress(), a.getPostcode(), a.getPlaceOfEducation(),
+                    a.getGuardianName(), a.getRelationshipToAthlete(), a.getGuardianContactNumber(), a.getGuardianEmail(),
+                    a.getHeardFrom(), a.getInterestLetter(), a.getPostTestResult());
+
             model.addAttribute("athleteUpdateForm", athleteUpdateForm);
             return "update-athlete";
         } else {
@@ -158,7 +183,8 @@ public class AthleteController {
      * @return returns the form if any errors occur or redirects to the homepage.
      */
     @PostMapping("update-athlete")
-    public String handleAthleteEntry(@ModelAttribute("athlete") Athlete athlete, @Valid AthleteUpdateForm athleteUpdateForm, BindingResult bindings, @ModelAttribute("users") List<Long> users, Model model) {
+    public String handleAthleteEntry(@ModelAttribute("athlete") Athlete athlete, @Valid AthleteUpdateForm athleteUpdateForm,
+                                     BindingResult bindings, @ModelAttribute("users") List<Long> users, Model model) {
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
@@ -176,11 +202,12 @@ public class AthleteController {
                 helper.setTo(athlete.getEmail());
                 helper.setText("Dear " + athlete.getName() + "\n \n Thank you for your interest in joining the WelshRowing project, to complete your application you must now fill out the forms found on the athlete-dashboard and provide us with more information. Soon, if your application is not rejected, you will be sent information regarding an interview with one of our coaches. If all goes well you will enter the 8 week program as an athlete. \n \n Many thanks, \n The WelshRowing Team");
                 helper.setSubject("Welshrowing Application Response");
+                //Send the email if no exception is caught.
+                sender.send(message);
             } catch (MessagingException e) {
                 e.printStackTrace();
             }
-            //Send the email if no exception is caught.
-            sender.send(message);
+
             return "redirect:/athlete-dashboard/"+ users.get(users.size() - 1);
 
         }
