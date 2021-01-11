@@ -29,10 +29,10 @@ public class ApplicantForm {
     /**
      * The users password, checks password contains lower-case, uppercase and numerical values.
      */
-    @Pattern(regexp = "^[a-zA-Z].*",message = "Must start with a letter")
-    @Pattern(regexp = ".*[a-z].*", message = "Must contain lower-case")
-    @Pattern(regexp = ".*[A-Z.].*", message = "Must contain upper-case")
-    @Pattern(regexp = ".*[\\d].*", message = "Must contain a number")
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,64}$", message = "Password must contain:" +
+            "\nBetween 8 and 64 characters,\nA Capital Letter,\nA Lowercase Letter," +
+            "\nA number,\nA Special Character(# ? ! @ $ % ^ & * -)")
+    @NotBlank
     private String password;
 
     private String role;
