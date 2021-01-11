@@ -28,6 +28,15 @@ CREATE TABLE IF NOT EXISTS `User`
     PRIMARY KEY (`userID`)
 )
     ENGINE = InnoDB;
+    
+CREATE TABLE `keyEN`
+(
+    `keyID`   INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name`     VARCHAR(255)  NOT NULL,
+    PRIMARY KEY (`keyID`)
+)
+    ENGINE = InnoDB;
+INSERT INTO keyEn VALUES(1, "ypT9pYnCjTuP8n4jr7eW");
 
 CREATE TABLE `Athlete`
 (
@@ -37,7 +46,7 @@ CREATE TABLE `Athlete`
     gender                VARCHAR(10),
     DOB                   DATE,
     applicationStatus     BOOLEAN,
-    email                 VARCHAR(30),
+    email                 VARCHAR(50),
     mobileNumber          VARCHAR(50), # allows country code and spaces and to ensure digits only
     telephoneNumber       VARCHAR(50),
     address               VARCHAR(50),
@@ -548,17 +557,20 @@ BEGIN
     end if;
 end //
 
-
 -- Trigger that encrypts an athletes medical data before it is inserted into the database.
 CREATE TRIGGER encrypt_medical_data
     BEFORE INSERT
     ON MedicalData
     FOR EACH ROW
 BEGIN
-    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, 'ypT9pYnCjTuP8n4jr7eW');
-    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, 'ypT9pYnCjTuP8n4jr7eW');
-    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, 'ypT9pYnCjTuP8n4jr7eW');
-    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, 'ypT9pYnCjTuP8n4jr7eW');
+	-- sets the encryption key
+	DECLARE key_name VARCHAR(255);
+	SET @key_name := (SELECT name FROM keyEN WHERE keyID = 1);
+
+    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, @key_name);
+    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, @key_name);
+    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, @key_name);
+    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, @key_name);
 END//
 -- Trigger that encrypts an athletes medical data before it is updated and saved to the database.
 CREATE TRIGGER encrypt_medical_data_update
@@ -566,10 +578,14 @@ CREATE TRIGGER encrypt_medical_data_update
     ON MedicalData
     FOR EACH ROW
 BEGIN
-    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, 'ypT9pYnCjTuP8n4jr7eW');
-    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, 'ypT9pYnCjTuP8n4jr7eW');
-    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, 'ypT9pYnCjTuP8n4jr7eW');
-    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, 'ypT9pYnCjTuP8n4jr7eW');
+	-- sets the decryption key.
+    DECLARE key_name VARCHAR(255);
+	SET @key_name := (SELECT name FROM keyEN WHERE keyID = 1);
+    
+    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, @key_name);
+    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, @key_name);
+    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, @key_name);
+    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, @key_name);
 END//
 
 -- SP that if provided the correct key, will decrypt an athletes medical data if updates are needed.
