@@ -42,7 +42,7 @@ public class AthleteUpdateForm {
      * The athlete's personal email address.
      */
     @NotBlank
-    @Email
+    @Email(message = "Please enter a valid email address.")
     private String email;
     /**
      * The athlete's mobile number.
@@ -79,7 +79,7 @@ public class AthleteUpdateForm {
     /**
      * The email of the parent or guardian of the athlete, if they are under 18 years of age.
      */
-    @Email
+    @Email(message = "Please enter a valid email address.")
     private String guardianEmail;
     /**
      * A short string about where the athlete heard about Rowing Wales.
