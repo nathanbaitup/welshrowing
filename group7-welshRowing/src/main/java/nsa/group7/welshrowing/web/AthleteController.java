@@ -148,31 +148,6 @@ public class AthleteController {
     }
 
     /**
-     * Takes the user id and allows them to update their information.
-     *
-     * @param id    - the ID of the applicants login credentials.
-     * @param users - session attribute.
-     * @param model - adds the form to the model
-     * @return returns the update details form
-     */
-    @GetMapping("update-details/{id}")
-    public String serveAthleteUpdateForm(@PathVariable Long id, @ModelAttribute("users") List<Long> users, Model model) {
-        if (users.get(users.size() - 1).equals(id)) {
-            Athlete a = athleteAuditor.findAthleteById(id).get();
-            AthleteUpdateForm athleteUpdateForm = new AthleteUpdateForm(
-                    a.getAthleteID(), a.getName(), a.getGender(), a.getDob(), a.getApplicationStatus(), a.getEmail(),
-                    a.getMobileNumber(), a.getTelephoneNumber(), a.getAddress(), a.getPostcode(), a.getPlaceOfEducation(),
-                    a.getGuardianName(), a.getRelationshipToAthlete(), a.getGuardianContactNumber(), a.getGuardianEmail(),
-                    a.getHeardFrom(), a.getInterestLetter(), a.getPostTestResult());
-
-            model.addAttribute("athleteUpdateForm", athleteUpdateForm);
-            return "update-athlete";
-        } else {
-            return "redirect:/404";
-        }
-    }
-
-    /**
      * Updates a users data and saves into the database
      *
      * @param athlete           - the entity to be saved to the database.
