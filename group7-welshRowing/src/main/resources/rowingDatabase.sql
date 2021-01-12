@@ -885,23 +885,23 @@ GRANT EXECUTE ON PROCEDURE welshrowing.user_cnt TO 'webappuser'@'localhost';
 GRANT EXECUTE ON PROCEDURE welshrowing.decrypt_data TO 'webappuser'@'localhost';
 GRANT EXECUTE ON PROCEDURE welshrowing.find_all_athletes TO 'webappuser'@'localhost';
 GRANT EXECUTE ON PROCEDURE welshrowing.find_completed_morning_data TO 'webappuser'@'localhost';
-
 #inserting dummy data
-INSERT INTO user(name, username, password, role)
-VALUES ("Bob Smith", "userbob", "$2a$10$3/Gbi2ytLNUsPgIoB8oeF.KllszbevLs4IxBmTbtNq48g8qD1PqDy", "athlete");
-INSERT INTO user(name, username, password, role)
-VALUES ("James Dean", "userjames", "$2a$10$Snmk439qzaDR7XYVxGrsbesPrulnJywTOnX20VZP5cL3htcz20nRm", "athlete");
-INSERT INTO user(name, username, password, role)
-VALUES ("Bob Ross", "painterbob", "$2a$10$AUxk0RXEIQ0wxbZjP8uFleCgTd96RNxpdgtqvQ83jEUzkxJIPVSky", "athlete");
-INSERT INTO user(name, username, password, role)
-VALUES ("Hamid Iqbal", "hamidiqbal", "$2a$10$wIq0AGD1hxeVUm7r9pN5memAdWg37MbqQX3iuk4suMVQcsOVf0nI2", "athlete");
-INSERT INTO user(name, username, password, role)
-VALUES ("Oliver Holdaway", "oliverholdaway", "$2a$10$2TwjPtNdaAuHj0PFXXSO5uIB2E8UIyfyh7hD29ysDyry5PlQPe2RK", "athlete");
 
 INSERT INTO user(name, username, password, role)
-VALUES ("Coach Name", "coachaccount", "$2a$10$hczrqi5VYWFoOBxUoGmsfudaJB6ZLEDjTj5QMDAub9NsUq9X0/KQG", "coach");
+VALUES ("Bob Smith", "userbob", '$2a$12$AoKkGby0pjWMFPEPnX/yIef4GTfZ5hRAymnvsLrSc0TojcGjODKi6', "athlete");
 INSERT INTO user(name, username, password, role)
-VALUES ("Nathan Baitup", "nathanbaitup", "$2a$10$aOrE8ZR.BEsL36mbnZAdLu5ZfXZdm9PykwlA29NefyWjvIOyGqzWK", "coach");
+VALUES ("James Dean", "userjames", '$2a$12$2xOjNQOxe5I.kBfXkVB7P.wINZZHKFuhVjW61xKmSj36aMh8zymw.', "athlete");
+INSERT INTO user(name, username, password, role)
+VALUES ("Bob Ross", "painterbob", '$2a$12$q065Bd1Pp/75BfyYebnBl.Yr0UyMRL9BRONAN5JCtCzpO/.be7tRm', "athlete");
+INSERT INTO user(name, username, password, role)
+VALUES ("Hamid Iqbal", "hamidiqbal", '$2a$12$jVg5N.2NbTcxlAjUeXY6nub5VQmEoNECPsR/Sh8YfdX0LL2HR9u4e', "athlete");
+INSERT INTO user(name, username, password, role)
+VALUES ("Oliver Holdaway", "oliverholdaway", '$2a$12$dK5vdbR0r1eoyJ6AupuPj.fS2KUKWcaa2iKsByOyY6J7yr/lj.vva', "athlete");
+
+INSERT INTO user(name, username, password, role)
+VALUES ("Coach Name", "coachaccount", '$2a$12$2V1HyTwyTKTEhzyAhqGOJO9GnVQxL4NIDSgWy5ewB3A7Op6D/EyGO', "coach");
+INSERT INTO user(name, username, password, role)
+VALUES ("Nathan Baitup", "nathanbaitup", '$2a$12$/JcyBXbSCdPaiSq.GNJqKOyyk72OUC9jB5wINgFoDIcdJzKB8IKEK', "coach");
 
 INSERT INTO athlete(athleteID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address,
                     postcode, placeOfEducation, interestLetter, postTestResult)
