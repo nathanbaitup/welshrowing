@@ -1,9 +1,3 @@
-#creates admin user with password adminpassword and gives them all permissions over all tables
-DROP USER IF EXISTS 'admin'@'localhost';
-CREATE USER 'admin'@'localhost' IDENTIFIED BY 'adminpassword';
-GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost';
-FLUSH PRIVILEGES;
-
 #creates the web app user and gives them all permissions to insert, select, update, and delete on all tables.
 DROP USER IF EXISTS 'webappuser'@'localhost';
 CREATE USER 'webappuser'@'localhost' IDENTIFIED BY 'XuKIB5IN';
