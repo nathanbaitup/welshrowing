@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/css/entryForms.css">
     <link rel="stylesheet" href="/css/template.css">
     <script src="/js/athleteForms.js"></script>
+    <script src="/js/validation.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -99,7 +100,7 @@
         <div class="form-group">
             <br>
             <label th:for="dob">Date Of Birth: *</label>
-            <input class="form-control" th:field="*{dob}" type="date" id="dob" onchange="checkDOB()" required/>
+            <input class="form-control" th:field="*{dob}" type="date" id="dob" onchange="checkDOB()" onclick="checkValidDate()" required/>
         </div>
         <span th:errors="*{dob}" th:if="${#fields.hasErrors('dob')}">Please enter your date of birth</span>
 
@@ -125,20 +126,20 @@
 
             <br>
             <label th:for="guardianContactNumber">Please enter your Parent/Guardian's contact number: </label>
-            <input class="form-control" th:field="*{guardianContactNumber}" type="text" placeholder="Phone Number"/>
+            <input class="form-control" th:field="*{guardianContactNumber}" id="guardianContact" max="11" type="text" placeholder="Phone Number" onchange="validPhoneNumber(guardianContact)"/>
             <br>
         </div>
 
         <div class="form-group">
             <br>
             <label th:for="mobileNumber">Please enter your mobile number: </label>
-            <input class="form-control" th:field="*{mobileNumber}" type="text" placeholder="Phone Number"/>
+            <input class="form-control" th:field="*{mobileNumber}" id="mobileNum" type="text" max="11" placeholder="Phone Number" onchange="validPhoneNumber(mobileNum)"/>
             <br>
         </div>
 
         <div class="form-group">
             <label th:for="telephoneNumber">Please enter your home telephone number: </label>
-            <input class="form-control" th:field="*{telephoneNumber}" type="text" placeholder="Phone Number"/>
+            <input class="form-control" th:field="*{telephoneNumber}" id="telephoneNum" max="11" type="text" placeholder="Phone Number" onchange="validPhoneNumber(telephoneNum)"/>
             <br>
         </div>
 
@@ -150,7 +151,8 @@
 
         <div class="form-group">
             <label th:for="postcode">Please enter your postcode: </label>
-            <input class="form-control" th:field="*{postcode}" type="text" placeholder="Postcode"/>
+            <small> following LL00 0LL format</small>
+            <input class="form-control" th:field="*{postcode}" type="text" id="postcode" placeholder="Postcode" onchange="validPostcode(postcode)"/>
             <br>
         </div>
 
