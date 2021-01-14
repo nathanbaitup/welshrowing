@@ -29,7 +29,7 @@ java -jar c1926084_welsrowing.jar --spring.profiles.active=prod
 3.	To log in as a coach, press the login button in the navigation bar and enter the following credentials:
 
 Username: coachAccount
-Password: @coachPassword1
+Password: @coachAccount1
 
 4.	You will be redirected to the Coach Dashboard. From this screen you can visit each page by pressing on the respected button. To return to the Coach Dashboard from these pages, press the back arrow on your browser.
         a.	Visit all Applicants shows you all the current applicants in the system, where pressing the accept button will accept the applicant and remove them from the list and rejecting an applicant will do the same, where an email will be sent to the athlete if rejected.
