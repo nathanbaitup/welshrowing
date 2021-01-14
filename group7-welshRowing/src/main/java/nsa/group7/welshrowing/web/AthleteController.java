@@ -64,10 +64,6 @@ public class AthleteController {
     @Autowired
     private JavaMailSender sender;
 
-
-//    @Autowired
-//    private JavaMailSender sender;
-
     /**
      * Creates an arraylist of user sessions.
      *
