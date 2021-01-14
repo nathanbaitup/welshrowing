@@ -23,7 +23,7 @@ public class ApplicantForm {
     /**
      * The username of the user.
      */
-    @NotBlank(message = "Please enter a username.")
+    @NotBlank
     @Pattern(regexp = "^[a-zA-Z]\\w{3,20}$", message = "Please enter between 3 and 20 characters. Letters only.")
     private String username;
     /**
