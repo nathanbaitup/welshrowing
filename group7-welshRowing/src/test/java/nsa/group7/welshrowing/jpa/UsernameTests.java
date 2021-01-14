@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.env.Environment;
 import org.springframework.test.context.TestPropertySource;
 
 import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -19,14 +21,17 @@ public class UsernameTests {
     private ApplicantRepoJPA applicantRepoJPA;
 
     @Test
-    public void shouldAllowANewUsername() throws Exception{
-        String username = "nathan";
+    public void shouldSayUsernameAlreadyExists() throws Exception{
+        String username = "userbob";
         Optional<Applicant> possibleUser = Optional.ofNullable(applicantRepoJPA.findByUsername(username));
+        assertEquals("userbob", possibleUser.get().getUsername());
+        assertThat(true);
+    }
 
-        if (possibleUser.isEmpty()){
-            System.out.println("accept new user");
-        } else {
-            System.out.println("username already exists.");
-        }
+    @Test
+    public void shouldHaveBlankValue() throws Exception{
+        String username = "newUsername";
+        Optional<Applicant> possibleUser = Optional.ofNullable(applicantRepoJPA.findByUsername(username));
+        assertThat(possibleUser.isEmpty());
     }
 }
