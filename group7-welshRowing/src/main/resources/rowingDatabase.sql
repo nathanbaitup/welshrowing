@@ -30,7 +30,7 @@ CREATE TABLE `keyEN`
     PRIMARY KEY (`keyID`)
 )
     ENGINE = InnoDB;
-INSERT INTO keyEn VALUES(1, "n2r5u8x/A?D*G-Ka");
+INSERT INTO keyEn VALUES(1, "ypT9pYnCjTuP8n4jr7eW");
 
 CREATE TABLE `Athlete`
 (

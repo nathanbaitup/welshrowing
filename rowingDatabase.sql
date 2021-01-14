@@ -1,9 +1,3 @@
-#creates admin user with password adminpassword and gives them all permissions over all tables
-DROP USER IF EXISTS 'admin'@'localhost';
-CREATE USER 'admin'@'localhost' IDENTIFIED BY 'adminpassword';
-GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost';
-FLUSH PRIVILEGES;
-
 #creates the web app user and gives them all permissions to insert, select, update, and delete on all tables.
 DROP USER IF EXISTS 'webappuser'@'localhost';
 CREATE USER 'webappuser'@'localhost' IDENTIFIED BY 'XuKIB5IN';
@@ -28,6 +22,15 @@ CREATE TABLE IF NOT EXISTS `User`
     PRIMARY KEY (`userID`)
 )
     ENGINE = InnoDB;
+    
+CREATE TABLE `keyEN`
+(
+    `keyID`   INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name`     VARCHAR(255)  NOT NULL,
+    PRIMARY KEY (`keyID`)
+)
+    ENGINE = InnoDB;
+INSERT INTO keyEn VALUES(1, "ypT9pYnCjTuP8n4jr7eW");
 
 CREATE TABLE `Athlete`
 (
@@ -37,7 +40,7 @@ CREATE TABLE `Athlete`
     gender                VARCHAR(10),
     DOB                   DATE,
     applicationStatus     BOOLEAN,
-    email                 VARCHAR(30),
+    email                 VARCHAR(50),
     mobileNumber          VARCHAR(50), # allows country code and spaces and to ensure digits only
     telephoneNumber       VARCHAR(50),
     address               VARCHAR(50),
@@ -548,17 +551,20 @@ BEGIN
     end if;
 end //
 
-
 -- Trigger that encrypts an athletes medical data before it is inserted into the database.
 CREATE TRIGGER encrypt_medical_data
     BEFORE INSERT
     ON MedicalData
     FOR EACH ROW
 BEGIN
-    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, 'ypT9pYnCjTuP8n4jr7eW');
-    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, 'ypT9pYnCjTuP8n4jr7eW');
-    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, 'ypT9pYnCjTuP8n4jr7eW');
-    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, 'ypT9pYnCjTuP8n4jr7eW');
+	-- sets the encryption key
+	DECLARE key_name VARCHAR(255);
+	SET @key_name := (SELECT name FROM keyEN WHERE keyID = 1);
+
+    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, @key_name);
+    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, @key_name);
+    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, @key_name);
+    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, @key_name);
 END//
 -- Trigger that encrypts an athletes medical data before it is updated and saved to the database.
 CREATE TRIGGER encrypt_medical_data_update
@@ -566,10 +572,14 @@ CREATE TRIGGER encrypt_medical_data_update
     ON MedicalData
     FOR EACH ROW
 BEGIN
-    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, 'ypT9pYnCjTuP8n4jr7eW');
-    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, 'ypT9pYnCjTuP8n4jr7eW');
-    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, 'ypT9pYnCjTuP8n4jr7eW');
-    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, 'ypT9pYnCjTuP8n4jr7eW');
+	-- sets the decryption key.
+    DECLARE key_name VARCHAR(255);
+	SET @key_name := (SELECT name FROM keyEN WHERE keyID = 1);
+    
+    SET NEW.injuries = AES_ENCRYPT(NEW.injuries, @key_name);
+    SET NEW.heightCM = AES_ENCRYPT(NEW.heightCM, @key_name);
+    SET NEW.weightKG = AES_ENCRYPT(NEW.weightKG, @key_name);
+    SET NEW.armSpanCM = AES_ENCRYPT(NEW.armSpanCM, @key_name);
 END//
 
 -- SP that if provided the correct key, will decrypt an athletes medical data if updates are needed.
@@ -869,23 +879,23 @@ GRANT EXECUTE ON PROCEDURE welshrowing.user_cnt TO 'webappuser'@'localhost';
 GRANT EXECUTE ON PROCEDURE welshrowing.decrypt_data TO 'webappuser'@'localhost';
 GRANT EXECUTE ON PROCEDURE welshrowing.find_all_athletes TO 'webappuser'@'localhost';
 GRANT EXECUTE ON PROCEDURE welshrowing.find_completed_morning_data TO 'webappuser'@'localhost';
-
 #inserting dummy data
-INSERT INTO user(name, username, password, role)
-VALUES ("Bob Smith", "userbob", "$2a$10$3/Gbi2ytLNUsPgIoB8oeF.KllszbevLs4IxBmTbtNq48g8qD1PqDy", "athlete");
-INSERT INTO user(name, username, password, role)
-VALUES ("James Dean", "userjames", "$2a$10$Snmk439qzaDR7XYVxGrsbesPrulnJywTOnX20VZP5cL3htcz20nRm", "athlete");
-INSERT INTO user(name, username, password, role)
-VALUES ("Bob Ross", "painterbob", "$2a$10$AUxk0RXEIQ0wxbZjP8uFleCgTd96RNxpdgtqvQ83jEUzkxJIPVSky", "athlete");
-INSERT INTO user(name, username, password, role)
-VALUES ("Hamid Iqbal", "hamidiqbal", "$2a$10$wIq0AGD1hxeVUm7r9pN5memAdWg37MbqQX3iuk4suMVQcsOVf0nI2", "athlete");
-INSERT INTO user(name, username, password, role)
-VALUES ("Oliver Holdaway", "oliverholdaway", "$2a$10$2TwjPtNdaAuHj0PFXXSO5uIB2E8UIyfyh7hD29ysDyry5PlQPe2RK", "athlete");
 
 INSERT INTO user(name, username, password, role)
-VALUES ("Coach Name", "coachaccount", "$2a$10$hczrqi5VYWFoOBxUoGmsfudaJB6ZLEDjTj5QMDAub9NsUq9X0/KQG", "coach");
+VALUES ("Bob Smith", "userbob", '$2a$12$AoKkGby0pjWMFPEPnX/yIef4GTfZ5hRAymnvsLrSc0TojcGjODKi6', "athlete");
 INSERT INTO user(name, username, password, role)
-VALUES ("Nathan Baitup", "nathanbaitup", "$2a$10$aOrE8ZR.BEsL36mbnZAdLu5ZfXZdm9PykwlA29NefyWjvIOyGqzWK", "coach");
+VALUES ("James Dean", "userjames", '$2a$12$2xOjNQOxe5I.kBfXkVB7P.wINZZHKFuhVjW61xKmSj36aMh8zymw.', "athlete");
+INSERT INTO user(name, username, password, role)
+VALUES ("Bob Ross", "painterbob", '$2a$12$q065Bd1Pp/75BfyYebnBl.Yr0UyMRL9BRONAN5JCtCzpO/.be7tRm', "athlete");
+INSERT INTO user(name, username, password, role)
+VALUES ("Hamid Iqbal", "hamidiqbal", '$2a$12$jVg5N.2NbTcxlAjUeXY6nub5VQmEoNECPsR/Sh8YfdX0LL2HR9u4e', "athlete");
+INSERT INTO user(name, username, password, role)
+VALUES ("Oliver Holdaway", "oliverholdaway", '$2a$12$dK5vdbR0r1eoyJ6AupuPj.fS2KUKWcaa2iKsByOyY6J7yr/lj.vva', "athlete");
+
+INSERT INTO user(name, username, password, role)
+VALUES ("Coach Name", "coachaccount", '$2a$12$2V1HyTwyTKTEhzyAhqGOJO9GnVQxL4NIDSgWy5ewB3A7Op6D/EyGO', "coach");
+INSERT INTO user(name, username, password, role)
+VALUES ("Nathan Baitup", "nathanbaitup", '$2a$12$/JcyBXbSCdPaiSq.GNJqKOyyk72OUC9jB5wINgFoDIcdJzKB8IKEK', "coach");
 
 INSERT INTO athlete(athleteID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address,
                     postcode, placeOfEducation, interestLetter, postTestResult)
