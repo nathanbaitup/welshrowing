@@ -19,6 +19,8 @@ Creation of Database:
 ## Usage
 
 ```sh
+Test Cases are provided below usage instructions:
+
 Running of Project:
 1.	After cloning the project and creating the database, either run the application from within IntelliJ IDE using Gradle, under the bootRunProd task in the application folder or using the provided jar in the root folder and the command below.
 
@@ -101,7 +103,7 @@ On this page you should see an existing applicant and the account that you have 
 Return to the coach dashboard using the back arrow in your browser, and select the button for Applicant Testing.
 Whilst here, either select to complete testing for user 'James Dean' or the user that you have created.
 Fill in the form, entering data to simulate a test has been completed.
-When at the follow up section at the bottom of the form, select the 'START' option. this will accept the applicant you are testing.
+When at the follow up section at the bottom of the form, select the 'START' option. This will accept the applicant you are testing.
 When returning to the coach dashboard, press the view all applicants button and the applicant that you have just tested will be removed.
 Please log out of the coach account.
 ```
