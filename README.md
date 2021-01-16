@@ -73,6 +73,20 @@ Once completing all fields and pressing submit, you will be taken to the athlete
 Please log out of your account when complete.
 ```
 
+<h4> Test Case 2: Submitting and Updating Medical Data and Entering Morning Monitoring Data </h4>
+```sh
+Log into the athlete dashboard using the login credentials you jsut created or the login information for an athlete provided above.
+On the athlete dashboard, press the button to submit your medical data.
+At this page, you can enter any medical injuries, your height, weight and armspan and submit those detials.
+If you make a mistake, press the update medical data button, where you are able to update the information you have entered.
+
+Back at the athlete dashboard, press the Morning Monitoring button to enter the Morning Monitoring submission page.
+Here please follow the form and enter all the requried information.
+Sliders are provided for percieved shape, percieved mental state and sleep quantity.
+Once submitted your data, you will be taken to the athlete dashbaord and to view you latest entry, press the view data button below the graph.
+One done, sign out of the athlete account.
+```
+
 ## Author
 
 👤 **Nathan Baitup, Hamid Iqbal, Oliver Holloway, Joe Baiely**
