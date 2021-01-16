@@ -26,7 +26,7 @@ public class bootstrapTests {
     @Test
     public void ShouldHaveBootstrapWelcome() throws Exception {
         this.mockMvc
-                .perform(get("/"))
+                .perform(get("/welcome.html"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")));
@@ -36,30 +36,20 @@ public class bootstrapTests {
     @Test
     public void ShouldHaveBootstrapLogin() throws Exception {
         this.mockMvc
-                .perform(get("/login"));
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(containsString("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")));
+                .perform(get("/login"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")));
     }
 
 //    Testing for bootstrap on new Athlete page
     @Test
     public void ShouldHaveBootstrapNewAthlete() throws Exception {
         this.mockMvc
-                .perform(get("/new-athlete"))
+                .perform(get("/new-applicant"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")));
-    }
-
-
-    @Test
-    public void ShouldHaveBootstrapCoachDashboard() throws Exception {
-        this.mockMvc
-                .perform(get("/coachdashboard/1"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")));
     }
 
 }

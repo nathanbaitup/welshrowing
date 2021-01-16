@@ -28,28 +28,19 @@ public class coachDashboardTest {
     @Test
     public void coachNameShows() throws Exception {
         this.mockMvc
-               .perform(get("/coachdashboard/1"))
-//                .andDo(print())  prints out HTML file, not needed for this test
+               .perform(get("/coach-dashboard/6")
+                       .flashAttr("users", 6))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Nathan Test")));
+                .andExpect(content().string(containsString("Coach Name")));
     }
 
     @Test
     public void coachNameShowsTwo() throws Exception {
         this.mockMvc
-                .perform(get("/coachdashboard/2"))
-//                .andDo(print())
+                .perform(get("/coach-dashboard/7")
+                        .flashAttr("users", 7))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Adam Jones")));
-    }
-
-    @Test
-    public void coachNameShowsThree() throws Exception {
-        this.mockMvc
-                .perform(get("/coachdashboard/3"))
-//                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Oliver Twist")));
+                .andExpect(content().string(containsString("Nathan Baitup")));
     }
 
 }

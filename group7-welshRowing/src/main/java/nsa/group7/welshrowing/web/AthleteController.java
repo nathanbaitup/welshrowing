@@ -106,6 +106,9 @@ public class AthleteController {
                                           @Valid ApplicantForm applicantForm,
                                           BindingResult bindings,
                                           Model model) {
+
+        Optional<Applicant> possibleUser = Optional.ofNullable(applicantAuditor.findApplicantByUsername(applicantForm.getUsername()));
+
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
@@ -113,14 +116,22 @@ public class AthleteController {
             }
             model.addAttribute("applicantForm", applicantForm);
             return "new-applicant";
-        } else {
+        } else if (possibleUser.isEmpty()) {
             applicant.setPassword(hashPassword(applicantForm.getPassword()));
             applicantAuditor.saveApplicant(applicant);
             users.add(applicant.getUserID());
             attributes.addFlashAttribute("users", users);
             System.out.println("List of Users: " + users);
             return "redirect:/enter-details/" + users.get(users.size() - 1);
-        }
+        } else {
+            // REFERENCE ACCESSED 14/01/2021
+            // https://stackoverflow.com/a/12109001
+            // used to add own error message to the model when a username has been taken.
+            bindings.rejectValue("username","error.user", "Username has been taken, please enter a new username.");
+            model.addAttribute("applicantForm", applicantForm);
+
+            return "new-applicant";
+    }
     }
 
     /**
