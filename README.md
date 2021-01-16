@@ -19,6 +19,8 @@ Creation of Database:
 ## Usage
 
 ```sh
+Test Cases are provided below usage instructions:
+
 Running of Project:
 1.	After cloning the project and creating the database, either run the application from within IntelliJ IDE using Gradle, under the bootRunProd task in the application folder or using the provided jar in the root folder and the command below.
 
@@ -57,12 +59,54 @@ Password: hamidIqbal1!
 
 ```
 
-## Run tests
+## Three Testing Scenarios
+<h4> Test Case 1: Creating a New Account </h4>
 
 ```sh
-test
+Navigate to https://localhost:8080/ This will take you to the homepage.
+At the homepage, press the sign up link on the navigation bar, redirecting you to the sign-up page.
+At this page, please enter your name, create a username and enter a password.
+* Note: A username must be unique and at least 3 characters along with no numbers.
+* Note: Your password must be at least 8 characters, and include:
+        uppercase and lowercase letters, numbers, and a special character consisting of:   # ? ! @ $ % ^ & * -
+
+Once a username and password have been entered and submitted, you will be directed to the further details page.
+At this page you are required to enter your email address, date of birth and gender to submit your data.
+Once completing all fields and pressing submit, you will be taken to the athlete dashboard and will recieve a welcome email.
+Please log out of your account when complete.
 ```
 
+<h4> Test Case 2: Submitting and Updating Medical Data and Entering Morning Monitoring Data </h4>
+
+```sh
+Log into the athlete dashboard using the login credentials you just created or the login information for an athlete provided above.
+On the athlete dashboard, press the button to submit your medical data.
+At this page, you can enter any medical injuries, your height, weight and armspan and submit those detials.
+If you make a mistake, press the update medical data button, where you are able to update the information you have entered.
+
+Back at the athlete dashboard, press the Morning Monitoring button to enter the Morning Monitoring submission page.
+Here please follow the form and enter all the requried information.
+Sliders are provided for percieved shape, percieved mental state and sleep quantity.
+Once submitted your data, you will be taken to the athlete dashbaord and to view your latest entry, press the view data button below the graph.
+Once done, sign out of the athlete account.
+```
+
+<h4> Test Case 3: Logging in as a coach, viewing current applicants and completing an applicant test </h4>
+
+```sh
+Log into the coach dashboard using the login credentials:
+username: coachaccount
+password: @coachAccount1
+
+When on the coach dashboard, press the View all Applicants button to view current applicants who are waiting to be upgraded to an athlete. 
+On this page you should see an existing applicant and the account that you have just made.
+Return to the coach dashboard using the back arrow in your browser, and select the button for Applicant Testing.
+Whilst here, either select to complete testing for user 'James Dean' or the user that you have created.
+Fill in the form, entering data to simulate a test has been completed.
+When at the follow up section at the bottom of the form, select the 'START' option. This will accept the applicant you are testing.
+When returning to the coach dashboard, press the view all applicants button and the applicant that you have just tested will be removed.
+Please log out of the coach account.
+```
 ## Author
 
 👤 **Nathan Baitup, Hamid Iqbal, Oliver Holloway, Joe Baiely**
