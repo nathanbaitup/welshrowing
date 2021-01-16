@@ -30,12 +30,11 @@ public class AnthropometryTest {
 
     @Test
     public void shouldDisplayDecryptedData() throws Exception {
-        //Athlete athlete = athleteRepoJPA.findByAthleteID(1L);
-        //anthropometryRepo.save(new Anthropometry(1L, athlete,"none",100, 98, 100));
+        Athlete athlete = athleteRepoJPA.findByAthleteID(1L);
+        anthropometryRepo.save(new Anthropometry(1L, athlete,"none",100, 98, 100));
 
         Anthropometry anthropometry = anthropometryRepo.decryptData(1L, env.getProperty("app.key"));
-        System.out.println(anthropometry);
-        //assertEquals("none", anthropometry.getInjuries());
+        assertEquals("none", anthropometry.getInjuries());
         assertEquals(98, anthropometry.getWeightKG());
 
     }
