@@ -57,10 +57,20 @@ Password: hamidIqbal1!
 
 ```
 
-## Run tests
-
+## Three Testing Scenarios
+<h4> Test Case 1: Creating a New Account </h4>
 ```sh
-test
+Navigate to https://localhost:8080/ This will take you to the homepage.
+At the homepage, press the sign up link on the navigation bar, redirecting you to the sign-up page.
+At this page, please enter your name, create a username and enter a password.
+* Note: A username must be unique and at least 3 characters along with no numbers.
+* Note: Your password must be at least 8 characters, and include:
+        uppercase and lowercase letters, numbers, and a special character consisting of:   # ? ! @ $ % ^ & * -
+
+Once a username and password has been entered and submitted, you will be directed to the further details page.
+At this page you are required to enter your email address, date of birth and gender to submit your data.
+Once completing all fields and pressing submit, you will be taken to the athlete dashboard and will recieve a welcome email.
+Please log out of your account when complete.
 ```
 
 ## Author
