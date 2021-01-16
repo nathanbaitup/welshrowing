@@ -38,7 +38,7 @@ public class NotDoneMorningMonitoringTests {
                 uncompletedMorningData.add(allAthlete);
             }
         }
-        assertEquals(4, uncompletedMorningData.size());
+        assertEquals(5, uncompletedMorningData.size());
     }
 }
 

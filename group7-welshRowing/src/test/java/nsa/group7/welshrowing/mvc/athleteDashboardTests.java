@@ -23,7 +23,8 @@ public class athleteDashboardTests {
     @Test
     public void athleteDashboardShows() throws Exception {
         this.mockMvc
-                .perform(get("/athlete-dashboard/1"))
+                .perform(get("/athlete-dashboard/1")
+                        .flashAttr("users", 1))
                 .andExpect(status().isOk());
 
 

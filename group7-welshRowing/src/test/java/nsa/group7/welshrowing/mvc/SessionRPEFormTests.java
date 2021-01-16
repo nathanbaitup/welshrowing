@@ -1,13 +1,18 @@
 package nsa.group7.welshrowing.mvc;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import static org.hamcrest.Matchers.containsString;
+import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -29,7 +34,10 @@ public class SessionRPEFormTests {
     @Test
     public void shouldHaveCorrectAthleteID() throws Exception {
         this.mockMvc
-                .perform(get("/submit-session-rpe/1"))
+                .perform(get("/submit-session-rpe/1")
+                        .flashAttr("users", 1))
+
+
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("1")));
     }
