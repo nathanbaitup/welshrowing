@@ -47,14 +47,14 @@
 
         <div class="form-group">
             <label th:for="name">Please enter your Full Name:</label>
-            <input class="form-control" th:field="*{name}" type="text" placeholder="Full Name" required/>
+            <input class="form-control" th:field="*{name}" id="fullName" type="text" placeholder="Full Name" required/>
         </div>
         <span th:errors="*{name}" th:if="${#fields.hasErrors('name')}">Please enter your name.</span>
         <br>
 
         <div class="form-group">
             <label th:for="username">Please enter a username: </label>
-            <input class="form-control" th:field="*{username}" type="text" placeholder="Username" required/>
+            <input class="form-control" th:field="*{username}" id="username" type="text" placeholder="Username" required/>
         </div>
         <span th:errors="*{username}" th:if="${#fields.hasErrors('username')}">Please enter a username.</span>
         <br><br>
@@ -75,7 +75,7 @@
 
         <input th:field="*{role}" type="text" hidden/>
 
-        <button class="btn btn-primary" type="submit">Create Your Account</button>
+        <button class="btn btn-primary"  id="submit" type="submit">Create Your Account</button>
 
     </form>
 </div>
