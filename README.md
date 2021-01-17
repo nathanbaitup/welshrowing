@@ -7,6 +7,7 @@
 ### 🏠 [GitLab Homepage](https://git.cardiff.ac.uk/c1926084/clientproject-group7)
 
 ## Install
+<h5> Please Note: Database needs to be configured before running gralde buils as some tests require the database </h5>
 
 ```sh
 Creation of Database:
