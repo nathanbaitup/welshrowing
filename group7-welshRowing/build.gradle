@@ -57,6 +57,7 @@ test {
 }
 test {
     exclude 'nsa/group7/welshrowing/structurizr/**'
+    exclude 'nsa/group7/welshrowing/selenium/**'
 }
 
 tasks.bootRun.configure {
