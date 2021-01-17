@@ -1,30 +1,40 @@
 package nsa.group7.welshrowing.selenium;
 
+import org.junit.Before;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@AutoConfigureTestDatabase
+@AutoConfigureTestDatabase
 public class CreateAnAccountTest {
 
+    private WebDriver webDriver;
 
-
-
-    public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "/Users/nathanbaitup/Downloads/chromedriver");
+    @Test
+    public void shouldCreateAnAccount() throws Exception {
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
 
         ChromeOptions options = new ChromeOptions();
         options.setAcceptInsecureCerts(true);
-        WebDriver webDriver = new ChromeDriver(options);
+        webDriver = new ChromeDriver(options);
 
         webDriver.get("https://localhost:8080/");
+        assertEquals("Welsh Rowing", this.webDriver.getTitle());
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); //waits 2 seconds before moving to next page.
         webDriver.findElement(By.id("signup")).click();
 
         //section for filling in new login credentials.
@@ -37,11 +47,12 @@ public class CreateAnAccountTest {
         WebElement confirmPassword = webDriver.findElement(By.id("confirmPassword")); // the confirm password field.
         confirmPassword.sendKeys("@zFarro1"); //enter a password
 
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // waits 2 seconds before pressing submit button.
         webDriver.findElement(By.id("submit")).click();
 
         //section for filling in user information.
         WebElement email = webDriver.findElement(By.id("email")); // the email field.
-        email.sendKeys("Zac Farro"); //enter an email
+        email.sendKeys("nbaitup1@gmail.com"); //enter an email
 
         WebElement gender = webDriver.findElement(By.cssSelector("input[value='male']")); // the heard about field.
         gender.click();
@@ -67,6 +78,24 @@ public class CreateAnAccountTest {
         WebElement findBy = webDriver.findElement(By.cssSelector("input[value='facebook']")); // the heard about field.
         findBy.click();
 
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // waits 2 seconds before pressing submit button.
+        webDriver.findElement(By.id("submit")).click(); // submits the new user information, directing to the user dashboard.
+
+        // redirects to the athlete dashboard, waits five seconds then logs you out and logs back in.
+        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); // waits 5 seconds before pressing submit button.
+        webDriver.findElement(By.id("signout")).click();
+        webDriver.findElement(By.id("home")).click();
+
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // waits 2 seconds before pressing submit button.
+
+        webDriver.findElement(By.id("login")).click();
+        WebElement usernameLogin = webDriver.findElement(By.id("username")); // the username field.
+        usernameLogin.sendKeys("zfarro"); //enter a username
+        WebElement passwordLogin = webDriver.findElement(By.id("password")); // the password field.
+        passwordLogin.sendKeys("@zFarro1"); //enter a password
+
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // waits 2 seconds before pressing submit button.
+        webDriver.findElement(By.id("submit")).click();
 
     }
 
