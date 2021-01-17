@@ -30,7 +30,7 @@ public class SeleniumTests {
         if (System.getProperty("os.name").equals("Mac OS X")){
             System.setProperty("webdriver.chrome.driver", "chromedrivermac");
         } else {
-            System.setProperty("webdriver.chrome.driver", "chromedriverwindows");
+            System.setProperty("webdriver.chrome.driver", "chromedriverwindows.exe");
         }
 
         ChromeOptions options = new ChromeOptions();
