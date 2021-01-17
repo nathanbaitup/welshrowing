@@ -63,9 +63,10 @@ Password: hamidIqbal1!
 <h4> Selenium Browser Tests </h4>
 
 ```sh
-A Selenium test has been written for Test Case 1: Creating a New Account. 
-To run this test please go to the package named 'Selenium' within the Test folder and there will be a class named 'SeleniumTests'. 
+A Selenium test has been written for Test Case 1: Creating a New Account.
 Before running the test class, please ensure that the server is running for the test to complete. 
+To run this test, please comment line 60 'exclude 'nsa/group7/welshrowing/selenium/**'' within the build.gradle file.
+To run this test please go to the package named 'Selenium' within the Test folder and there will be a class named 'SeleniumTests'. 
 The test will create a new login with the details:
 username: zfarro
 password: @zFarro1
