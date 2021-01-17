@@ -19,7 +19,7 @@ Creation of Database:
 ## Usage
 
 ```sh
-Test Cases are provided below usage instructions:
+Test Cases are provided below usage instructions under 'Three Testing Scenarios heading':
 
 Running of Project:
 1.	After cloning the project and creating the database, either run the application from within IntelliJ IDE using Gradle, under the bootRunProd task in the application folder or using the provided jar in the root folder and the command below.
@@ -60,6 +60,17 @@ Password: hamidIqbal1!
 ```
 
 ## Three Testing Scenarios
+<h4> Selenium Browser Tests </h4>
+
+```sh
+A Selenium test has been written for Test Case 1: Creating a New Account. 
+To run this test please go to the package named 'Selenium' within the Test folder and there will be a class named 'SeleniumTests'. 
+Before running the test class, please ensure that the server is running for the test to complete. 
+The test will create a new login with the details:
+username: zfarro
+password: @zFarro1
+```
+
 <h4> Test Case 1: Creating a New Account </h4>
 
 ```sh
