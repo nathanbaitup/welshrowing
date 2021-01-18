@@ -13,7 +13,7 @@
 Creation of Database:
 1.	Clone the project from the GitLab repository links provided above.
 2.	Open MySQL Workbench using your root account as a new user will be created within the SQL execution.
-3.	Open the SQL Document named ‘rowingDatabase.sql’ and execute the file, creating the database and populating with data.
+3.	Open the SQL Document named ‘SQL_c1926084.sql’ and execute the file, creating the database and populating with data.
 
 ```
 
