@@ -30,7 +30,7 @@ CREATE TABLE `keyEN`
     PRIMARY KEY (`keyID`)
 )
     ENGINE = InnoDB;
-INSERT INTO keyEn VALUES(1, "ypT9pYnCjTuP8n4jr7eW");
+INSERT INTO keyEN VALUES(1, "ypT9pYnCjTuP8n4jr7eW");
 
 CREATE TABLE `Athlete`
 (
@@ -231,7 +231,7 @@ SELECT interviewID,
        answer22,
        answer23,
        answer24
-FROM interview;
+FROM Interview;
 
 CREATE VIEW interviewCoaches
 AS
@@ -261,12 +261,12 @@ SELECT interviewID,
        answer22,
        answer23,
        answer24
-FROM interview;
+FROM Interview;
 
 CREATE VIEW interviewAthletes
 AS
 SELECT interviewID, athleteID
-FROM interview;
+FROM Interview;
 
 DELIMITER //
 
@@ -610,7 +610,7 @@ DELIMITER //
 
 CREATE TRIGGER athlete_after_delete
     AFTER DELETE
-    ON athlete
+    ON Athlete
     FOR EACH ROW
 
 BEGIN
@@ -638,7 +638,7 @@ DELIMITER //
 
 CREATE TRIGGER athletetest_after_delete
     AFTER DELETE
-    ON athletetest
+    ON AthleteTest
     FOR EACH ROW
 
 BEGIN
@@ -666,7 +666,7 @@ DELIMITER //
 
 CREATE TRIGGER crosstraining_after_delete
     AFTER DELETE
-    ON crosstraining
+    ON CrossTraining
     FOR EACH ROW
 
 BEGIN
@@ -694,7 +694,7 @@ DELIMITER //
 
 CREATE TRIGGER medicaldata_after_delete
     AFTER DELETE
-    ON medicaldata
+    ON MedicalData
     FOR EACH ROW
 
 BEGIN
@@ -722,7 +722,7 @@ DELIMITER //
 
 CREATE TRIGGER morningmonitoring_after_delete
     AFTER DELETE
-    ON morningmonitoring
+    ON MorningMonitoring
     FOR EACH ROW
 
 BEGIN
@@ -750,7 +750,7 @@ DELIMITER //
 
 CREATE TRIGGER sessionrpe_after_delete
     AFTER DELETE
-    ON sessionrpe
+    ON SessionRPE
     FOR EACH ROW
 
 BEGIN
@@ -777,7 +777,7 @@ DELIMITER //
 
 CREATE TRIGGER user_after_delete
     AFTER DELETE
-    ON user
+    ON User
     FOR EACH ROW
 
 BEGIN
@@ -804,12 +804,12 @@ DELIMITER ;
 CREATE VIEW userAuditAdmin
 AS
 SELECT athleteID, deletedDate, deleted_by
-FROM useraudit;
+FROM UserAudit;
 
 CREATE VIEW userAuditCoach
 AS
 SELECT deletedDate
-FROM useraudit;
+FROM UserAudit;
 
 
 DELIMITER //
@@ -881,105 +881,105 @@ GRANT EXECUTE ON PROCEDURE welshrowing.find_all_athletes TO 'webappuser'@'localh
 GRANT EXECUTE ON PROCEDURE welshrowing.find_completed_morning_data TO 'webappuser'@'localhost';
 #inserting dummy data
 
-INSERT INTO user(name, username, password, role)
+INSERT INTO User(name, username, password, role)
 VALUES ("Bob Smith", "userbob", '$2a$12$AoKkGby0pjWMFPEPnX/yIef4GTfZ5hRAymnvsLrSc0TojcGjODKi6', "athlete");
-INSERT INTO user(name, username, password, role)
+INSERT INTO User(name, username, password, role)
 VALUES ("James Dean", "userjames", '$2a$12$2xOjNQOxe5I.kBfXkVB7P.wINZZHKFuhVjW61xKmSj36aMh8zymw.', "athlete");
-INSERT INTO user(name, username, password, role)
+INSERT INTO User(name, username, password, role)
 VALUES ("Bob Ross", "painterbob", '$2a$12$q065Bd1Pp/75BfyYebnBl.Yr0UyMRL9BRONAN5JCtCzpO/.be7tRm', "athlete");
-INSERT INTO user(name, username, password, role)
+INSERT INTO User(name, username, password, role)
 VALUES ("Hamid Iqbal", "hamidiqbal", '$2a$12$jVg5N.2NbTcxlAjUeXY6nub5VQmEoNECPsR/Sh8YfdX0LL2HR9u4e', "athlete");
-INSERT INTO user(name, username, password, role)
+INSERT INTO User(name, username, password, role)
 VALUES ("Oliver Holdaway", "oliverholdaway", '$2a$12$dK5vdbR0r1eoyJ6AupuPj.fS2KUKWcaa2iKsByOyY6J7yr/lj.vva', "athlete");
 
-INSERT INTO user(name, username, password, role)
+INSERT INTO User(name, username, password, role)
 VALUES ("Coach Name", "coachaccount", '$2a$12$2V1HyTwyTKTEhzyAhqGOJO9GnVQxL4NIDSgWy5ewB3A7Op6D/EyGO', "coach");
-INSERT INTO user(name, username, password, role)
+INSERT INTO User(name, username, password, role)
 VALUES ("Nathan Baitup", "nathanbaitup", '$2a$12$/JcyBXbSCdPaiSq.GNJqKOyyk72OUC9jB5wINgFoDIcdJzKB8IKEK', "coach");
 
-INSERT INTO athlete(athleteID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address,
+INSERT INTO Athlete(athleteID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address,
                     postcode, placeOfEducation, interestLetter, postTestResult)
 VALUES (1, "Bob Smith", "Male", "2000-10-28", 1, "bob@gmail.com", "01757507758", "02972503307", "14 park road",
         "PO13 5HE", "Cardiff University", true, "");
-INSERT INTO athlete(athleteID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address,
+INSERT INTO Athlete(athleteID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address,
                     postcode, placeOfEducation, interestLetter, postTestResult)
 VALUES (2, "James Dean", "Male", "2000-12-15", 1, "james@gmail.com", "01757506558", "02972453307", "14 green road",
         "PO13 5HE", "Cardiff University", true, "");
-INSERT INTO athlete(athleteID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address,
+INSERT INTO Athlete(athleteID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address,
                     postcode, placeOfEducation, interestLetter, postTestResult)
 VALUES (3, "Bob Ross", "Male", "2000-08-15", 0, "bobross@gmail.com", "01753206558", "02472453307", "14 lake road",
         "PO13 5HE", "Cardiff University", true, "8 Weeks");
-INSERT INTO athlete(athleteID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address,
+INSERT INTO Athlete(athleteID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address,
                     postcode, placeOfEducation, interestLetter, postTestResult)
 VALUES (4, "Hamid Iqbal", "Male", "2001-08-15", 0, "hamid@gmail.com", "01753209958", "02472453907", "14 red close",
         "PO13 5HE", "Cardiff University", true, "8 Weeks");
-INSERT INTO athlete(athleteID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address,
+INSERT INTO Athlete(athleteID, name, gender, DOB, applicationStatus, email, mobileNumber, telephoneNumber, address,
                     postcode, placeOfEducation, interestLetter, postTestResult)
 VALUES (5, "Oliver Holdaway", "Male", "2000-10-27", 0, "oliver@gmail.com", "01753209658", "02473353907", "19 red close",
         "PO13 5HE", "Cardiff University", true, "8 Weeks");
 
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (3, "2020-12-16", 56, 40, 7, 4, 9, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (3, "2020-12-17", 70, 99, 6, 7, 8, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (3, "2020-12-18", 55, 56, 7, 4, 9, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (3, "2020-12-19", 65, 70, 4, 3, 7, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (3, "2020-12-20", 38, 40, 7, 7, 5, 5);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (3, "2020-12-21", 56, 60, 2, 1, 7, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (3, "2020-12-22", 56, 80, 9, 9, 6, 9);
 
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (4, "2020-12-16", 67, 90, 7, 4, 9, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (4, "2020-12-17", 70, 99, 6, 7, 8, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (4, "2020-12-18", 33, 44, 7, 4, 9, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (4, "2020-12-19", 65, 70, 4, 3, 7, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (4, "2020-12-20", 38, 40, 7, 7, 5, 5);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (4, "2020-12-21", 60, 70, 2, 1, 7, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (4, "2020-12-22", 56, 80, 9, 9, 6, 9);
 
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (5, "2020-12-16", 30, 90, 7, 4, 9, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (5, "2020-12-17", 56, 70, 6, 7, 8, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (5, "2020-12-18", 36, 43, 7, 4, 9, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (5, "2020-12-19", 57, 70, 4, 3, 7, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (5, "2020-12-20", 38, 40, 7, 7, 5, 5);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (5, "2020-12-21", 50, 70, 2, 1, 7, 9);
-INSERT INTO morningmonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
+INSERT INTO MorningMonitoring(athleteID, date, walkingHeartRate, standingHeartRate, perceivedShape,
                               perceivedMentalState, sleepQuantityHours, sleepQuality)
 VALUES (5, "2020-12-22", 66, 80, 9, 9, 6, 9);
