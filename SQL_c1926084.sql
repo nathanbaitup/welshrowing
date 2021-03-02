@@ -1,10 +1,10 @@
 #creates the web app user and gives them all permissions to insert, select, update, and delete on all tables.
 DROP USER IF EXISTS 'webappuser'@'localhost';
 CREATE USER 'webappuser'@'localhost' IDENTIFIED BY 'XuKIB5IN';
-GRANT INSERT ON welshrowing.* TO 'webappuser'@'localhost';
-GRANT SELECT ON welshrowing.* TO 'webappuser'@'localhost';
-GRANT UPDATE ON welshrowing.* TO 'webappuser'@'localhost';
-GRANT DELETE ON welshrowing.* TO 'webappuser'@'localhost';
+GRANT INSERT ON welshRowing.* TO 'webappuser'@'localhost';
+GRANT SELECT ON welshRowing.* TO 'webappuser'@'localhost';
+GRANT UPDATE ON welshRowing.* TO 'webappuser'@'localhost';
+GRANT DELETE ON welshRowing.* TO 'webappuser'@'localhost';
 FLUSH PRIVILEGES;
 
 CREATE DATABASE IF NOT EXISTS welshRowing;
