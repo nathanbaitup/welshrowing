@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot' version '2.4.0'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
+    id 'checkstyle'
+    id 'jacoco'
 }
 
 group = 'nsa.group7'
@@ -60,6 +62,34 @@ test {
     exclude 'nsa/group7/welshrowing/selenium/**'
 }
 
+checkstyle {
+    toolVersion = 8.25
+    checkstyleTest.enabled = false
+    // REFERENCE accessed on 05/03/2021
+    // https://checkstyle.sourceforge.io/anttask.html
+    // used to allow errors within checkstyle and still pass the build.
+    maxErrors = 999999
+    // END REFERENCE
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8
+            }
+        }
+    }
+}
+
+
 tasks.bootRun.configure {
     systemProperty("spring.profiles.active", "dev")
 }
@@ -73,4 +103,8 @@ tasks.register("bootRunProd") {
         }
     }
     finalizedBy("bootRun")
+}
+
+task buildAndReport {
+    dependsOn build, jacocoTestReport
 }
