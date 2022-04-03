@@ -4,7 +4,7 @@
 
 > Client Project for the Welsh Rowing Association on behalf of group 7
 
-### 🏠 [GitLab Homepage](https://git.cardiff.ac.uk/c1926084/clientproject-group7)
+### 🏠 [GitLab Homepage](https://github.com/nathanbaitup/welshrowing)
 
 ## Install
 <h5> Please Note: Database needs to be configured before running gralde buils as some tests require the database </h5>
